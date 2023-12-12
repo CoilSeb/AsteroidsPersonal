@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="AsteroidsTest"
-run/main_scene="res://StartScreen.tscn"
+run/main_scene="res://Scenes/Screens/Start Screen/StartScreen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Arbitrary/icon.svg"
 
 [autoload]
 
