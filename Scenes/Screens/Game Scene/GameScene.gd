@@ -42,8 +42,8 @@ func generate_spawn_point() -> Vector2:
 	var y = randf_range(-(100 + screen_size.y), screen_size.y + 100)
 	
 	if (x > screen_size.x/2 && x < screen_size.x/2) or (y > screen_size.y/2 && y < screen_size.y/2):
-		generate_spawn_point()
-	
+			generate_spawn_point()
+		
 	return Vector2(x,y)
 
 

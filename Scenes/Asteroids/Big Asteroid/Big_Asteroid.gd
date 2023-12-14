@@ -6,7 +6,7 @@ extends Area2D
 @onready var crack_3 = $Sprite2D/Crack3
 @onready var crack_4 = $Sprite2D/Crack4
 
-var medium_asteroid_scene = preload("res://Scenes/Asteroids/Big Asteroid/Big_Asteroid.tscn")
+var medium_asteroid_scene = preload("res://Scenes/Asteroids/Medium Asteroid/Medium_asteroid.tscn")
 var screen_size
 var speed: float
 var direction: Vector2

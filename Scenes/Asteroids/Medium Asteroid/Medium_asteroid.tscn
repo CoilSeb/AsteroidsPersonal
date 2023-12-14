@@ -1,9 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://oavtintayebl"]
 
 [ext_resource type="Script" path="res://Scenes/Asteroids/Medium Asteroid/Medium_asteroid.gd" id="1_ux4n5"]
-[ext_resource type="Texture2D" uid="uid://duhf8daiqg8ik" path="res://Scenes/Asteroids/Medium Asteroid/Sprites/Medium_Asteroid-2.png.png" id="2_h7ck8"]
-[ext_resource type="Texture2D" uid="uid://cbydhatam5uop" path="res://Scenes/Asteroids/Medium Asteroid/Sprites/Medium_Crack1-1.png.png" id="3_ak888"]
-[ext_resource type="Texture2D" uid="uid://4rchgfyuugy" path="res://Scenes/Asteroids/Medium Asteroid/Sprites/Medium_Crack2-2.png.png" id="4_yj836"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lxsxp"]
+load_path = "res://.godot/imported/Medium_Asteroid-2.png.png-02b76427ec31ec0a5a1b90ba09ce1aa0.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2eobq"]
+load_path = "res://.godot/imported/Medium_Crack1-1.png.png-a44eeb5bf4a94961b4c31760a1bc58e4.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_delwv"]
+load_path = "res://.godot/imported/Medium_Crack2-2.png.png-a8e112be1b41778cb8e95727158c7a93.ctex"
 
 [node name="Medium_Asteroid" type="Area2D" groups=["Asteroid"]]
 collision_layer = 4
@@ -12,17 +18,17 @@ script = ExtResource("1_ux4n5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_h7ck8")
+texture = SubResource("CompressedTexture2D_lxsxp")
 
 [node name="Crack1" type="Sprite2D" parent="Sprite2D"]
 visible = false
 texture_filter = 1
-texture = ExtResource("3_ak888")
+texture = SubResource("CompressedTexture2D_2eobq")
 
 [node name="Crack2" type="Sprite2D" parent="Sprite2D"]
 visible = false
 texture_filter = 1
-texture = ExtResource("4_yj836")
+texture = SubResource("CompressedTexture2D_delwv")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(4, -40, 14, -40, 31, -29, 41, -17, 41, -1, 35, 4, 36, 11, 37, 20, 32, 28, 31, 33, 12, 33, 7, 35, -3, 30, -17, 27, -28, 23, -33, 15, -31, 4, -31, -7, -22, -20, -19, -22, -18, -28, -6, -37, -2, -39)

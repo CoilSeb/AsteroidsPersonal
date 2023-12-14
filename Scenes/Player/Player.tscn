@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://bmiu6wiv2qyw3"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_awws1"]
-[ext_resource type="Texture2D" uid="uid://cy2p3man040cg" path="res://Scenes/Player/Sprites/Player-1.png.png" id="2_g56g1"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wb2lw"]
+load_path = "res://.godot/imported/Player-1.png.png-d54086c10c1fd3ee5a146492c1989519.ctex"
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 4
@@ -11,7 +13,7 @@ script = ExtResource("1_awws1")
 texture_filter = 1
 texture_repeat = 1
 scale = Vector2(0.25, 0.348)
-texture = ExtResource("2_g56g1")
+texture = SubResource("CompressedTexture2D_wb2lw")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, -0.499998)
