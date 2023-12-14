@@ -1,10 +1,10 @@
 extends Node
 
 # Global Variables
-var health = 100
+var health = 500
 var high_score = 0
-var damage_multiplier = 1.0
-var collision_damage = 10
+var damage_multiplier = 10.0
+var collision_damage = 100
 var experience = 0
 @onready var screen_size = get_viewport().get_visible_rect().size
 

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dvo4y5vj5mvgc" path="res://Scenes/Exp/Sprites/Exp-1.png.png" id="1_gm563"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7iodp"]
-radius = 299.007
+radius = 54.0093
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pnwvu"]
 radius = 7.0
@@ -27,3 +27,4 @@ collision_layer = 8
 shape = SubResource("CircleShape2D_pnwvu")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

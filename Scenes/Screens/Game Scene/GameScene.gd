@@ -18,6 +18,7 @@ func _ready():
 		player = false
 		#print(player)
 
+
 func _process(_delta): 
 	if !player:
 		#print(player)

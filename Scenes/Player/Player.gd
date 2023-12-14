@@ -11,6 +11,7 @@ var slowDown = 1
 var shootTimer = null
 var immunity_timer = null
 var d
+var using_mouse = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,10 +43,17 @@ func _physics_process(delta):
 	
 	# Movement
 	if Input.is_action_pressed("rotate_left"):
+		using_mouse = false
 		rotation += -1 * rotateSpeed * delta
 	if Input.is_action_pressed("rotate_right"):
+		using_mouse = false
 		rotation += 1 * rotateSpeed * delta
-	if Input.is_action_pressed("move_forward"):
+	if Input.is_action_pressed("M1") || Input.is_action_pressed("M2"):
+		using_mouse = true
+	if using_mouse == true:
+		rotate(get_angle_to(get_global_mouse_position()) + (0.5 * PI))
+		#rotation = get_angle_to(get_global_mouse_position())
+	if Input.is_action_pressed("move_forward") || Input.is_action_pressed("M2"):
 		velocity += ((Vector2(0, -10) * thrust * delta).rotated(rotation))
 		velocity.limit_length(maxSpeed)
 	else:
@@ -59,7 +67,7 @@ func _physics_process(delta):
 		
 		
 	# Shooting
-	if Input.is_action_pressed("shoot") && shootTimer.time_left == 0:  # Use action_just_pressed to prevent multiple bullets on a single press
+	if (Input.is_action_pressed("shoot") || Input.is_action_pressed("M1")) && shootTimer.time_left == 0:  # Use action_just_pressed to prevent multiple bullets on a single press
 		var bulletInstance = bulletScene.instantiate()  # Create a new instance of the Bullet scene
 		get_parent().add_child(bulletInstance)  # Add it to the player node or a designated parent node for bullets
 		bulletInstance.global_position = global_position  # Set the bullet's position
@@ -89,9 +97,8 @@ func _on_area_2d_area_entered(area):
 	#if area.is_in_group("Exp"):   
 		#area.following = true
 	if area.is_in_group("Destroy_Ring"):
-		Global.experience += 10
-		print(Global.experience)
-		return
+		Ui.update_exp(10)
+		#print(Global.experience)
 		area.get_parent().destroy()
 
 
