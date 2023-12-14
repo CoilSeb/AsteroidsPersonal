@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bd0t3aoaevkyw"]
 
-[ext_resource type="Script" path="res://Scenes/Exp/Exp.gd" id="1_5oukd"]
-[ext_resource type="Texture2D" uid="uid://dvo4y5vj5mvgc" path="res://Scenes/Exp/Sprites/Exp-1.png.png" id="1_gm563"]
+[ext_resource type="Script" path="res://Scenes/Experience/Experience.gd" id="1_up6ha"]
+[ext_resource type="Texture2D" uid="uid://dvo4y5vj5mvgc" path="res://Scenes/Experience/Sprites/Exp-1.png.png" id="2_gfqmc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7iodp"]
 radius = 54.0093
@@ -9,13 +9,13 @@ radius = 54.0093
 [sub_resource type="CircleShape2D" id="CircleShape2D_pnwvu"]
 radius = 7.0
 
-[node name="Exp" type="Area2D"]
+[node name="Experience" type="Area2D"]
 collision_layer = 8
-script = ExtResource("1_5oukd")
+script = ExtResource("1_up6ha")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_gm563")
+texture = ExtResource("2_gfqmc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7iodp")

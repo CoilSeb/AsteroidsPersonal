@@ -53,7 +53,7 @@ func _physics_process(delta):
 	if using_mouse == true:
 		rotate(get_angle_to(get_global_mouse_position()) + (0.5 * PI))
 		#rotation = get_angle_to(get_global_mouse_position())
-	if Input.is_action_pressed("move_forward") || Input.is_action_pressed("M2"):
+	if Input.is_action_pressed("move_forward") || Input.is_action_pressed("M1"):
 		velocity += ((Vector2(0, -10) * thrust * delta).rotated(rotation))
 		velocity.limit_length(maxSpeed)
 	else:
@@ -67,7 +67,7 @@ func _physics_process(delta):
 		
 		
 	# Shooting
-	if (Input.is_action_pressed("shoot") || Input.is_action_pressed("M1")) && shootTimer.time_left == 0:  # Use action_just_pressed to prevent multiple bullets on a single press
+	if (Input.is_action_pressed("shoot") || Input.is_action_pressed("M2")) && shootTimer.time_left == 0:  # Use action_just_pressed to prevent multiple bullets on a single press
 		var bulletInstance = bulletScene.instantiate()  # Create a new instance of the Bullet scene
 		get_parent().add_child(bulletInstance)  # Add it to the player node or a designated parent node for bullets
 		bulletInstance.global_position = global_position  # Set the bullet's position

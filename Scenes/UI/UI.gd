@@ -25,7 +25,7 @@ func _ready():
 	restart_pause.visible = false
 	high_score_label.visible = false
 	health_bar.max_value = Global.health
-	Global.experience = 0
+	Global.exp = 0
 
 
 func _process(_delta):
@@ -70,9 +70,8 @@ func increase_score(amount):
 func update_health(amount):
 	Global.health += amount
 	health_bar.value = Global.health
-	print(health_bar.value)
+	#print(health_bar.value)
 	if Global.health <= 0:
-		GameScene.game_over()
 		score_label.set("theme_override_font_sizes/font_size", 56)
 		score_label.position.y = Global.screen_size.y/2 - 45
 		restart_button.visible = true
@@ -81,11 +80,16 @@ func update_health(amount):
 		if score > Global.high_score:
 			Global.high_score = score
 			Global.save_score()
-
+		GameScene.game_over()
 
 func update_exp(amount):
-	Global.experience += amount
-	exp_bar.value = Global.experience
+	Global.exp += amount
+	exp_bar.value = Global.exp
+	if Global.exp >= Global.exp_threshold:
+		Global.exp -= Global.exp_threshold
+		Global.exp_threshold *= 1.5
+		exp_bar.max_value = Global.exp_threshold
+		exp_bar.value = Global.exp
 
 
 func _on_restart_pressed():
@@ -94,6 +98,11 @@ func _on_restart_pressed():
 
 func restart():
 	Global.health = 500
+	Global.damage_multiplier = 1.0
+	Global.collision_damage = 10
+	Global.exp = 0
+	Global.exp_level = 0
+	Global.exp_threshold = 100
 	if get_tree().paused:
 		toggle_pause_menu()
 		GameScene.get_tree().reload_current_scene()

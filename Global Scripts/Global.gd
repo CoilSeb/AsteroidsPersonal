@@ -3,9 +3,11 @@ extends Node
 # Global Variables
 var health = 500
 var high_score = 0
-var damage_multiplier = 10.0
-var collision_damage = 100
-var experience = 0
+var damage_multiplier = 1
+var collision_damage = 10
+var exp = 0
+var exp_threshold = 100
+var exp_level = 0
 @onready var screen_size = get_viewport().get_visible_rect().size
 
 # Called when the node enters the scene tree for the first time.

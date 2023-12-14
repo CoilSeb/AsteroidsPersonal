@@ -1,6 +1,6 @@
 extends Area2D
 
-const exp_Scene = preload("res://Scenes/Exp/Exp.tscn")
+const exp_Scene = preload("res://Scenes/Experience/Experience.tscn")
 @onready var Ui = get_parent().get_node("UI")
 var screen_size
 var speed: float
