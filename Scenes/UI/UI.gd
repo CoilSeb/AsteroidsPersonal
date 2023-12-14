@@ -24,6 +24,7 @@ func _ready():
 	restart_button.visible = false
 	restart_pause.visible = false
 	high_score_label.visible = false
+	health_label .visible = true
 
 
 func _process(_delta):
@@ -74,6 +75,7 @@ func update_health(amount):
 		score_label.position.y = Global.screen_size.y/2 - 45
 		restart_button.visible = true
 		high_score_label.visible = true
+		health_label.visible = false
 		high_score_label.text = "High Score: " + str(Global.high_score)
 		if score > Global.high_score:
 			Global.high_score = score
@@ -85,7 +87,7 @@ func _on_restart_pressed():
 
 
 func restart():
-	Global.health = 3
+	Global.health = 100
 	if get_tree().paused:
 		toggle_pause_menu()
 		GameScene.get_tree().reload_current_scene()

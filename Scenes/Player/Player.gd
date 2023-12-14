@@ -26,6 +26,7 @@ func _ready():
 	Ui.increase_score(0)
 	Ui.update_health(0)
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	# Screen Wrap
@@ -64,6 +65,10 @@ func _physics_process(delta):
 		bulletInstance.direction = Vector2.UP.rotated(rotation)  # Set the bullet's direction
 		shootTimer.start(0.35)
 		
+	if Global.health <= 0:
+		destroy()
+		GameScene.player = true
+
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("Big_Asteroid"): #&& immunity_timer.get_time_left() == 0:

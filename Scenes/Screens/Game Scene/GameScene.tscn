@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cl0s7o04ccses"]
+[gd_scene load_steps=3 format=3 uid="uid://cl0s7o04ccses"]
 
 [ext_resource type="Script" path="res://Scenes/Screens/Game Scene/GameScene.gd" id="1_m8r6t"]
 [ext_resource type="PackedScene" uid="uid://c0jlxjxdu4vma" path="res://Scenes/UI/UI.tscn" id="2_u5fmq"]
-[ext_resource type="PackedScene" uid="uid://bmiu6wiv2qyw3" path="res://Scenes/Player/Player.tscn" id="3_xf47i"]
 
 [node name="GameScene" type="Node2D"]
 z_index = -1
@@ -11,9 +10,6 @@ metadata/_edit_horizontal_guides_ = []
 metadata/_edit_vertical_guides_ = []
 
 [node name="UI" parent="." instance=ExtResource("2_u5fmq")]
-
-[node name="Player" parent="." instance=ExtResource("3_xf47i")]
-position = Vector2(953, 541)
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 2.5
