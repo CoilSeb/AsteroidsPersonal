@@ -16,28 +16,28 @@ func _ready():
 	screen_size = get_viewport().get_visible_rect().size
 	if !find_child("Player"):
 		player = false
-		print(player)
+		#print(player)
 
 func _process(_delta): 
 	if !player:
-		print(player)
+		#print(player)
 		var playerInstance = playerScene.instantiate()
 		add_child(playerInstance)
 		playerInstance.position = Vector2(screen_size.x/2, screen_size.y/2)
-		print(playerInstance.position)
+		#print(playerInstance.position)
 		player = true
 	
 
 func game_over():
 	
 	return
-	#print ("game_over")
-	#print (get_children())
-	for child in get_children():
-		#print("Child: ", child.name)
-		if child.name != "UI": 
-			#print("Deleting Child: ", child.name) 
-			child.queue_free()
+	##print ("game_over")
+	##print (get_children())
+	#for child in get_children():
+		##print("Child: ", child.name)
+		#if child.name != "UI": 
+			##print("Deleting Child: ", child.name) 
+			#child.queue_free()
 
 
 func spawn_Asteroid():

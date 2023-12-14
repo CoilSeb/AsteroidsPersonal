@@ -5,6 +5,7 @@ var health = 100
 var high_score = 0
 var damage_multiplier = 1.0
 var collision_damage = 10
+var experience = 0
 @onready var screen_size = get_viewport().get_visible_rect().size
 
 # Called when the node enters the scene tree for the first time.

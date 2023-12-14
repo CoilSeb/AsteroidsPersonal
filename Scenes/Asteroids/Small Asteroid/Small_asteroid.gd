@@ -1,5 +1,6 @@
 extends Area2D
 
+const exp_Scene = preload("res://Scenes/Exp/Exp.tscn")
 @onready var Ui = get_parent().get_node("UI")
 var screen_size
 var speed: float
@@ -31,14 +32,18 @@ func set_random_direction_and_speed():
 	speed = randf_range(75, 200) # Random speed between 5 and 10 
 
 func destroy():
-		# Increase Score 
 	Ui.increase_score(300)
-	
-	# Queue the small asteroid for deletion
 	self.queue_free()
+
+
+func make_exp():
+	var exp_shard = exp_Scene.instantiate()
+	exp_shard.position = self.position
+	self.get_parent().add_child(exp_shard)
 
 
 func damage_asteroid(damage):
 	health -= damage
 	if health <= 0:
+		call_deferred("make_exp")
 		destroy()

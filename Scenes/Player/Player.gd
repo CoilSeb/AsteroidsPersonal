@@ -71,6 +71,7 @@ func _physics_process(delta):
 
 
 func _on_area_2d_area_entered(area):
+	print("Entered")
 	if area.is_in_group("Big_Asteroid"): #&& immunity_timer.get_time_left() == 0:
 		Ui.update_health(-50)
 		area.damage_asteroid(Global.collision_damage)
@@ -82,6 +83,10 @@ func _on_area_2d_area_entered(area):
 	if area.is_in_group("Small_Asteroid"): #&& immunity_timer.get_time_left() == 0:
 		Ui.update_health(-10)
 		area.damage_asteroid(Global.collision_damage)
+	if area.is_in_group("Exp"):   
+		Global.experience += 10
+		print("Exp gained: ", Global.experience)
+		area.destroy()
 
 
 func destroy():

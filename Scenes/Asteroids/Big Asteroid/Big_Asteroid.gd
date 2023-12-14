@@ -18,6 +18,7 @@ func _ready():
 	set_random_direction_and_speed()
 	add_to_group("Big_Asteroid")
 
+
 func _process(delta):
 	# Screen Wrap
 	if position.x < 0:
