@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cl0s7o04ccses"]
+
+[ext_resource type="Script" path="res://GameScene.gd" id="1_m8r6t"]
+[ext_resource type="PackedScene" uid="uid://c0jlxjxdu4vma" path="res://UI.tscn" id="2_u5fmq"]
+[ext_resource type="PackedScene" uid="uid://bmiu6wiv2qyw3" path="res://Player.tscn" id="3_xf47i"]
+
+[node name="GameScene" type="Node2D"]
+z_index = -1
+script = ExtResource("1_m8r6t")
+metadata/_edit_horizontal_guides_ = []
+metadata/_edit_vertical_guides_ = []
+
+[node name="UI" parent="." instance=ExtResource("2_u5fmq")]
+
+[node name="Player" parent="." instance=ExtResource("3_xf47i")]
+position = Vector2(953, 541)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.5
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
