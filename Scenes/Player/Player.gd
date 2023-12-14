@@ -10,6 +10,7 @@ var rotateSpeed = 5
 var slowDown = 1
 var shootTimer = null
 var immunity_timer = null
+var d
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -68,10 +69,12 @@ func _physics_process(delta):
 	if Global.health <= 0:
 		destroy()
 		GameScene.player = true
+		
+	d = delta
+	#print(d * 0.4)
 
 
 func _on_area_2d_area_entered(area):
-	print("Entered")
 	if area.is_in_group("Big_Asteroid"): #&& immunity_timer.get_time_left() == 0:
 		Ui.update_health(-50)
 		area.damage_asteroid(Global.collision_damage)
@@ -83,10 +86,13 @@ func _on_area_2d_area_entered(area):
 	if area.is_in_group("Small_Asteroid"): #&& immunity_timer.get_time_left() == 0:
 		Ui.update_health(-10)
 		area.damage_asteroid(Global.collision_damage)
-	if area.is_in_group("Exp"):   
+	#if area.is_in_group("Exp"):   
+		#area.following = true
+	if area.is_in_group("Destroy_Ring"):
 		Global.experience += 10
-		print("Exp gained: ", Global.experience)
-		area.destroy()
+		print(Global.experience)
+		return
+		area.get_parent().destroy()
 
 
 func destroy():

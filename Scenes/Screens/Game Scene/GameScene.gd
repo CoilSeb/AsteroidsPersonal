@@ -26,7 +26,7 @@ func _process(_delta):
 		playerInstance.position = Vector2(screen_size.x/2, screen_size.y/2)
 		#print(playerInstance.position)
 		player = true
-	
+
 
 func game_over():
 	

@@ -1,15 +1,35 @@
 extends Area2D
 
+@onready var destroy_ring = $Destroy_Ring
+var following = false
+var d 
+var player_area
+const FOLLOW_SPEED = 4.0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("Exp")
-	print(get_groups())
-
+	destroy_ring.add_to_group("Destroy_Ring")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+func _process(delta):
+	d = delta
+	if following == true:
+		follow(player_area, delta)
+
 
 func destroy():
 	queue_free()
+
+
+func _on_area_entered(area):
+	#while self:
+	following = true
+	player_area = area.get_parent()
+		#print(player_area)
+
+
+func follow(area, delta):
+	position = position.lerp(player_area.position, delta * FOLLOW_SPEED)
+	
