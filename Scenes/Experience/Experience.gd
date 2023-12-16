@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var destroy_ring = $Destroy_Ring
+
 var following = false
 var d 
 var t = 0.0

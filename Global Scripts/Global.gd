@@ -1,22 +1,33 @@
 extends Node
 
-# Global Variables
-var health = 500
-var high_score = 0
-var damage_multiplier = 1
-var collision_damage = 10
-var exp = 0
-var exp_threshold = 100
-var exp_level = 0
 @onready var screen_size = get_viewport().get_visible_rect().size
 
-# Called when the node enters the scene tree for the first time.
+var health = 0
+var max_health = 0
+var high_score = 0
+var damage = 0
+var attack_speed = 1
+var bullet_speed = 0
+var collision_damage = 10
+var exp = 0
+var exp_threshold = 10
+var exp_level = 0
+
+var tier1_damage = {
+	"damage_up": false, 
+	"attack_speed_up": false,
+	"bullet_speed_up": false,
+}
+
+var tier1_health = {
+	"health_up": false, 
+	"damage_resist_up": false,
+}
+
 func _ready():
-	#print(screen_size)
 	Global.high_score = load_score()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
 

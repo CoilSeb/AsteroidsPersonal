@@ -3,7 +3,7 @@ extends CanvasLayer
 @onready var GameScene = get_parent()
 @onready var score_label = $Score_Label
 @onready var pause_button = $PauseButton
-@onready var dim_overlay = $PauseMenu/DimOverlay
+@onready var pause_dim_overlay = $PauseMenu/Pause_Dim_Overlay
 @onready var resume_button = $PauseMenu/ResumeButton
 @onready var exit_button  = $PauseMenu/ExitButton
 @onready var pause_menu = $PauseMenu
@@ -11,21 +11,31 @@ extends CanvasLayer
 @onready var restart_pause = $PauseMenu/Restart
 @onready var high_score_label = $High_Score
 @onready var health_bar = $Health_Bar
+@onready var health_bar_bg = $Health_Bar_BG
 @onready var exp_bar = $Exp_Bar
-var score = 0
+@onready var exp_bar_bg = $Exp_Bar_BG
+@onready var upgrade_menu = $Upgrade_Menu
+@onready var upgrade_dim_overlay = $Upgrade_Menu/Upgrade_Dim_Overlay
+@onready var health_upgrade = $Upgrade_Menu/Health_Upgrade
+@onready var damage_upgrade = $Upgrade_Menu/Damage_Upgrade
+@onready var utility_upgrade = $Upgrade_Menu/Utility_Upgrade
 
+var score = 0
+var health_click = false
+var damage_click = false
+var utility = false
 
 func _ready():
 	pause_button.connect("pressed", toggle_pause_menu)
 	resume_button.connect("pressed", _on_ResumeButton_pressed)
 	exit_button.connect("pressed", _on_ExitButton_pressed)
 	pause_menu.visible = false
-	dim_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	restart_button.visible = false
 	restart_pause.visible = false
 	high_score_label.visible = false
-	health_bar.max_value = Global.health
 	Global.exp = 0
+	update_max_health(50000)
+
 
 
 func _process(_delta):
@@ -39,20 +49,20 @@ func _process(_delta):
 func toggle_pause_menu():
 	if get_tree().paused:
 		# If the game is currently paused, unpause it
-		dim_overlay.visible = false
+		pause_dim_overlay.visible = false
 		get_tree().paused = false
 		pause_menu.visible = false
 		restart_pause.visible = false
 	else:
 		# If the game is currently running, pause it
-		dim_overlay.visible = true
+		pause_dim_overlay.visible = true
 		get_tree().paused = true
 		pause_menu.visible = true
 		restart_pause.visible = true
 
 
 func _on_ResumeButton_pressed():
-	dim_overlay.visible = false
+	pause_dim_overlay.visible = false
 	get_tree().paused = false
 	pause_menu.visible = false
 
@@ -82,14 +92,55 @@ func update_health(amount):
 			Global.save_score()
 		GameScene.game_over()
 
+
+func update_max_health(amount):
+	Global.max_health += amount
+	health_bar.max_value = amount
+	if health_bar.max_value >= 950:
+		health_bar.size.x = 1900
+		health_bar_bg.size.x = 1900
+	else: 
+		health_bar.size.x = health_bar.max_value * 2
+		health_bar_bg.size.x = health_bar.size.x
+	health_bar.position.x = ((1920 - health_bar.size.x)/2)
+	health_bar_bg.position.x = ((1920 - health_bar.size.x)/2)
+
+
 func update_exp(amount):
 	Global.exp += amount
 	exp_bar.value = Global.exp
+	update_max_exp()
+
+
+func update_max_exp():
 	if Global.exp >= Global.exp_threshold:
 		Global.exp -= Global.exp_threshold
 		Global.exp_threshold *= 1.5
 		exp_bar.max_value = Global.exp_threshold
 		exp_bar.value = Global.exp
+		level_up()
+
+
+func _on_health_upgrade_pressed():
+	pass # Replace with function body.
+
+
+func _on_damage_upgrade_pressed():
+	pass # Replace with function body.
+
+
+func _on_utility_upgrade_pressed():
+	pass # Replace with function body.
+
+
+func level_up():
+	get_tree().paused = true
+	upgrade_menu.visible = true
+	var i = 0
+	if i == 0 && Global.tier1_damage["damage_up"] == false:
+		Global.tier1_damage["damage_up"] = true
+		damage_upgrade.text = "Damage Up \nIncrease bullet damage by 5" 
+		Global.damage += 5
 
 
 func _on_restart_pressed():
@@ -97,15 +148,18 @@ func _on_restart_pressed():
 
 
 func restart():
-	Global.health = 500
-	Global.damage_multiplier = 1.0
+	Global.health = 300
+	Global.max_health = 300
+	Global.damage = 0
+	Global.attack_speed = 1
+	Global.bullet_speed = 0
 	Global.collision_damage = 10
 	Global.exp = 0
 	Global.exp_level = 0
 	Global.exp_threshold = 100
+	
 	if get_tree().paused:
 		toggle_pause_menu()
 		GameScene.get_tree().reload_current_scene()
 	else:
 		GameScene.get_tree().reload_current_scene()
-

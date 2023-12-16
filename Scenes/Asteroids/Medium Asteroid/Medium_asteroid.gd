@@ -3,6 +3,7 @@ extends Area2D
 @onready var Ui = get_parent().get_node("UI")
 @onready var crack_1 = $Sprite2D/Crack1
 @onready var crack_2 = $Sprite2D/Crack2
+
 var small_asteroid_scene = preload("res://Scenes/Asteroids/Small Asteroid/Small_asteroid.tscn")
 var screen_size
 var speed: float

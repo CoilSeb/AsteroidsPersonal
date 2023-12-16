@@ -2,12 +2,13 @@ extends CharacterBody2D
 
 @onready var GameScene = get_parent()
 @onready var Ui = get_parent().get_node("UI")
+
 var bulletScene = preload("res://Scenes/Bullets/Bullet.tscn")
 var screen_size
 var thrust = 50 # The force applied for thrust
 var maxSpeed = 10
 var rotateSpeed = 5
-var slowDown = 1
+var slowDown = 0.5
 var shootTimer = null
 var immunity_timer = null
 var d
@@ -26,7 +27,7 @@ func _ready():
 	immunity_timer.set_one_shot(true)
 	immunity_timer.start(2)
 	Ui.increase_score(0)
-	Ui.update_health(0)
+	Ui.update_health(Global.max_health)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -52,7 +53,6 @@ func _physics_process(delta):
 		using_mouse = true
 	if using_mouse == true:
 		rotate(get_angle_to(get_global_mouse_position()) + (0.5 * PI))
-		#rotation = get_angle_to(get_global_mouse_position())
 	if Input.is_action_pressed("move_forward") || Input.is_action_pressed("M1"):
 		velocity += ((Vector2(0, -10) * thrust * delta).rotated(rotation))
 		velocity.limit_length(maxSpeed)
@@ -94,8 +94,6 @@ func _on_area_2d_area_entered(area):
 	if area.is_in_group("Small_Asteroid"): #&& immunity_timer.get_time_left() == 0:
 		Ui.update_health(-10)
 		area.damage_asteroid(Global.collision_damage)
-	#if area.is_in_group("Exp"):   
-		#area.following = true
 	if area.is_in_group("Destroy_Ring"):
 		Ui.update_exp(10)
 		#print(Global.experience)

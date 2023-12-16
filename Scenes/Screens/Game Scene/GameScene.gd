@@ -3,6 +3,7 @@ extends Node
 @onready var Ui = get_node("UI")
 @onready var ScoreLabel = Ui.get_node("Score_Label")
 @onready var spawnTimer = $SpawnTimer
+
 var playerScene = preload("res://Scenes/Player/Player.tscn")
 var player = true
 var screen_size
