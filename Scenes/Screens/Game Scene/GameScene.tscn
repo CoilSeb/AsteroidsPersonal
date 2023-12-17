@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cl0s7o04ccses"]
+[gd_scene load_steps=4 format=3 uid="uid://cl0s7o04ccses"]
 
 [ext_resource type="Script" path="res://Scenes/Screens/Game Scene/GameScene.gd" id="1_m8r6t"]
 [ext_resource type="PackedScene" uid="uid://c0jlxjxdu4vma" path="res://Scenes/UI/UI.tscn" id="2_u5fmq"]
+[ext_resource type="PackedScene" uid="uid://bd0t3aoaevkyw" path="res://Scenes/Experience/Experience.tscn" id="3_r0m8p"]
 
 [node name="GameScene" type="Node2D"]
 z_index = -1
@@ -14,5 +15,23 @@ metadata/_edit_vertical_guides_ = []
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 2.5
 autostart = true
+
+[node name="Experience" parent="." instance=ExtResource("3_r0m8p")]
+position = Vector2(667, 138)
+
+[node name="Experience2" parent="." instance=ExtResource("3_r0m8p")]
+position = Vector2(650, 336)
+
+[node name="Experience3" parent="." instance=ExtResource("3_r0m8p")]
+position = Vector2(776, 545)
+
+[node name="Experience4" parent="." instance=ExtResource("3_r0m8p")]
+position = Vector2(1305, 370)
+
+[node name="Experience5" parent="." instance=ExtResource("3_r0m8p")]
+position = Vector2(1236, 202)
+
+[node name="Experience6" parent="." instance=ExtResource("3_r0m8p")]
+position = Vector2(950, 129)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

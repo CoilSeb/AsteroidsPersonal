@@ -6,7 +6,6 @@ extends CharacterBody2D
 var bulletScene = preload("res://Scenes/Bullets/Bullet.tscn")
 var screen_size
 var thrust = 50 # The force applied for thrust
-var maxSpeed = 10
 var rotateSpeed = 5
 var slowDown = 0.5
 var shootTimer = null
@@ -55,7 +54,6 @@ func _physics_process(delta):
 		rotate(get_angle_to(get_global_mouse_position()) + (0.5 * PI))
 	if Input.is_action_pressed("move_forward") || Input.is_action_pressed("M1"):
 		velocity += ((Vector2(0, -10) * thrust * delta).rotated(rotation))
-		velocity.limit_length(maxSpeed)
 	else:
 		# Slow Down
 		velocity = lerp(velocity, Vector2.ZERO, slowDown * delta)
@@ -72,7 +70,7 @@ func _physics_process(delta):
 		get_parent().add_child(bulletInstance)  # Add it to the player node or a designated parent node for bullets
 		bulletInstance.global_position = global_position  # Set the bullet's position
 		bulletInstance.direction = Vector2.UP.rotated(rotation)  # Set the bullet's direction
-		shootTimer.start(0.35)
+		shootTimer.start(1 - (0.65 * Global.attack_speed))
 		
 	if Global.health <= 0:
 		destroy()

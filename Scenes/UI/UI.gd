@@ -16,14 +16,15 @@ extends CanvasLayer
 @onready var exp_bar_bg = $Exp_Bar_BG
 @onready var upgrade_menu = $Upgrade_Menu
 @onready var upgrade_dim_overlay = $Upgrade_Menu/Upgrade_Dim_Overlay
-@onready var health_upgrade = $Upgrade_Menu/Health_Upgrade
-@onready var damage_upgrade = $Upgrade_Menu/Damage_Upgrade
-@onready var utility_upgrade = $Upgrade_Menu/Utility_Upgrade
+@onready var health_upgrade_button = $Upgrade_Menu/Health_Upgrade
+@onready var damage_upgrade_button = $Upgrade_Menu/Damage_Upgrade
+@onready var utility_upgrade_button = $Upgrade_Menu/Utility_Upgrade
 
 var score = 0
-var health_click = false
-var damage_click = false
-var utility = false
+var damage_upgrade
+var health_upgrade
+var utility_upgrade
+var upgrading
 
 func _ready():
 	pause_button.connect("pressed", toggle_pause_menu)
@@ -122,25 +123,47 @@ func update_max_exp():
 
 
 func _on_health_upgrade_pressed():
-	pass # Replace with function body.
+	get_upgrade(health_upgrade)
 
 
 func _on_damage_upgrade_pressed():
-	pass # Replace with function body.
+	if damage_upgrade != null:
+		get_upgrade(damage_upgrade)
+	get_tree().paused = false
 
 
 func _on_utility_upgrade_pressed():
-	pass # Replace with function body.
+	get_upgrade(utility_upgrade)
 
 
 func level_up():
 	get_tree().paused = true
 	upgrade_menu.visible = true
-	var i = 0
-	if i == 0 && Global.tier1_damage["damage_up"] == false:
-		Global.tier1_damage["damage_up"] = true
-		damage_upgrade.text = "Damage Up \nIncrease bullet damage by 5" 
+	var d = randi_range(0,1)
+	if d == 0 && Global.tier1_damage["damage_up"] == false:
+		damage_upgrade = "damage_up"
+		damage_upgrade_button.text = "Damage Up \nIncrease bullet damage by 5" 
+		return
+	elif d == 1 && Global.tier1_damage["attack_speed_up"] == false:
+		damage_upgrade = "attack_speed_up"
+		damage_upgrade_button.text = "Attack Speed Up \nIncrease attack speed by 20%" 
+		return 
+	else: 
+		print("Working")
+		damage_upgrade = null
+		damage_upgrade_button.text = "VOID" 
+		return
+	level_up()
+
+
+func get_upgrade(upgrade):
+	if upgrade == "damage_up":
 		Global.damage += 5
+		Global.tier1_damage["damage_up"] = true
+	if upgrade == "attack_speed_up":
+		Global.attack_speed += 0.2
+		Global.tier1_damage["attack_speed_up"] = true
+	upgrade_menu.visible = false
 
 
 func _on_restart_pressed():
