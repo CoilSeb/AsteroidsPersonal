@@ -21,9 +21,9 @@ var tier1_damage = {
 }
 
 var health_up = {
-	"1": false, 
-	"2": false, 
-	"3": false, 
+	"health_up1": false, 
+	"health_up2": false, 
+	"health_up3": false, 
 }
 
 

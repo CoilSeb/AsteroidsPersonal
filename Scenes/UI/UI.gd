@@ -197,16 +197,16 @@ func get_damage_upgrade():
 
 func get_health_upgrade():
 	if h == 0:
-		if Global.health_up["1"] == false:
-			health_upgrade = "1"
+		if Global.health_up["health_up1"] == false:
+			health_upgrade = "health_up1"
 			health_upgrade_button.text = "Health Up \nIncrease health by 50" 
 			return
-		if Global.health_up["2"] == false:
-			health_upgrade = "2"
+		if Global.health_up["health_up2"] == false:
+			health_upgrade = "health_up2"
 			health_upgrade_button.text = "Health Up \nIncrease health by 100 and become % slower" 
 			return
-		if Global.health_up["3"] == false:
-			health_upgrade = "3"
+		if Global.health_up["health_up3"] == false:
+			health_upgrade = "health_up3"
 			health_upgrade_button.text = "Health Up \nIncrease health by 150 and become % slower" 
 			return
 		h += 1
@@ -233,18 +233,18 @@ func apply_upgrade(upgrade):
 		damage_upgrade = null
 	
 	if health_upgrade != null:
-		if upgrade == "1":
+		if upgrade == "health_up1":
 			update_max_health(50)
 			update_health(50)
-			Global.health_up["1"] = true
-		if upgrade == "2":
+			Global.health_up["health_up1"] = true
+		if upgrade == "health_up2":
 			update_max_health(100)
 			update_health(100)
 			Global.move_speed -= 10
-			Global.health_up["2"] = true
-		if upgrade == "3":
+			Global.health_up["health_up2"] = true
+		if upgrade == "health_up3":
 			update_max_health(150)
 			update_health(150)
 			Global.move_speed -= 10
-			Global.health_up["3"] = true
+			Global.health_up["health_up3"] = true
 		health_upgrade = null
