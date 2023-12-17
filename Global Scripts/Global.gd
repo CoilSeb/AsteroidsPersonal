@@ -2,16 +2,17 @@ extends Node
 
 @onready var screen_size = get_viewport().get_visible_rect().size
 
-var health = 0
-var max_health = 0
-var high_score = 0
-var damage = 0
-var attack_speed = 1
-var bullet_speed = 0
-var collision_damage = 10
-var exp = 0
-var exp_threshold = 10
-var exp_level = 0
+var high_score
+var health
+var max_health
+var move_speed
+var damage 
+var attack_speed 
+var bullet_speed 
+var collision_damage 
+var exp 
+var exp_threshold 
+var exp_level
 
 var tier1_damage = {
 	"damage_up": false, 
@@ -19,17 +20,32 @@ var tier1_damage = {
 	"bullet_speed_up": false,
 }
 
-var tier1_health = {
-	"health_up": false, 
-	"damage_resist_up": false,
+var health_up = {
+	"1": false, 
+	"2": false, 
+	"3": false, 
 }
+
 
 func _ready():
 	Global.high_score = load_score()
 
 
-func _process(_delta):
-	pass
+func refresh():
+	health = 300
+	max_health = 300
+	move_speed = 0
+	damage = 0
+	attack_speed = 1
+	bullet_speed = 0
+	collision_damage = 10
+	exp = 0
+	exp_threshold = 1
+	exp_level = 0
+	
+	tier1_damage["damage_up"] = false
+	tier1_damage["attack_speed_up"] = false
+	tier1_damage["bullet_speed_up"] = false
 
 
 func save_score():

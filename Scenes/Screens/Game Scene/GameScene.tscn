@@ -34,4 +34,22 @@ position = Vector2(1236, 202)
 [node name="Experience6" parent="." instance=ExtResource("3_r0m8p")]
 position = Vector2(950, 129)
 
+[node name="Experience7" parent="." instance=ExtResource("3_r0m8p")]
+position = Vector2(528, 213)
+
+[node name="Experience8" parent="." instance=ExtResource("3_r0m8p")]
+position = Vector2(511, 411)
+
+[node name="Experience9" parent="." instance=ExtResource("3_r0m8p")]
+position = Vector2(637, 620)
+
+[node name="Experience10" parent="." instance=ExtResource("3_r0m8p")]
+position = Vector2(1166, 445)
+
+[node name="Experience11" parent="." instance=ExtResource("3_r0m8p")]
+position = Vector2(1097, 277)
+
+[node name="Experience12" parent="." instance=ExtResource("3_r0m8p")]
+position = Vector2(811, 204)
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

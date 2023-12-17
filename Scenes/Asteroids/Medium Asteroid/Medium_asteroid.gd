@@ -10,10 +10,12 @@ var speed: float
 var direction: Vector2
 var health = 30
 
+
 func _ready():
 	screen_size = get_viewport_rect().size
 	set_random_direction_and_speed()
 	add_to_group("Medium_Asteroid")
+
 
 func _process(delta):
 	# Screen Wrap
@@ -29,10 +31,12 @@ func _process(delta):
 	# Moving 
 	position += direction * speed * delta
 
+
 func set_random_direction_and_speed():
 	var angle = randf_range(0, 2 * PI)  # Random angle in radians
 	direction = Vector2(cos(angle), sin(angle))  # Convert angle to direction vector
 	speed = randf_range(75, 200)  # Random speed between 5 and 10
+
 
 func destroy():
 	# Instantiate two small asteroids using call_deferred

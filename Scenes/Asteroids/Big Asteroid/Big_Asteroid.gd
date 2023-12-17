@@ -34,14 +34,17 @@ func _process(delta):
 	# Moving 
 	position += direction * speed * delta
 
+
 func set_random_direction_and_speed():
 	var angle = randf_range(0, 2 * PI)  # Random angle in radians
 	direction = Vector2(cos(angle), sin(angle))  # Convert angle to direction vector
 	speed = randf_range(75, 200)  # Random speed between 50 and 100
 
+
 func destroy():
 	# Instantiate two medium asteroids using call_deferred
 	call_deferred("create_and_add_asteroids")
+
 
 func damage_asteroid(damage):
 	health -= damage
@@ -55,6 +58,7 @@ func damage_asteroid(damage):
 		crack_4.visible = true 
 	if health <= 0:
 		destroy()
+
 
 func create_and_add_asteroids():
 	var medium_asteroid1 = medium_asteroid_scene.instantiate()

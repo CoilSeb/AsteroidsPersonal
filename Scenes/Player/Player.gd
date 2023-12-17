@@ -5,7 +5,6 @@ extends CharacterBody2D
 
 var bulletScene = preload("res://Scenes/Bullets/Bullet.tscn")
 var screen_size
-var thrust = 50 # The force applied for thrust
 var rotateSpeed = 5
 var slowDown = 0.5
 var shootTimer = null
@@ -13,7 +12,7 @@ var immunity_timer = null
 var d
 var using_mouse = false
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	#print("GameScene: ", GameScene)
 	#print("UI: ", Ui)
@@ -31,6 +30,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	var thrust = 50 + Global.move_speed
 	# Screen Wrap
 	if position.x < 0:
 		position.x = screen_size.x
@@ -71,6 +71,7 @@ func _physics_process(delta):
 		bulletInstance.global_position = global_position  # Set the bullet's position
 		bulletInstance.direction = Vector2.UP.rotated(rotation)  # Set the bullet's direction
 		shootTimer.start(1 - (0.65 * Global.attack_speed))
+		print(thrust)
 		
 	if Global.health <= 0:
 		destroy()

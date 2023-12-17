@@ -21,10 +21,19 @@ extends CanvasLayer
 @onready var utility_upgrade_button = $Upgrade_Menu/Utility_Upgrade
 
 var score = 0
-var damage_upgrade
-var health_upgrade
-var utility_upgrade
-var upgrading
+var num_of_damage_upgrades = 1
+var damage_upgrade = null
+var checked_damage = false
+var d 
+var num_of_health_upgrades = 0
+var health_upgrade = null
+var checked_health = false
+var h
+var num_of_utility_upgrades = 0
+var utility_upgrade = null
+var checked_utility = false
+var u 
+
 
 func _ready():
 	pause_button.connect("pressed", toggle_pause_menu)
@@ -32,10 +41,7 @@ func _ready():
 	exit_button.connect("pressed", _on_ExitButton_pressed)
 	pause_menu.visible = false
 	restart_button.visible = false
-	restart_pause.visible = false
-	high_score_label.visible = false
-	Global.exp = 0
-	update_max_health(50000)
+	update_max_health(5000)
 
 
 
@@ -48,29 +54,42 @@ func _process(_delta):
 
 
 func toggle_pause_menu():
-	if get_tree().paused:
-		# If the game is currently paused, unpause it
-		pause_dim_overlay.visible = false
-		get_tree().paused = false
-		pause_menu.visible = false
-		restart_pause.visible = false
-	else:
-		# If the game is currently running, pause it
-		pause_dim_overlay.visible = true
+	get_tree().paused = !get_tree().paused
+	pause_menu.visible = !pause_menu.visible
+	if upgrade_menu.visible == true:
 		get_tree().paused = true
-		pause_menu.visible = true
-		restart_pause.visible = true
+		health_upgrade_button.visible = !health_upgrade_button.visible
+		damage_upgrade_button.visible = !damage_upgrade_button.visible
+		utility_upgrade_button.visible = !utility_upgrade_button.visible
 
 
 func _on_ResumeButton_pressed():
-	pause_dim_overlay.visible = false
 	get_tree().paused = false
 	pause_menu.visible = false
+	if upgrade_menu.visible == true:
+		health_upgrade_button.visible = !health_upgrade_button.visible
+		damage_upgrade_button.visible = !damage_upgrade_button.visible
+		utility_upgrade_button.visible = !utility_upgrade_button.visible
+		get_tree().paused = true
 
 
 func _on_ExitButton_pressed():
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://Scenes/Screens/Start Screen/StartScreen.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Screens/Start Screen/StartScreen.tscn")	
+
+
+func _on_restart_pressed():
+	restart()
+
+
+func restart():
+	Global.refresh()
+	if get_tree().paused:
+		upgrade_menu.visible = false
+		toggle_pause_menu()
+		GameScene.get_tree().reload_current_scene()
+	else:
+		GameScene.get_tree().reload_current_scene()
 
 
 func increase_score(amount):
@@ -96,7 +115,7 @@ func update_health(amount):
 
 func update_max_health(amount):
 	Global.max_health += amount
-	health_bar.max_value = amount
+	health_bar.max_value += amount
 	if health_bar.max_value >= 950:
 		health_bar.size.x = 1900
 		health_bar_bg.size.x = 1900
@@ -119,70 +138,113 @@ func update_max_exp():
 		Global.exp_threshold *= 1.5
 		exp_bar.max_value = Global.exp_threshold
 		exp_bar.value = Global.exp
+		d = randi_range(0, num_of_damage_upgrades)
+		h = randi_range(0, num_of_health_upgrades)
+		u = randi_range(0, num_of_utility_upgrades)
 		level_up()
 
 
 func _on_health_upgrade_pressed():
-	get_upgrade(health_upgrade)
+	if health_upgrade != null:
+		apply_upgrade(health_upgrade)
+	get_tree().paused = false
+	upgrade_menu.visible = false
+	#pause_menu.visible = false
 
 
 func _on_damage_upgrade_pressed():
 	if damage_upgrade != null:
-		get_upgrade(damage_upgrade)
+		apply_upgrade(damage_upgrade)
 	get_tree().paused = false
+	upgrade_menu.visible = false
+	#pause_menu.visible = false
 
 
 func _on_utility_upgrade_pressed():
-	get_upgrade(utility_upgrade)
+	if utility_upgrade != null:
+		apply_upgrade(utility_upgrade)
+	get_tree().paused = false
+	upgrade_menu.visible = false
+	#pause_menu.visible = false
 
 
 func level_up():
 	get_tree().paused = true
 	upgrade_menu.visible = true
-	var d = randi_range(0,1)
+	get_damage_upgrade()
+	get_health_upgrade()
+
+
+func get_damage_upgrade():
 	if d == 0 && Global.tier1_damage["damage_up"] == false:
 		damage_upgrade = "damage_up"
-		damage_upgrade_button.text = "Damage Up \nIncrease bullet damage by 5" 
+		damage_upgrade_button.text = "Damage Up \nIncrease bullet damage by 2.5" 
 		return
 	elif d == 1 && Global.tier1_damage["attack_speed_up"] == false:
 		damage_upgrade = "attack_speed_up"
 		damage_upgrade_button.text = "Attack Speed Up \nIncrease attack speed by 20%" 
 		return 
 	else: 
-		print("Working")
-		damage_upgrade = null
-		damage_upgrade_button.text = "VOID" 
-		return
-	level_up()
+		if(d > num_of_damage_upgrades && checked_damage == true):
+			damage_upgrade_button.text = "OUT OF UPGRADES" 
+			return
+		if(d > num_of_damage_upgrades && checked_damage == false):
+			d = -1
+			checked_damage = true
+		d += 1
+		get_damage_upgrade()
 
 
-func get_upgrade(upgrade):
-	if upgrade == "damage_up":
-		Global.damage += 5
-		Global.tier1_damage["damage_up"] = true
-	if upgrade == "attack_speed_up":
-		Global.attack_speed += 0.2
-		Global.tier1_damage["attack_speed_up"] = true
-	upgrade_menu.visible = false
-
-
-func _on_restart_pressed():
-	restart()
-
-
-func restart():
-	Global.health = 300
-	Global.max_health = 300
-	Global.damage = 0
-	Global.attack_speed = 1
-	Global.bullet_speed = 0
-	Global.collision_damage = 10
-	Global.exp = 0
-	Global.exp_level = 0
-	Global.exp_threshold = 100
-	
-	if get_tree().paused:
-		toggle_pause_menu()
-		GameScene.get_tree().reload_current_scene()
+func get_health_upgrade():
+	if h == 0:
+		if Global.health_up["1"] == false:
+			health_upgrade = "1"
+			health_upgrade_button.text = "Health Up \nIncrease health by 50" 
+			return
+		if Global.health_up["2"] == false:
+			health_upgrade = "2"
+			health_upgrade_button.text = "Health Up \nIncrease health by 100 and become % slower" 
+			return
+		if Global.health_up["3"] == false:
+			health_upgrade = "3"
+			health_upgrade_button.text = "Health Up \nIncrease health by 150 and become % slower" 
+			return
+		h += 1
+		get_health_upgrade()
 	else:
-		GameScene.get_tree().reload_current_scene()
+		if(h > num_of_health_upgrades && checked_health == true):
+			health_upgrade_button.text = "OUT OF UPGRADES" 
+			return
+		if(h > num_of_health_upgrades && checked_health == false):
+			h = -1
+			checked_health = true
+		h += 1
+		get_health_upgrade()
+
+
+func apply_upgrade(upgrade):
+	if damage_upgrade != null:
+		if upgrade == "damage_up":
+			Global.damage += 2.5
+			Global.tier1_damage["damage_up"] = true
+		if upgrade == "attack_speed_up":
+			Global.attack_speed += 0.1
+			Global.tier1_damage["attack_speed_up"] = true
+		damage_upgrade = null
+	
+	if health_upgrade != null:
+		if upgrade == "1":
+			update_max_health(50)
+			update_health(50)
+			Global.health_up["1"] = true
+		if upgrade == "2":
+			update_max_health(100)
+			update_health(100)
+			Global.move_speed -= 10
+			Global.health_up["2"] = true
+		if upgrade == "3":
+			update_max_health(150)
+			update_health(150)
+			Global.move_speed -= 10
+			Global.health_up["3"] = true
+		health_upgrade = null

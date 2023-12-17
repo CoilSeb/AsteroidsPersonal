@@ -7,11 +7,13 @@ extends Node
 var playerScene = preload("res://Scenes/Player/Player.tscn")
 var player = true
 var screen_size
+
 var asteroid_scenes = {
 	0: preload("res://Scenes/Asteroids/Medium Asteroid/Medium_asteroid.tscn"),
 	1: preload("res://Scenes/Asteroids/Small Asteroid/Small_asteroid.tscn"),
 	2: preload("res://Scenes/Asteroids/Big Asteroid/Big_Asteroid.tscn")
 }
+
 
 func _ready():
 	screen_size = get_viewport().get_visible_rect().size
