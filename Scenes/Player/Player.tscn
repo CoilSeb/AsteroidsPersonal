@@ -30,6 +30,7 @@ scale = Vector2(1, 1.47917)
 polygon = PackedVector2Array(0, -14.5352, -16, 15.2112, 0, 7.77463, 16, 15.2112)
 
 [node name="Collection_Range" type="Area2D" parent="."]
+collision_layer = 16
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collection_Range"]

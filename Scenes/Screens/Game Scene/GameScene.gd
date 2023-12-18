@@ -3,10 +3,25 @@ extends Node
 @onready var Ui = get_node("UI")
 @onready var ScoreLabel = Ui.get_node("Score_Label")
 @onready var spawnTimer = $SpawnTimer
+@onready var wave_timer = $WaveTimer
+@onready var timer_wave = $Timer_Wave
+@onready var timer_wave_2 = $Timer_Wave2
+@onready var timer_wave_3 = $Timer_Wave3
+@onready var timer_wave_4 = $Timer_Wave4
+@onready var timer_wave_5 = $Timer_Wave5
+@onready var timer_wave_6 = $Timer_Wave6
+@onready var timer_wave_7 = $Timer_Wave7
+@onready var timer_wave_8 = $Timer_Wave8
+@onready var timer_wave_9 = $Timer_Wave9
+@onready var timer_wave_10 = $Timer_Wave10
 
 var playerScene = preload("res://Scenes/Player/Player.tscn")
 var player = true
 var screen_size
+var asteroids_to_spawn = 5
+var asteroids_spawned = 0
+var wave_spawned = false
+var wave_timer_time = 10
 
 var asteroid_scenes = {
 	0: preload("res://Scenes/Asteroids/Medium Asteroid/Medium_asteroid.tscn"),
@@ -30,6 +45,10 @@ func _process(_delta):
 		playerInstance.position = Vector2(screen_size.x/2, screen_size.y/2)
 		#print(playerInstance.position)
 		player = true
+	if wave_timer.time_left == 0:
+		spawn_wave()
+	if wave_spawned == true:
+		asteroids_to_spawn += 1
 
 
 func game_over():
@@ -42,6 +61,12 @@ func game_over():
 		#if child.name != "UI": 
 			##print("Deleting Child: ", child.name) 
 			#child.queue_free()
+
+
+func spawn_wave():
+	wave_timer.start(wave_timer_time)
+	spawnTimer.start(1)
+	wave_timer_time *= 1.5
 
 
 func spawn_Asteroid():
@@ -61,4 +86,10 @@ func generate_spawn_point() -> Vector2:
 
 
 func _on_spawn_timer_timeout():
-	spawn_Asteroid()
+	if asteroids_spawned <= asteroids_to_spawn:
+		spawn_Asteroid()
+		asteroids_spawned += 1
+	if asteroids_spawned == asteroids_to_spawn:
+		spawnTimer.stop() 
+		asteroids_spawned = 0
+		wave_spawned = true

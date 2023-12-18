@@ -21,7 +21,7 @@ extends CanvasLayer
 @onready var utility_upgrade_button = $Upgrade_Menu/Utility_Upgrade
 
 var score = 0
-var num_of_damage_upgrades = 1
+var num_of_damage_upgrades = 0
 var damage_upgrade = null
 var checked_damage = false
 var d 
@@ -41,7 +41,8 @@ func _ready():
 	exit_button.connect("pressed", _on_ExitButton_pressed)
 	pause_menu.visible = false
 	restart_button.visible = false
-	update_max_health(5000)
+	update_max_health(0)
+	update_health(0)
 
 
 
@@ -99,7 +100,9 @@ func increase_score(amount):
 
 func update_health(amount):
 	Global.health += amount
+	#print("Health: ", Global.health)
 	health_bar.value = Global.health
+	#print("Health_Bar: ", health_bar.value)
 	#print(health_bar.value)
 	if Global.health <= 0:
 		score_label.set("theme_override_font_sizes/font_size", 56)
@@ -115,7 +118,9 @@ func update_health(amount):
 
 func update_max_health(amount):
 	Global.max_health += amount
-	health_bar.max_value += amount
+	#print("Max_Health: ", Global.max_health)
+	health_bar.max_value = Global.max_health
+	#print("Health_Bar_Max: ", health_bar.max_value)
 	if health_bar.max_value >= 950:
 		health_bar.size.x = 1900
 		health_bar_bg.size.x = 1900
@@ -176,14 +181,21 @@ func level_up():
 
 
 func get_damage_upgrade():
-	if d == 0 && Global.tier1_damage["damage_up"] == false:
-		damage_upgrade = "damage_up"
-		damage_upgrade_button.text = "Damage Up \nIncrease bullet damage by 2.5" 
-		return
-	elif d == 1 && Global.tier1_damage["attack_speed_up"] == false:
-		damage_upgrade = "attack_speed_up"
-		damage_upgrade_button.text = "Attack Speed Up \nIncrease attack speed by 20%" 
-		return 
+	if d == 0:
+		if Global.damage_up["damage_up1"] == false:
+			damage_upgrade = "damage_up1"
+			damage_upgrade_button.text = "Damage Up \nIncrease damage by 1.5" 
+			return
+		if Global.damage_up["damage_up2"] == false:
+			damage_upgrade = "damage_up2"
+			damage_upgrade_button.text = "Damage Up \nIncrease damage by 2.25 \nDecrease attack speed by 10%"
+			return
+		if Global.damage_up["damage_up3"] == false:
+			damage_upgrade = "damage_up3"
+			damage_upgrade_button.text = "Damage Up \nIncrease damage by 3 \nDecrease attack speed by 20%" 
+			return
+		d += 1
+		get_damage_upgrade()
 	else: 
 		if(d > num_of_damage_upgrades && checked_damage == true):
 			damage_upgrade_button.text = "OUT OF UPGRADES" 
@@ -203,11 +215,11 @@ func get_health_upgrade():
 			return
 		if Global.health_up["health_up2"] == false:
 			health_upgrade = "health_up2"
-			health_upgrade_button.text = "Health Up \nIncrease health by 100 and become % slower" 
+			health_upgrade_button.text = "Health Up \nIncrease health by 100 \nReduce thrust by 10" 
 			return
 		if Global.health_up["health_up3"] == false:
 			health_upgrade = "health_up3"
-			health_upgrade_button.text = "Health Up \nIncrease health by 150 and become % slower" 
+			health_upgrade_button.text = "Health Up \nIncrease health by 150 \nReduce thrust by 15" 
 			return
 		h += 1
 		get_health_upgrade()
@@ -224,12 +236,17 @@ func get_health_upgrade():
 
 func apply_upgrade(upgrade):
 	if damage_upgrade != null:
-		if upgrade == "damage_up":
-			Global.damage += 2.5
-			Global.tier1_damage["damage_up"] = true
-		if upgrade == "attack_speed_up":
-			Global.attack_speed += 0.1
-			Global.tier1_damage["attack_speed_up"] = true
+		if upgrade == "damage_up1":
+			Global.damage += 1.5
+			Global.damage_up["damage_up1"] = true
+		if upgrade == "damage_up2":
+			Global.damage += 2.25
+			Global.attack_speed -= Global.attack_speed * 0.1
+			Global.damage_up["damage_up2"] = true
+		if upgrade == "damage_up3":
+			Global.damage += 3
+			Global.attack_speed -= Global.attack_speed * 0.20
+			Global.damage_up["damage_up3"] = true
 		damage_upgrade = null
 	
 	if health_upgrade != null:
@@ -245,6 +262,6 @@ func apply_upgrade(upgrade):
 		if upgrade == "health_up3":
 			update_max_health(150)
 			update_health(150)
-			Global.move_speed -= 10
+			Global.move_speed -= 15
 			Global.health_up["health_up3"] = true
 		health_upgrade = null

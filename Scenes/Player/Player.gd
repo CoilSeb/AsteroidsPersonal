@@ -25,7 +25,6 @@ func _ready():
 	immunity_timer.set_one_shot(true)
 	immunity_timer.start(2)
 	Ui.increase_score(0)
-	Ui.update_health(Global.max_health)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -71,7 +70,6 @@ func _physics_process(delta):
 		bulletInstance.global_position = global_position  # Set the bullet's position
 		bulletInstance.direction = Vector2.UP.rotated(rotation)  # Set the bullet's direction
 		shootTimer.start(1 - (0.65 * Global.attack_speed))
-		print(thrust)
 		
 	if Global.health <= 0:
 		destroy()

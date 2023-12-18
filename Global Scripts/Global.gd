@@ -14,10 +14,10 @@ var exp
 var exp_threshold 
 var exp_level
 
-var tier1_damage = {
-	"damage_up": false, 
-	"attack_speed_up": false,
-	"bullet_speed_up": false,
+var damage_up = {
+	"damage_up1": false, 
+	"damage_up2": false,
+	"damage_up3": false,
 }
 
 var health_up = {
@@ -40,12 +40,16 @@ func refresh():
 	bullet_speed = 0
 	collision_damage = 10
 	exp = 0
-	exp_threshold = 1
+	exp_threshold = 70
 	exp_level = 0
 	
-	tier1_damage["damage_up"] = false
-	tier1_damage["attack_speed_up"] = false
-	tier1_damage["bullet_speed_up"] = false
+	damage_up["damage_up1"] = false
+	damage_up["damage_up2"] = false
+	damage_up["damage_up3"] = false
+	
+	health_up["health_up1"] = false
+	health_up["health_up2"] = false
+	health_up["health_up3"] = false
 
 
 func save_score():

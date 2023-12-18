@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cl0s7o04ccses"]
+[gd_scene load_steps=3 format=3 uid="uid://cl0s7o04ccses"]
 
 [ext_resource type="Script" path="res://Scenes/Screens/Game Scene/GameScene.gd" id="1_m8r6t"]
 [ext_resource type="PackedScene" uid="uid://c0jlxjxdu4vma" path="res://Scenes/UI/UI.tscn" id="2_u5fmq"]
-[ext_resource type="PackedScene" uid="uid://bd0t3aoaevkyw" path="res://Scenes/Experience/Experience.tscn" id="3_r0m8p"]
 
 [node name="GameScene" type="Node2D"]
 z_index = -1
@@ -13,43 +12,50 @@ metadata/_edit_vertical_guides_ = []
 [node name="UI" parent="." instance=ExtResource("2_u5fmq")]
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 2.5
 autostart = true
 
-[node name="Experience" parent="." instance=ExtResource("3_r0m8p")]
-position = Vector2(667, 138)
+[node name="WaveTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
 
-[node name="Experience2" parent="." instance=ExtResource("3_r0m8p")]
-position = Vector2(650, 336)
+[node name="Timer_Wave" type="Timer" parent="."]
+one_shot = true
+autostart = true
 
-[node name="Experience3" parent="." instance=ExtResource("3_r0m8p")]
-position = Vector2(776, 545)
+[node name="Timer_Wave2" type="Timer" parent="."]
+one_shot = true
+autostart = true
 
-[node name="Experience4" parent="." instance=ExtResource("3_r0m8p")]
-position = Vector2(1305, 370)
+[node name="Timer_Wave3" type="Timer" parent="."]
+one_shot = true
+autostart = true
 
-[node name="Experience5" parent="." instance=ExtResource("3_r0m8p")]
-position = Vector2(1236, 202)
+[node name="Timer_Wave4" type="Timer" parent="."]
+one_shot = true
+autostart = true
 
-[node name="Experience6" parent="." instance=ExtResource("3_r0m8p")]
-position = Vector2(950, 129)
+[node name="Timer_Wave5" type="Timer" parent="."]
+one_shot = true
+autostart = true
 
-[node name="Experience7" parent="." instance=ExtResource("3_r0m8p")]
-position = Vector2(528, 213)
+[node name="Timer_Wave6" type="Timer" parent="."]
+one_shot = true
+autostart = true
 
-[node name="Experience8" parent="." instance=ExtResource("3_r0m8p")]
-position = Vector2(511, 411)
+[node name="Timer_Wave7" type="Timer" parent="."]
+one_shot = true
+autostart = true
 
-[node name="Experience9" parent="." instance=ExtResource("3_r0m8p")]
-position = Vector2(637, 620)
+[node name="Timer_Wave8" type="Timer" parent="."]
+one_shot = true
+autostart = true
 
-[node name="Experience10" parent="." instance=ExtResource("3_r0m8p")]
-position = Vector2(1166, 445)
+[node name="Timer_Wave9" type="Timer" parent="."]
+one_shot = true
+autostart = true
 
-[node name="Experience11" parent="." instance=ExtResource("3_r0m8p")]
-position = Vector2(1097, 277)
-
-[node name="Experience12" parent="." instance=ExtResource("3_r0m8p")]
-position = Vector2(811, 204)
+[node name="Timer_Wave10" type="Timer" parent="."]
+one_shot = true
+autostart = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
