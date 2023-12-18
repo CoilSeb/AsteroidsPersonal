@@ -68,7 +68,7 @@ func refresh():
 	bullet_speed = 0
 	collision_damage = 10
 	exp = 0
-	exp_threshold = 70
+	exp_threshold = 50
 	exp_level = 0
 	
 	damage_up["damage_up1"] = false

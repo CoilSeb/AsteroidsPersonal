@@ -250,6 +250,10 @@ theme_override_font_sizes/font_size = 32
 icon = ExtResource("3_vwkcr")
 expand_icon = true
 
+[node name="Level_Up_Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Health_Upgrade" to="." method="_on_health_upgrade_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Damage_Upgrade" to="." method="_on_damage_upgrade_pressed"]

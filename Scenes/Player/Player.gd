@@ -90,15 +90,19 @@ func _on_area_2d_area_entered(area):
 		Ui.update_health(-50)
 		area.damage_asteroid(Global.collision_damage)
 		if area.health > 0:
-			velocity -= ((Vector2(0, 10) * velocity).rotated(rotation))
+			velocity *= -0.5
 		#call_deferred("destroy")
 		#immunity_timer.start(1)
 	if area.is_in_group("Medium_Asteroid"): #&& immunity_timer.get_time_left() == 0:
 		Ui.update_health(-25)
 		area.damage_asteroid(Global.collision_damage)
+		if area.health > 0:
+			velocity *= -0.5
 	if area.is_in_group("Small_Asteroid"): #&& immunity_timer.get_time_left() == 0:
 		Ui.update_health(-10)
 		area.damage_asteroid(Global.collision_damage)
+		if area.health > 0:
+			velocity *= -0.5
 	if area.is_in_group("Destroy_Ring"):
 		Ui.update_exp(10)
 		#print(Global.experience)

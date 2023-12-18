@@ -19,6 +19,7 @@ extends CanvasLayer
 @onready var health_upgrade_button = $Upgrade_Menu/Health_Upgrade
 @onready var damage_upgrade_button = $Upgrade_Menu/Damage_Upgrade
 @onready var utility_upgrade_button = $Upgrade_Menu/Utility_Upgrade
+@onready var level_up_timer = $Level_Up_Timer
 
 var score = 0
 var num_of_damage_upgrades = 1
@@ -43,6 +44,7 @@ func _ready():
 	restart_button.visible = false
 	update_max_health(0)
 	update_health(0)
+	exp_bar.max_value = Global.exp_threshold
 
 
 
@@ -140,7 +142,7 @@ func update_exp(amount):
 func update_max_exp():
 	if Global.exp >= Global.exp_threshold:
 		Global.exp -= Global.exp_threshold
-		Global.exp_threshold *= 1.5
+		Global.exp_threshold *= 1.2
 		exp_bar.max_value = Global.exp_threshold
 		exp_bar.value = Global.exp
 		d = randi_range(0, num_of_damage_upgrades)
@@ -150,27 +152,30 @@ func update_max_exp():
 
 
 func _on_health_upgrade_pressed():
-	if health_upgrade != null:
-		apply_upgrade(health_upgrade)
-	get_tree().paused = false
-	upgrade_menu.visible = false
-	#pause_menu.visible = false
+	if level_up_timer.time_left == 0:
+		if health_upgrade != null:
+			apply_upgrade(health_upgrade)
+		get_tree().paused = false
+		upgrade_menu.visible = false
+		#pause_menu.visible = false
 
 
 func _on_damage_upgrade_pressed():
-	if damage_upgrade != null:
-		apply_upgrade(damage_upgrade)
-	get_tree().paused = false
-	upgrade_menu.visible = false
-	#pause_menu.visible = false
+	if level_up_timer.time_left == 0:
+		if damage_upgrade != null:
+			apply_upgrade(damage_upgrade)
+		get_tree().paused = false
+		upgrade_menu.visible = false
+		#pause_menu.visible = false
 
 
 func _on_utility_upgrade_pressed():
-	if utility_upgrade != null:
-		apply_upgrade(utility_upgrade)
-	get_tree().paused = false
-	upgrade_menu.visible = false
-	#pause_menu.visible = false
+	if level_up_timer.time_left == 0:
+		if utility_upgrade != null:
+			apply_upgrade(utility_upgrade)
+		get_tree().paused = false
+		upgrade_menu.visible = false
+		#pause_menu.visible = false
 
 
 func level_up():
@@ -179,21 +184,22 @@ func level_up():
 	get_damage_upgrade()
 	get_health_upgrade()
 	get_utility_upgrade()
+	level_up_timer.start(2)
 
 
 func get_damage_upgrade():
 	if d == 0:
 		if Global.damage_up["damage_up1"] == false:
 			damage_upgrade = "damage_up1"
-			damage_upgrade_button.text = "Damage Up \n\n\nIncrease damage by 1.5" 
+			damage_upgrade_button.text = "Damage Up \n\n\nIncrease bullet damage by 1.5" 
 			return
 		if Global.damage_up["damage_up2"] == false:
 			damage_upgrade = "damage_up2"
-			damage_upgrade_button.text = "Damage Up + \n\n\nIncrease damage by 2.25 \nDecrease attack speed by 5%"
+			damage_upgrade_button.text = "Damage Up + \n\n\nIncrease bullet damage by 2.25 \nDecrease attack speed by 5%"
 			return
 		if Global.damage_up["damage_up3"] == false:
 			damage_upgrade = "damage_up3"
-			damage_upgrade_button.text = "Damage Up ++ \n\n\nIncrease damage by 3 \nDecrease attack speed by 10%" 
+			damage_upgrade_button.text = "Damage Up ++ \n\n\nIncrease bullet damage by 3 \nDecrease attack speed by 10%" 
 			return
 		d += 1
 		get_damage_upgrade()
@@ -202,6 +208,15 @@ func get_damage_upgrade():
 		if Global.attack_speed_up["attack_speed_up1"] == false:
 			damage_upgrade = "attack_speed_up1"
 			damage_upgrade_button.text = "Attack Speed Up \n\n\nIncrease attack speed by 10%"
+			return
+		if Global.attack_speed_up["attack_speed_up2"] == false:
+			damage_upgrade = "attack_speed_up1"
+			damage_upgrade_button.text = "Attack Speed Up \n\n\nIncrease attack speed by 15% \nDecrease bullet damage by 1"
+			return
+		if Global.attack_speed_up["attack_speed_up3"] == false:
+			damage_upgrade = "attack_speed_up1"
+			damage_upgrade_button.text = "Attack Speed Up \n\n\nIncrease attack speed by 20%"
+			return
 		
 	else: 
 		if(d > num_of_damage_upgrades && checked_damage == true):
