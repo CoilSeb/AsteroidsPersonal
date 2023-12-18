@@ -144,7 +144,7 @@ func _on_timer_wave_8_timeout():
 
 func _on_timer_wave_9_timeout():
 	print("wave 9")
-	for i in range(25):
+	for i in range(10):
 		spawn_Asteroid()
 	timer_wave10.start(30)
 

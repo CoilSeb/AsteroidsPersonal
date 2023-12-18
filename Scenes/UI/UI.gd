@@ -26,7 +26,7 @@ var num_of_damage_upgrades = 1
 var damage_upgrade = null
 var checked_damage = false
 var d 
-var num_of_health_upgrades = 0
+var num_of_health_upgrades = 1
 var health_upgrade = null
 var checked_health = false
 var h
@@ -210,13 +210,15 @@ func get_damage_upgrade():
 			damage_upgrade_button.text = "Attack Speed Up \n\n\nIncrease attack speed by 10%"
 			return
 		if Global.attack_speed_up["attack_speed_up2"] == false:
-			damage_upgrade = "attack_speed_up1"
-			damage_upgrade_button.text = "Attack Speed Up \n\n\nIncrease attack speed by 15% \nDecrease bullet damage by 1"
+			damage_upgrade = "attack_speed_up2"
+			damage_upgrade_button.text = "Attack Speed Up + \n\n\nIncrease attack speed by 15% \nDecrease bullet damage by 1"
 			return
 		if Global.attack_speed_up["attack_speed_up3"] == false:
-			damage_upgrade = "attack_speed_up1"
-			damage_upgrade_button.text = "Attack Speed Up \n\n\nIncrease attack speed by 20%"
+			damage_upgrade = "attack_speed_up3"
+			damage_upgrade_button.text = "Attack Speed Up ++ \n\n\nIncrease attack speed by 20% \nDecrease bullet damage by 2"
 			return
+		d += 1
+		get_damage_upgrade()
 		
 	else: 
 		if(d > num_of_damage_upgrades && checked_damage == true):
@@ -245,6 +247,23 @@ func get_health_upgrade():
 			return
 		h += 1
 		get_health_upgrade()
+		
+	if h == 1:
+		if Global.health_regen_up["health_regen_up1"] == false:
+			health_upgrade = "health_regen_up1"
+			health_upgrade_button.text = "Health Regen Up \n\n\nIncrease health regeneration by 0.5" 
+			return
+		if Global.health_regen_up["health_regen_up2"] == false:
+			health_upgrade = "health_regen_up2"
+			health_upgrade_button.text = "Health Up + \n\n\nIncrease health regeneration by 1.5" 
+			return
+		if Global.health_regen_up["health_regen_up3"] == false:
+			health_upgrade = "health_regen_up3"
+			health_upgrade_button.text = "Health Up ++ \n\n\nIncrease health regeneration by 3" 
+			return
+		h += 1
+		get_health_upgrade()
+		
 	else:
 		if(h > num_of_health_upgrades && checked_health == true):
 			health_upgrade_button.text = "OUT OF UPGRADES" 
@@ -264,14 +283,15 @@ func get_utility_upgrade():
 			return
 		if Global.move_speed_up["move_speed_up2"] == false:
 			utility_upgrade = "move_speed_up2"
-			utility_upgrade_button.text = "Move Speed Up + \n\n\nIncrease move speed by 10 \nReduce max health by 50" 
+			utility_upgrade_button.text = "Move Speed Up + \n\n\nIncrease move speed by 15 \nReduce max health by 50" 
 			return
 		if Global.move_speed_up["move_speed_up3"] == false:
 			utility_upgrade = "move_speed_up3"
-			utility_upgrade_button.text = "Move Speed Up ++ \n\n\nIncrease move speed by 10 \nReduce max health by 50" 
+			utility_upgrade_button.text = "Move Speed Up ++ \n\n\nIncrease move speed by 20 \nReduce max health by 75" 
 			return
 		u += 1
 		get_utility_upgrade()
+		
 	else:
 		if(u > num_of_utility_upgrades && checked_utility == true):
 			utility_upgrade_button.text = "OUT OF UPGRADES" 
@@ -285,22 +305,34 @@ func get_utility_upgrade():
 
 func apply_upgrade(upgrade):
 	if damage_upgrade != null:
-		
+		#Bullet_Damage
 		if upgrade == "damage_up1":
 			Global.damage += 1.5
 			Global.damage_up["damage_up1"] = true
 		if upgrade == "damage_up2":
 			Global.damage += 2.25
-			Global.attack_speed -= Global.attack_speed * 0.1
+			Global.attack_speed += (Global.attack_speed * 0.1)
 			Global.damage_up["damage_up2"] = true
 		if upgrade == "damage_up3":
 			Global.damage += 3
-			Global.attack_speed -= Global.attack_speed * 0.20
+			Global.attack_speed += (Global.attack_speed * 0.20)
 			Global.damage_up["damage_up3"] = true
+		#Attack Speed
+		if upgrade == "attack_speed_up1":
+			Global.attack_speed -= (Global.attack_speed * 0.15)
+			Global.attack_speed_up["attack_speed_up1"] = true
+		if upgrade == "attack_speed_up2":
+			Global.attack_speed -= (Global.attack_speed * 0.15)
+			Global.damage -= 1
+			Global.attack_speed_up["attack_speed_up2"] = true
+		if upgrade == "attack_speed_up3":
+			Global.attack_speed -= (Global.attack_speed * 0.2)
+			Global.damage -= 2
+			Global.attack_speed_up["attack_speed_up3"] = true
 		damage_upgrade = null
 	
 	if health_upgrade != null:
-		
+		#Health
 		if upgrade == "health_up1":
 			update_max_health(50)
 			update_health(50)
@@ -315,21 +347,31 @@ func apply_upgrade(upgrade):
 			update_health(150)
 			Global.move_speed -= 15
 			Global.health_up["health_up3"] = true
+		#Health Regen
+		if upgrade == "health_regen_up1":
+			Global.health_regen += 0.5
+			Global.health_regen_up["health_regen_up1"] = true
+		if upgrade == "health_regen_up2":
+			Global.health_regen += 1.5
+			Global.health_regen_up["health_regen_up2"] = true
+		if upgrade == "health_regen_up3":
+			Global.health_regen += 3
+			Global.health_regen_up["health_regen_up3"] = true
 		health_upgrade = null
 	
 	if utility_upgrade != null:
-		
+		#Move Speed
 		if upgrade == "move_speed_up1":
 			Global.move_speed += 10
 			Global.move_speed_up["move_speed_up1"] = true
 		if upgrade == "move_speed_up2":
-			Global.move_speed += 10
+			Global.move_speed += 15
 			update_max_health(-50)
 			if Global.health > 50:
 				update_health(-50)
 			Global.move_speed_up["move_speed_up2"] = true
 		if upgrade == "move_speed_up3":
-			Global.move_speed += 10
+			Global.move_speed += 20
 			update_max_health(-50)
 			if Global.health > 50:
 				update_health(-50)
