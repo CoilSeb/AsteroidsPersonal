@@ -20,42 +20,43 @@ autostart = true
 
 [node name="Timer_Wave" type="Timer" parent="."]
 one_shot = true
-autostart = true
 
 [node name="Timer_Wave2" type="Timer" parent="."]
 one_shot = true
-autostart = true
 
 [node name="Timer_Wave3" type="Timer" parent="."]
 one_shot = true
-autostart = true
 
 [node name="Timer_Wave4" type="Timer" parent="."]
 one_shot = true
-autostart = true
 
 [node name="Timer_Wave5" type="Timer" parent="."]
 one_shot = true
-autostart = true
 
 [node name="Timer_Wave6" type="Timer" parent="."]
 one_shot = true
-autostart = true
 
 [node name="Timer_Wave7" type="Timer" parent="."]
 one_shot = true
-autostart = true
 
 [node name="Timer_Wave8" type="Timer" parent="."]
 one_shot = true
-autostart = true
 
 [node name="Timer_Wave9" type="Timer" parent="."]
 one_shot = true
-autostart = true
 
 [node name="Timer_Wave10" type="Timer" parent="."]
 one_shot = true
-autostart = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
+[connection signal="timeout" from="Timer_Wave" to="." method="_on_timer_wave_timeout"]
+[connection signal="timeout" from="Timer_Wave2" to="." method="_on_timer_wave_2_timeout"]
+[connection signal="timeout" from="Timer_Wave3" to="." method="_on_timer_wave_3_timeout"]
+[connection signal="timeout" from="Timer_Wave4" to="." method="_on_timer_wave_4_timeout"]
+[connection signal="timeout" from="Timer_Wave5" to="." method="_on_timer_wave_5_timeout"]
+[connection signal="timeout" from="Timer_Wave6" to="." method="_on_timer_wave_6_timeout"]
+[connection signal="timeout" from="Timer_Wave7" to="." method="_on_timer_wave_7_timeout"]
+[connection signal="timeout" from="Timer_Wave8" to="." method="_on_timer_wave_8_timeout"]
+[connection signal="timeout" from="Timer_Wave9" to="." method="_on_timer_wave_9_timeout"]
+[connection signal="timeout" from="Timer_Wave10" to="." method="_on_timer_wave_10_timeout"]

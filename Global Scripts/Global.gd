@@ -5,7 +5,9 @@ extends Node
 var high_score
 var health
 var max_health
+var health_regen
 var move_speed
+var counter_thrust
 var damage 
 var attack_speed 
 var bullet_speed 
@@ -20,10 +22,34 @@ var damage_up = {
 	"damage_up3": false,
 }
 
+var attack_speed_up = {
+	"attack_speed_up1": false,
+	"attack_speed_up2": false,
+	"attack_speed_up3": false,
+}
+
 var health_up = {
 	"health_up1": false, 
 	"health_up2": false, 
 	"health_up3": false, 
+}
+
+var health_regen_up = {
+	"health_regen_up1": false,
+	"health_regen_up2": false,
+	"health_regen_up3": false, 
+}
+
+var move_speed_up = {
+	"move_speed_up1": false,
+	"move_speed_up2": false,
+	"move_speed_up3": false, 
+}
+
+var counter_thrust_up = {
+	"counter_thrust_up1": false, 
+	"counter_thrust_up2": false, 
+	"counter_thrust_up3": false,
 }
 
 
@@ -34,9 +60,11 @@ func _ready():
 func refresh():
 	health = 300
 	max_health = 300
+	health_regen = 0
 	move_speed = 0
+	counter_thrust = 0
 	damage = 0
-	attack_speed = 1
+	attack_speed = 0.35
 	bullet_speed = 0
 	collision_damage = 10
 	exp = 0

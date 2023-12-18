@@ -6,6 +6,8 @@ extends CharacterBody2D
 var bulletScene = preload("res://Scenes/Bullets/Bullet.tscn")
 var screen_size
 var rotateSpeed = 5
+var thrust
+var counter_thrust
 var slowDown = 0.5
 var shootTimer = null
 var immunity_timer = null
@@ -29,7 +31,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	var thrust = 50 + Global.move_speed
+	thrust = 50 + Global.move_speed
+	counter_thrust = Global.counter_thrust
 	# Screen Wrap
 	if position.x < 0:
 		position.x = screen_size.x
@@ -60,6 +63,9 @@ func _physics_process(delta):
 		if velocity.y >= -0.5 && velocity.y <= 0.5:
 			velocity.y = 0
 			
+	if Input.is_action_pressed("move_backward"):
+		velocity += ((Vector2(0, 10) * counter_thrust * delta).rotated(rotation))
+		
 	move_and_collide(velocity * delta)
 		
 		
@@ -69,7 +75,7 @@ func _physics_process(delta):
 		get_parent().add_child(bulletInstance)  # Add it to the player node or a designated parent node for bullets
 		bulletInstance.global_position = global_position  # Set the bullet's position
 		bulletInstance.direction = Vector2.UP.rotated(rotation)  # Set the bullet's direction
-		shootTimer.start(1 - (0.65 * Global.attack_speed))
+		shootTimer.start(Global.attack_speed)
 		
 	if Global.health <= 0:
 		destroy()
@@ -83,6 +89,8 @@ func _on_area_2d_area_entered(area):
 	if area.is_in_group("Big_Asteroid"): #&& immunity_timer.get_time_left() == 0:
 		Ui.update_health(-50)
 		area.damage_asteroid(Global.collision_damage)
+		if area.health > 0:
+			velocity -= ((Vector2(0, 10) * velocity).rotated(rotation))
 		#call_deferred("destroy")
 		#immunity_timer.start(1)
 	if area.is_in_group("Medium_Asteroid"): #&& immunity_timer.get_time_left() == 0:
