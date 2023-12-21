@@ -374,9 +374,6 @@ func apply_upgrade(upgrade):
 			Global.damage -= 2
 			Global.attack_speed_up["attack_speed_up3"] = true
 		damage_upgrade = null
-		d_catch = null
-		h_catch = null
-		u_catch = null
 	
 	if health_upgrade != null:
 		#Health
@@ -405,9 +402,6 @@ func apply_upgrade(upgrade):
 			Global.health_regen += 3
 			Global.health_regen_up["health_regen_up3"] = true
 		health_upgrade = null
-		d_catch = null
-		h_catch = null
-		u_catch = null
 	
 	if utility_upgrade != null:
 		#Move Speed
@@ -437,7 +431,5 @@ func apply_upgrade(upgrade):
 			Global.counter_thrust += 25
 			Global.counter_thrust_up["counter_thrust_up3"] = true
 		utility_upgrade = null
-		d_catch = null
-		h_catch = null
-		u_catch = null
+		
 	print("\n\n\n")
