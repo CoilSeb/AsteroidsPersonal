@@ -135,9 +135,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -770.0
-offset_top = -370.0
+offset_top = -440.0
 offset_right = -370.0
-offset_bottom = 330.0
+offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -149,9 +149,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -200.0
-offset_top = -370.0
+offset_top = -440.0
 offset_right = 200.0
-offset_bottom = 330.0
+offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -163,11 +163,28 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 370.0
-offset_top = -370.0
+offset_top = -440.0
 offset_right = 770.0
-offset_bottom = 330.0
+offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Reroll_Button" type="Button" parent="Upgrade_Menu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -77.5
+offset_top = -190.0
+offset_right = 77.5
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 52
+text = "Reroll
+"
 
 [node name="PauseMenu" type="Control" parent="."]
 visible = false
@@ -257,4 +274,5 @@ one_shot = true
 [connection signal="pressed" from="Upgrade_Menu/Health_Upgrade" to="." method="_on_health_upgrade_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Damage_Upgrade" to="." method="_on_damage_upgrade_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Utility_Upgrade" to="." method="_on_utility_upgrade_pressed"]
+[connection signal="pressed" from="Upgrade_Menu/Reroll_Button" to="." method="_on_reroll_button_pressed"]
 [connection signal="pressed" from="PauseMenu/Restart" to="." method="_on_restart_pressed"]

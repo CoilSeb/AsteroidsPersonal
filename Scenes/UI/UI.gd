@@ -22,7 +22,7 @@ extends CanvasLayer
 @onready var level_up_timer = $Level_Up_Timer
 
 var score = 0
-var num_of_damage_upgrades = 1
+var num_of_damage_upgrades = 2
 var damage_upgrade = null
 var d 
 var d_catch
@@ -54,6 +54,9 @@ func _process(_delta):
 	if Global.health <= 0:
 		if Input.is_action_just_pressed("shoot"):
 			restart()
+	if upgrade_menu.visible == true:
+		if Input.is_action_just_pressed("reroll"):
+			level_up()
 
 
 func toggle_pause_menu():
@@ -145,12 +148,6 @@ func update_max_exp():
 		Global.exp_threshold *= 1.2
 		exp_bar.max_value = Global.exp_threshold
 		exp_bar.value = Global.exp
-		d = randi_range(0, num_of_damage_upgrades)
-		h = randi_range(0, num_of_health_upgrades)
-		u = randi_range(0, num_of_utility_upgrades)
-		d_catch = null
-		h_catch = null
-		u_catch = null
 		level_up()
 
 
@@ -181,7 +178,17 @@ func _on_utility_upgrade_pressed():
 		#pause_menu.visible = false
 
 
+func _on_reroll_button_pressed():
+	level_up()
+
+
 func level_up():
+	d = randi_range(0, num_of_damage_upgrades)
+	h = randi_range(0, num_of_health_upgrades)
+	u = randi_range(0, num_of_utility_upgrades)
+	d_catch = null
+	h_catch = null
+	u_catch = null
 	get_tree().paused = true
 	upgrade_menu.visible = true
 	get_damage_upgrade()
@@ -235,6 +242,25 @@ func get_damage_upgrade():
 			d += 1 
 			get_damage_upgrade()
 			
+		elif d == 2:
+			if Global.collision_damage_up["collision_damage_up1"] == false:
+				damage_upgrade = "collision_damage_up1"
+				damage_upgrade_button.text = "Collision Damage Up \n\n\nIncrease collsion damage by 10"
+				return
+			if Global.collision_damage_up["collision_damage_up2"] == false:
+				damage_upgrade = "collision_damage_up2"
+				damage_upgrade_button.text = "Collision Damage Up + \n\n\nIncrease collsion damage by 15"
+				return
+			if Global.collision_damage_up["collision_damage_up3"] == false:
+				damage_upgrade = "collision_damage_up3"
+				damage_upgrade_button.text = "Collision Damage Up ++ \n\n\nIncrease collsion damage by 25"
+				return
+			if d_catch == null:
+				d_catch = d
+				print("d_catch: ", d_catch, " d: ", d)
+			d += 1 
+			get_damage_upgrade()
+			
 		else:
 			d = 0
 			print("new d: ", d)
@@ -243,12 +269,12 @@ func get_damage_upgrade():
 
 
 func get_health_upgrade():
-	print("health_regen_up1 = ", Global.health_regen_up["health_regen_up1"])
-	print("health_regen_up2 = ", Global.health_regen_up["health_regen_up2"])
-	print("health_regen_up3 = ", Global.health_regen_up["health_regen_up3"])
-	print("health_up1 = ", Global.health_up["health_up1"])
-	print("health_up2 = ", Global.health_up["health_up2"])
-	print("health_up3 = ", Global.health_up["health_up3"])
+	#print("health_regen_up1 = ", Global.health_regen_up["health_regen_up1"])
+	#print("health_regen_up2 = ", Global.health_regen_up["health_regen_up2"])
+	#print("health_regen_up3 = ", Global.health_regen_up["health_regen_up3"])
+	#print("health_up1 = ", Global.health_up["health_up1"])
+	#print("health_up2 = ", Global.health_up["health_up2"])
+	#print("health_up3 = ", Global.health_up["health_up3"])
 
 	if(h_catch == h):
 		print("Out h_catch: ", h_catch, " h: ", h)
@@ -379,6 +405,16 @@ func apply_upgrade(upgrade):
 			Global.attack_speed -= (Global.attack_speed * 0.2)
 			Global.damage -= 2
 			Global.attack_speed_up["attack_speed_up3"] = true
+		#Collision Damage
+		if upgrade == "collision_damage_up1":
+			Global.collision_damage += 10
+			Global.collision_damage_up["collision_damage_up1"] = true
+		if upgrade == "collision_damage_up2":
+			Global.collision_damage += 15
+			Global.collision_damage_up["collision_damage_up2"] = true
+		if upgrade == "collision_damage_up3":
+			Global.collision_damage += 25
+			Global.collision_damage_up["collision_damage_up3"] = true
 		damage_upgrade = null
 	
 	if health_upgrade != null:

@@ -28,6 +28,12 @@ var attack_speed_up = {
 	"attack_speed_up3": false,
 }
 
+var collision_damage_up = {
+	"collision_damage_up1": false, 
+	"collision_damage_up2": false, 
+	"collision_damage_up3": false, 
+}
+
 var health_up = {
 	"health_up1": false, 
 	"health_up2": false, 
@@ -78,6 +84,26 @@ func refresh():
 	health_up["health_up1"] = false
 	health_up["health_up2"] = false
 	health_up["health_up3"] = false
+	
+	collision_damage_up["collision_damage_up1"] = false
+	collision_damage_up["collision_damage_up2"] = false
+	collision_damage_up["collision_damage_up3"] = false
+	
+	attack_speed_up["attack_speed_up1"] = false
+	attack_speed_up["attack_speed_up2"] = false
+	attack_speed_up["attack_speed_up3"] = false
+	
+	health_regen_up["health_regen_up1"] = false
+	health_regen_up["health_regen_up2"] = false
+	health_regen_up["health_regen_up3"] = false
+	
+	move_speed_up["move_speed_up1"] = false
+	move_speed_up["move_speed_up2"] = false
+	move_speed_up["move_speed_up3"] = false
+	
+	counter_thrust_up["counter_thrust_up1"] = false
+	counter_thrust_up["counter_thrust_up2"] = false
+	counter_thrust_up["counter_thrust_up3"] = false
 
 
 func save_score():
