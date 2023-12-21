@@ -3,7 +3,7 @@ extends Node
 @onready var screen_size = get_viewport().get_visible_rect().size
 
 var high_score
-var health
+var health 
 var max_health
 var health_regen
 var move_speed
@@ -58,17 +58,17 @@ func _ready():
 
 
 func refresh():
-	health = 300
-	max_health = 300
+	health = 3000000
+	max_health = 3000000
 	health_regen = 0
 	move_speed = 0
 	counter_thrust = 0
-	damage = 0
+	damage = 100
 	attack_speed = 0.35
 	bullet_speed = 0
-	collision_damage = 10
+	collision_damage = 100
 	exp = 0
-	exp_threshold = 50
+	exp_threshold = 1
 	exp_level = 0
 	
 	damage_up["damage_up1"] = false

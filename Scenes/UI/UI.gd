@@ -24,16 +24,16 @@ extends CanvasLayer
 var score = 0
 var num_of_damage_upgrades = 1
 var damage_upgrade = null
-var checked_damage = false
 var d 
+var d_catch
 var num_of_health_upgrades = 1
 var health_upgrade = null
-var checked_health = false
 var h
-var num_of_utility_upgrades = 0
+var h_catch
+var num_of_utility_upgrades = 1
 var utility_upgrade = null
-var checked_utility = false
 var u 
+var u_catch
 
 
 func _ready():
@@ -148,6 +148,9 @@ func update_max_exp():
 		d = randi_range(0, num_of_damage_upgrades)
 		h = randi_range(0, num_of_health_upgrades)
 		u = randi_range(0, num_of_utility_upgrades)
+		d_catch = null
+		h_catch = null
+		u_catch = null
 		level_up()
 
 
@@ -184,123 +187,164 @@ func level_up():
 	get_damage_upgrade()
 	get_health_upgrade()
 	get_utility_upgrade()
-	level_up_timer.start(2)
+	level_up_timer.start(1)
 
 
 func get_damage_upgrade():
-	if d == 0:
-		if Global.damage_up["damage_up1"] == false:
-			damage_upgrade = "damage_up1"
-			damage_upgrade_button.text = "Damage Up \n\n\nIncrease bullet damage by 1.5" 
-			return
-		if Global.damage_up["damage_up2"] == false:
-			damage_upgrade = "damage_up2"
-			damage_upgrade_button.text = "Damage Up + \n\n\nIncrease bullet damage by 2.25 \nDecrease attack speed by 5%"
-			return
-		if Global.damage_up["damage_up3"] == false:
-			damage_upgrade = "damage_up3"
-			damage_upgrade_button.text = "Damage Up ++ \n\n\nIncrease bullet damage by 3 \nDecrease attack speed by 10%" 
-			return
-		d += 1
-		get_damage_upgrade()
+	if(d_catch == d):
+		print("Out d_catch: ", d_catch, " d: ", d)
+		damage_upgrade_button.text = "OUT OF UPGRADES" 
+		return
 		
-	if d == 1:
-		if Global.attack_speed_up["attack_speed_up1"] == false:
-			damage_upgrade = "attack_speed_up1"
-			damage_upgrade_button.text = "Attack Speed Up \n\n\nIncrease attack speed by 10%"
-			return
-		if Global.attack_speed_up["attack_speed_up2"] == false:
-			damage_upgrade = "attack_speed_up2"
-			damage_upgrade_button.text = "Attack Speed Up + \n\n\nIncrease attack speed by 15% \nDecrease bullet damage by 1"
-			return
-		if Global.attack_speed_up["attack_speed_up3"] == false:
-			damage_upgrade = "attack_speed_up3"
-			damage_upgrade_button.text = "Attack Speed Up ++ \n\n\nIncrease attack speed by 20% \nDecrease bullet damage by 2"
-			return
-		d += 1
-		get_damage_upgrade()
-		
-	else: 
-		if(d > num_of_damage_upgrades && checked_damage == true):
-			damage_upgrade_button.text = "OUT OF UPGRADES" 
-			return
-		if(d > num_of_damage_upgrades && checked_damage == false):
-			d = -1
-			checked_damage = true
-		d += 1
-		get_damage_upgrade()
+	else:
+		if d == 0:
+			if Global.damage_up["damage_up1"] == false:
+				damage_upgrade = "damage_up1"
+				damage_upgrade_button.text = "Damage Up \n\n\nIncrease bullet damage by 1.5" 
+				print("True")
+				return
+			if Global.damage_up["damage_up2"] == false:
+				damage_upgrade = "damage_up2"
+				damage_upgrade_button.text = "Damage Up + \n\n\nIncrease bullet damage by 2.25 \nDecrease attack speed by 5%"
+				return
+			if Global.damage_up["damage_up3"] == false:
+				damage_upgrade = "damage_up3"
+				damage_upgrade_button.text = "Damage Up ++ \n\n\nIncrease bullet damage by 3 \nDecrease attack speed by 10%" 
+				return
+			if d_catch == null:
+				print("d_catch: ", d_catch, " d: ", d)
+				d_catch = d
+			d += 1
+			get_damage_upgrade()
+			
+		elif d == 1:
+			if Global.attack_speed_up["attack_speed_up1"] == false:
+				damage_upgrade = "attack_speed_up1"
+				damage_upgrade_button.text = "Attack Speed Up \n\n\nIncrease attack speed by 10%"
+				return
+			if Global.attack_speed_up["attack_speed_up2"] == false:
+				damage_upgrade = "attack_speed_up2"
+				damage_upgrade_button.text = "Attack Speed Up + \n\n\nIncrease attack speed by 15% \nDecrease bullet damage by 1"
+				return
+			if Global.attack_speed_up["attack_speed_up3"] == false:
+				damage_upgrade = "attack_speed_up3"
+				damage_upgrade_button.text = "Attack Speed Up ++ \n\n\nIncrease attack speed by 20% \nDecrease bullet damage by 2"
+				return
+			if d_catch == null:
+				d_catch = d
+				print("d_catch: ", d_catch, " d: ", d)
+			d += 1 
+			get_damage_upgrade()
+			
+		else:
+			d = 0
+			print("new d: ", d)
+			get_damage_upgrade()
+
 
 
 func get_health_upgrade():
-	if h == 0:
-		if Global.health_up["health_up1"] == false:
-			health_upgrade = "health_up1"
-			health_upgrade_button.text = "Health Up \n\n\nIncrease max health by 50" 
-			return
-		if Global.health_up["health_up2"] == false:
-			health_upgrade = "health_up2"
-			health_upgrade_button.text = "Health Up + \n\n\nIncrease max health by 100 \nReduce thrust by 10" 
-			return
-		if Global.health_up["health_up3"] == false:
-			health_upgrade = "health_up3"
-			health_upgrade_button.text = "Health Up ++ \n\n\nIncrease max health by 150 \nReduce thrust by 10" 
-			return
-		h += 1
-		get_health_upgrade()
-		
-	if h == 1:
-		if Global.health_regen_up["health_regen_up1"] == false:
-			health_upgrade = "health_regen_up1"
-			health_upgrade_button.text = "Health Regen Up \n\n\nIncrease health regeneration by 0.5" 
-			return
-		if Global.health_regen_up["health_regen_up2"] == false:
-			health_upgrade = "health_regen_up2"
-			health_upgrade_button.text = "Health Up + \n\n\nIncrease health regeneration by 1.5" 
-			return
-		if Global.health_regen_up["health_regen_up3"] == false:
-			health_upgrade = "health_regen_up3"
-			health_upgrade_button.text = "Health Up ++ \n\n\nIncrease health regeneration by 3" 
-			return
-		h += 1
-		get_health_upgrade()
+	if(h_catch == h):
+		print("Out h_catch: ", h_catch, " h: ", h)
+		health_upgrade_button.text = "OUT OF UPGRADES" 
+		return
 		
 	else:
-		if(h > num_of_health_upgrades && checked_health == true):
-			health_upgrade_button.text = "OUT OF UPGRADES" 
-			return
-		if(h > num_of_health_upgrades && checked_health == false):
-			h = -1
-			checked_health = true
-		h += 1
-		get_health_upgrade()
+		if h == 0:
+			if Global.health_up["health_up1"] == false:
+				health_upgrade = "health_up1"
+				health_upgrade_button.text = "Health Up \n\n\nIncrease max health by 50" 
+				return
+			if Global.health_up["health_up2"] == false:
+				health_upgrade = "health_up2"
+				health_upgrade_button.text = "Health Up + \n\n\nIncrease max health by 100 \nReduce thrust by 10" 
+				return
+			if Global.health_up["health_up3"] == false:
+				health_upgrade = "health_up3"
+				health_upgrade_button.text = "Health Up ++ \n\n\nIncrease max health by 150 \nReduce thrust by 10" 
+				return
+				
+			if h_catch == null:
+				h_catch = h
+				print("h_catch: ", h_catch, " h: ", h)
+			h += 1
+			get_health_upgrade()
+			
+		elif h == 1:
+			if Global.health_regen_up["health_regen_up1"] == false:
+				health_upgrade = "health_regen_up1"
+				health_upgrade_button.text = "Health Regen Up \n\n\nIncrease health regeneration by 0.5" 
+				return
+			if Global.health_regen_up["health_regen_up2"] == false:
+				health_upgrade = "health_regen_up2"
+				health_upgrade_button.text = "Health Up + \n\n\nIncrease health regeneration by 1.5" 
+				return
+			if Global.health_regen_up["health_regen_up3"] == false:
+				health_upgrade = "health_regen_up3"
+				health_upgrade_button.text = "Health Up ++ \n\n\nIncrease health regeneration by 3" 
+				return
+				
+			if h_catch == null:
+				h_catch = h
+				print("h_catch: ", h_catch, " h: ", h)
+			h += 1
+			get_health_upgrade()
+			
+		else:
+			h = 0
+			get_health_upgrade()
 
 
 func get_utility_upgrade():
-	if u == 0:
-		if Global.move_speed_up["move_speed_up1"] == false:
-			utility_upgrade = "move_speed_up1"
-			utility_upgrade_button.text = "Move Speed Up \n\n\nIncrease move speed by 10" 
-			return
-		if Global.move_speed_up["move_speed_up2"] == false:
-			utility_upgrade = "move_speed_up2"
-			utility_upgrade_button.text = "Move Speed Up + \n\n\nIncrease move speed by 15 \nReduce max health by 50" 
-			return
-		if Global.move_speed_up["move_speed_up3"] == false:
-			utility_upgrade = "move_speed_up3"
-			utility_upgrade_button.text = "Move Speed Up ++ \n\n\nIncrease move speed by 20 \nReduce max health by 75" 
-			return
-		u += 1
-		get_utility_upgrade()
+	if(u_catch == u):
+		print("Out U_catch: ", u_catch, " U: ", u)
+		utility_upgrade_button.text = "OUT OF UPGRADES" 
+		return
 		
 	else:
-		if(u > num_of_utility_upgrades && checked_utility == true):
-			utility_upgrade_button.text = "OUT OF UPGRADES" 
-			return
-		if(u > num_of_utility_upgrades && checked_utility == false):
-			u = -1
-			checked_utility = true
-		u += 1
-		get_utility_upgrade()
+		if u == 0:
+			if Global.move_speed_up["move_speed_up1"] == false:
+				utility_upgrade = "move_speed_up1"
+				utility_upgrade_button.text = "Move Speed Up \n\n\nIncrease move speed by 10" 
+				return
+			if Global.move_speed_up["move_speed_up2"] == false:
+				utility_upgrade = "move_speed_up2"
+				utility_upgrade_button.text = "Move Speed Up + \n\n\nIncrease move speed by 15 \nReduce max health by 50" 
+				return
+			if Global.move_speed_up["move_speed_up3"] == false:
+				utility_upgrade = "move_speed_up3"
+				utility_upgrade_button.text = "Move Speed Up ++ \n\n\nIncrease move speed by 20 \nReduce max health by 75" 
+				return
+				
+			if u_catch == null:
+				u_catch = u
+				print("U_catch: ", u_catch, " U: ", u)
+			u += 1
+			get_utility_upgrade()
+			
+		elif u == 1:
+			if Global.counter_thrust_up["counter_thrust_up1"] == false:
+				utility_upgrade = "counter_thrust_up1"
+				utility_upgrade_button.text = "Counter Thrust Up \n\n\nPress 'S' to counter thrust \n Increase counter thrust by 10" 
+				return
+			if Global.counter_thrust_up["counter_thrust_up2"] == false:
+				utility_upgrade = "counter_thrust_up2"
+				utility_upgrade_button.text = "Counter Thrust Up + \n\n\nIncrease counter thrust by 15" 
+				return
+			if Global.counter_thrust_up["counter_thrust_up3"] == false:
+				utility_upgrade = "counter_thrust_up3" 
+				utility_upgrade_button.text = "Counter Thrust Up ++ \n\n\nIncrease counter thrust by 25" 
+				return
+				
+			if u_catch == null:
+				u_catch = u
+				print("U_catch: ", u_catch, " U: ", u)
+			u += 1
+			get_utility_upgrade()
+			
+		else:
+			u = 0
+			get_utility_upgrade()
 
 
 func apply_upgrade(upgrade):
@@ -330,6 +374,9 @@ func apply_upgrade(upgrade):
 			Global.damage -= 2
 			Global.attack_speed_up["attack_speed_up3"] = true
 		damage_upgrade = null
+		d_catch = null
+		h_catch = null
+		u_catch = null
 	
 	if health_upgrade != null:
 		#Health
@@ -358,6 +405,9 @@ func apply_upgrade(upgrade):
 			Global.health_regen += 3
 			Global.health_regen_up["health_regen_up3"] = true
 		health_upgrade = null
+		d_catch = null
+		h_catch = null
+		u_catch = null
 	
 	if utility_upgrade != null:
 		#Move Speed
@@ -376,4 +426,18 @@ func apply_upgrade(upgrade):
 			if Global.health > 50:
 				update_health(-50)
 			Global.move_speed_up["move_speed_up3"] = true
+		#Counter Thrust
+		if upgrade == "counter_thrust_up1":
+			Global.counter_thrust += 10
+			Global.counter_thrust_up["counter_thrust_up1"] = true
+		if upgrade == "counter_thrust_up2":
+			Global.counter_thrust += 15
+			Global.counter_thrust_up["counter_thrust_up2"] = true
+		if upgrade == "counter_thrust_up3":
+			Global.counter_thrust += 25
+			Global.counter_thrust_up["counter_thrust_up3"] = true
 		utility_upgrade = null
+		d_catch = null
+		h_catch = null
+		u_catch = null
+	print("\n\n\n")

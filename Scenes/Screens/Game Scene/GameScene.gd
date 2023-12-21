@@ -63,7 +63,7 @@ func spawn_wave():
 	for i in range(5):
 		#print("asteroid spawned")
 		spawn_Asteroid()
-	timer_wave.start(30)
+	timer_wave.start(45)
 
 
 func spawn_Asteroid():
@@ -90,63 +90,63 @@ func _on_timer_wave_timeout():
 	print("wave 1")
 	for i in range(5):
 		spawn_Asteroid()
-	timer_wave2.start(30)
+	timer_wave2.start(45)
 
 
 func _on_timer_wave_2_timeout():
 	print("wave 2")
 	for i in range(7):
 		spawn_Asteroid()
-	timer_wave3.start(30)
+	timer_wave3.start(45)
 
 
 func _on_timer_wave_3_timeout():
 	print("wave 3")
 	for i in range(7):
 		spawn_Asteroid()
-	timer_wave4.start(30)
+	timer_wave4.start(45)
 
 
 func _on_timer_wave_4_timeout():
 	print("wave 4")
 	for i in range(7):
 		spawn_Asteroid()
-	timer_wave5.start(30)
+	timer_wave5.start(45)
 
 
 func _on_timer_wave_5_timeout():
 	print("wave 5")
 	for i in range(10):
 		spawn_Asteroid()
-	timer_wave6.start(30)
+	timer_wave6.start(45)
 
 
 func _on_timer_wave_6_timeout():
 	print("wave 6")
 	for i in range(10):
 		spawn_Asteroid()
-	timer_wave7.start(30)
+	timer_wave7.start(45)
 
 
 func _on_timer_wave_7_timeout():
 	print("wave 7")
 	for i in range(10):
 		spawn_Asteroid()
-	timer_wave8.start(30)
+	timer_wave8.start(45)
 
 
 func _on_timer_wave_8_timeout():
 	print("wave 8")
 	for i in range(12):
 		spawn_Asteroid()
-	timer_wave9.start(30)
+	timer_wave9.start(45)
 
 
 func _on_timer_wave_9_timeout():
 	print("wave 9")
 	for i in range(10):
 		spawn_Asteroid()
-	timer_wave10.start(30)
+	timer_wave10.start(45)
 
 
 func _on_timer_wave_10_timeout():
