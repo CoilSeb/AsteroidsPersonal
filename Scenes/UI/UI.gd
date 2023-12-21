@@ -201,7 +201,6 @@ func get_damage_upgrade():
 			if Global.damage_up["damage_up1"] == false:
 				damage_upgrade = "damage_up1"
 				damage_upgrade_button.text = "Damage Up \n\n\nIncrease bullet damage by 1.5" 
-				print("True")
 				return
 			if Global.damage_up["damage_up2"] == false:
 				damage_upgrade = "damage_up2"
@@ -244,6 +243,13 @@ func get_damage_upgrade():
 
 
 func get_health_upgrade():
+	print("health_regen_up1 = ", Global.health_regen_up["health_regen_up1"])
+	print("health_regen_up2 = ", Global.health_regen_up["health_regen_up2"])
+	print("health_regen_up3 = ", Global.health_regen_up["health_regen_up3"])
+	print("health_up1 = ", Global.health_up["health_up1"])
+	print("health_up2 = ", Global.health_up["health_up2"])
+	print("health_up3 = ", Global.health_up["health_up3"])
+
 	if(h_catch == h):
 		print("Out h_catch: ", h_catch, " h: ", h)
 		health_upgrade_button.text = "OUT OF UPGRADES" 
@@ -277,11 +283,11 @@ func get_health_upgrade():
 				return
 			if Global.health_regen_up["health_regen_up2"] == false:
 				health_upgrade = "health_regen_up2"
-				health_upgrade_button.text = "Health Up + \n\n\nIncrease health regeneration by 1.5" 
+				health_upgrade_button.text = "Health Regen Up + \n\n\nIncrease health regeneration by 1.5" 
 				return
 			if Global.health_regen_up["health_regen_up3"] == false:
 				health_upgrade = "health_regen_up3"
-				health_upgrade_button.text = "Health Up ++ \n\n\nIncrease health regeneration by 3" 
+				health_upgrade_button.text = "Health Regen Up ++ \n\n\nIncrease health regeneration by 3" 
 				return
 				
 			if h_catch == null:
