@@ -16,94 +16,101 @@ var exp
 var exp_threshold 
 var exp_level
 
-var damage_up = {
+var upgrades_dictionary_duplicate
+var upgrades_dictionary = {
 	"damage_up1": false, 
 	"damage_up2": false,
 	"damage_up3": false,
-}
 
-var attack_speed_up = {
 	"attack_speed_up1": false,
 	"attack_speed_up2": false,
 	"attack_speed_up3": false,
-}
 
-var collision_damage_up = {
 	"collision_damage_up1": false, 
 	"collision_damage_up2": false, 
 	"collision_damage_up3": false, 
-}
 
-var health_up = {
 	"health_up1": false, 
 	"health_up2": false, 
 	"health_up3": false, 
-}
 
-var health_regen_up = {
 	"health_regen_up1": false,
 	"health_regen_up2": false,
 	"health_regen_up3": false, 
-}
 
-var move_speed_up = {
 	"move_speed_up1": false,
 	"move_speed_up2": false,
 	"move_speed_up3": false, 
-}
 
-var counter_thrust_up = {
 	"counter_thrust_up1": false, 
 	"counter_thrust_up2": false, 
 	"counter_thrust_up3": false,
 }
-
+#var damage_up = {
+	#"damage_up1": false, 
+	#"damage_up2": false,
+	#"damage_up3": false,
+#}
+#
+#var attack_speed_up = {
+	#"attack_speed_up1": false,
+	#"attack_speed_up2": false,
+	#"attack_speed_up3": false,
+#}
+#
+#var collision_damage_up = {
+	#"collision_damage_up1": false, 
+	#"collision_damage_up2": false, 
+	#"collision_damage_up3": false, 
+#}
+#
+#var health_up = {
+	#"health_up1": false, 
+	#"health_up2": false, 
+	#"health_up3": false, 
+#}
+#
+#var health_regen_up = {
+	#"health_regen_up1": false,
+	#"health_regen_up2": false,
+	#"health_regen_up3": false, 
+#}
+#
+#var move_speed_up = {
+	#"move_speed_up1": false,
+	#"move_speed_up2": false,
+	#"move_speed_up3": false, 
+#}
+#
+#var counter_thrust_up = {
+	#"counter_thrust_up1": false, 
+	#"counter_thrust_up2": false, 
+	#"counter_thrust_up3": false,
+#}
 
 func _ready():
 	Global.high_score = load_score()
+	upgrades_dictionary_duplicate = upgrades_dictionary.duplicate()
 
 
 func refresh():
 	health = 3000000
 	max_health = 3000000
 	health_regen = 0
+	
 	move_speed = 0
 	counter_thrust = 0
+	
 	damage = 100
 	attack_speed = 0.35
 	bullet_speed = 0
-	collision_damage = 100
+	collision_damage = 100 
+	
 	exp = 0
 	exp_threshold = 1
 	exp_level = 0
 	
-	damage_up["damage_up1"] = false
-	damage_up["damage_up2"] = false
-	damage_up["damage_up3"] = false
-	
-	health_up["health_up1"] = false
-	health_up["health_up2"] = false
-	health_up["health_up3"] = false
-	
-	collision_damage_up["collision_damage_up1"] = false
-	collision_damage_up["collision_damage_up2"] = false
-	collision_damage_up["collision_damage_up3"] = false
-	
-	attack_speed_up["attack_speed_up1"] = false
-	attack_speed_up["attack_speed_up2"] = false
-	attack_speed_up["attack_speed_up3"] = false
-	
-	health_regen_up["health_regen_up1"] = false
-	health_regen_up["health_regen_up2"] = false
-	health_regen_up["health_regen_up3"] = false
-	
-	move_speed_up["move_speed_up1"] = false
-	move_speed_up["move_speed_up2"] = false
-	move_speed_up["move_speed_up3"] = false
-	
-	counter_thrust_up["counter_thrust_up1"] = false
-	counter_thrust_up["counter_thrust_up2"] = false
-	counter_thrust_up["counter_thrust_up3"] = false
+	upgrades_dictionary = upgrades_dictionary_duplicate
 
 
 func save_score():

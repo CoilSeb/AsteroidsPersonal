@@ -194,7 +194,7 @@ func level_up():
 	get_damage_upgrade()
 	get_health_upgrade()
 	get_utility_upgrade()
-	level_up_timer.start(1)
+	level_up_timer.start()
 
 
 func get_damage_upgrade():
