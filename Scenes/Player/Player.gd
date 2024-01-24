@@ -31,7 +31,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	thrust = 50 + Global.move_speed
+	thrust = 500 + Global.move_speed
 	counter_thrust = Global.counter_thrust
 	Ui.update_health(Global.health_regen * delta)
 	# Screen Wrap
@@ -56,19 +56,16 @@ func _physics_process(delta):
 	if using_mouse == true:
 		rotate(get_angle_to(get_global_mouse_position()) + (0.5 * PI))
 	if Input.is_action_pressed("move_forward") || Input.is_action_pressed("M1"):
-		velocity += ((Vector2(0, -10) * thrust * delta).rotated(rotation))
+		velocity += ((Vector2(0, -1) * thrust * delta).rotated(rotation))
 	else:
-		# Slow Down
 		velocity = lerp(velocity, Vector2.ZERO, slowDown * delta)
-		# Stop
-		if velocity.y >= -0.5 && velocity.y <= 0.5:
-			velocity.y = 0
+		if velocity.length() >= -10 && velocity.length() <= 10:
+			velocity = Vector2.ZERO
 			
 	if Input.is_action_pressed("move_backward"):
 		velocity += ((Vector2(0, 10) * counter_thrust * delta).rotated(rotation))
 		
 	move_and_collide(velocity * delta)
-		
 		
 	# Shooting
 	if (Input.is_action_pressed("shoot") || Input.is_action_pressed("M2")) && shootTimer.time_left == 0:  # Use action_just_pressed to prevent multiple bullets on a single press

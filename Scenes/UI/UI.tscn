@@ -127,7 +127,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.427451)
 
-[node name="Health_Upgrade" type="Button" parent="Upgrade_Menu"]
+[node name="First_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -141,7 +141,7 @@ offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Damage_Upgrade" type="Button" parent="Upgrade_Menu"]
+[node name="Second_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -155,7 +155,7 @@ offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Utility_Upgrade" type="Button" parent="Upgrade_Menu"]
+[node name="Third_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -271,8 +271,8 @@ expand_icon = true
 one_shot = true
 
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="Upgrade_Menu/Health_Upgrade" to="." method="_on_health_upgrade_pressed"]
-[connection signal="pressed" from="Upgrade_Menu/Damage_Upgrade" to="." method="_on_damage_upgrade_pressed"]
-[connection signal="pressed" from="Upgrade_Menu/Utility_Upgrade" to="." method="_on_utility_upgrade_pressed"]
+[connection signal="pressed" from="Upgrade_Menu/First_Upgrade" to="." method="_on_first_upgrade_pressed"]
+[connection signal="pressed" from="Upgrade_Menu/Second_Upgrade" to="." method="_on_second_upgrade_pressed"]
+[connection signal="pressed" from="Upgrade_Menu/Third_Upgrade" to="." method="_on_third_upgrade_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Reroll_Button" to="." method="_on_reroll_button_pressed"]
 [connection signal="pressed" from="PauseMenu/Restart" to="." method="_on_restart_pressed"]
