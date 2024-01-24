@@ -218,20 +218,13 @@ func get_upgrades():
 	for i in range(3):
 		if current_button_num == 1:
 			current_button = second_upgrade_button
+			current_upgrade = second_upgrade
+			temp_current_upgrade = temp_second_upgrade
 		elif current_button_num == 2:
-			current_button = third_upgrade_button
-		elif current_button_num > 2: return
-		
-		if temp_third_upgrade == "Done":
-			return
-		elif temp_second_upgrade == "Done":
 			current_button = third_upgrade_button
 			current_upgrade = third_upgrade
 			temp_current_upgrade = temp_third_upgrade
-		elif temp_first_upgrade == "Done":
-			current_button = second_upgrade_button
-			current_upgrade = second_upgrade
-			temp_current_upgrade = temp_second_upgrade
+		elif current_button_num > 2: return
 		
 		while temp_first_upgrade == "":
 			temp_first_upgrade = temp_array.pop_front()
@@ -246,49 +239,49 @@ func get_upgrades():
 		print(current_button, " Button")
 		print(i, " i")
 			
-		if temp_first_upgrade == "damage_upgrade1" || temp_second_upgrade == "damage_upgrade1" || temp_third_upgrade == "damage_upgrade1":
+		if temp_current_upgrade == "damage_upgrade1":
 			current_button.text = "Damage Up \n\n\nIncrease bullet damage by 1.5" 
 			current_button_num += 1
 			current_upgrade = "damage_upgrade1"
 			temp_current_upgrade = "Done"
 			continue
 			
-		if temp_first_upgrade == "damage_upgrade2" || temp_second_upgrade == "damage_upgrade2" || temp_third_upgrade == "damage_upgrade2":
+		if temp_current_upgrade == "damage_upgrade2":
 			current_button.text = "Damage Up \n\n\nIncrease bullet damage by 2.25" 
 			current_button_num += 1
 			current_upgrade = "damage_upgrade2"
 			temp_current_upgrade = "Done"
 			continue
 			
-		if temp_first_upgrade == "damage_upgrade3" || temp_second_upgrade == "damage_upgrade3" || temp_third_upgrade == "damage_upgrade3":
+		if temp_current_upgrade == "damage_upgrade3":
 			current_button.text = "Damage Up \n\n\nIncrease bullet damage by 3" 
 			current_button_num += 1
 			current_upgrade = "damage_upgrade3"
 			temp_current_upgrade = "Done"
 			continue
 			
-		if temp_first_upgrade == "attack_speed_up1" || temp_second_upgrade == "attack_speed_up1" || temp_third_upgrade == "attack_speed_up1":
+		if temp_current_upgrade == "attack_speed_up1":
 			current_button.text = "attack_speed_up1" 
 			current_button_num += 1
 			current_upgrade = "attack_speed_up1"
 			temp_current_upgrade = "Done"
 			continue
 			
-		if temp_first_upgrade == "attack_speed_up2" || temp_second_upgrade == "attack_speed_up2" || temp_third_upgrade == "attack_speed_up2":
+		if temp_current_upgrade == "attack_speed_up2":
 			current_button.text = "attack_speed_up2" 
 			current_button_num += 1
 			current_upgrade = "attack_speed_up2"
 			temp_current_upgrade = "Done"
 			continue
 			
-		if temp_first_upgrade == "attack_speed_up3" || temp_second_upgrade == "attack_speed_up3" || temp_third_upgrade == "attack_speed_up3":
+		if temp_current_upgrade == "attack_speed_up3":
 			current_button.text = "attack_speed_up3" 
 			current_button_num += 1
 			current_upgrade = "attack_speed_up3"
 			temp_current_upgrade = "Done"
 			continue
 			
-		if temp_first_upgrade == "collision_damage_up1" || temp_second_upgrade == "collision_damage_up1" || temp_third_upgrade == "collision_damage_up1":
+		if temp_current_upgrade == "collision_damage_up1":
 			current_button.text = "collision_damage_up1" 
 			current_button_num += 1
 			current_upgrade = "collision_damage_up1"
