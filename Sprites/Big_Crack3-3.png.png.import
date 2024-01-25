@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cs4hs8gfxfsa6"
-path="res://.godot/imported/Big_Crack3-3.png.png-e5da9c86ed47740712c69b12e93c52df.ctex"
+path="res://.godot/imported/Big_Crack3-3.png.png-8c770295b2f08555f1ac2d54e32e3dce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Asteroids/Big Asteroid/Sprites/Big_Crack3-3.png.png"
-dest_files=["res://.godot/imported/Big_Crack3-3.png.png-e5da9c86ed47740712c69b12e93c52df.ctex"]
+source_file="res://Sprites/Big_Crack3-3.png.png"
+dest_files=["res://.godot/imported/Big_Crack3-3.png.png-8c770295b2f08555f1ac2d54e32e3dce.ctex"]
 
 [params]
 

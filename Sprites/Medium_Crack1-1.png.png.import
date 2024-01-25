@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c81cyxo81c3w6"
-path="res://.godot/imported/Bar-1.png.png-f919c55dee65a3d51e8ced3b667ad972.ctex"
+uid="uid://cbydhatam5uop"
+path="res://.godot/imported/Medium_Crack1-1.png.png-a44eeb5bf4a94961b4c31760a1bc58e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/UI/Sprites/Bar-1.png.png"
-dest_files=["res://.godot/imported/Bar-1.png.png-f919c55dee65a3d51e8ced3b667ad972.ctex"]
+source_file="res://Sprites/Medium_Crack1-1.png.png"
+dest_files=["res://.godot/imported/Medium_Crack1-1.png.png-a44eeb5bf4a94961b4c31760a1bc58e4.ctex"]
 
 [params]
 
