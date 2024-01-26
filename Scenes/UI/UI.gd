@@ -22,27 +22,22 @@ extends CanvasLayer
 @onready var level_up_timer = $Level_Up_Timer
 
 var score = 0
-var num_of_damage_upgrades = 2
-var damage_upgrade = null
-var d 
-var d_catch
-var num_of_health_upgrades = 1
-var health_upgrade = null
-var h
-var h_catch
-var num_of_utility_upgrades = 1
-var utility_upgrade = null
-var u 
-var u_catch
-var first_upgrade
-var second_upgrade
-var third_upgrade
+var first_upgrade: upgrade
+var second_upgrade: upgrade
+var third_upgrade: upgrade
+var upgrades = [
+	first_upgrade,
+	second_upgrade,
+	third_upgrade,
+]
 
 
 func _ready():
 	pause_button.connect("pressed", toggle_pause_menu)
 	resume_button.connect("pressed", _on_ResumeButton_pressed)
 	exit_button.connect("pressed", _on_ExitButton_pressed)
+	Global.connect("update_max_health", update_max_health)
+	Global.connect("update_health", update_health)
 	pause_menu.visible = false
 	restart_button.visible = false
 	update_max_health(0)
@@ -60,6 +55,8 @@ func _process(_delta):
 	if upgrade_menu.visible == true:
 		if Input.is_action_just_pressed("reroll"):
 			level_up()
+	if Input.is_action_just_pressed("Ctrl+L"):
+		level_up()
 
 
 func toggle_pause_menu():
@@ -153,21 +150,21 @@ func _on_first_upgrade_pressed():
 	if level_up_timer.time_left == 0:
 		get_tree().paused = false
 		upgrade_menu.visible = false
-		apply_test_upgrade(first_upgrade)
+		apply_my_upgrade(first_upgrade)
 
 
 func _on_second_upgrade_pressed():
 	if level_up_timer.time_left == 0:
 		get_tree().paused = false
 		upgrade_menu.visible = false
-		apply_test_upgrade(second_upgrade)
+		apply_my_upgrade(second_upgrade)
 
 
 func _on_third_upgrade_pressed():
 	if level_up_timer.time_left == 0:
 		get_tree().paused = false
 		upgrade_menu.visible = false
-		apply_test_upgrade(third_upgrade)
+		apply_my_upgrade(third_upgrade)
 
 
 func _on_reroll_button_pressed():
@@ -175,12 +172,6 @@ func _on_reroll_button_pressed():
 
 
 func level_up():
-	d = randi_range(0, num_of_damage_upgrades)
-	h = randi_range(0, num_of_health_upgrades)
-	u = randi_range(0, num_of_utility_upgrades)
-	d_catch = null
-	h_catch = null
-	u_catch = null
 	get_tree().paused = true
 	upgrade_menu.visible = true
 	get_upgrades()
@@ -188,250 +179,122 @@ func level_up():
 
 
 func get_upgrades():
-	var temp_array = Global.upgrades_test.duplicate()
-	temp_array.shuffle()
-	var temp_first_upgrade = temp_array.pop_front()
-	var temp_second_upgrade = temp_array.pop_front()
-	var temp_third_upgrade = temp_array.pop_front()
-	var current_button = first_upgrade_button
-	var current_upgrade = first_upgrade
-	var temp_current_upgrade = str(temp_first_upgrade)
+	Global.upgrades_test.shuffle()
+
+	var buttons = [
+		first_upgrade_button,
+		second_upgrade_button,
+		third_upgrade_button,
+	]
 	
-	for i in range(4):
-		if i == 1:
-			first_upgrade = current_upgrade
-			current_button = second_upgrade_button
-			current_upgrade = second_upgrade
-			temp_current_upgrade = str(temp_second_upgrade)
-		elif i == 2:
-			second_upgrade = current_upgrade
-			current_button = third_upgrade_button
-			current_upgrade = third_upgrade
-			temp_current_upgrade = str(temp_third_upgrade)
-		elif i == 3:
-			third_upgrade = current_upgrade
-			break
+	for i in range(3):
+		var my_upgrade = Global.upgrades_test.pop_front()
 		
-		while temp_first_upgrade == " ":
-			temp_first_upgrade = temp_array.pop_front()
-		while temp_second_upgrade == " ":
-			temp_second_upgrade = temp_array.pop_front()
-		while temp_third_upgrade == " ":
-			temp_third_upgrade = temp_array.pop_front()
-			
-		if temp_current_upgrade == "damage_up1":
-			current_button.text = "Damage Up \n\n\nIncrease bullet damage by 1.5" 
-			current_upgrade = "damage_up1"
+		if my_upgrade == null:
+			buttons[i].text = "null"
+			upgrades[i] = null
 			continue
 			
-		if temp_current_upgrade == "damage_up2":
-			current_button.text = "Damage Up \n\n\nIncrease bullet damage by 2.25" 
-			current_upgrade = "damage_up2"
-			continue
-			
-		if temp_current_upgrade == "damage_up3":
-			current_button.text = "Damage Up \n\n\nIncrease bullet damage by 3" 
-			current_upgrade = "damage_up3"
-			continue
-			
-		if temp_current_upgrade == "attack_speed_up1":
-			current_button.text = "attack_speed_up1" 
-			current_upgrade = "attack_speed_up1"
-			continue
-			
-		if temp_current_upgrade == "attack_speed_up2":
-			current_button.text = "attack_speed_up2" 
-			current_upgrade = "attack_speed_up2"
-			continue
-			
-		if temp_current_upgrade == "attack_speed_up3":
-			current_button.text = "attack_speed_up3" 
-			current_upgrade = "attack_speed_up3"
-			continue
-			
-		if temp_current_upgrade == "collision_damage_up1":
-			current_button.text = "collision_damage_up1" 
-			current_upgrade = "collision_damage_up1"
-			continue
-			
-		if temp_current_upgrade == "collision_damage_up2":
-			current_button.text = "collision_damage_up2" 
-			current_upgrade = "collision_damage_up2"
-			continue
-			
-		if temp_current_upgrade == "collision_damage_up3":
-			current_button.text = "collision_damage_up3" 
-			current_upgrade = "collision_damage_up3"
-			continue
-			
-		if temp_current_upgrade == "health_up1":
-			current_button.text = "health_up1" 
-			current_upgrade = "health_up1"
-			continue
-			
-		if temp_current_upgrade == "health_up2":
-			current_button.text = "health_up2" 
-			current_upgrade = "health_up2"
-			continue
-			
-		if temp_current_upgrade == "health_up3":
-			current_button.text = "health_up3" 
-			current_upgrade = "health_up3"
-			continue
-			
-		if temp_current_upgrade == "health_regen_up1":
-			current_button.text = "health_regen_up1" 
-			current_upgrade = "health_regen_up1"
-			continue
-			
-		if temp_current_upgrade == "health_regen_up2":
-			current_button.text = "health_regen_up2" 
-			current_upgrade = "health_regen_up2"
-			continue
-			
-		if temp_current_upgrade == "health_regen_up3":
-			current_button.text = "health_regen_up3" 
-			current_upgrade = "health_regen_up3"
-			continue
-			
-		if temp_current_upgrade == "move_speed_up1":
-			current_button.text = "move_speed_up1" 
-			current_upgrade = "move_speed_up1"
-			continue
-			
-		if temp_current_upgrade == "move_speed_up2":
-			current_button.text = "move_speed_up2" 
-			current_upgrade = "move_speed_up2"
-			continue
-			
-		if temp_current_upgrade == "move_speed_up3":
-			current_button.text = "move_speed_up3" 
-			current_upgrade = "move_speed_up3"
-			continue
-			
-		if temp_current_upgrade == "counter_thrust_up1":
-			current_button.text = "counter_thrust_up1" 
-			current_upgrade = "counter_thrust_up1"
-			continue
-			
-		if temp_current_upgrade == "counter_thrust_up2":
-			current_button.text = "counter_thrust_up2" 
-			current_upgrade = "counter_thrust_up2"
-			continue
-			
-		if temp_current_upgrade == "counter_thrust_up3":
-			current_button.text = "counter_thrust_up3" 
-			current_upgrade = "counter_thrust_up3"
-			continue
-			
-		if temp_current_upgrade == null:
-			current_button.text = "null" 
-			current_upgrade = null
-			continue
-			
-		print(temp_first_upgrade, " Temp_1st")
-		print(temp_second_upgrade, " Temp_2nd")
-		print(temp_third_upgrade, " Temp_3rd")
-		print(temp_current_upgrade, " Temp_current") 
-		print(current_button, " Button")
-		print(current_upgrade, " Current_Upgrade")
-		print(first_upgrade, " 1st")
-		print(second_upgrade, " 2nd")
-		print(third_upgrade, " 3rd")
-		print(i, " i\n\n")
+		buttons[i].text = my_upgrade.upgrade_text
+		upgrades[i] = my_upgrade
+		
+		#print("i: ", i)
+		#print("upgrades[i]: ", upgrades[i])
+		
+	first_upgrade = upgrades[0]
+	second_upgrade = upgrades[1]
+	third_upgrade = upgrades[2]
 
 
-func apply_test_upgrade(upgrade):
+func apply_my_upgrade(my_upgrade):
 	
-	if upgrade == "damage_up1":
-		Global.damage += 1.5
-		Global.upgrades_test[0] = "damage_up2"
-	if upgrade == "damage_up2":
-		Global.damage += 2.25
-		Global.attack_speed += (Global.attack_speed * 0.1)
-		Global.upgrades_test[0] = "damage_up3"
-	if upgrade == "damage_up3":
-		Global.damage += 3
-		Global.attack_speed += (Global.attack_speed * 0.20)
-		Global.upgrades_test[0] = " "
-	#Attack Speed
-	if upgrade == "attack_speed_up1":
-		Global.attack_speed -= (Global.attack_speed * 0.15)
-		Global.upgrades_test[1] = "attack_speed_up2"
-	if upgrade == "attack_speed_up2":
-		Global.attack_speed -= (Global.attack_speed * 0.15)
-		Global.damage -= 1
-		Global.upgrades_test[1] = "attack_speed_up3"
-	if upgrade == "attack_speed_up3":
-		Global.attack_speed -= (Global.attack_speed * 0.2)
-		Global.damage -= 2
-		Global.upgrades_test[1] = " "
-	#Collision Damage
-	if upgrade == "collision_damage_up1":
-		Global.collision_damage += 10
-		Global.upgrades_test[2] = "collision_damage_up2"
-	if upgrade == "collision_damage_up2":
-		Global.collision_damage += 15
-		Global.upgrades_test[2] = "collision_damage_up3"
-	if upgrade == "collision_damage_up3":
-		Global.collision_damage += 25
-		Global.upgrades_test[2] = " "
+	#if my_upgrade == "damage_up1":
+		#Global.damage += 1.5
+		#Global.my_upgrades_test[0] = "damage_up2"
+	#if my_upgrade == "damage_up2":
+		#Global.damage += 2.25
+		#Global.attack_speed += (Global.attack_speed * 0.1)
+		#Global.my_upgrades_test[0] = "damage_up3"
+	#if my_upgrade == "damage_up3":
+		#Global.damage += 3
+		#Global.attack_speed += (Global.attack_speed * 0.20)
+		#Global.my_upgrades_test[0] = " "
+	##Attack Speed
+	#if my_upgrade == "attack_speed_up1":
+		#Global.attack_speed -= (Global.attack_speed * 0.15)
+		#Global.my_upgrades_test[1] = "attack_speed_up2"
+	#if my_upgrade == "attack_speed_up2":
+		#Global.attack_speed -= (Global.attack_speed * 0.15)
+		#Global.damage -= 1
+		#Global.my_upgrades_test[1] = "attack_speed_up3"
+	#if my_upgrade == "attack_speed_up3":
+		#Global.attack_speed -= (Global.attack_speed * 0.2)
+		#Global.damage -= 2
+		#Global.my_upgrades_test[1] = " "
+	##Collision Damage
+	#if my_upgrade == "collision_damage_up1":
+		#Global.collision_damage += 10
+		#Global.my_upgrades_test[2] = "collision_damage_up2"
+	#if my_upgrade == "collision_damage_up2":
+		#Global.collision_damage += 15
+		#Global.my_upgrades_test[2] = "collision_damage_up3"
+	#if my_upgrade == "collision_damage_up3":
+		#Global.collision_damage += 25
+		#Global.my_upgrades_test[2] = " "
 
 	#Health
-	if upgrade == "health_up1":
-		update_max_health(50)
-		update_health(50)
-		Global.upgrades_test[3] = "health_up2"
-	if upgrade == "health_up2":
-		update_max_health(100)
-		update_health(100)
-		Global.move_speed -= 10
-		Global.upgrades_test[3] = "health_up3"
-	if upgrade == "health_up3":
-		update_max_health(150)
-		update_health(150)
-		Global.move_speed -= 15
-		Global.upgrades_test[3] = " "
-	#Health Regen
-	if upgrade == "health_regen_up1":
-		Global.health_regen += 0.5
-		Global.upgrades_test[4] = "health_regen_up2"
-	if upgrade == "health_regen_up2":
-		Global.health_regen += 1.5
-		Global.upgrades_test[4] = "health_regen_up3"
-	if upgrade == "health_regen_up3":
-		Global.health_regen += 3
-		Global.upgrades_test[4] = " "
-
-	#Move Speed
-	if upgrade == "move_speed_up1":
-		Global.move_speed += 100
-		Global.upgrades_test[5] = "move_speed_up2"
-	if upgrade == "move_speed_up2":
-		Global.move_speed += 150
-		update_max_health(-50)
-		Global.upgrades_test[5] = "move_speed_up3"
-		if Global.health > 50:
-			update_health(-50)
-	if upgrade == "move_speed_up3":
-		Global.move_speed += 200
-		update_max_health(-50)
-		Global.upgrades_test[5] = " "
-		if Global.health > 50:
-			update_health(-50)
-	#Counter Thrust
-	if upgrade == "counter_thrust_up1":
-		Global.counter_thrust += 100
-		Global.upgrades_test[6] = "counter_thrust_up2"
-	if upgrade == "counter_thrust_up2":
-		Global.counter_thrust += 150
-		Global.upgrades_test[6] = "counter_thrust_up3"
-	if upgrade == "counter_thrust_up3":
-		Global.counter_thrust += 250
-		Global.upgrades_test[6] = " "
+	if my_upgrade.upgrade_name == "health_up1":
+		my_upgrade.upgrade_function.apply_upgrade(50)
+		Global.upgrades_test.append(my_upgrade.next_upgrade)
+	if my_upgrade.upgrade_name == "health_up2":
+		my_upgrade.upgrade_function.apply_upgrade(100)
+		Global.upgrades_test.append(my_upgrade.next_upgrade)
+	if my_upgrade.upgrade_name == "health_up3":
+		my_upgrade.upgrade_function.apply_upgrade(150)
+		Global.upgrades_test.append(my_upgrade.next_upgrade)
+	##Health Regen
+	#if my_upgrade == "health_regen_up1":
+		#Global.health_regen += 0.5
+		#Global.my_upgrades_test[4] = "health_regen_up2"
+	#if my_upgrade == "health_regen_up2":
+		#Global.health_regen += 1.5
+		#Global.my_upgrades_test[4] = "health_regen_up3"
+	#if my_upgrade == "health_regen_up3":
+		#Global.health_regen += 3
+		#Global.my_upgrades_test[4] = " "
+#
+	##Move Speed
+	#if my_upgrade == "move_speed_up1":
+		#Global.move_speed += 100
+		#Global.my_upgrades_test[5] = "move_speed_up2"
+	#if my_upgrade == "move_speed_up2":
+		#Global.move_speed += 150
+		#update_max_health(-50)
+		#Global.my_upgrades_test[5] = "move_speed_up3"
+		#if Global.health > 50:
+			#update_health(-50)
+	#if my_upgrade == "move_speed_up3":
+		#Global.move_speed += 200
+		#update_max_health(-50)
+		#Global.my_upgrades_test[5] = " "
+		#if Global.health > 50:
+			#update_health(-50)
+	##Counter Thrust
+	#if my_upgrade == "counter_thrust_up1":
+		#Global.counter_thrust += 100
+		#Global.my_upgrades_test[6] = "counter_thrust_up2"
+	#if my_upgrade == "counter_thrust_up2":
+		#Global.counter_thrust += 150
+		#Global.my_upgrades_test[6] = "counter_thrust_up3"
+	#if my_upgrade == "counter_thrust_up3":
+		#Global.counter_thrust += 250
+		#Global.my_upgrades_test[6] = " "
 		
+	for i in range(upgrades.size()-1):
+		upgrades[i] = null
 	first_upgrade = null
 	second_upgrade = null
 	third_upgrade = null
-	if upgrade == null:
+	#print(first_upgrade)
+	if my_upgrade == null:
 		return

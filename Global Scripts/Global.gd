@@ -16,120 +16,18 @@ var exp
 var exp_threshold 
 var exp_level
 
+signal update_max_health(value)
+signal update_health(value)
+
 var upgrades_test = [
-	"damage_up1",
-	"attack_speed_up1",
-	"collision_damage_up1", 
-	"health_up1", 
-	"health_regen_up1",
-	"move_speed_up1",
-	"counter_thrust_up1",
-]
-
-
-
-#var upgrades_array = [
-	#"damage_up1", 
-	#"damage_up2",
-	#"damage_up3",
-#
+	#"damage_up1",
 	#"attack_speed_up1",
-	#"attack_speed_up2",
-	#"attack_speed_up3",
-#
 	#"collision_damage_up1", 
-	#"collision_damage_up2", 
-	#"collision_damage_up3", 
-#
-	#"health_up1", 
-	#"health_up2", 
-	#"health_up3", 
-#
+	preload("res://Upgrades/Solo_Upgrades/health_up.tres"),
 	#"health_regen_up1",
-	#"health_regen_up2",
-	#"health_regen_up3", 
-#
 	#"move_speed_up1",
-	#"move_speed_up2",
-	#"move_speed_up3", 
-#
-	#"counter_thrust_up1", 
-	#"counter_thrust_up2", 
-	#"counter_thrust_up3",
-#]
-#
-#var upgrades_dictionary = {
-	#"damage_up1": true, 
-	#"damage_up2": true,
-	#"damage_up3": true,
-#
-	#"attack_speed_up1": true,
-	#"attack_speed_up2": true,
-	#"attack_speed_up3": true,
-#
-	#"collision_damage_up1": true, 
-	#"collision_damage_up2": true, 
-	#"collision_damage_up3": true, 
-#
-	#"health_up1": true, 
-	#"health_up2": true, 
-	#"health_up3": true, 
-#
-	#"health_regen_up1": true,
-	#"health_regen_up2": true,
-	#"health_regen_up3": true, 
-#
-	#"move_speed_up1": true,
-	#"move_speed_up2": true,
-	#"move_speed_up3": true, 
-#
-	#"counter_thrust_up1": true, 
-	#"counter_thrust_up2": true, 
-	#"counter_thrust_up3": true,
-#}
-#@onready var upgrades_dictionary_duplicate = upgrades_dictionary.duplicate()
-##var damage_up = {
-	##"damage_up1": false, 
-	##"damage_up2": false,
-	##"damage_up3": false,
-##}
-##
-##var attack_speed_up = {
-	##"attack_speed_up1": false,
-	##"attack_speed_up2": false,
-	##"attack_speed_up3": false,
-##}
-##
-##var collision_damage_up = {
-	##"collision_damage_up1": false, 
-	##"collision_damage_up2": false, 
-	##"collision_damage_up3": false, 
-##}
-##
-##var health_up = {
-	##"health_up1": false, 
-	##"health_up2": false, 
-	##"health_up3": false, 
-##}
-##
-##var health_regen_up = {
-	##"health_regen_up1": false,
-	##"health_regen_up2": false,
-	##"health_regen_up3": false, 
-##}
-##
-##var move_speed_up = {
-	##"move_speed_up1": false,
-	##"move_speed_up2": false,
-	##"move_speed_up3": false, 
-##}
-##
-##var counter_thrust_up = {
-	##"counter_thrust_up1": false, 
-	##"counter_thrust_up2": false, 
-	##"counter_thrust_up3": false,
-##}
-#.
+	#"counter_thrust_up1",
+]
 
 func _ready():
 	Global.high_score = load_score()

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="upgrade" load_steps=5 format=3 uid="uid://cxm7y6arl8o4e"]
+
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_nplsq"]
+[ext_resource type="Script" path="res://Upgrades/Solo_Upgrades/health_up.gd" id="2_7yn56"]
+
+[sub_resource type="Resource" id="Resource_rkgik"]
+script = ExtResource("1_nplsq")
+upgrade_name = "health_up3"
+upgrade_text = "Upgrades health by 150"
+upgrade_function = ExtResource("2_7yn56")
+
+[sub_resource type="Resource" id="Resource_84j6l"]
+script = ExtResource("1_nplsq")
+upgrade_name = "health_up2"
+upgrade_text = "Upgrades health by 100"
+next_upgrade = SubResource("Resource_rkgik")
+upgrade_function = ExtResource("2_7yn56")
+
+[resource]
+script = ExtResource("1_nplsq")
+upgrade_name = "health_up1"
+upgrade_text = "Upgrades health by 50"
+next_upgrade = SubResource("Resource_84j6l")
+upgrade_function = ExtResource("2_7yn56")
