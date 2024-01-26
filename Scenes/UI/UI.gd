@@ -198,9 +198,6 @@ func get_upgrades():
 		buttons[i].text = my_upgrade.upgrade_text
 		upgrades[i] = my_upgrade
 		
-		#print("i: ", i)
-		#print("upgrades[i]: ", upgrades[i])
-		
 	first_upgrade = upgrades[0]
 	second_upgrade = upgrades[1]
 	third_upgrade = upgrades[2]
@@ -243,15 +240,9 @@ func apply_my_upgrade(my_upgrade):
 		#Global.my_upgrades_test[2] = " "
 
 	#Health
-	if my_upgrade.upgrade_name == "health_up1":
-		my_upgrade.upgrade_function.apply_upgrade(50)
-		Global.upgrades_test.append(my_upgrade.next_upgrade)
-	if my_upgrade.upgrade_name == "health_up2":
-		my_upgrade.upgrade_function.apply_upgrade(100)
-		Global.upgrades_test.append(my_upgrade.next_upgrade)
-	if my_upgrade.upgrade_name == "health_up3":
-		my_upgrade.upgrade_function.apply_upgrade(150)
-		Global.upgrades_test.append(my_upgrade.next_upgrade)
+	my_upgrade.upgrade_player()
+	Global.upgrades_test.append(my_upgrade.next_upgrade)
+	
 	##Health Regen
 	#if my_upgrade == "health_regen_up1":
 		#Global.health_regen += 0.5
