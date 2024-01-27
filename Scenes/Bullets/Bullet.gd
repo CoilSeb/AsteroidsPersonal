@@ -1,9 +1,9 @@
 extends Area2D
 
 var direction: Vector2
-var bullet_speed = 700 + Global.bullet_speed
+var bullet_speed = Global.bullet_speed
 var screen_size
-var damage = 10 + Global.damage
+var damage = Global.damage
 
 
 func _ready():

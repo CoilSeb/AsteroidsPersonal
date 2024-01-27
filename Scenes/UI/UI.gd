@@ -150,21 +150,21 @@ func _on_first_upgrade_pressed():
 	if level_up_timer.time_left == 0:
 		get_tree().paused = false
 		upgrade_menu.visible = false
-		apply_my_upgrade(first_upgrade)
+		apply_my_upgrade(first_upgrade, 0)
 
 
 func _on_second_upgrade_pressed():
 	if level_up_timer.time_left == 0:
 		get_tree().paused = false
 		upgrade_menu.visible = false
-		apply_my_upgrade(second_upgrade)
+		apply_my_upgrade(second_upgrade, 1)
 
 
 func _on_third_upgrade_pressed():
 	if level_up_timer.time_left == 0:
 		get_tree().paused = false
 		upgrade_menu.visible = false
-		apply_my_upgrade(third_upgrade)
+		apply_my_upgrade(third_upgrade, 2)
 
 
 func _on_reroll_button_pressed():
@@ -188,34 +188,22 @@ func get_upgrades():
 	]
 	
 	for i in range(3):
-		var my_upgrade = Global.upgrades_test.pop_front()
-		
-		if my_upgrade == null:
+		if Global.upgrades_test.size() - 1 >= i:
+			var my_upgrade = Global.upgrades_test[i]
+			
+			buttons[i].text = my_upgrade.upgrade_text
+			upgrades[i] = my_upgrade
+		else:
 			buttons[i].text = "null"
 			upgrades[i] = null
-			continue
-			
-		buttons[i].text = my_upgrade.upgrade_text
-		upgrades[i] = my_upgrade
 		
 	first_upgrade = upgrades[0]
 	second_upgrade = upgrades[1]
 	third_upgrade = upgrades[2]
 
 
-func apply_my_upgrade(my_upgrade):
+func apply_my_upgrade(my_upgrade, index):
 	
-	#if my_upgrade == "damage_up1":
-		#Global.damage += 1.5
-		#Global.my_upgrades_test[0] = "damage_up2"
-	#if my_upgrade == "damage_up2":
-		#Global.damage += 2.25
-		#Global.attack_speed += (Global.attack_speed * 0.1)
-		#Global.my_upgrades_test[0] = "damage_up3"
-	#if my_upgrade == "damage_up3":
-		#Global.damage += 3
-		#Global.attack_speed += (Global.attack_speed * 0.20)
-		#Global.my_upgrades_test[0] = " "
 	##Attack Speed
 	#if my_upgrade == "attack_speed_up1":
 		#Global.attack_speed -= (Global.attack_speed * 0.15)
@@ -240,8 +228,10 @@ func apply_my_upgrade(my_upgrade):
 		#Global.my_upgrades_test[2] = " "
 
 	#Health
+	Global.upgrades_test.pop_at(index)
 	my_upgrade.upgrade_player()
-	Global.upgrades_test.append(my_upgrade.next_upgrade)
+	if my_upgrade.next_upgrade != null:
+		Global.upgrades_test.append(my_upgrade.next_upgrade)
 	
 	##Health Regen
 	#if my_upgrade == "health_regen_up1":

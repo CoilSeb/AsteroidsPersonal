@@ -14,13 +14,12 @@ var bullet_speed
 var collision_damage 
 var exp 
 var exp_threshold 
-var exp_level
 
 signal update_max_health(value)
 signal update_health(value)
 
 var upgrades_test = [
-	#"damage_up1",
+	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
 	#"attack_speed_up1",
 	#"collision_damage_up1", 
 	preload("res://Upgrades/Solo_Upgrades/health_up.tres"),
@@ -41,16 +40,13 @@ func refresh():
 	move_speed = 0
 	counter_thrust = 0
 	
-	damage = 100
+	damage = 10
 	attack_speed = 0.35
-	bullet_speed = 0
-	collision_damage = 100 
+	bullet_speed = 700
+	collision_damage = 10
 	
 	exp = 0
-	exp_threshold = 1
-	exp_level = 0
-	
-	#upgrades_dictionary = upgrades_dictionary_duplicate
+	exp_threshold = 50
 
 
 func save_score():
