@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="upgrade" load_steps=4 format=3 uid="uid://c86ihuenu1kqs"]
+
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_y3g5m"]
+
+[sub_resource type="Resource" id="Resource_u7ngy"]
+script = ExtResource("1_y3g5m")
+upgrade_name = "collision_damage"
+upgrade_text = "Upgrades the collision damage of your character by 25"
+upgrade_value = 25.0
+
+[sub_resource type="Resource" id="Resource_4fqwf"]
+script = ExtResource("1_y3g5m")
+upgrade_name = "collision_damage"
+upgrade_text = "Upgrades the collision damage of your character by 15"
+next_upgrade = SubResource("Resource_u7ngy")
+upgrade_value = 15.0
+
+[resource]
+script = ExtResource("1_y3g5m")
+upgrade_name = "collision_damage"
+upgrade_text = "Upgrades the collision damage of your character by 10"
+next_upgrade = SubResource("Resource_4fqwf")
+upgrade_value = 10.0

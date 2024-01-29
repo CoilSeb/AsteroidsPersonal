@@ -20,12 +20,12 @@ signal update_health(value)
 
 var upgrades_test = [
 	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
-	#"attack_speed_up1",
-	#"collision_damage_up1", 
+	preload("res://Upgrades/Solo_Upgrades/attack_speed_up.tres"),
+	preload("res://Upgrades/Solo_Upgrades/collision_damage_up.tres"),
 	preload("res://Upgrades/Solo_Upgrades/health_up.tres"),
-	#"health_regen_up1",
-	#"move_speed_up1",
-	#"counter_thrust_up1",
+	preload("res://Upgrades/Solo_Upgrades/move_speed.tres"),
+	preload("res://Upgrades/Solo_Upgrades/counter_thrust.tres"),
+	preload("res://Upgrades/Solo_Upgrades/health_regen.tres"),
 ]
 
 func _ready():

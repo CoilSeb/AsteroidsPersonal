@@ -8,7 +8,7 @@ var screen_size
 var rotateSpeed = 5
 var thrust
 var counter_thrust
-var slowDown = 0.5
+var slowDown = 1
 var shootTimer = null
 var immunity_timer = null
 var d
@@ -16,8 +16,6 @@ var using_mouse = false
 
 
 func _ready():
-	#print("GameScene: ", GameScene)
-	#print("UI: ", Ui)
 	screen_size = get_viewport_rect().size
 	shootTimer = Timer.new()
 	add_child(shootTimer)
@@ -29,7 +27,6 @@ func _ready():
 	Ui.increase_score(0)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	thrust = 500 + Global.move_speed
 	counter_thrust = Global.counter_thrust

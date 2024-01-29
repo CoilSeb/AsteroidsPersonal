@@ -105,6 +105,8 @@ func increase_score(amount):
 
 func update_health(amount):
 	Global.health += amount
+	if Global.health > Global.max_health:
+		Global.health = Global.max_health
 	health_bar.value = Global.health
 	if Global.health <= 0:
 		score_label.set("theme_override_font_sizes/font_size", 56)
@@ -203,47 +205,13 @@ func get_upgrades():
 
 
 func apply_my_upgrade(my_upgrade, index):
-	
-	##Attack Speed
-	#if my_upgrade == "attack_speed_up1":
-		#Global.attack_speed -= (Global.attack_speed * 0.15)
-		#Global.my_upgrades_test[1] = "attack_speed_up2"
-	#if my_upgrade == "attack_speed_up2":
-		#Global.attack_speed -= (Global.attack_speed * 0.15)
-		#Global.damage -= 1
-		#Global.my_upgrades_test[1] = "attack_speed_up3"
-	#if my_upgrade == "attack_speed_up3":
-		#Global.attack_speed -= (Global.attack_speed * 0.2)
-		#Global.damage -= 2
-		#Global.my_upgrades_test[1] = " "
-	##Collision Damage
-	#if my_upgrade == "collision_damage_up1":
-		#Global.collision_damage += 10
-		#Global.my_upgrades_test[2] = "collision_damage_up2"
-	#if my_upgrade == "collision_damage_up2":
-		#Global.collision_damage += 15
-		#Global.my_upgrades_test[2] = "collision_damage_up3"
-	#if my_upgrade == "collision_damage_up3":
-		#Global.collision_damage += 25
-		#Global.my_upgrades_test[2] = " "
-
-	#Health
+	if my_upgrade == null:
+		return
 	Global.upgrades_test.pop_at(index)
 	my_upgrade.upgrade_player()
 	if my_upgrade.next_upgrade != null:
 		Global.upgrades_test.append(my_upgrade.next_upgrade)
-	
-	##Health Regen
-	#if my_upgrade == "health_regen_up1":
-		#Global.health_regen += 0.5
-		#Global.my_upgrades_test[4] = "health_regen_up2"
-	#if my_upgrade == "health_regen_up2":
-		#Global.health_regen += 1.5
-		#Global.my_upgrades_test[4] = "health_regen_up3"
-	#if my_upgrade == "health_regen_up3":
-		#Global.health_regen += 3
-		#Global.my_upgrades_test[4] = " "
-#
+
 	##Move Speed
 	#if my_upgrade == "move_speed_up1":
 		#Global.move_speed += 100
@@ -276,6 +244,3 @@ func apply_my_upgrade(my_upgrade, index):
 	first_upgrade = null
 	second_upgrade = null
 	third_upgrade = null
-	#print(first_upgrade)
-	if my_upgrade == null:
-		return

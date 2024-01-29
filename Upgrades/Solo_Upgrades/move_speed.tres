@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="upgrade" load_steps=4 format=3 uid="uid://bakxv18ok30ql"]
+
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_qtpcb"]
+
+[sub_resource type="Resource" id="Resource_krdgh"]
+script = ExtResource("1_qtpcb")
+upgrade_name = "move_speed"
+upgrade_text = "Upgrades move_speed by 200"
+upgrade_value = 200.0
+
+[sub_resource type="Resource" id="Resource_cfgst"]
+script = ExtResource("1_qtpcb")
+upgrade_name = "move_speed"
+upgrade_text = "Upgrades move_speed by 150"
+next_upgrade = SubResource("Resource_krdgh")
+upgrade_value = 150.0
+
+[resource]
+script = ExtResource("1_qtpcb")
+upgrade_name = "move_speed"
+upgrade_text = "Upgrades move_speed by 100"
+next_upgrade = SubResource("Resource_cfgst")
+upgrade_value = 100.0
