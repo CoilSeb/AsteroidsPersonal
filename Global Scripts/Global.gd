@@ -40,7 +40,7 @@ func refresh():
 	move_speed = 0
 	counter_thrust = 0
 	
-	damage = 10
+	damage = 2
 	attack_speed = 0.35
 	bullet_speed = 700
 	collision_damage = 10

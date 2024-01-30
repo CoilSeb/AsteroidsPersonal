@@ -153,7 +153,7 @@ func _on_timer_wave_10_timeout():
 	print("wave 10")
 	for i in range(10):
 		spawn_Asteroid()
-	timer_wave10.start(30)
+	timer_wave10.start(20)
 
 
 func _on_wave_timer_timeout():

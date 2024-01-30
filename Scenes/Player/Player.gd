@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var Ui = get_parent().get_node("UI")
 
 var bulletScene = preload("res://Scenes/Bullets/Bullet.tscn")
+var laserScene = preload("res://Scenes/Laser/laser.tscn")
+var laserInstance
 var screen_size
 var rotateSpeed = 5
 var thrust
@@ -11,8 +13,9 @@ var counter_thrust
 var slowDown = 1
 var shootTimer = null
 var immunity_timer = null
-var d
 var using_mouse = false
+var laser = true
+var laser_made = false
 
 
 func _ready():
@@ -54,18 +57,28 @@ func _physics_process(delta):
 		rotate(get_angle_to(get_global_mouse_position()) + (0.5 * PI))
 	if Input.is_action_pressed("move_forward") || Input.is_action_pressed("M1"):
 		velocity += ((Vector2(0, -1) * thrust * delta).rotated(rotation))
+	elif Input.is_action_just_pressed("move_backward"):
+		velocity += ((Vector2(0, 10) * counter_thrust * delta).rotated(rotation))
 	else:
 		velocity = lerp(velocity, Vector2.ZERO, slowDown * delta)
 		if velocity.length() >= -10 && velocity.length() <= 10:
 			velocity = Vector2.ZERO
 			
-	if Input.is_action_pressed("move_backward"):
-		velocity += ((Vector2(0, 10) * counter_thrust * delta).rotated(rotation))
 		
 	move_and_collide(velocity * delta)
 		
 	# Shooting
-	if (Input.is_action_pressed("shoot") || Input.is_action_pressed("M2")) && shootTimer.time_left == 0:  # Use action_just_pressed to prevent multiple bullets on a single press
+	if laser:
+		if !laser_made:
+			laserInstance = laserScene.instantiate()
+			get_parent().add_child(laserInstance)
+			laser_made = true
+		if Input.is_action_pressed("shoot") || Input.is_action_pressed("M2"):
+			laserInstance.global_position = global_position + Vector2(0, -15).rotated(rotation)
+		if Input.is_action_just_released("shoot") || Input.is_action_just_released("M2"):
+			laserInstance.queue_free()
+			laser_made = false
+	elif (Input.is_action_pressed("shoot") || Input.is_action_pressed("M2")) && shootTimer.time_left == 0:  # Use action_just_pressed to prevent multiple bullets on a single press
 		var bulletInstance = bulletScene.instantiate()  # Create a new instance of the Bullet scene
 		get_parent().add_child(bulletInstance)  # Add it to the player node or a designated parent node for bullets
 		bulletInstance.global_position = global_position  # Set the bullet's position
@@ -76,8 +89,6 @@ func _physics_process(delta):
 		destroy()
 		GameScene.player = true
 		
-	d = delta
-	#print(d * 0.4)
 
 
 func _on_area_2d_area_entered(area):

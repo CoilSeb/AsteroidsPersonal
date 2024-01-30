@@ -211,33 +211,6 @@ func apply_my_upgrade(my_upgrade, index):
 	my_upgrade.upgrade_player()
 	if my_upgrade.next_upgrade != null:
 		Global.upgrades_test.append(my_upgrade.next_upgrade)
-
-	##Move Speed
-	#if my_upgrade == "move_speed_up1":
-		#Global.move_speed += 100
-		#Global.my_upgrades_test[5] = "move_speed_up2"
-	#if my_upgrade == "move_speed_up2":
-		#Global.move_speed += 150
-		#update_max_health(-50)
-		#Global.my_upgrades_test[5] = "move_speed_up3"
-		#if Global.health > 50:
-			#update_health(-50)
-	#if my_upgrade == "move_speed_up3":
-		#Global.move_speed += 200
-		#update_max_health(-50)
-		#Global.my_upgrades_test[5] = " "
-		#if Global.health > 50:
-			#update_health(-50)
-	##Counter Thrust
-	#if my_upgrade == "counter_thrust_up1":
-		#Global.counter_thrust += 100
-		#Global.my_upgrades_test[6] = "counter_thrust_up2"
-	#if my_upgrade == "counter_thrust_up2":
-		#Global.counter_thrust += 150
-		#Global.my_upgrades_test[6] = "counter_thrust_up3"
-	#if my_upgrade == "counter_thrust_up3":
-		#Global.counter_thrust += 250
-		#Global.my_upgrades_test[6] = " "
 		
 	for i in range(upgrades.size()-1):
 		upgrades[i] = null

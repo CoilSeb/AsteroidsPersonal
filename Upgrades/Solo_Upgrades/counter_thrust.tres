@@ -5,19 +5,19 @@
 [sub_resource type="Resource" id="Resource_0nun0"]
 script = ExtResource("1_wg1gf")
 upgrade_name = "counter_thrust"
-upgrade_text = "Upgrade counter thrust by 250 "
-upgrade_value = 250.0
+upgrade_text = "Upgrade counter thrust by 200 "
+upgrade_value = 200.0
 
 [sub_resource type="Resource" id="Resource_ukgxh"]
 script = ExtResource("1_wg1gf")
 upgrade_name = "counter_thrust"
-upgrade_text = "Upgrade counter thrust by 150 "
+upgrade_text = "Upgrade counter thrust by 100 "
 next_upgrade = SubResource("Resource_0nun0")
-upgrade_value = 150.0
+upgrade_value = 100.0
 
 [resource]
 script = ExtResource("1_wg1gf")
 upgrade_name = "counter_thrust"
-upgrade_text = "Upgrade counter thrust by 100 "
+upgrade_text = "Upgrade counter thrust by 300 "
 next_upgrade = SubResource("Resource_ukgxh")
-upgrade_value = 100.0
+upgrade_value = 500.0

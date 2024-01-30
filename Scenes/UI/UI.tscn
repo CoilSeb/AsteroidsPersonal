@@ -268,7 +268,7 @@ icon = ExtResource("3_vwkcr")
 expand_icon = true
 
 [node name="Level_Up_Timer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.5
 one_shot = true
 
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]

@@ -21,6 +21,10 @@ func upgrade_player():
 			upgrade_collision_damage()
 		"health_regen":
 			upgrade_health_regen()
+		"move_speed":
+			upgrade_move_speed()
+		"counter_thrust":
+			upgrade_counter_thrust()
 
 func upgrade_health():
 	Global.update_max_health.emit(upgrade_value)

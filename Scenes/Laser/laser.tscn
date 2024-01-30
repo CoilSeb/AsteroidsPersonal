@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://3u84kk7t86yl"]
+
+[ext_resource type="Script" path="res://Scenes/Laser/Laser.gd" id="1_85vll"]
+
+[node name="RayCast2D" type="RayCast2D"]
+position = Vector2(0, 540)
+target_position = Vector2(1920, 0)
+script = ExtResource("1_85vll")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-2, 0, 234, 0)
