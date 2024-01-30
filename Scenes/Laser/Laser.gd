@@ -1,16 +1,30 @@
 extends RayCast2D
 
-var is_casting = false
+@onready var laser = $"."
+@onready var end = $End
+@onready var line = $Line
+@onready var shoot_timer = $Shoot_Timer
+
+const MAX_LENGTH = 2000
+var damage = Global.damage
 
 
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
 func _process(delta):
-	force_raycast_update()
-	
-	if is_colliding():
-		target_position = to_local(get_collision_point())
-		
-	$Line2D.points[1] = target_position
+	print(shoot_timer.time_left)
+	if Input.is_action_pressed("shoot") || Input.is_action_pressed("M2"):
+		var mouse_position = get_local_mouse_position()
+		var max_cast_to = mouse_position.normalized() * MAX_LENGTH
+		laser.target_position = max_cast_to
+		if laser.is_colliding():
+			end.global_position = laser.get_collision_point()
+		else:
+			end.global_position = laser.target_position
+		if laser.is_colliding() && shoot_timer.time_left == 0:
+			get_collider().damage_asteroid(damage)
+			shoot_timer.start()
+		line.rotation = laser.target_position.angle()
+		line.points[1].x = end.position.length()

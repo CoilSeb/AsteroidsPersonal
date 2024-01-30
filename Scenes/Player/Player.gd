@@ -69,11 +69,9 @@ func _physics_process(delta):
 		
 	# Shooting
 	if laser:
-		if !laser_made:
-			laserInstance = laserScene.instantiate()
-			get_parent().add_child(laserInstance)
-			laser_made = true
 		if Input.is_action_pressed("shoot") || Input.is_action_pressed("M2"):
+			if !laser_made:
+				make_laser()
 			laserInstance.global_position = global_position + Vector2(0, -15).rotated(rotation)
 		if Input.is_action_just_released("shoot") || Input.is_action_just_released("M2"):
 			laserInstance.queue_free()
@@ -88,7 +86,12 @@ func _physics_process(delta):
 	if Global.health <= 0:
 		destroy()
 		GameScene.player = true
-		
+
+
+func make_laser():
+	laserInstance = laserScene.instantiate()
+	get_parent().add_child(laserInstance)
+	laser_made = true
 
 
 func _on_area_2d_area_entered(area):
