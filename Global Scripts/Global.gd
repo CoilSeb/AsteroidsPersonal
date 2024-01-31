@@ -14,6 +14,8 @@ var bullet_speed
 var collision_damage 
 var exp 
 var exp_threshold 
+var laser
+var weapon
 
 signal update_max_health(value)
 signal update_health(value)
@@ -40,13 +42,20 @@ func refresh():
 	move_speed = 0
 	counter_thrust = 0
 	
-	damage = 2
+	match weapon:
+		"Gun":
+			damage = 10
+		"Laser":
+			damage = 2
+	
 	attack_speed = 0.35
 	bullet_speed = 700
 	collision_damage = 10
 	
 	exp = 0
 	exp_threshold = 50
+	
+	laser = false
 
 
 func save_score():

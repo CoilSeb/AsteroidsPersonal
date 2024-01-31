@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cl0s7o04ccses"]
 
-[ext_resource type="Script" path="res://Scenes/Screens/Game Scene/GameScene.gd" id="1_m8r6t"]
+[ext_resource type="Script" path="res://Scenes/Screens/GameScene/GameScene.gd" id="1_m8r6t"]
 [ext_resource type="PackedScene" uid="uid://c0jlxjxdu4vma" path="res://Scenes/UI/UI.tscn" id="2_u5fmq"]
 
 [node name="GameScene" type="Node2D"]

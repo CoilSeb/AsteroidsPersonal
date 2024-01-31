@@ -14,7 +14,6 @@ func _ready():
 
 
 func _process(delta):
-	print(shoot_timer.time_left)
 	if Input.is_action_pressed("shoot") || Input.is_action_pressed("M2"):
 		laser.target_position = get_local_mouse_position().normalized() * MAX_LENGTH
 		if laser.is_colliding():

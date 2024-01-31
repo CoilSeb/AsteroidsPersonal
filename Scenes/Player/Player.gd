@@ -14,7 +14,7 @@ var slowDown = 1
 var shootTimer = null
 var immunity_timer = null
 var using_mouse = false
-var laser = true
+var weapon = Global.weapon
 var laser_made = false
 
 
@@ -68,7 +68,7 @@ func _physics_process(delta):
 	move_and_collide(velocity * delta)
 		
 	# Shooting
-	if laser:
+	if weapon == "Laser":
 		if Input.is_action_pressed("shoot") || Input.is_action_pressed("M2"):
 			if !laser_made:
 				make_laser()
@@ -76,12 +76,13 @@ func _physics_process(delta):
 		if Input.is_action_just_released("shoot") || Input.is_action_just_released("M2"):
 			laserInstance.queue_free()
 			laser_made = false
-	elif (Input.is_action_pressed("shoot") || Input.is_action_pressed("M2")) && shootTimer.time_left == 0:  # Use action_just_pressed to prevent multiple bullets on a single press
-		var bulletInstance = bulletScene.instantiate()  # Create a new instance of the Bullet scene
-		get_parent().add_child(bulletInstance)  # Add it to the player node or a designated parent node for bullets
-		bulletInstance.global_position = global_position  # Set the bullet's position
-		bulletInstance.direction = Vector2.UP.rotated(rotation)  # Set the bullet's direction
-		shootTimer.start(Global.attack_speed)
+	if weapon == "Gun":
+		if (Input.is_action_pressed("shoot") || Input.is_action_pressed("M2")) && shootTimer.time_left == 0:  # Use action_just_pressed to prevent multiple bullets on a single press
+			var bulletInstance = bulletScene.instantiate()  # Create a new instance of the Bullet scene
+			get_parent().add_child(bulletInstance)  # Add it to the player node or a designated parent node for bullets
+			bulletInstance.global_position = global_position  # Set the bullet's position
+			bulletInstance.direction = Vector2.UP.rotated(rotation)  # Set the bullet's direction
+			shootTimer.start(Global.attack_speed)
 		
 	if Global.health <= 0:
 		destroy()
