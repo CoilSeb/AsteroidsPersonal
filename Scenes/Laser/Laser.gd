@@ -5,7 +5,7 @@ extends RayCast2D
 @onready var line = $Line
 @onready var shoot_timer = $Shoot_Timer
 
-const MAX_LENGTH = 2000
+const MAX_LENGTH = 20000
 var damage = Global.damage
 
 
@@ -23,6 +23,6 @@ func _process(delta):
 			end.global_position = laser.target_position
 		if laser.is_colliding() && shoot_timer.time_left == 0:
 			get_collider().damage_asteroid(damage)
-			shoot_timer.start()
+			shoot_timer.start(Global.attack_speed)
 		line.rotation = laser.target_position.angle()
 		line.points[1].x = end.position.length()

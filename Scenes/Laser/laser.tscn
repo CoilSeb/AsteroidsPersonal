@@ -16,6 +16,6 @@ points = PackedVector2Array(-2, 0, 234, 0)
 position = Vector2(233, 0)
 
 [node name="Shoot_Timer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.35
 one_shot = true
 autostart = true
