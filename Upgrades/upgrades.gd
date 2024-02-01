@@ -5,6 +5,7 @@ class_name upgrade
 @export var upgrade_name : String = ""
 @export var upgrade_text : String = ""
 @export var upgrade_value : float = 0
+@export var upgrade_texture: Texture
 @export var next_upgrade : upgrade = null
 
 func upgrade_player():

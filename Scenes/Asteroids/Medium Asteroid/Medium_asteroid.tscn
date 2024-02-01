@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://oavtintayebl"]
 
 [ext_resource type="Script" path="res://Scenes/Asteroids/Medium Asteroid/Medium_asteroid.gd" id="1_ux4n5"]
-[ext_resource type="Texture2D" uid="uid://duhf8daiqg8ik" path="res://Sprites/Medium_Asteroid-2.png.png" id="2_heewi"]
-[ext_resource type="Texture2D" uid="uid://cbydhatam5uop" path="res://Sprites/Medium_Crack1-1.png.png" id="3_odtyd"]
-[ext_resource type="Texture2D" uid="uid://4rchgfyuugy" path="res://Sprites/Medium_Crack2-2.png.png" id="4_0410h"]
+[ext_resource type="Texture2D" uid="uid://duhf8daiqg8ik" path="res://Sprites/Asteroids/Medium_Asteroid-2.png.png" id="2_1h2x7"]
+[ext_resource type="Texture2D" uid="uid://cbydhatam5uop" path="res://Sprites/Asteroids/Medium_Crack1-1.png.png" id="3_thcca"]
+[ext_resource type="Texture2D" uid="uid://4rchgfyuugy" path="res://Sprites/Asteroids/Medium_Crack2-2.png.png" id="4_qrexk"]
 
 [node name="Medium_Asteroid" type="Area2D" groups=["Asteroid"]]
 collision_layer = 4
@@ -12,17 +12,17 @@ script = ExtResource("1_ux4n5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_heewi")
+texture = ExtResource("2_1h2x7")
 
 [node name="Crack1" type="Sprite2D" parent="Sprite2D"]
 visible = false
 texture_filter = 1
-texture = ExtResource("3_odtyd")
+texture = ExtResource("3_thcca")
 
 [node name="Crack2" type="Sprite2D" parent="Sprite2D"]
 visible = false
 texture_filter = 1
-texture = ExtResource("4_0410h")
+texture = ExtResource("4_qrexk")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(4, -40, 14, -40, 31, -29, 41, -17, 41, -1, 35, 4, 36, 11, 37, 20, 32, 28, 31, 33, 12, 33, 7, 35, -3, 30, -17, 27, -28, 23, -33, 15, -31, 4, -31, -7, -22, -20, -19, -22, -18, -28, -6, -37, -2, -39)

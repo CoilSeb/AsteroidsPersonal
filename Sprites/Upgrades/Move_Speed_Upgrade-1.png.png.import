@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duhf8daiqg8ik"
-path="res://.godot/imported/Medium_Asteroid-2.png.png-02b76427ec31ec0a5a1b90ba09ce1aa0.ctex"
+uid="uid://buw1idxg8dvq"
+path="res://.godot/imported/Move_Speed_Upgrade-1.png.png-960aa0b1d1179acd523d20059112ac1d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Medium_Asteroid-2.png.png"
-dest_files=["res://.godot/imported/Medium_Asteroid-2.png.png-02b76427ec31ec0a5a1b90ba09ce1aa0.ctex"]
+source_file="res://Sprites/Upgrades/Move_Speed_Upgrade-1.png.png"
+dest_files=["res://.godot/imported/Move_Speed_Upgrade-1.png.png-960aa0b1d1179acd523d20059112ac1d.ctex"]
 
 [params]
 

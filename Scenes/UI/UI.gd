@@ -17,8 +17,11 @@ extends CanvasLayer
 @onready var upgrade_menu = $Upgrade_Menu
 @onready var upgrade_dim_overlay = $Upgrade_Menu/Upgrade_Dim_Overlay
 @onready var first_upgrade_button = $Upgrade_Menu/First_Upgrade
+@onready var texture_rect_1 = $Upgrade_Menu/First_Upgrade/TextureRect1
 @onready var second_upgrade_button = $Upgrade_Menu/Second_Upgrade
+@onready var texture_rect_2 = $Upgrade_Menu/Second_Upgrade/TextureRect2
 @onready var third_upgrade_button = $Upgrade_Menu/Third_Upgrade
+@onready var texture_rect_3 = $Upgrade_Menu/Third_Upgrade/TextureRect3
 @onready var level_up_timer = $Level_Up_Timer
 
 var score = 0
@@ -188,12 +191,18 @@ func get_upgrades():
 		second_upgrade_button,
 		third_upgrade_button,
 	]
+	var textures = [
+		texture_rect_1,
+		texture_rect_2,
+		texture_rect_3,
+	]
 	
 	for i in range(3):
 		if Global.upgrades_test.size() - 1 >= i:
 			var my_upgrade = Global.upgrades_test[i]
 			
 			buttons[i].text = my_upgrade.upgrade_text
+			textures[i].texture = my_upgrade.upgrade_texture
 			upgrades[i] = my_upgrade
 		else:
 			buttons[i].text = "null"

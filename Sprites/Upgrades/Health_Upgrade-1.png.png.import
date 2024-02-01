@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce4j7lrf3lvas"
-path="res://.godot/imported/Big_Crack2-2.png.png-07db2e22c1a1c37694136c16ebe0a1de.ctex"
+uid="uid://viiw63qghf3s"
+path="res://.godot/imported/Health_Upgrade-1.png.png-ef2884f870561bb78a7cb64685114b03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Big_Crack2-2.png.png"
-dest_files=["res://.godot/imported/Big_Crack2-2.png.png-07db2e22c1a1c37694136c16ebe0a1de.ctex"]
+source_file="res://Sprites/Upgrades/Health_Upgrade-1.png.png"
+dest_files=["res://.godot/imported/Health_Upgrade-1.png.png-ef2884f870561bb78a7cb64685114b03.ctex"]
 
 [params]
 

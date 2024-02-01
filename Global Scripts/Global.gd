@@ -14,7 +14,6 @@ var bullet_speed
 var collision_damage 
 var exp 
 var exp_threshold 
-var laser
 var weapon
 
 signal update_max_health(value)
@@ -29,16 +28,23 @@ var upgrades_test = [
 	preload("res://Upgrades/Solo_Upgrades/counter_thrust.tres"),
 	preload("res://Upgrades/Solo_Upgrades/health_regen.tres"),
 ]
-var upgrades_test_duplicate
+
 
 func _ready():
 	Global.high_score = load_score()
-	upgrades_test_duplicate = upgrades_test.duplicate()
 
 
 func refresh():
-	print(upgrades_test)
-	upgrades_test = upgrades_test_duplicate
+	upgrades_test = [
+		preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
+		preload("res://Upgrades/Solo_Upgrades/attack_speed_up.tres"),
+		preload("res://Upgrades/Solo_Upgrades/collision_damage_up.tres"),
+		preload("res://Upgrades/Solo_Upgrades/health_up.tres"),
+		preload("res://Upgrades/Solo_Upgrades/move_speed.tres"),
+		preload("res://Upgrades/Solo_Upgrades/counter_thrust.tres"),
+		preload("res://Upgrades/Solo_Upgrades/health_regen.tres"),
+	]
+	
 	health = 300
 	max_health = health
 	health_regen = 0
@@ -60,7 +66,6 @@ func refresh():
 	exp = 0
 	exp_threshold = 50
 	
-	laser = false
 
 
 func save_score():

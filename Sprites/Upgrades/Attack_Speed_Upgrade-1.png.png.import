@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by42ob5hwsx85"
-path="res://.godot/imported/Small_Asteroid-3.png.png-d37fd4d62248d0df99c413bcd7acedee.ctex"
+uid="uid://d3eniw5fptks8"
+path="res://.godot/imported/Attack_Speed_Upgrade-1.png.png-b567bbfd30b3e4fcf20551d621c89217.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Small_Asteroid-3.png.png"
-dest_files=["res://.godot/imported/Small_Asteroid-3.png.png-d37fd4d62248d0df99c413bcd7acedee.ctex"]
+source_file="res://Sprites/Upgrades/Attack_Speed_Upgrade-1.png.png"
+dest_files=["res://.godot/imported/Attack_Speed_Upgrade-1.png.png-b567bbfd30b3e4fcf20551d621c89217.ctex"]
 
 [params]
 

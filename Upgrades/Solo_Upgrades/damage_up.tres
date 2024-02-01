@@ -1,23 +1,27 @@
-[gd_resource type="Resource" script_class="upgrade" load_steps=4 format=3 uid="uid://4c6yrbsmwgns"]
+[gd_resource type="Resource" script_class="upgrade" load_steps=5 format=3 uid="uid://4c6yrbsmwgns"]
 
 [ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_vivkn"]
+[ext_resource type="Texture2D" uid="uid://dsj2buvcsbci" path="res://Sprites/Upgrades/Damage_Upgrade-1.png (2).png" id="2_wfgwu"]
 
 [sub_resource type="Resource" id="Resource_sqvx0"]
 script = ExtResource("1_vivkn")
 upgrade_name = "damage"
 upgrade_text = "Upgrades bullet damage by 30%"
 upgrade_value = 30.0
+upgrade_texture = ExtResource("2_wfgwu")
 
 [sub_resource type="Resource" id="Resource_rw4ql"]
 script = ExtResource("1_vivkn")
 upgrade_name = "damage"
 upgrade_text = "Upgrades bullet damage by 22.5%"
-next_upgrade = SubResource("Resource_sqvx0")
 upgrade_value = 22.5
+upgrade_texture = ExtResource("2_wfgwu")
+next_upgrade = SubResource("Resource_sqvx0")
 
 [resource]
 script = ExtResource("1_vivkn")
 upgrade_name = "damage"
 upgrade_text = "Upgrades bullet damage by 15%"
-next_upgrade = SubResource("Resource_rw4ql")
 upgrade_value = 15.0
+upgrade_texture = ExtResource("2_wfgwu")
+next_upgrade = SubResource("Resource_rw4ql")

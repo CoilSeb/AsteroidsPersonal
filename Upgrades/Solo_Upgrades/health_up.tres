@@ -1,44 +1,27 @@
 [gd_resource type="Resource" script_class="upgrade" load_steps=5 format=3 uid="uid://cxm7y6arl8o4e"]
 
 [ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_nplsq"]
-
-[sub_resource type="GDScript" id="GDScript_qyksv"]
-script/source = "extends Node
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-
-
-func apply_upgrade(value):
-	Global.update_max_health.emit(value)
-	Global.update_health.emit(value)
-"
+[ext_resource type="Texture2D" uid="uid://viiw63qghf3s" path="res://Sprites/Upgrades/Health_Upgrade-1.png.png" id="2_1x2gu"]
 
 [sub_resource type="Resource" id="Resource_rkgik"]
 script = ExtResource("1_nplsq")
 upgrade_name = "health"
 upgrade_text = "Upgrades health by 150"
 upgrade_value = 0.0
-upgrade_function = SubResource("GDScript_qyksv")
+upgrade_texture = ExtResource("2_1x2gu")
 
 [sub_resource type="Resource" id="Resource_84j6l"]
 script = ExtResource("1_nplsq")
 upgrade_name = "health"
 upgrade_text = "Upgrades health by 100"
-next_upgrade = SubResource("Resource_rkgik")
 upgrade_value = 0.0
-upgrade_function = SubResource("GDScript_qyksv")
+upgrade_texture = ExtResource("2_1x2gu")
+next_upgrade = SubResource("Resource_rkgik")
 
 [resource]
 script = ExtResource("1_nplsq")
 upgrade_name = "health"
 upgrade_text = "Upgrades health by 50"
-next_upgrade = SubResource("Resource_84j6l")
 upgrade_value = 0.0
+upgrade_texture = ExtResource("2_1x2gu")
+next_upgrade = SubResource("Resource_84j6l")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbydhatam5uop"
-path="res://.godot/imported/Medium_Crack1-1.png.png-a44eeb5bf4a94961b4c31760a1bc58e4.ctex"
+uid="uid://cs4hs8gfxfsa6"
+path="res://.godot/imported/Big_Crack3-3.png.png-c3e0f9e9be00d7d0a61c9f29ce925418.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Medium_Crack1-1.png.png"
-dest_files=["res://.godot/imported/Medium_Crack1-1.png.png-a44eeb5bf4a94961b4c31760a1bc58e4.ctex"]
+source_file="res://Sprites/Asteroids/Big_Crack3-3.png.png"
+dest_files=["res://.godot/imported/Big_Crack3-3.png.png-c3e0f9e9be00d7d0a61c9f29ce925418.ctex"]
 
 [params]
 
