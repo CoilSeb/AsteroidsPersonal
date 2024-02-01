@@ -22,4 +22,5 @@ func _on_laser_button_pressed():
 
 
 func _on_start_pressed():
+	Global.refresh()
 	get_tree().change_scene_to_file("res://Scenes/Screens/GameScene/GameScene.tscn")

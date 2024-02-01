@@ -7,6 +7,7 @@ extends RayCast2D
 
 const MAX_LENGTH = 20000
 var damage = Global.damage
+var direction
 
 
 func _ready():
@@ -15,7 +16,7 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_pressed("shoot") || Input.is_action_pressed("M2"):
-		laser.target_position = get_local_mouse_position().normalized() * MAX_LENGTH
+		laser.target_position = direction * MAX_LENGTH
 		if laser.is_colliding():
 			end.global_position = laser.get_collision_point()
 		else:

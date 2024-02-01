@@ -4,10 +4,8 @@ class_name upgrade
 
 @export var upgrade_name : String = ""
 @export var upgrade_text : String = ""
-@export var next_upgrade : upgrade = null
 @export var upgrade_value : float = 0
-
-@export var upgrade_function : GDScript = null
+@export var next_upgrade : upgrade = null
 
 func upgrade_player():
 	match upgrade_name:
@@ -31,8 +29,7 @@ func upgrade_health():
 	Global.update_health.emit(upgrade_value)
 
 func upgrade_damage():
-	Global.damage += upgrade_value
-	print(Global.damage)
+	Global.damage += (Global.damage * upgrade_value/100)
 
 func upgrade_attack_speed():
 	Global.attack_speed -= (Global.attack_speed * upgrade_value)

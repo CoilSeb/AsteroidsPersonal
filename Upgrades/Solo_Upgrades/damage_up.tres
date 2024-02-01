@@ -5,19 +5,19 @@
 [sub_resource type="Resource" id="Resource_sqvx0"]
 script = ExtResource("1_vivkn")
 upgrade_name = "damage"
-upgrade_text = "Upgrades bullet damage by 3"
-upgrade_value = 3.0
+upgrade_text = "Upgrades bullet damage by 30%"
+upgrade_value = 30.0
 
 [sub_resource type="Resource" id="Resource_rw4ql"]
 script = ExtResource("1_vivkn")
 upgrade_name = "damage"
-upgrade_text = "Upgrades bullet damage by 2.25"
+upgrade_text = "Upgrades bullet damage by 22.5%"
 next_upgrade = SubResource("Resource_sqvx0")
-upgrade_value = 2.25
+upgrade_value = 22.5
 
 [resource]
 script = ExtResource("1_vivkn")
 upgrade_name = "damage"
-upgrade_text = "Upgrades bullet damage by 1.5"
+upgrade_text = "Upgrades bullet damage by 15%"
 next_upgrade = SubResource("Resource_rw4ql")
-upgrade_value = 1.5
+upgrade_value = 15.0

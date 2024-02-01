@@ -73,6 +73,7 @@ func _physics_process(delta):
 			if !laser_made:
 				make_laser()
 			laserInstance.global_position = global_position + Vector2(0, -15).rotated(rotation)
+			laserInstance.direction = Vector2.UP.rotated(rotation) 
 		if Input.is_action_just_released("shoot") || Input.is_action_just_released("M2"):
 			laserInstance.queue_free()
 			laser_made = false

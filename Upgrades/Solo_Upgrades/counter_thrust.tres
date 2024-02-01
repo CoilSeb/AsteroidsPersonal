@@ -12,12 +12,12 @@ upgrade_value = 200.0
 script = ExtResource("1_wg1gf")
 upgrade_name = "counter_thrust"
 upgrade_text = "Upgrade counter thrust by 100 "
-next_upgrade = SubResource("Resource_0nun0")
 upgrade_value = 100.0
+next_upgrade = SubResource("Resource_0nun0")
 
 [resource]
 script = ExtResource("1_wg1gf")
 upgrade_name = "counter_thrust"
 upgrade_text = "Upgrade counter thrust by 300 "
-next_upgrade = SubResource("Resource_ukgxh")
 upgrade_value = 500.0
+next_upgrade = SubResource("Resource_ukgxh")

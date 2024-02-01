@@ -29,12 +29,16 @@ var upgrades_test = [
 	preload("res://Upgrades/Solo_Upgrades/counter_thrust.tres"),
 	preload("res://Upgrades/Solo_Upgrades/health_regen.tres"),
 ]
+var upgrades_test_duplicate
 
 func _ready():
 	Global.high_score = load_score()
+	upgrades_test_duplicate = upgrades_test.duplicate()
 
 
 func refresh():
+	print(upgrades_test)
+	upgrades_test = upgrades_test_duplicate
 	health = 300
 	max_health = health
 	health_regen = 0
@@ -45,10 +49,11 @@ func refresh():
 	match weapon:
 		"Gun":
 			damage = 10
+			attack_speed = 0.35
 		"Laser":
 			damage = 2
+			attack_speed = 0.2
 	
-	attack_speed = 0.35
 	bullet_speed = 700
 	collision_damage = 10
 	
