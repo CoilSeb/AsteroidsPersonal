@@ -7,14 +7,14 @@
 script = ExtResource("1_nplsq")
 upgrade_name = "health"
 upgrade_text = "Upgrades health by 150"
-upgrade_value = 0.0
+upgrade_value = 150.0
 upgrade_texture = ExtResource("2_1x2gu")
 
 [sub_resource type="Resource" id="Resource_84j6l"]
 script = ExtResource("1_nplsq")
 upgrade_name = "health"
 upgrade_text = "Upgrades health by 100"
-upgrade_value = 0.0
+upgrade_value = 100.0
 upgrade_texture = ExtResource("2_1x2gu")
 next_upgrade = SubResource("Resource_rkgik")
 
@@ -22,6 +22,6 @@ next_upgrade = SubResource("Resource_rkgik")
 script = ExtResource("1_nplsq")
 upgrade_name = "health"
 upgrade_text = "Upgrades health by 50"
-upgrade_value = 0.0
+upgrade_value = 50.0
 upgrade_texture = ExtResource("2_1x2gu")
 next_upgrade = SubResource("Resource_84j6l")

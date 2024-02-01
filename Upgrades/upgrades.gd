@@ -28,6 +28,7 @@ func upgrade_player():
 func upgrade_health():
 	Global.update_max_health.emit(upgrade_value)
 	Global.update_health.emit(upgrade_value)
+	print(Global.max_health)
 
 func upgrade_damage():
 	Global.damage += (Global.damage * upgrade_value/100)
