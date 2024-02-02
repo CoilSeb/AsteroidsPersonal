@@ -1,7 +1,7 @@
 extends Area2D
 
 var direction: Vector2
-var bullet_speed = Global.bullet_speed
+ var bullet_speed = Global.bullet_speed
 var screen_size
 var damage = Global.damage
 

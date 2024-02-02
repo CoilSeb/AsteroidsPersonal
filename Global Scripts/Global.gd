@@ -10,7 +10,7 @@ var move_speed
 var counter_thrust
 var damage 
 var attack_speed 
-var bullet_speed 
+var bullet_velocity 
 var collision_damage 
 var exp 
 var exp_threshold 
@@ -27,6 +27,7 @@ var upgrades_test = [
 	preload("res://Upgrades/Solo_Upgrades/move_speed.tres"),
 	preload("res://Upgrades/Solo_Upgrades/counter_thrust.tres"),
 	preload("res://Upgrades/Solo_Upgrades/health_regen.tres"),
+	preload("res://Upgrades/Solo_Upgrades/bullet_velocity.tres"),
 ]
 
 
@@ -43,6 +44,7 @@ func refresh():
 		preload("res://Upgrades/Solo_Upgrades/move_speed.tres"),
 		preload("res://Upgrades/Solo_Upgrades/counter_thrust.tres"),
 		preload("res://Upgrades/Solo_Upgrades/health_regen.tres"),
+		preload("res://Upgrades/Solo_Upgrades/bullet_velocity.tres"),
 	]
 	
 	health = 300
@@ -60,7 +62,7 @@ func refresh():
 			damage = 2
 			attack_speed = 0.2
 	
-	bullet_speed = 700
+	bullet_velocity = 700
 	collision_damage = 10
 	
 	exp = 0

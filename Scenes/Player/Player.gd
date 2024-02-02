@@ -123,3 +123,8 @@ func _on_area_2d_area_entered(area):
 func destroy():
 	queue_free()
 	GameScene.player = false
+
+
+func _on_tree_exiting():
+	if Global.weapon == "Laser":
+		laserInstance.queue_free()

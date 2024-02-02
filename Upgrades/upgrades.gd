@@ -31,7 +31,7 @@ func upgrade_health():
 	print(Global.max_health)
 
 func upgrade_damage():
-	Global.damage += (Global.damage * upgrade_value/100)
+	Global.damage += (Global.damage * upgrade_value)
 
 func upgrade_attack_speed():
 	Global.attack_speed -= (Global.attack_speed * upgrade_value)
@@ -47,3 +47,6 @@ func upgrade_move_speed():
 
 func upgrade_counter_thrust():
 	Global.counter_thrust += upgrade_value
+
+func upgrade_bullet_velocity():
+	Global.bullet_velocity += (Global.bullet_velocity * upgrade_value)
