@@ -19,6 +19,7 @@ func _on_gun_button_pressed():
 func _on_laser_button_pressed():
 	Global.weapon = "Laser"
 	Global.damage = 2
+	$Laser_Text.visible = true
 
 
 func _on_start_pressed():

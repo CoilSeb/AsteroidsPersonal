@@ -79,6 +79,26 @@ text = "Current Weapon:
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Laser_Text" type="RichTextLabel" parent="."]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -673.0
+offset_top = -440.0
+offset_right = -3.0
+offset_bottom = -88.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 24
+text = "A laser that fires in an infinite line, damaging the first thing in its path. 
+
+- High attack speed, Low damage
+-Bullet velocity converted to attack speed. "
+fit_content = true
+
 [connection signal="pressed" from="Control/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Control/Gun_Button" to="." method="_on_gun_button_pressed"]
 [connection signal="pressed" from="Control/Laser_Button" to="." method="_on_laser_button_pressed"]

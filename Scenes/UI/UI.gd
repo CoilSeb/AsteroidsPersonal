@@ -206,6 +206,7 @@ func get_upgrades():
 			upgrades[i] = my_upgrade
 		else:
 			buttons[i].text = "null"
+			textures[i].texture = null
 			upgrades[i] = null
 		
 	first_upgrade = upgrades[0]
