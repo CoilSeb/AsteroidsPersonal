@@ -125,6 +125,7 @@ func update_health(amount):
 
 func update_max_health(amount):
 	Global.max_health += amount
+	update_health(Global.max_health - Global.health)
 	health_bar.max_value = Global.max_health
 	if health_bar.max_value >= 950:
 		health_bar.size.x = 1900
@@ -145,7 +146,7 @@ func update_exp(amount):
 func update_max_exp():
 	if Global.exp >= Global.exp_threshold:
 		Global.exp -= Global.exp_threshold
-		Global.exp_threshold *= 1.2
+		Global.exp_threshold *= 1.1
 		exp_bar.max_value = Global.exp_threshold
 		exp_bar.value = Global.exp
 		level_up()

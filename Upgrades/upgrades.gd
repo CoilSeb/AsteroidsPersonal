@@ -24,17 +24,24 @@ func upgrade_player():
 			upgrade_move_speed()
 		"counter_thrust":
 			upgrade_counter_thrust()
+		"bullet_velocity":
+			upgrade_bullet_velocity()
 
 func upgrade_health():
 	Global.update_max_health.emit(upgrade_value)
-	Global.update_health.emit(upgrade_value)
-	print(Global.max_health)
+	print(Global.health)
 
 func upgrade_damage():
 	Global.damage += (Global.damage * upgrade_value)
 
 func upgrade_attack_speed():
-	Global.attack_speed -= (Global.attack_speed * upgrade_value)
+	match Global.weapon:
+		"Gun":
+			Global.attack_speed -= (Global.attack_speed * upgrade_value)
+		"Laser":
+			Global.damage += (Global.damage * upgrade_value)
+			print(Global.damage)
+			print(Global.attack_speed)
 
 func upgrade_collision_damage():
 	Global.collision_damage += upgrade_value
@@ -49,4 +56,10 @@ func upgrade_counter_thrust():
 	Global.counter_thrust += upgrade_value
 
 func upgrade_bullet_velocity():
-	Global.bullet_velocity += (Global.bullet_velocity * upgrade_value)
+	match Global.weapon:
+		"Gun":
+			Global.bullet_velocity += (Global.bullet_velocity * upgrade_value)
+		"Laser":
+			Global.damage += (Global.damage * upgrade_value)
+			print(Global.damage)
+			print(Global.attack_speed)

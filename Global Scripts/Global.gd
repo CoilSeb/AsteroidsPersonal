@@ -57,16 +57,16 @@ func refresh():
 	match weapon:
 		"Gun":
 			damage = 10
-			attack_speed = 0.35
+			attack_speed = 1
 		"Laser":
-			damage = 2
-			attack_speed = 0.2
+			damage = 1
+			attack_speed = 0.1
 	
 	bullet_velocity = 700
 	collision_damage = 10
 	
 	exp = 0
-	exp_threshold = 50
+	exp_threshold = 30
 	
 
 

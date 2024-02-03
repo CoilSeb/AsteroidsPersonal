@@ -6,6 +6,7 @@ var exp_Scene = preload("res://Scenes/Experience/Experience.tscn")
 var screen_size
 var speed: float
 var direction: Vector2
+var max_health = 10
 var health = 10
 
 
@@ -48,6 +49,8 @@ func make_exp():
 
 
 func damage_asteroid(damage):
+	if Global.weapon == "Laser":
+		health -= (max_health * 0.01)
 	health -= damage
 	if health <= 0:
 		call_deferred("make_exp")

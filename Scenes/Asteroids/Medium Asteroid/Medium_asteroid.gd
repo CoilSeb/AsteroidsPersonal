@@ -8,6 +8,7 @@ var small_asteroid_scene = preload("res://Scenes/Asteroids/Small Asteroid/Small_
 var screen_size
 var speed: float
 var direction: Vector2
+var max_health = 30
 var health = 30
 
 
@@ -44,6 +45,8 @@ func destroy():
 
 
 func damage_asteroid(damage):
+	if Global.weapon == "Laser":
+		health -= (max_health * 0.01)
 	health -= damage
 	if health <= 20:
 		crack_1.visible = true

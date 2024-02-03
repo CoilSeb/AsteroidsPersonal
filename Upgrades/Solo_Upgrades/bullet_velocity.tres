@@ -22,6 +22,6 @@ next_upgrade = SubResource("Resource_hm4dw")
 script = ExtResource("1_uur5o")
 upgrade_name = "bullet_velocity"
 upgrade_text = "Upgrade the velocity of your bullets by 15%"
-upgrade_value = 15.0
+upgrade_value = 0.15
 upgrade_texture = ExtResource("2_mgkaa")
 next_upgrade = SubResource("Resource_hcjij")
