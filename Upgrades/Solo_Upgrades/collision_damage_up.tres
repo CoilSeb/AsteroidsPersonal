@@ -9,6 +9,7 @@ upgrade_name = "collision_damage"
 upgrade_text = "Upgrades the collision damage of your character by 25"
 upgrade_value = 25.0
 upgrade_texture = ExtResource("2_3jhgs")
+key_upgrade = false
 
 [sub_resource type="Resource" id="Resource_4fqwf"]
 script = ExtResource("1_y3g5m")
@@ -16,6 +17,7 @@ upgrade_name = "collision_damage"
 upgrade_text = "Upgrades the collision damage of your character by 15"
 upgrade_value = 15.0
 upgrade_texture = ExtResource("2_3jhgs")
+key_upgrade = false
 next_upgrade = SubResource("Resource_u7ngy")
 
 [resource]
@@ -24,4 +26,5 @@ upgrade_name = "collision_damage"
 upgrade_text = "Upgrades the collision damage of your character by 10"
 upgrade_value = 10.0
 upgrade_texture = ExtResource("2_3jhgs")
+key_upgrade = false
 next_upgrade = SubResource("Resource_4fqwf")

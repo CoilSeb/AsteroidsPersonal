@@ -9,6 +9,7 @@ upgrade_name = "bullet_velocity"
 upgrade_text = "Upgrade the velocity of your bullets by 30%"
 upgrade_value = 0.3
 upgrade_texture = ExtResource("2_mgkaa")
+key_upgrade = false
 
 [sub_resource type="Resource" id="Resource_hcjij"]
 script = ExtResource("1_uur5o")
@@ -16,6 +17,7 @@ upgrade_name = "bullet_velocity"
 upgrade_text = "Upgrade the velocity of your bullets by 22.5%"
 upgrade_value = 0.225
 upgrade_texture = ExtResource("2_mgkaa")
+key_upgrade = false
 next_upgrade = SubResource("Resource_hm4dw")
 
 [resource]
@@ -24,4 +26,5 @@ upgrade_name = "bullet_velocity"
 upgrade_text = "Upgrade the velocity of your bullets by 15%"
 upgrade_value = 0.15
 upgrade_texture = ExtResource("2_mgkaa")
+key_upgrade = false
 next_upgrade = SubResource("Resource_hcjij")

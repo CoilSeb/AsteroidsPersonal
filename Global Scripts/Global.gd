@@ -15,6 +15,7 @@ var collision_damage
 var exp 
 var exp_threshold 
 var weapon
+var tank_mode = true
 
 signal update_max_health(value)
 signal update_health(value)
@@ -29,6 +30,8 @@ var upgrades_test = [
 	preload("res://Upgrades/Solo_Upgrades/health_regen.tres"),
 	preload("res://Upgrades/Solo_Upgrades/bullet_velocity.tres"),
 ]
+
+var key_upgrades = []
 
 
 func _ready():
@@ -47,7 +50,7 @@ func refresh():
 		preload("res://Upgrades/Solo_Upgrades/bullet_velocity.tres"),
 	]
 	
-	health = 300
+	health = 30000
 	max_health = health
 	health_regen = 0
 	

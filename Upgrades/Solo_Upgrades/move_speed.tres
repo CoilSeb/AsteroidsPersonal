@@ -9,6 +9,7 @@ upgrade_name = "move_speed"
 upgrade_text = "Upgrades move_speed by 200"
 upgrade_value = 200.0
 upgrade_texture = ExtResource("2_rqkj7")
+key_upgrade = false
 
 [sub_resource type="Resource" id="Resource_cfgst"]
 script = ExtResource("1_qtpcb")
@@ -16,6 +17,7 @@ upgrade_name = "move_speed"
 upgrade_text = "Upgrades move_speed by 150"
 upgrade_value = 150.0
 upgrade_texture = ExtResource("2_rqkj7")
+key_upgrade = false
 next_upgrade = SubResource("Resource_krdgh")
 
 [resource]
@@ -24,4 +26,5 @@ upgrade_name = "move_speed"
 upgrade_text = "Upgrades move_speed by 100"
 upgrade_value = 100.0
 upgrade_texture = ExtResource("2_rqkj7")
+key_upgrade = false
 next_upgrade = SubResource("Resource_cfgst")

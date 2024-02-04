@@ -16,6 +16,7 @@ var immunity_timer = null
 var using_mouse = false
 var weapon = Global.weapon
 var laser_made = false
+var can_move = true
 
 
 func _ready():
@@ -55,7 +56,7 @@ func _physics_process(delta):
 		using_mouse = true
 	if using_mouse == true:
 		rotate(get_angle_to(get_global_mouse_position()) + (0.5 * PI))
-	if Input.is_action_pressed("move_forward") || Input.is_action_pressed("M1"):
+	if (Input.is_action_pressed("move_forward") || Input.is_action_pressed("M1")) && can_move:
 		velocity += ((Vector2(0, -1) * thrust * delta).rotated(rotation))
 	elif Input.is_action_just_pressed("move_backward"):
 		velocity += ((Vector2(0, 10) * counter_thrust * delta).rotated(rotation))
@@ -84,7 +85,10 @@ func _physics_process(delta):
 			bulletInstance.global_position = global_position  # Set the bullet's position
 			bulletInstance.direction = Vector2.UP.rotated(rotation)  # Set the bullet's direction
 			shootTimer.start(Global.attack_speed)
-		
+			if Global.tank_mode:
+				thrust -= 100
+			
+			
 	if Global.health <= 0:
 		destroy()
 		GameScene.player = true

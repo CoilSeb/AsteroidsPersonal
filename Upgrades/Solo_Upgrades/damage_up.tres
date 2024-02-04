@@ -9,6 +9,7 @@ upgrade_name = "damage"
 upgrade_text = "Upgrades bullet damage by 30%"
 upgrade_value = 0.3
 upgrade_texture = ExtResource("2_wfgwu")
+key_upgrade = false
 
 [sub_resource type="Resource" id="Resource_rw4ql"]
 script = ExtResource("1_vivkn")
@@ -16,6 +17,7 @@ upgrade_name = "damage"
 upgrade_text = "Upgrades bullet damage by 22.5%"
 upgrade_value = 0.225
 upgrade_texture = ExtResource("2_wfgwu")
+key_upgrade = false
 next_upgrade = SubResource("Resource_sqvx0")
 
 [resource]
@@ -24,4 +26,5 @@ upgrade_name = "damage"
 upgrade_text = "Upgrades bullet damage by 15%"
 upgrade_value = 0.15
 upgrade_texture = ExtResource("2_wfgwu")
+key_upgrade = false
 next_upgrade = SubResource("Resource_rw4ql")
