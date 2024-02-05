@@ -8,7 +8,7 @@ var laserScene = preload("res://Scenes/Laser/laser.tscn")
 var laserInstance
 var screen_size
 var rotateSpeed = 5
-var thrust
+var thrust = 500
 var counter_thrust
 var slowDown = 1
 var shootTimer = null
@@ -32,7 +32,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	thrust = 500 + Global.move_speed
+	thrust = thrust + Global.move_speed
 	counter_thrust = Global.counter_thrust
 	Ui.update_health(Global.health_regen * delta)
 	# Screen Wrap
@@ -86,7 +86,12 @@ func _physics_process(delta):
 			bulletInstance.direction = Vector2.UP.rotated(rotation)  # Set the bullet's direction
 			shootTimer.start(Global.attack_speed)
 			if Global.tank_mode:
-				thrust -= 100
+				if Global.attack_speed > 0.1:
+					Global.attack_speed -= 0.075
+				else: Global.attack_speed = 0.1
+				if thrust + Global.move_speed > 0:
+					thrust -= (Global.move_speed + 10)
+					print(thrust)
 			
 			
 	if Global.health <= 0:
