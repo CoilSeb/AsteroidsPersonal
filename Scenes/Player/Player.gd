@@ -34,7 +34,10 @@ func _ready():
 func _physics_process(delta):
 	thrust = 500 + Global.move_speed
 	counter_thrust = Global.counter_thrust
-	Ui.update_health(Global.health_regen * delta)
+	if Global.mega_regen:
+		Ui.update_health(Global.health_regen * 3 * delta)
+	else:
+		Ui.update_health(Global.health_regen * delta)
 	# Screen Wrap
 	if position.x < 0:
 		position.x = screen_size.x

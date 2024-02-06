@@ -14,6 +14,8 @@ func upgrade_player():
 	match upgrade_name:
 		"health":
 			upgrade_health()
+			if key_upgrade():
+				
 		"damage":
 			upgrade_damage()
 		"attack_speed":

@@ -15,7 +15,8 @@ var collision_damage
 var exp 
 var exp_threshold 
 var weapon
-var tank_mode = true
+var tank_mode = false
+var mega_regen
 
 signal update_max_health(value)
 signal update_health(value)
