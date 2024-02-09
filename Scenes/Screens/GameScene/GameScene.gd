@@ -91,7 +91,8 @@ func generate_spawn_point():
 	return locations[randi_range(0,3)]
 
 func _on_spawn_timer_timeout():
-	pass
+	spawn_Asteroid()
+	$SpawnTimer.wait_time = 15
 
 
 func _on_timer_wave_timeout():

@@ -157,6 +157,18 @@ offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="RichTextLabel1" type="RichTextLabel" parent="Upgrade_Menu/First_Upgrade"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+bbcode_enabled = true
+
 [node name="Second_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
 anchors_preset = 8
@@ -187,6 +199,18 @@ offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="RichTextLabel2" type="RichTextLabel" parent="Upgrade_Menu/Second_Upgrade"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+bbcode_enabled = true
+
 [node name="Third_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
 anchors_preset = 8
@@ -216,6 +240,18 @@ offset_right = 160.0
 offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Upgrade_Menu/Third_Upgrade"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+bbcode_enabled = true
 
 [node name="Reroll_Button" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1

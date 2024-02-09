@@ -9,7 +9,7 @@ upgrade_name = "health_regen"
 upgrade_text = "Upgrades health regeneration by 3"
 upgrade_value = 3.0
 upgrade_texture = ExtResource("2_33ilv")
-key_upgrade = false
+key_upgrade = true
 
 [sub_resource type="Resource" id="Resource_f2fme"]
 script = ExtResource("1_xks40")

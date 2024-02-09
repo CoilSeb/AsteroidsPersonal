@@ -11,11 +11,11 @@ class_name upgrade
 
 
 func upgrade_player():
+	if key_upgrade:
+		Global.add_key_upgrades(upgrade_name)
 	match upgrade_name:
 		"health":
 			upgrade_health()
-			if key_upgrade():
-				
 		"damage":
 			upgrade_damage()
 		"attack_speed":
@@ -30,6 +30,17 @@ func upgrade_player():
 			upgrade_counter_thrust()
 		"bullet_velocity":
 			upgrade_bullet_velocity()
+		"regen_with_degen":
+			regen_with_degen()
+
+
+func regen_with_degen():
+	Global.max_health = Global.max_health/upgrade_value
+	Global.health = Global.health/upgrade_value
+	Global.update_max_health.emit(0)
+	Global.health_regen = 75
+	
+	Global.max_health
 
 func upgrade_health():
 	Global.update_max_health.emit(upgrade_value)

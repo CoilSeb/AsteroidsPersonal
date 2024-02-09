@@ -15,13 +15,8 @@ var collision_damage
 var exp 
 var exp_threshold 
 var weapon
-var tank_mode = false
-var mega_regen
 
-signal update_max_health(value)
-signal update_health(value)
-
-var upgrades_test = [
+var start_upgrades = [
 	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
 	preload("res://Upgrades/Solo_Upgrades/attack_speed_up.tres"),
 	preload("res://Upgrades/Solo_Upgrades/collision_damage_up.tres"),
@@ -31,6 +26,12 @@ var upgrades_test = [
 	preload("res://Upgrades/Solo_Upgrades/health_regen.tres"),
 	preload("res://Upgrades/Solo_Upgrades/bullet_velocity.tres"),
 ]
+const REGEN_WITH_DEGEN = preload("res://Upgrades/Solo_Upgrades/regen_with_degen.tres")
+
+signal update_max_health(value)
+signal update_health(value)
+
+var upgrades_test = start_upgrades.duplicate()
 
 var key_upgrades = []
 
@@ -38,24 +39,19 @@ var key_upgrades = []
 func _ready():
 	Global.high_score = load_score()
 
+func add_key_upgrades(key_upgrade):
+	key_upgrades.append(key_upgrade)
+	if key_upgrades.has("health_regen") and key_upgrades.has("health"):
+		upgrades_test.append(REGEN_WITH_DEGEN)
 
 func refresh():
-	upgrades_test = [
-		preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
-		preload("res://Upgrades/Solo_Upgrades/attack_speed_up.tres"),
-		preload("res://Upgrades/Solo_Upgrades/collision_damage_up.tres"),
-		preload("res://Upgrades/Solo_Upgrades/health_up.tres"),
-		preload("res://Upgrades/Solo_Upgrades/move_speed.tres"),
-		preload("res://Upgrades/Solo_Upgrades/counter_thrust.tres"),
-		preload("res://Upgrades/Solo_Upgrades/health_regen.tres"),
-		preload("res://Upgrades/Solo_Upgrades/bullet_velocity.tres"),
-	]
+	upgrades_test = start_upgrades.duplicate()
 	
-	health = 30000
+	health = 300
 	max_health = health
 	health_regen = 0
 	
-	move_speed = 0
+	move_speed = 500
 	counter_thrust = 0
 	
 	match weapon:
@@ -71,6 +67,7 @@ func refresh():
 	
 	exp = 0
 	exp_threshold = 30
+	key_upgrades.clear()
 	
 
 

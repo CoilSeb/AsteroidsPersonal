@@ -17,12 +17,27 @@ extends CanvasLayer
 @onready var upgrade_menu = $Upgrade_Menu
 @onready var upgrade_dim_overlay = $Upgrade_Menu/Upgrade_Dim_Overlay
 @onready var first_upgrade_button = $Upgrade_Menu/First_Upgrade
-@onready var texture_rect_1 = $Upgrade_Menu/First_Upgrade/TextureRect1
 @onready var second_upgrade_button = $Upgrade_Menu/Second_Upgrade
-@onready var texture_rect_2 = $Upgrade_Menu/Second_Upgrade/TextureRect2
 @onready var third_upgrade_button = $Upgrade_Menu/Third_Upgrade
-@onready var texture_rect_3 = $Upgrade_Menu/Third_Upgrade/TextureRect3
 @onready var level_up_timer = $Level_Up_Timer
+
+@onready var buttons = [
+	$Upgrade_Menu/First_Upgrade,
+	$Upgrade_Menu/Second_Upgrade,
+	$Upgrade_Menu/Third_Upgrade
+]
+
+@onready var textures = [
+	$Upgrade_Menu/First_Upgrade/TextureRect1,
+	$Upgrade_Menu/Second_Upgrade/TextureRect2,
+	$Upgrade_Menu/Third_Upgrade/TextureRect3,
+] 
+
+@onready var text_labels = [
+	$Upgrade_Menu/First_Upgrade/RichTextLabel1,
+	$Upgrade_Menu/Second_Upgrade/RichTextLabel2,
+	$Upgrade_Menu/Third_Upgrade/RichTextLabel3
+]
 
 var score = 0
 var first_upgrade: upgrade
@@ -67,9 +82,8 @@ func toggle_pause_menu():
 	pause_menu.visible = !pause_menu.visible
 	if upgrade_menu.visible == true:
 		get_tree().paused = true
-		first_upgrade_button.visible = !first_upgrade_button.visible
-		second_upgrade_button.visible = !second_upgrade_button.visible
-		third_upgrade_button.visible = !third_upgrade_button.visible
+		for button in buttons:
+			button.visible != button.visible
 
 
 func _on_ResumeButton_pressed():
@@ -187,26 +201,15 @@ func level_up():
 func get_upgrades():
 	Global.upgrades_test.shuffle()
 
-	var buttons = [
-		first_upgrade_button,
-		second_upgrade_button,
-		third_upgrade_button,
-	]
-	var textures = [
-		texture_rect_1,
-		texture_rect_2,
-		texture_rect_3,
-	]
-	
 	for i in range(3):
 		if Global.upgrades_test.size() - 1 >= i:
 			var my_upgrade = Global.upgrades_test[i]
 			
-			buttons[i].text = my_upgrade.upgrade_text
+			text_labels[i].text = "[center]" + my_upgrade.upgrade_text
 			textures[i].texture = my_upgrade.upgrade_texture
 			upgrades[i] = my_upgrade
 		else:
-			buttons[i].text = "null"
+			text_labels[i].text = "null"
 			textures[i].texture = null
 			upgrades[i] = null
 		
