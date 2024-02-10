@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="upgrade" load_steps=2 format=3 uid="uid://bphh44jn8vwsc"]
+[gd_resource type="Resource" script_class="upgrade" load_steps=2 format=3 uid="uid://c48m41xgtjpk4"]
 
 [ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_5dmgb"]
 
 [resource]
 script = ExtResource("1_5dmgb")
 upgrade_name = "regen_with_degen"
-upgrade_text = "Regenerate 75 health per second, but you only have 75 health"
-upgrade_value = 3.0
+upgrade_text = "Regenerate 75 health per second, but reduce health by half your max. "
+upgrade_value = 2.0
 key_upgrade = false
