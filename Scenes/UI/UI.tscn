@@ -271,7 +271,6 @@ text = "Reroll
 "
 
 [node name="PauseMenu" type="Control" parent="."]
-visible = false
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 15
@@ -339,6 +338,58 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 52
 text = "Restart Game"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 41.0
+offset_top = -393.0
+offset_right = 562.0
+offset_bottom = 394.0
+grow_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="Damage_Label" type="Label" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Damage: "
+
+[node name="Attack_Speed_Label" type="Label" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Attack Speed: "
+
+[node name="Health_Label" type="Label" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Health: "
+
+[node name="Health_Regen_Label" type="Label" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Health Regen: "
+
+[node name="Move_Speed_Label" type="Label" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Thrust: "
+
+[node name="Counter_Thrust_Label" type="Label" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Counter Thrust:  "
+
+[node name="Collision_Damage_Label" type="Label" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Collision Damage: "
+
+[node name="Bullet_Velocity_Label" type="Label" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Bullet Velocity: "
 
 [node name="PauseButton" type="Button" parent="."]
 anchors_preset = 1

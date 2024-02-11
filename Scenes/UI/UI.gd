@@ -75,6 +75,7 @@ func _process(_delta):
 			level_up()
 	if Input.is_action_just_pressed("Ctrl+L"):
 		level_up()
+	$PauseMenu/VBoxContainer/Damage_Label.text = "Damage: " + str(Global.damage)
 
 
 func toggle_pause_menu():
