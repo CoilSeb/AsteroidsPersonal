@@ -16,6 +16,7 @@ var exp
 var exp_threshold 
 var weapon
 var laser_made
+var can_shoot = true
 
 var start_upgrades = [
 	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
@@ -27,7 +28,8 @@ var start_upgrades = [
 	preload("res://Upgrades/Solo_Upgrades/health_regen.tres"),
 	preload("res://Upgrades/Solo_Upgrades/bullet_velocity.tres"),
 ]
-const REGEN_WITH_DEGEN = preload("res://Upgrades/Solo_Upgrades/regen_with_degen.tres")
+const REGEN_WITH_DEGEN = preload("res://Upgrades/Combo_Upgradess/regen_with_degen.tres")
+const NO_GUN_ALL_COLLISION = preload("res://Upgrades/Combo_Upgradess/no_gun_all_collision.tres")
 
 signal update_max_health(value)
 signal update_health(value)
@@ -42,8 +44,12 @@ func _ready():
 
 func add_key_upgrades(key_upgrade):
 	key_upgrades.append(key_upgrade)
-	if key_upgrades.has("health_regen") and key_upgrades.has("health"):
+	if key_upgrades.has("health_regen") and key_upgrades.has("health") and !key_upgrades.has("REGEN_WITH_DEGEN"):
+		key_upgrades.append("REGEN_WITH_DEGEN")
 		upgrades_test.append(REGEN_WITH_DEGEN)
+	if key_upgrades.has("collision_damage") and key_upgrades.has("move_speed") and !key_upgrades.has("NO_GUN_ALL_COLLISION"):
+		key_upgrades.append("NO_GUN_ALL_COLLISION")
+		upgrades_test.append(NO_GUN_ALL_COLLISION)
 
 func refresh():
 	upgrades_test = start_upgrades.duplicate()

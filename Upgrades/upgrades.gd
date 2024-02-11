@@ -15,24 +15,30 @@ func upgrade_player():
 		Global.add_key_upgrades(upgrade_name)
 	match upgrade_name:
 		"health":
-			upgrade_health()
+			health()
 		"damage":
-			upgrade_damage()
+			damage()
 		"attack_speed":
-			upgrade_attack_speed()
+			attack_speed()
 		"collision_damage":
-			upgrade_collision_damage()
+			collision_damage()
 		"health_regen":
-			upgrade_health_regen()
+			health_regen()
 		"move_speed":
-			upgrade_move_speed()
+			move_speed()
 		"counter_thrust":
-			upgrade_counter_thrust()
+			counter_thrust()
 		"bullet_velocity":
-			upgrade_bullet_velocity()
+			bullet_velocity()
 		"regen_with_degen":
 			regen_with_degen()
+		"no_gun_all_collision":
+			no_gun_all_collision()
 
+
+func no_gun_all_collision():
+	Global.can_shoot = false
+	Global.collision_damage *= upgrade_value
 
 func regen_with_degen():
 	Global.max_health = Global.max_health/upgrade_value
@@ -42,14 +48,14 @@ func regen_with_degen():
 	
 	Global.max_health
 
-func upgrade_health():
+func health():
 	Global.update_max_health.emit(upgrade_value)
 	#print(Global.health)
 
-func upgrade_damage():
+func damage():
 	Global.damage += (Global.damage * upgrade_value)
 
-func upgrade_attack_speed():
+func attack_speed():
 	match Global.weapon:
 		"Gun":
 			Global.attack_speed -= (Global.attack_speed * upgrade_value)
@@ -58,19 +64,19 @@ func upgrade_attack_speed():
 			#print(Global.damage)
 			#print(Global.attack_speed)
 
-func upgrade_collision_damage():
+func collision_damage():
 	Global.collision_damage += upgrade_value
 
-func upgrade_health_regen():
+func health_regen():
 	Global.health_regen += upgrade_value
 
-func upgrade_move_speed():
+func move_speed():
 	Global.move_speed += upgrade_value
 
-func upgrade_counter_thrust():
+func counter_thrust():
 	Global.counter_thrust += upgrade_value
 
-func upgrade_bullet_velocity():
+func bullet_velocity():
 	match Global.weapon:
 		"Gun":
 			Global.bullet_velocity += (Global.bullet_velocity * upgrade_value)

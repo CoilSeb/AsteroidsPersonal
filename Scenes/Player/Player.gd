@@ -70,23 +70,24 @@ func _physics_process(delta):
 	move_and_collide(velocity * delta)
 		
 	# Shooting
-	if weapon == "Laser":
-		if Input.is_action_pressed("shoot") && !Input.is_action_pressed("move_forward"):
-			if !Global.laser_made:
-				make_laser()
-			laserInstance.global_position = global_position + Vector2(0, -15).rotated(rotation)
-			laserInstance.direction = Vector2.UP.rotated(rotation) 
-		if Input.is_action_just_released("shoot") || Input.is_action_pressed("move_forward") || Input.is_action_pressed("move_backward"):
-			if laserInstance != null:
-				laserInstance.queue_free()
-				Global.laser_made = false
-	if weapon == "Gun":
-		if (Input.is_action_pressed("shoot") || Input.is_action_pressed("M2")) && shootTimer.time_left == 0:  # Use action_just_pressed to prevent multiple bullets on a single press
-			var bulletInstance = bulletScene.instantiate()  # Create a new instance of the Bullet scene
-			get_parent().add_child(bulletInstance)  # Add it to the player node or a designated parent node for bullets
-			bulletInstance.global_position = global_position  # Set the bullet's position
-			bulletInstance.direction = Vector2.UP.rotated(rotation)  # Set the bullet's direction
-			shootTimer.start(Global.attack_speed)
+	if Global.can_shoot:
+		if weapon == "Laser":
+			if Input.is_action_pressed("shoot") && !Input.is_action_pressed("move_forward"):
+				if !Global.laser_made:
+					make_laser()
+				laserInstance.global_position = global_position + Vector2(0, -15).rotated(rotation)
+				laserInstance.direction = Vector2.UP.rotated(rotation) 
+			if Input.is_action_just_released("shoot") || Input.is_action_pressed("move_forward") || Input.is_action_pressed("move_backward"):
+				if laserInstance != null:
+					laserInstance.queue_free()
+					Global.laser_made = false
+		if weapon == "Gun":
+			if (Input.is_action_pressed("shoot") || Input.is_action_pressed("M2")) && shootTimer.time_left == 0:  # Use action_just_pressed to prevent multiple bullets on a single press
+				var bulletInstance = bulletScene.instantiate()  # Create a new instance of the Bullet scene
+				get_parent().add_child(bulletInstance)  # Add it to the player node or a designated parent node for bullets
+				bulletInstance.global_position = global_position  # Set the bullet's position
+				bulletInstance.direction = Vector2.UP.rotated(rotation)  # Set the bullet's direction
+				shootTimer.start(Global.attack_speed)
 			
 			
 	if Global.health <= 0:

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="upgrade" load_steps=2 format=3 uid="uid://t8jpfbw8tgb"]
+
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_vceoa"]
+
+[resource]
+script = ExtResource("1_vceoa")
+upgrade_name = "no_gun_all_collision"
+upgrade_text = "Remove your ability to shoot and double collision damage"
+upgrade_value = 2.0
+key_upgrade = false
