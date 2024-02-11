@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="Resource_lvvjd"]
 script = ExtResource("1_af4au")
 upgrade_name = "attack_speed"
-upgrade_text = "Upgrade attack speed and shoot 20% faster"
+upgrade_text = "Reduce attack cooldown by 20% "
 upgrade_value = 0.2
 upgrade_texture = ExtResource("2_7ukon")
 key_upgrade = true
@@ -14,7 +14,7 @@ key_upgrade = true
 [sub_resource type="Resource" id="Resource_8ie3u"]
 script = ExtResource("1_af4au")
 upgrade_name = "attack_speed"
-upgrade_text = "Upgrade attack speed again and shoot another 15% faster"
+upgrade_text = "Reduce attack cooldown by another 15% faster"
 upgrade_value = 0.15
 upgrade_texture = ExtResource("2_7ukon")
 key_upgrade = false
@@ -23,7 +23,7 @@ next_upgrade = SubResource("Resource_lvvjd")
 [resource]
 script = ExtResource("1_af4au")
 upgrade_name = "attack_speed"
-upgrade_text = "Upgrade attack speed and shoot 15% faster"
+upgrade_text = "Reduce attack cooldown by 15% "
 upgrade_value = 0.15
 upgrade_texture = ExtResource("2_7ukon")
 key_upgrade = false

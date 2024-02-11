@@ -27,3 +27,7 @@ func _process(delta):
 				shoot_timer.start(Global.attack_speed)
 		line.rotation = laser.target_position.angle()
 		line.points[1].x = end.position.length()
+		
+	if get_tree().paused:
+		Global.laser_made = false
+		queue_free()

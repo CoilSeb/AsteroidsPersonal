@@ -23,7 +23,7 @@ next_upgrade = SubResource("Resource_0nun0")
 [resource]
 script = ExtResource("1_wg1gf")
 upgrade_name = "counter_thrust"
-upgrade_text = "Upgrade counter thrust by 500 "
+upgrade_text = "Upgrade counter thrust by 1000"
 upgrade_value = 1000.0
 upgrade_texture = ExtResource("2_sut6x")
 key_upgrade = false

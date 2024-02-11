@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmiu6wiv2qyw3"]
+[gd_scene load_steps=5 format=3 uid="uid://bmiu6wiv2qyw3"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_awws1"]
 [ext_resource type="Texture2D" uid="uid://cy2p3man040cg" path="res://Sprites/Other/Player-1.png.png" id="2_fdo7j"]
+[ext_resource type="Texture2D" uid="uid://cleolfa5jahst" path="res://Sprites/Other/Thrust-1.png (2).png" id="3_16tuw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sawk4"]
 radius = 25.0
@@ -17,11 +18,13 @@ scale = Vector2(0.25, 0.35)
 texture = ExtResource("2_fdo7j")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 position = Vector2(0, -0.499998)
 scale = Vector2(1, 1.47917)
 polygon = PackedVector2Array(0, -14.5352, -16, 15.2112, 0, 7.77463, 16, 15.2112)
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_mask = 12
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
@@ -30,12 +33,19 @@ scale = Vector2(1, 1.47917)
 polygon = PackedVector2Array(0, -14.5352, -16, 15.2112, 0, 7.77463, 16, 15.2112)
 
 [node name="Collection_Range" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collection_Range"]
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_sawk4")
+
+[node name="Thrust_Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 25)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_16tuw")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Collection_Range" to="." method="_on_collection_range_area_entered"]

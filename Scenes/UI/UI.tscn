@@ -339,6 +339,17 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 52
 text = "Restart Game"
 
+[node name="Pause_High_Score_Label" type="Label" parent="PauseMenu"]
+layout_mode = 2
+offset_left = 41.0
+offset_top = 20.0
+offset_right = 223.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 32
+text = "High Score: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
 layout_mode = 1
 anchors_preset = 4
@@ -349,17 +360,7 @@ offset_top = -393.0
 offset_right = 562.0
 offset_bottom = 394.0
 grow_vertical = 2
-theme_override_constants/separation = 5
-
-[node name="Damage_Label" type="Label" parent="PauseMenu/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Damage: "
-
-[node name="Attack_Speed_Label" type="Label" parent="PauseMenu/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Attack Speed: "
+theme_override_constants/separation = 10
 
 [node name="Health_Label" type="Label" parent="PauseMenu/VBoxContainer"]
 layout_mode = 2
@@ -370,6 +371,21 @@ text = "Health: "
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Health Regen: "
+
+[node name="Damage_Label" type="Label" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Damage: "
+
+[node name="Attack_Speed_Label" type="Label" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Attack Cooldown: "
+
+[node name="Bullet_Velocity_Label" type="Label" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Bullet Velocity: "
 
 [node name="Move_Speed_Label" type="Label" parent="PauseMenu/VBoxContainer"]
 layout_mode = 2
@@ -385,11 +401,6 @@ text = "Counter Thrust:  "
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Collision Damage: "
-
-[node name="Bullet_Velocity_Label" type="Label" parent="PauseMenu/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Bullet Velocity: "
 
 [node name="PauseButton" type="Button" parent="."]
 anchors_preset = 1

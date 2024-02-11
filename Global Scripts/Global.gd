@@ -15,6 +15,7 @@ var collision_damage
 var exp 
 var exp_threshold 
 var weapon
+var laser_made
 
 var start_upgrades = [
 	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
@@ -57,10 +58,11 @@ func refresh():
 	match weapon:
 		"Gun":
 			damage = 10
-			attack_speed = 1
+			attack_speed = 0.75
 		"Laser":
 			damage = 1
 			attack_speed = 0.1
+			laser_made = false
 	
 	bullet_velocity = 700
 	collision_damage = 10
@@ -91,3 +93,14 @@ func load_score():
 		return 0
 	var data = json.get_data()
 	return data["High Score"]
+
+
+func get_score_text(value):
+	var score_string = str(value)
+	var score_text = ""
+	for i in range(len(score_string)):
+		score_text += score_string[i]
+		var distance = len(score_string) - i
+		if distance != 1 and distance % 3 == 1:
+			score_text += ","
+	return score_text

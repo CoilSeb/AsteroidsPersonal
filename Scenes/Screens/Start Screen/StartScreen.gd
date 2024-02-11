@@ -5,7 +5,7 @@ extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	high_score_label.text = "High Score: " + str(Global.high_score)
+	high_score_label.text = "High Score: " + Global.get_score_text(Global.high_score)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

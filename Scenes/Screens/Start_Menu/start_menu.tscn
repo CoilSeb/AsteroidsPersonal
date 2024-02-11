@@ -93,8 +93,9 @@ offset_bottom = -88.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/normal_font_size = 24
-text = "A laser that fires in an infinite line, damaging the first thing in its path.
+text = "A laser that fires in an infinite line, damaging the first thing in its path. Due to immense heat requirements, all fuel must go to the laser to fire.
 
+- Cannot fire while thrusting
 - Max attack speed
 - Minimum damage
 - Does 1% max health damage on top of normal damage. 

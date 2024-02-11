@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var GameScene = get_parent()
 @onready var Ui = get_parent().get_node("UI")
+@onready var thrust_sprite_2d = $Thrust_Sprite2D
 
 var bulletScene = preload("res://Scenes/Bullets/Bullet.tscn")
 var laserScene = preload("res://Scenes/Laser/laser.tscn")
@@ -15,7 +16,6 @@ var shootTimer = null
 var immunity_timer = null
 var using_mouse = false
 var weapon = Global.weapon
-var laser_made = false
 var can_move = true
 
 
@@ -56,28 +56,30 @@ func _physics_process(delta):
 		using_mouse = true
 	if using_mouse == true:
 		rotate(get_angle_to(get_global_mouse_position()) + (0.5 * PI))
-	if (Input.is_action_pressed("move_forward") || Input.is_action_pressed("M1")) && can_move:
+	if Input.is_action_pressed("move_forward") && can_move:
 		velocity += ((Vector2(0, -1) * thrust * delta).rotated(rotation))
+		thrust_sprite_2d.show()
 	elif Input.is_action_just_pressed("move_backward"):
 		velocity += ((Vector2(0, 10) * counter_thrust * delta).rotated(rotation))
 	else:
+		thrust_sprite_2d.hide()
 		velocity = lerp(velocity, Vector2.ZERO, slowDown * delta)
 		if velocity.length() >= -10 && velocity.length() <= 10:
 			velocity = Vector2.ZERO
-			
 		
 	move_and_collide(velocity * delta)
 		
 	# Shooting
 	if weapon == "Laser":
-		if Input.is_action_pressed("shoot") || Input.is_action_pressed("M2"):
-			if !laser_made:
+		if Input.is_action_pressed("shoot") && !Input.is_action_pressed("move_forward"):
+			if !Global.laser_made:
 				make_laser()
 			laserInstance.global_position = global_position + Vector2(0, -15).rotated(rotation)
 			laserInstance.direction = Vector2.UP.rotated(rotation) 
-		if Input.is_action_just_released("shoot") || Input.is_action_just_released("M2"):
-			laserInstance.queue_free()
-			laser_made = false
+		if Input.is_action_just_released("shoot") || Input.is_action_pressed("move_forward") || Input.is_action_pressed("move_backward"):
+			if laserInstance != null:
+				laserInstance.queue_free()
+				Global.laser_made = false
 	if weapon == "Gun":
 		if (Input.is_action_pressed("shoot") || Input.is_action_pressed("M2")) && shootTimer.time_left == 0:  # Use action_just_pressed to prevent multiple bullets on a single press
 			var bulletInstance = bulletScene.instantiate()  # Create a new instance of the Bullet scene
@@ -95,7 +97,7 @@ func _physics_process(delta):
 func make_laser():
 	laserInstance = laserScene.instantiate()
 	get_parent().add_child(laserInstance)
-	laser_made = true
+	Global.laser_made = true
 
 
 func _on_area_2d_area_entered(area):

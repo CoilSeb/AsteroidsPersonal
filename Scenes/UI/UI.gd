@@ -56,6 +56,7 @@ func _ready():
 	exit_button.connect("pressed", _on_ExitButton_pressed)
 	Global.connect("update_max_health", update_max_health)
 	Global.connect("update_health", update_health)
+	$PauseMenu/Pause_High_Score_Label.text = "High Score: " + Global.get_score_text(Global.high_score)
 	pause_menu.visible = false
 	restart_button.visible = false
 	update_max_health(0)
@@ -73,10 +74,17 @@ func _process(_delta):
 	if upgrade_menu.visible == true:
 		if Input.is_action_just_pressed("reroll"):
 			level_up()
-	if Input.is_action_just_pressed("Ctrl+L"):
+	if Input.is_action_just_pressed("reroll"):
 		level_up()
-	$PauseMenu/VBoxContainer/Damage_Label.text = "Damage: " + str(Global.damage)
-
+		
+	$PauseMenu/VBoxContainer/Damage_Label.text = "Damage: " + str(snapped(Global.damage, 0.01))
+	$PauseMenu/VBoxContainer/Attack_Speed_Label.text = "Attack Cooldown: " + str(snapped(Global.attack_speed, 0.01)) + " (sec)"
+	$PauseMenu/VBoxContainer/Bullet_Velocity_Label.text = "Bullet Velocity: " + str(Global.bullet_velocity)
+	$PauseMenu/VBoxContainer/Health_Label.text = "Health: " + str(snapped(Global.health, 1)) + " / " + str(Global.max_health)
+	$PauseMenu/VBoxContainer/Health_Regen_Label.text = "Health Regen: " + str(Global.health_regen) + " (sec)"
+	$PauseMenu/VBoxContainer/Move_Speed_Label.text = "Thrust: " + str(Global.move_speed)
+	$PauseMenu/VBoxContainer/Counter_Thrust_Label.text = "Counter Thrust: " + str(Global.counter_thrust)
+	$PauseMenu/VBoxContainer/Collision_Damage_Label.text = "Collision Damage: " + str(Global.collision_damage)
 
 func toggle_pause_menu():
 	get_tree().paused = !get_tree().paused
@@ -85,15 +93,15 @@ func toggle_pause_menu():
 		get_tree().paused = true
 		for button in buttons:
 			button.visible != button.visible
+			print(button.visible)
 
 
 func _on_ResumeButton_pressed():
 	get_tree().paused = false
 	pause_menu.visible = false
 	if upgrade_menu.visible == true:
-		first_upgrade_button.visible = !first_upgrade_button.visible
-		second_upgrade_button.visible = !second_upgrade_button.visible
-		third_upgrade_button.visible = !third_upgrade_button.visible
+		for button in buttons:
+			button.visible = true
 		get_tree().paused = true
 
 
@@ -118,7 +126,7 @@ func restart():
 
 func increase_score(amount):
 	score += amount
-	score_label.text = "Score: " + str(score)
+	$Score_Label.text = "Score: " + Global.get_score_text(score)
 
 
 func update_health(amount):
@@ -131,8 +139,9 @@ func update_health(amount):
 		score_label.position.y = Global.screen_size.y/2 - 45
 		restart_button.visible = true
 		high_score_label.visible = true
-		high_score_label.text = "High Score: " + str(Global.high_score)
+		high_score_label.text = "High Score: " + Global.get_score_text(Global.high_score)
 		if score > Global.high_score:
+			high_score_label.text = "New High Score: " + Global.get_score_text(Global.high_score)
 			Global.high_score = score
 			Global.save_score()
 		GameScene.game_over()
