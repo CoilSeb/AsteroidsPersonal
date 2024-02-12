@@ -7,4 +7,4 @@ script = ExtResource("1_5dmgb")
 upgrade_name = "regen_with_degen"
 upgrade_text = "Regenerate 75 health per second, but devide your max health by 3"
 upgrade_value = 3.0
-key_upgrade = false
+key_upgrade = true

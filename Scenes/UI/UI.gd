@@ -77,7 +77,7 @@ func _process(_delta):
 	if Input.is_action_just_pressed("reroll"):
 		level_up()
 		
-	$PauseMenu/VBoxContainer/Damage_Label.text = "Damage: " + str(snapped(Global.damage, 0.01))
+	$PauseMenu/VBoxContainer/Weapon_Damage_Label.text = "Weapon Damage: " + str(snapped(Global.damage, 0.01))
 	$PauseMenu/VBoxContainer/Attack_Speed_Label.text = "Attack Cooldown: " + str(snapped(Global.attack_speed, 0.01)) + " (sec)"
 	$PauseMenu/VBoxContainer/Bullet_Velocity_Label.text = "Bullet Velocity: " + str(Global.bullet_velocity)
 	$PauseMenu/VBoxContainer/Health_Label.text = "Health: " + str(snapped(Global.health, 1)) + " / " + str(Global.max_health)
@@ -85,7 +85,7 @@ func _process(_delta):
 	$PauseMenu/VBoxContainer/Move_Speed_Label.text = "Thrust: " + str(Global.move_speed)
 	$PauseMenu/VBoxContainer/Counter_Thrust_Label.text = "Counter Thrust: " + str(Global.counter_thrust)
 	$PauseMenu/VBoxContainer/Collision_Damage_Label.text = "Collision Damage: " + str(Global.collision_damage)
-	$PauseMenu/VBoxContainer/Damage_Reduction_Label.text = "Damage Reduction: " + str(Global.damage_reduction)
+	$PauseMenu/VBoxContainer/Damage_Reduction_Label.text = "Damage Reduction: " + str(snapped(Global.damage_reduction * 100, 0.1)) + "%"
 
 func toggle_pause_menu():
 	get_tree().paused = !get_tree().paused

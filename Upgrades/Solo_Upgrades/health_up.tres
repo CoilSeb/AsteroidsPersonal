@@ -17,7 +17,7 @@ upgrade_name = "health"
 upgrade_text = "Upgrades health by 100"
 upgrade_value = 100.0
 upgrade_texture = ExtResource("2_1x2gu")
-key_upgrade = false
+key_upgrade = null
 next_upgrade = SubResource("Resource_rkgik")
 
 [resource]
@@ -26,5 +26,5 @@ upgrade_name = "health"
 upgrade_text = "Upgrades health by 50"
 upgrade_value = 50.0
 upgrade_texture = ExtResource("2_1x2gu")
-key_upgrade = false
+key_upgrade = null
 next_upgrade = SubResource("Resource_84j6l")

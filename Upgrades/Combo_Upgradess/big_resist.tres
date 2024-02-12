@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="upgrade" load_steps=2 format=3 uid="uid://bfste0siyhak"]
+
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_didpx"]
+
+[resource]
+script = ExtResource("1_didpx")
+upgrade_name = "big_resist"
+upgrade_text = "Double your damage reduction, but cut your thrust in half"
+upgrade_value = 0.0
+key_upgrade = true

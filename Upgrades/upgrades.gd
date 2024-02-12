@@ -36,9 +36,15 @@ func upgrade_player():
 			regen_with_degen()
 		"no_gun_all_collision":
 			no_gun_all_collision()
+		"big_resist":
+			big_resist()
 
 func damage_reduction():
 	Global.damage_reduction += upgrade_value
+
+func big_resist():
+	Global.damage_reduction *= 2
+	Global.move_speed /= 2
 
 func no_gun_all_collision():
 	Global.can_shoot = false
@@ -49,8 +55,6 @@ func regen_with_degen():
 	Global.health = Global.health/upgrade_value
 	Global.update_max_health.emit(0)
 	Global.health_regen = 75
-	
-	Global.max_health
 
 func health():
 	Global.update_max_health.emit(upgrade_value)

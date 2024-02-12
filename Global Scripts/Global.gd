@@ -32,6 +32,7 @@ var start_upgrades = [
 ]
 const REGEN_WITH_DEGEN = preload("res://Upgrades/Combo_Upgradess/regen_with_degen.tres")
 const NO_GUN_ALL_COLLISION = preload("res://Upgrades/Combo_Upgradess/no_gun_all_collision.tres")
+const BIG_RESIST = preload("res://Upgrades/Combo_Upgradess/big_resist.tres")
 
 signal update_max_health(value)
 signal update_health(value)
@@ -45,13 +46,14 @@ func _ready():
 	Global.high_score = load_score()
 
 func add_key_upgrades(key_upgrade):
-	key_upgrades.append(key_upgrade)
-	if key_upgrades.has("health_regen") and key_upgrades.has("health") and !key_upgrades.has("REGEN_WITH_DEGEN"):
-		key_upgrades.append("REGEN_WITH_DEGEN")
+	key_upgrades.append(str(key_upgrade))
+	if key_upgrades.has("health_regen") and key_upgrades.has("health") and !key_upgrades.has("regen_with_degen"):
 		upgrades_test.append(REGEN_WITH_DEGEN)
-	if key_upgrades.has("collision_damage") and key_upgrades.has("move_speed") and !key_upgrades.has("NO_GUN_ALL_COLLISION"):
-		key_upgrades.append("NO_GUN_ALL_COLLISION")
+	if key_upgrades.has("collision_damage") and key_upgrades.has("move_speed") and !key_upgrades.has("no_gun_all_collision"):
 		upgrades_test.append(NO_GUN_ALL_COLLISION)
+	if key_upgrades.has("damage_reduction") and key_upgrades.has("health") and !key_upgrades.has("big_resist"):
+		upgrades_test.append(BIG_RESIST)
+
 
 func refresh():
 	upgrades_test = start_upgrades.duplicate()
