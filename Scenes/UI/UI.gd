@@ -85,6 +85,7 @@ func _process(_delta):
 	$PauseMenu/VBoxContainer/Move_Speed_Label.text = "Thrust: " + str(Global.move_speed)
 	$PauseMenu/VBoxContainer/Counter_Thrust_Label.text = "Counter Thrust: " + str(Global.counter_thrust)
 	$PauseMenu/VBoxContainer/Collision_Damage_Label.text = "Collision Damage: " + str(Global.collision_damage)
+	$PauseMenu/VBoxContainer/Damage_Reduction_Label.text = "Damage Reduction: " + str(Global.damage_reduction)
 
 func toggle_pause_menu():
 	get_tree().paused = !get_tree().paused

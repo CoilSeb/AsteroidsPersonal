@@ -10,6 +10,7 @@ var speed: float
 var direction: Vector2
 var max_health = 30
 var health = 30
+var damage = 25
 
 
 func _ready():

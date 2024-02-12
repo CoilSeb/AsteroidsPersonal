@@ -28,6 +28,7 @@ var start_upgrades = [
 	preload("res://Upgrades/Solo_Upgrades/counter_thrust.tres"),
 	preload("res://Upgrades/Solo_Upgrades/health_regen.tres"),
 	preload("res://Upgrades/Solo_Upgrades/bullet_velocity.tres"),
+	preload("res://Upgrades/Solo_Upgrades/damage_reduction.tres"),
 ]
 const REGEN_WITH_DEGEN = preload("res://Upgrades/Combo_Upgradess/regen_with_degen.tres")
 const NO_GUN_ALL_COLLISION = preload("res://Upgrades/Combo_Upgradess/no_gun_all_collision.tres")

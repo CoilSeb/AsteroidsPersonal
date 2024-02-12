@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Laser/Laser.gd" id="1_85vll"]
 
-[node name="Laser" type="RayCast2D"]
+[node name="Laser" type="RayCast2D" groups=["weapon"]]
 process_mode = 3
 position = Vector2(0, 540)
 target_position = Vector2(1920, 0)

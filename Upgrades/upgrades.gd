@@ -30,11 +30,15 @@ func upgrade_player():
 			counter_thrust()
 		"bullet_velocity":
 			bullet_velocity()
+		"damage_reduction":
+			damage_reduction()
 		"regen_with_degen":
 			regen_with_degen()
 		"no_gun_all_collision":
 			no_gun_all_collision()
 
+func damage_reduction():
+	Global.damage_reduction += upgrade_value
 
 func no_gun_all_collision():
 	Global.can_shoot = false

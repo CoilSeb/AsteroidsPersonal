@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_fw18q"]
 radius = 8.0
 
-[node name="Bullet" type="Area2D"]
+[node name="Bullet" type="Area2D" groups=["weapon"]]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_u54ul")

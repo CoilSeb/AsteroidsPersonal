@@ -103,19 +103,19 @@ func make_laser():
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("Big_Asteroid"): #&& immunity_timer.get_time_left() == 0:
-		Ui.update_health(-50 + Global.damage_reduction)
+		Ui.update_health(-area.damage + Global.damage_reduction)
 		area.damage_asteroid(Global.collision_damage)
 		if area.health > 0:
 			velocity *= -0.5
 		#call_deferred("destroy")
 		#immunity_timer.start(1)
 	if area.is_in_group("Medium_Asteroid"): #&& immunity_timer.get_time_left() == 0:
-		Ui.update_health(-25 + Global.damage_reduction)
+		Ui.update_health(-area.damage + Global.damage_reduction)
 		area.damage_asteroid(Global.collision_damage)
 		if area.health > 0:
 			velocity *= -0.5
 	if area.is_in_group("Small_Asteroid"): #&& immunity_timer.get_time_left() == 0:
-		Ui.update_health(-10 + Global.damage_reduction)
+		Ui.update_health(-area.damage + Global.damage_reduction)
 		area.damage_asteroid(Global.collision_damage)
 		if area.health > 0:
 			velocity *= -0.5
@@ -126,10 +126,7 @@ func _on_area_2d_area_entered(area):
 
 
 func destroy():
+	for weapon in get_tree().get_nodes_in_group("weapon"):
+		weapon.queue_free()
 	queue_free()
 	GameScene.player = false
-
-
-func _on_tree_exiting():
-	if Global.weapon == "Laser":
-		laserInstance.queue_free()
