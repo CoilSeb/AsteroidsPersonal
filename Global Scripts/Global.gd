@@ -18,6 +18,7 @@ var exp_threshold
 var weapon
 var laser_made
 var can_shoot
+var burn_out
 
 var start_upgrades = [
 	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
@@ -33,6 +34,7 @@ var start_upgrades = [
 const REGEN_WITH_DEGEN = preload("res://Upgrades/Combo_Upgradess/regen_with_degen.tres")
 const NO_GUN_ALL_COLLISION = preload("res://Upgrades/Combo_Upgradess/no_gun_all_collision.tres")
 const BIG_RESIST = preload("res://Upgrades/Combo_Upgradess/big_resist.tres")
+const BURN_OUT = preload("res://Upgrades/Combo_Upgradess/burn_out.tres")
 
 signal update_max_health(value)
 signal update_health(value)
@@ -53,6 +55,8 @@ func add_key_upgrades(key_upgrade):
 		upgrades_test.append(NO_GUN_ALL_COLLISION)
 	if key_upgrades.has("damage_reduction") and key_upgrades.has("health") and !key_upgrades.has("big_resist"):
 		upgrades_test.append(BIG_RESIST)
+	if key_upgrades.has("damage") and key_upgrades.has("attack_speed") and !key_upgrades.has("burn_out"):
+		upgrades_test.append(BURN_OUT)
 
 
 func refresh():
@@ -67,6 +71,7 @@ func refresh():
 	counter_thrust = 0
 	
 	can_shoot = true
+	burn_out = false
 	match weapon:
 		"Gun":
 			damage = 10

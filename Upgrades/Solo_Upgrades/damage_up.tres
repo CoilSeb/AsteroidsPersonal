@@ -9,7 +9,7 @@ upgrade_name = "damage"
 upgrade_text = "Upgrades bullet damage by 30%"
 upgrade_value = 0.3
 upgrade_texture = ExtResource("2_wfgwu")
-key_upgrade = false
+key_upgrade = true
 
 [sub_resource type="Resource" id="Resource_rw4ql"]
 script = ExtResource("1_vivkn")

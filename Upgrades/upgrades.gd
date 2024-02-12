@@ -38,6 +38,12 @@ func upgrade_player():
 			no_gun_all_collision()
 		"big_resist":
 			big_resist()
+		"burn_out":
+			burn_out()
+
+func burn_out():
+	Global.attack_speed -= (Global.attack_speed * 0.5)
+	Global.burn_out = true
 
 func damage_reduction():
 	Global.damage_reduction += upgrade_value

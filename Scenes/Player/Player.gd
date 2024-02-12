@@ -17,6 +17,7 @@ var immunity_timer = null
 var using_mouse = false
 var weapon = Global.weapon
 var can_move = true
+var burn_out_time = 100
 
 
 func _ready():
@@ -69,6 +70,9 @@ func _physics_process(delta):
 		
 	move_and_collide(velocity * delta)
 		
+	if !Global.can_shoot && burn_out_time < 100 && Global.burn_out:
+		burn_out_cooldown()
+		
 	# Shooting
 	if Global.can_shoot:
 		if weapon == "Laser":
@@ -77,10 +81,14 @@ func _physics_process(delta):
 					make_laser()
 				laserInstance.global_position = global_position + Vector2(0, -15).rotated(rotation)
 				laserInstance.direction = Vector2.UP.rotated(rotation) 
+				burn_out_time -= 1
+				if burn_out_time == 0:
+					Global.can_shoot = false
 			if Input.is_action_just_released("shoot") || Input.is_action_pressed("move_forward") || Input.is_action_pressed("move_backward"):
 				if laserInstance != null:
 					laserInstance.queue_free()
 					Global.laser_made = false
+				burn_out_time = 100
 		if weapon == "Gun":
 			if (Input.is_action_pressed("shoot") || Input.is_action_pressed("M2")) && shootTimer.time_left == 0:  # Use action_just_pressed to prevent multiple bullets on a single press
 				var bulletInstance = bulletScene.instantiate()  # Create a new instance of the Bullet scene
@@ -88,11 +96,17 @@ func _physics_process(delta):
 				bulletInstance.global_position = global_position  # Set the bullet's position
 				bulletInstance.direction = Vector2.UP.rotated(rotation)  # Set the bullet's direction
 				shootTimer.start(Global.attack_speed)
+				if burn_out_time == 0:
+					pass
 			
 			
 	if Global.health <= 0:
 		destroy()
 		GameScene.player = true
+
+
+func burn_out_cooldown():
+	burn_out_time += 1
 
 
 func make_laser():
