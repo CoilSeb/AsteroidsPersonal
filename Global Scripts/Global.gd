@@ -6,6 +6,7 @@ var high_score
 var health 
 var max_health
 var health_regen
+var damage_reduction
 var move_speed
 var counter_thrust
 var damage 
@@ -16,7 +17,7 @@ var exp
 var exp_threshold 
 var weapon
 var laser_made
-var can_shoot = true
+var can_shoot
 
 var start_upgrades = [
 	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
@@ -57,10 +58,12 @@ func refresh():
 	health = 300
 	max_health = health
 	health_regen = 0
+	damage_reduction = 0
 	
 	move_speed = 500
 	counter_thrust = 0
 	
+	can_shoot = true
 	match weapon:
 		"Gun":
 			damage = 10
