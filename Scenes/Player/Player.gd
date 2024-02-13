@@ -82,9 +82,9 @@ func _physics_process(delta):
 		burn_out_time += 0.75
 	if !Global.can_shoot && burn_out_time >= burn_out_var && Global.burn_out:
 		Global.can_shoot = true
-		
 	if Global.can_shoot && Global.burn_out && burn_out_time < burn_out_var:
 		burn_out_time += 1.5
+		
 	# Shooting
 	if Global.can_shoot:
 		if weapon == "Laser":
@@ -98,12 +98,12 @@ func _physics_process(delta):
 				return
 		if weapon == "Gun":
 			if (Input.is_action_pressed("shoot") || Input.is_action_pressed("M2")) && shootTimer.time_left == 0:
-				#Burn Out
 				var bulletInstance = bulletScene.instantiate()
 				get_parent().add_child(bulletInstance)
 				bulletInstance.global_position = global_position
 				bulletInstance.direction = Vector2.UP.rotated(rotation)
 				shootTimer.start(Global.attack_speed)
+		#Burn Out
 		if Global.burn_out && Input.is_action_pressed("shoot") && Global.can_shoot:
 			burn_out_time -= 2.5
 			if burn_out_time <= 0:
