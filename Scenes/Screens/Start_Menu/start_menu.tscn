@@ -98,7 +98,6 @@ text = "A laser that fires in an infinite line, damaging the first thing in its 
 - Cannot fire while thrusting
 - Max attack speed
 - Minimum damage
-- Does 1% max health damage on top of normal damage. 
 - All attack speed and bullet velocity upgrades converted into damage"
 fit_content = true
 

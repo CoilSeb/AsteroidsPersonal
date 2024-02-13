@@ -50,8 +50,6 @@ func make_exp():
 
 
 func damage_asteroid(damage):
-	if Global.weapon == "Laser":
-		health -= (max_health * 0.01)
 	health -= damage
 	if health <= 0:
 		call_deferred("make_exp")

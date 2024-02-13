@@ -48,14 +48,19 @@ func _ready():
 	Global.high_score = load_score()
 
 func add_key_upgrades(key_upgrade):
-	key_upgrades.append(str(key_upgrade))
+	key_upgrades.append(key_upgrade)
+	print(key_upgrades)
 	if key_upgrades.has("health_regen") and key_upgrades.has("health") and !key_upgrades.has("regen_with_degen"):
+		key_upgrades.append("regen_with_degen")
 		upgrades_test.append(REGEN_WITH_DEGEN)
 	if key_upgrades.has("collision_damage") and key_upgrades.has("move_speed") and !key_upgrades.has("no_gun_all_collision"):
+		key_upgrades.append("no_gun_all_collision")
 		upgrades_test.append(NO_GUN_ALL_COLLISION)
 	if key_upgrades.has("damage_reduction") and key_upgrades.has("health") and !key_upgrades.has("big_resist"):
+		key_upgrades.append("big_resist")
 		upgrades_test.append(BIG_RESIST)
 	if key_upgrades.has("damage") and key_upgrades.has("attack_speed") and !key_upgrades.has("burn_out"):
+		key_upgrades.append("burn_out")
 		upgrades_test.append(BURN_OUT)
 
 

@@ -42,8 +42,12 @@ func upgrade_player():
 			burn_out()
 
 func burn_out():
-	Global.attack_speed -= (Global.attack_speed * 0.5)
 	Global.burn_out = true
+	match Global.weapon:
+		"Gun":
+			Global.attack_speed -= (Global.attack_speed * upgrade_value)
+		"Laser":
+			Global.damage += (Global.damage * upgrade_value)
 
 func damage_reduction():
 	Global.damage_reduction += upgrade_value
@@ -63,6 +67,7 @@ func regen_with_degen():
 	Global.health_regen = 75
 
 func health():
+	Global.update_health.emit(upgrade_value)
 	Global.update_max_health.emit(upgrade_value)
 	#print(Global.health)
 

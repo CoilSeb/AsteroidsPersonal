@@ -80,8 +80,8 @@ func _process(_delta):
 	$PauseMenu/VBoxContainer/Health_Label.text = "Health: " + str(snapped(Global.health, 1)) + " / " + str(Global.max_health)
 	$PauseMenu/VBoxContainer/Health_Regen_Label.text = "Health Regen: " + str(Global.health_regen) + " (sec)"
 	$PauseMenu/VBoxContainer/Damage_Reduction_Label.text = "Damage Reduction: " + str(snapped(Global.damage_reduction * 100, 0.1)) + "%"
-	$PauseMenu/VBoxContainer/Weapon_Damage_Label.text = "Weapon Damage: " + str(snapped(Global.damage, 0.01))
 	$PauseMenu/VBoxContainer/Collision_Damage_Label.text = "Collision Damage: " + str(Global.collision_damage)
+	$PauseMenu/VBoxContainer/Weapon_Damage_Label.text = "Weapon Damage: " + str(snapped(Global.damage, 0.01))
 	$PauseMenu/VBoxContainer/Attack_Speed_Label.text = "Attack Cooldown: " + str(snapped(Global.attack_speed, 0.01)) + " (sec)"
 	$PauseMenu/VBoxContainer/Bullet_Velocity_Label.text = "Bullet Velocity: " + str(Global.bullet_velocity)
 	$PauseMenu/VBoxContainer/Move_Speed_Label.text = "Thrust: " + str(Global.move_speed)
@@ -150,7 +150,7 @@ func update_health(amount):
 
 func update_max_health(amount):
 	Global.max_health += amount
-	update_health(Global.max_health - Global.health)
+	#update_health(Global.max_health - Global.health)
 	health_bar.max_value = Global.max_health
 	if health_bar.max_value >= 950:
 		health_bar.size.x = 1900

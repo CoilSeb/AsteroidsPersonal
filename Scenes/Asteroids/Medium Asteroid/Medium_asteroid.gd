@@ -46,8 +46,6 @@ func destroy():
 
 
 func damage_asteroid(damage):
-	if Global.weapon == "Laser":
-		health -= (max_health * 0.01)
 	health -= damage
 	if health <= 20:
 		crack_1.visible = true
