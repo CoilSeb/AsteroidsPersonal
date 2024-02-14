@@ -13,12 +13,15 @@ var direction: Vector2
 var max_health = 50
 var health = 50
 var damage = 50
+var old_position: Vector2
+var velocity: Vector2
 
 
 func _ready():
 	screen_size = get_viewport_rect().size
 	set_random_direction_and_speed()
 	add_to_group("Big_Asteroid")
+	old_position = position
 
 
 func _process(delta):
@@ -35,6 +38,12 @@ func _process(delta):
 	
 	# Moving 
 	position += direction * speed * delta
+	
+	var new_position = self.position 
+	velocity = (new_position - old_position) / delta
+	self.set("velocity", velocity) 
+	old_position = position
+	
 
 
 func set_random_direction_and_speed():

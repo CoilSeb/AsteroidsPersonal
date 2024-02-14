@@ -85,7 +85,6 @@ func spawn_wave():
 	if wave_num == 0 && enemies.size() == 0:
 		wave_num += 1
 		for i in range(5):
-			print("asteroid spawned")
 			spawn_basic_Asteroid()
 		return
 	if wave_num == 1 && enemies.size() == 0:
