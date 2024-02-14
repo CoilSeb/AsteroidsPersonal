@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dvo4y5vj5mvgc" path="res://Sprites/Other/Exp-1.png.png" id="2_gy3gi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7iodp"]
-radius = 66.0076
+radius = 112.018
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pnwvu"]
 radius = 7.0

@@ -24,6 +24,7 @@ func _process(delta):
 		if laser.is_colliding() && shoot_timer.time_left == 0:
 			if get_collider():
 				get_collider().damage_asteroid(damage)
+				get_collider().damage_asteroid(get_collider().max_health * 0.01)
 				shoot_timer.start(Global.attack_speed)
 		line.rotation = laser.target_position.angle()
 		line.points[1].x = end.position.length()

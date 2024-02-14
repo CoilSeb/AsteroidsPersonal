@@ -19,13 +19,11 @@ scale = Vector2(0.25, 0.35)
 texture = ExtResource("2_fdo7j")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
 position = Vector2(0, -0.499998)
 scale = Vector2(1, 1.47917)
 polygon = PackedVector2Array(0, -14.5352, -16, 15.2112, 0, 7.77463, 16, 15.2112)
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 collision_mask = 12
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
@@ -34,7 +32,6 @@ scale = Vector2(1, 1.47917)
 polygon = PackedVector2Array(0, -14.5352, -16, 15.2112, 0, 7.77463, 16, 15.2112)
 
 [node name="Collection_Range" type="Area2D" parent="."]
-visible = false
 collision_layer = 16
 collision_mask = 8
 
