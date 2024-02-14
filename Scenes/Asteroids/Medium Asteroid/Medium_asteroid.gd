@@ -11,6 +11,8 @@ var direction: Vector2
 var max_health = 30
 var health = 30
 var damage = 25
+var old_position: Vector2
+var velocity: Vector2
 
 
 func _ready():
@@ -32,6 +34,10 @@ func _process(delta):
 	
 	# Moving 
 	position += direction * speed * delta
+	
+	var new_position = self.position 
+	velocity = (new_position - old_position) / delta
+	old_position = position
 
 
 func set_random_direction_and_speed():

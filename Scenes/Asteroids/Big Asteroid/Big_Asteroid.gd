@@ -41,7 +41,6 @@ func _process(delta):
 	
 	var new_position = self.position 
 	velocity = (new_position - old_position) / delta
-	self.set("velocity", velocity) 
 	old_position = position
 	
 
