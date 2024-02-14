@@ -134,33 +134,29 @@ func _on_area_2d_area_entered(area):
 		Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
 		area.damage_asteroid(Global.collision_damage)
 		print(velocity.length())
-		if area.health > 0:
-			if velocity < Vector2(10,10):
-				velocity = area.velocity * 2
-				return
-			velocity *= -0.5
+		check_velocity(area)
 			
 	if area.is_in_group("Medium_Asteroid"): #&& immunity_timer.get_time_left() == 0:
 		Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
 		area.damage_asteroid(Global.collision_damage)
-		if area.health > 0:
-			if velocity.length() < 10:
-				velocity = area.velocity * 2
-				return
-			velocity *= -0.5
+		check_velocity(area)
 			
 	if area.is_in_group("Small_Asteroid"): #&& immunity_timer.get_time_left() == 0:
 		Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
 		area.damage_asteroid(Global.collision_damage)
-		if area.health > 0:
-			if velocity < Vector2(10,10):
-				velocity = area.velocity * 2
-				return
-			velocity *= -0.5
+		check_velocity(area)
 			
 	if area.is_in_group("Destroy_Ring"):
 		Ui.update_exp(10)
 		area.get_parent().destroy()
+
+
+func check_velocity(area):
+	if area.health > 0:
+		if velocity.length() < 100:
+			velocity = area.velocity * 2
+			return
+		velocity *= -0.5
 
 
 func destroy():
