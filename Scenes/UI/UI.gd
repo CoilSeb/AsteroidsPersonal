@@ -94,7 +94,6 @@ func toggle_pause_menu():
 		get_tree().paused = true
 		for button in buttons:
 			button.visible != button.visible
-			print(button.visible)
 
 
 func _on_ResumeButton_pressed():

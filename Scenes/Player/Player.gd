@@ -79,8 +79,10 @@ func _physics_process(delta):
 		$Burn_Out_Bar.max_value = burn_out_var
 		$Burn_Out_Bar.value = burn_out_time
 	if !Global.can_shoot && burn_out_time < burn_out_var && Global.burn_out:
+		$Burn_Out_Bar.tint_progress = Color(0, 0, 0)
 		burn_out_time += 0.75
 	if !Global.can_shoot && burn_out_time >= burn_out_var && Global.burn_out:
+		$Burn_Out_Bar.tint_progress = Color(255, 255, 255)
 		Global.can_shoot = true
 	if Global.can_shoot && Global.burn_out && burn_out_time < burn_out_var:
 		burn_out_time += 1.5
@@ -122,7 +124,7 @@ func make_laser():
 
 
 func destroy_laser():
-	if Global.laser_made == true:
+	if laserInstance != null:
 		laserInstance.queue_free()
 		Global.laser_made = false
 

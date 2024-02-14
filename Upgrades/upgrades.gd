@@ -67,8 +67,8 @@ func regen_with_degen():
 	Global.health_regen = 75
 
 func health():
-	Global.update_health.emit(upgrade_value)
 	Global.update_max_health.emit(upgrade_value)
+	Global.update_health.emit(upgrade_value)
 	#print(Global.health)
 
 func damage():

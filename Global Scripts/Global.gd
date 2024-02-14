@@ -49,7 +49,6 @@ func _ready():
 
 func add_key_upgrades(key_upgrade):
 	key_upgrades.append(key_upgrade)
-	print(key_upgrades)
 	if key_upgrades.has("health_regen") and key_upgrades.has("health") and !key_upgrades.has("regen_with_degen"):
 		key_upgrades.append("regen_with_degen")
 		upgrades_test.append(REGEN_WITH_DEGEN)
@@ -76,7 +75,7 @@ func refresh():
 	counter_thrust = 0
 	
 	can_shoot = true
-	burn_out = false
+	burn_out = true
 	match weapon:
 		"Gun":
 			damage = 10
