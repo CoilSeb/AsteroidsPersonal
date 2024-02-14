@@ -75,7 +75,7 @@ func refresh():
 	counter_thrust = 0
 	
 	can_shoot = true
-	burn_out = true
+	burn_out = false
 	match weapon:
 		"Gun":
 			damage = 10

@@ -4,22 +4,14 @@ extends Node
 @onready var ScoreLabel = Ui.get_node("Score_Label")
 @onready var spawnTimer = $SpawnTimer
 @onready var wave_timer = $WaveTimer
-@onready var timer_wave = $Timer_Wave
-@onready var timer_wave2 = $Timer_Wave2
-@onready var timer_wave3 = $Timer_Wave3
-@onready var timer_wave4 = $Timer_Wave4
-@onready var timer_wave5 = $Timer_Wave5
-@onready var timer_wave6 = $Timer_Wave6
-@onready var timer_wave7 = $Timer_Wave7
-@onready var timer_wave8 = $Timer_Wave8
-@onready var timer_wave9 = $Timer_Wave9
-@onready var timer_wave10 = $Timer_Wave10
 
 var playerScene = preload("res://Scenes/Player/Player.tscn")
 var player = true
 var screen_size
 var wave_timer_time = 10
 var wave_time = 35
+var wave_num = 0
+var enemies
 
 var asteroid_scenes = {
 	0: preload("res://Scenes/Asteroids/Medium Asteroid/Medium_asteroid.tscn"),
@@ -45,6 +37,7 @@ func _process(_delta):
 		player = true
 	#if wave_timer.time_left == 0:
 		#spawn_wave()
+	enemies = get_tree().get_nodes_in_group("Enemy")
 
 
 
@@ -60,14 +53,7 @@ func game_over():
 			#child.queue_free()
 
 
-func spawn_wave():
-	for i in range(5):
-		#print("asteroid spawned")
-		spawn_Asteroid()
-	timer_wave.start(wave_time)
-
-
-func spawn_Asteroid():
+func spawn_basic_Asteroid():
 	var new_asteroid = asteroid_scenes[randi_range(0,2)].instantiate()
 	add_child(new_asteroid)
 	new_asteroid.global_position = generate_spawn_point()
@@ -75,6 +61,7 @@ func spawn_Asteroid():
 
 func random_vector(left, right, bottom, top):
 	return Vector2(randf_range(left, right), randf_range(bottom, top))
+
 
 func generate_spawn_point():
 	var locations = [
@@ -89,70 +76,27 @@ func generate_spawn_point():
 	]
 	return locations[randi_range(0,3)]
 
+
 func _on_spawn_timer_timeout():
-	spawn_Asteroid()
-	$SpawnTimer.wait_time = 15
-
-
-func _on_timer_wave_timeout():
-	for i in range(5):
-		spawn_Asteroid()
-	timer_wave2.start(wave_time)
-
-
-func _on_timer_wave_2_timeout():
-	for i in range(7):
-		spawn_Asteroid()
-	timer_wave3.start(wave_time)
-
-
-func _on_timer_wave_3_timeout():
-	for i in range(7):
-		spawn_Asteroid()
-	timer_wave4.start(wave_time)
-
-
-func _on_timer_wave_4_timeout():
-	for i in range(7):
-		spawn_Asteroid()
-	timer_wave5.start(wave_time)
-
-
-func _on_timer_wave_5_timeout():
-	for i in range(10):
-		spawn_Asteroid()
-	timer_wave6.start(wave_time)
-
-
-func _on_timer_wave_6_timeout():
-	for i in range(10):
-		spawn_Asteroid()
-	timer_wave7.start(wave_time)
-
-
-func _on_timer_wave_7_timeout():
-	for i in range(10):
-		spawn_Asteroid()
-	timer_wave8.start(wave_time)
-
-
-func _on_timer_wave_8_timeout():
-	for i in range(12):
-		spawn_Asteroid()
-	timer_wave9.start(wave_time)
-
-
-func _on_timer_wave_9_timeout():
-	for i in range(10):
-		spawn_Asteroid()
-	timer_wave10.start(wave_time)
-
-
-func _on_timer_wave_10_timeout():
-	for i in range(10):
-		spawn_Asteroid()
-	timer_wave10.start(20)
-
-
-func _on_wave_timer_timeout():
 	spawn_wave()
+
+
+func spawn_wave():
+	if wave_num == 0 && enemies.size() == 0:
+		wave_num += 1
+		for i in range(5):
+			print("asteroid spawned")
+			spawn_basic_Asteroid()
+		return
+	if wave_num == 1 && enemies.size() == 0:
+		wave_num += 1
+		for i in range(10):
+			#print("asteroid spawned")
+			spawn_basic_Asteroid()
+		return
+	if wave_num == 2 && enemies.size() == 0:
+		wave_num += 1
+		for i in range(10):
+			#print("asteroid spawned")
+			spawn_basic_Asteroid()
+		return

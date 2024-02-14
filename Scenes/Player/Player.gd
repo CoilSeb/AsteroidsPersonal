@@ -79,7 +79,7 @@ func _physics_process(delta):
 		$Burn_Out_Bar.max_value = burn_out_var
 		$Burn_Out_Bar.value = burn_out_time
 	if !Global.can_shoot && burn_out_time < burn_out_var && Global.burn_out:
-		$Burn_Out_Bar.tint_progress = Color(0, 0, 0)
+		$Burn_Out_Bar.tint_progress = Color(0.576, 0.576, 0.576)
 		burn_out_time += 0.75
 	if !Global.can_shoot && burn_out_time >= burn_out_var && Global.burn_out:
 		$Burn_Out_Bar.tint_progress = Color(255, 255, 255)
@@ -135,6 +135,12 @@ func _on_area_2d_area_entered(area):
 		area.damage_asteroid(Global.collision_damage)
 		if area.health > 0:
 			velocity *= -0.5
+			if velocity.x > 0:
+				velocity.x += 50
+			elif velocity.x == 0:
+				velocity.x += 50
+			if velocity.y > 0:
+				velocity.y += 50
 		#call_deferred("destroy")
 		#immunity_timer.start(1)
 	if area.is_in_group("Medium_Asteroid"): #&& immunity_timer.get_time_left() == 0:
