@@ -133,7 +133,8 @@ func _on_area_2d_area_entered(area):
 	if area.is_in_group("Big_Asteroid"): #&& immunity_timer.get_time_left() == 0:
 		Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
 		area.damage_asteroid(Global.collision_damage)
-		print(velocity.length())
+		#print("player ", velocity.length())
+		#print("area ", area.velocity.length())
 		check_velocity(area)
 			
 	if area.is_in_group("Medium_Asteroid"): #&& immunity_timer.get_time_left() == 0:
@@ -153,10 +154,7 @@ func _on_area_2d_area_entered(area):
 
 func check_velocity(area):
 	if area.health > 0:
-		if velocity.length() < 100:
-			velocity = area.velocity * 2
-			return
-		velocity *= -0.5
+		velocity = (velocity * -0.5) + (area.velocity * 2)
 
 
 func destroy():
