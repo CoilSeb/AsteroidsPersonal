@@ -20,7 +20,7 @@ var velocity: Vector2
 func _ready():
 	screen_size = get_viewport_rect().size
 	set_random_direction_and_speed()
-	add_to_group("Big_Asteroid")
+	add_to_group("Shard_Asteroid")
 	old_position = position
 
 
