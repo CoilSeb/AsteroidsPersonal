@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgok41wy4ltpm"]
+
+[ext_resource type="Script" path="res://Scenes/Asteroids/Shard Asteroid/shard.gd" id="1_olui0"]
+[ext_resource type="Texture2D" uid="uid://n0i22ptxg062" path="res://Sprites/Asteroids/Shard-1.png.png" id="1_v27lw"]
+
+[node name="Shard" type="Area2D"]
+script = ExtResource("1_olui0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_v27lw")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(11, -24, 11, -13, 12, -13, 12, 9, 11, 10, 8, 11, 4, 11, 3, 12, 3, 17, 1, 20, 1, 21, -6, 21, -12, 24, -16, 26, -16, 27, -20, 27, -20, 28, -22, 28, -22, 26, -21, 26, -21, 24, -19, 21, -18, 20, -18, 15, -14, 8, -14, 4, -12, -1, -7, 2, -6, 3, -5, 2, -4, -5, 9, -23, 10, -24)

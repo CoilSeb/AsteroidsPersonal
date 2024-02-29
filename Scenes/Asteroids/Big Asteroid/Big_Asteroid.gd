@@ -6,7 +6,7 @@ extends Area2D
 @onready var crack_3 = $Sprite2D/Crack3
 @onready var crack_4 = $Sprite2D/Crack4
 
-var medium_asteroid_scene = preload("res://Scenes/Asteroids/Medium Asteroid/Medium_asteroid.tscn")
+var shard_scene = preload("res://Scenes/Asteroids/Shard Asteroid/shard.tscn")
 var screen_size
 var speed: float
 var direction: Vector2
@@ -71,16 +71,14 @@ func damage_asteroid(damage):
 
 
 func create_and_add_asteroids():
-	var medium_asteroid1 = medium_asteroid_scene.instantiate()
-	var medium_asteroid2 = medium_asteroid_scene.instantiate()
-
-	# Set their positions to the position of the big asteroid
-	medium_asteroid1.position = position
-	medium_asteroid2.position = position
-
-	# Add them as children of the big asteroid's parent
-	get_parent().add_child(medium_asteroid1)
-	get_parent().add_child(medium_asteroid2)
+	var i = 0;
+	for k in range(8):
+		var shard = shard_scene.instantiate()
+		shard.position = position
+		var angle = i * PI
+		shard.direction = Vector2(cos(angle), sin(angle))
+		i += 0.25
+		get_parent().add_child(shard)
 	
 	# Increase Score 
 	Ui.increase_score(100) 
