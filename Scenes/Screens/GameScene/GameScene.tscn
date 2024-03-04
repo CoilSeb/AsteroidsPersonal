@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cl0s7o04ccses"]
+[gd_scene load_steps=3 format=3 uid="uid://cl0s7o04ccses"]
 
 [ext_resource type="Script" path="res://Scenes/Screens/GameScene/GameScene.gd" id="1_m8r6t"]
 [ext_resource type="PackedScene" uid="uid://c0jlxjxdu4vma" path="res://Scenes/UI/UI.tscn" id="2_u5fmq"]
-[ext_resource type="PackedScene" uid="uid://w4mbcvw1yd4b" path="res://Scenes/Asteroids/Shard Asteroid/Shard_Asteroid.tscn" id="3_lwta4"]
 
 [node name="GameScene" type="Node2D"]
 z_index = -1
@@ -18,9 +17,6 @@ autostart = true
 [node name="WaveTimer" type="Timer" parent="."]
 one_shot = true
 autostart = true
-
-[node name="Shard_Asteroid" parent="." instance=ExtResource("3_lwta4")]
-position = Vector2(499, 209)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

@@ -13,10 +13,14 @@ var wave_time = 35
 var wave_num = 0
 var enemies
 
-var asteroid_scenes = {
+var basic_asteroid_scenes = {
 	0: preload("res://Scenes/Asteroids/Medium Asteroid/Medium_asteroid.tscn"),
 	1: preload("res://Scenes/Asteroids/Small Asteroid/Small_asteroid.tscn"),
 	2: preload("res://Scenes/Asteroids/Big Asteroid/Big_Asteroid.tscn")
+}
+
+var special_asteroid_scenes = {
+	0: preload("res://Scenes/Asteroids/Shard Asteroid/Shard_Asteroid.tscn"),
 }
 
 
@@ -54,7 +58,13 @@ func game_over():
 
 
 func spawn_basic_Asteroid():
-	var new_asteroid = asteroid_scenes[randi_range(0,2)].instantiate()
+	var new_asteroid = basic_asteroid_scenes[randi_range(0,2)].instantiate()
+	add_child(new_asteroid)
+	new_asteroid.global_position = generate_spawn_point()
+
+
+func spawn_special_Asteroid():
+	var new_asteroid = special_asteroid_scenes[randi_range(0,2)].instantiate()
 	add_child(new_asteroid)
 	new_asteroid.global_position = generate_spawn_point()
 
@@ -89,13 +99,15 @@ func spawn_wave():
 		return
 	if wave_num == 1 && enemies.size() == 0:
 		wave_num += 1
-		for i in range(10):
-			#print("asteroid spawned")
+		for i in range(9):
 			spawn_basic_Asteroid()
+		for i in range(1):
+			spawn_special_Asteroid()
 		return
 	if wave_num == 2 && enemies.size() == 0:
 		wave_num += 1
-		for i in range(10):
-			#print("asteroid spawned")
+		for i in range(8):
 			spawn_basic_Asteroid()
+		for i in range(2):
+			spawn_special_Asteroid()
 		return

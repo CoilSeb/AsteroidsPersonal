@@ -23,6 +23,8 @@ func _process(delta):
 
 
 func _on_area_entered(area):
-	#area.destroy()
+	if area.is_in_group("Shard"):
+		queue_free()
+		return
 	area.damage_asteroid(damage)
 	queue_free()

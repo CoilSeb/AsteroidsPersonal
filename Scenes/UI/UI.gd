@@ -20,6 +20,7 @@ extends CanvasLayer
 @onready var second_upgrade_button = $Upgrade_Menu/Second_Upgrade
 @onready var third_upgrade_button = $Upgrade_Menu/Third_Upgrade
 @onready var level_up_timer = $Level_Up_Timer
+@onready var levels_label = $Levels_Label
 
 @onready var buttons = [
 	$Upgrade_Menu/First_Upgrade,
@@ -43,6 +44,7 @@ var score = 0
 var first_upgrade: upgrade
 var second_upgrade: upgrade
 var third_upgrade: upgrade
+var levels = 0
 var upgrades = [
 	first_upgrade,
 	second_upgrade,
@@ -74,7 +76,7 @@ func _process(_delta):
 	if upgrade_menu.visible == true:
 		if Input.is_action_just_pressed("reroll"):
 			level_up()
-	if Input.is_action_just_pressed("reroll"):
+	if Input.is_action_just_pressed("reroll") && levels > 0:
 		level_up()
 		
 	$PauseMenu/VBoxContainer/Health_Label.text = "Health: " + str(snapped(Global.health, 1)) + " / " + str(Global.max_health)
@@ -173,7 +175,13 @@ func update_max_exp():
 		Global.exp_threshold *= 1.1
 		exp_bar.max_value = Global.exp_threshold
 		exp_bar.value = Global.exp
-		level_up()
+		levels += 1
+	if levels == 1:
+		levels_label.text = "'R' to level up (" + str(levels) + " level stored)"
+		levels_label.show()
+	if levels > 1:
+		levels_label.text = "'R' to level up (" + str(levels) + " levels stored)"
+		levels_label.show()
 
 
 func _on_first_upgrade_pressed():
@@ -202,6 +210,10 @@ func _on_reroll_button_pressed():
 
 
 func level_up():
+	levels -= 1
+	update_max_exp()
+	if levels == 0:
+		levels_label.hide()
 	get_tree().paused = true
 	upgrade_menu.visible = true
 	get_upgrades()

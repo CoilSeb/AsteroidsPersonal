@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://w4mbcvw1yd4b"]
 
-[ext_resource type="Script" path="res://Scenes/Asteroids/Big Asteroid/Big_Asteroid.gd" id="1_ui1pm"]
+[ext_resource type="Script" path="res://Scenes/Asteroids/Shard Asteroid/Shard_Asteroid.gd" id="1_v41mm"]
 [ext_resource type="Texture2D" uid="uid://diia43eytv2d" path="res://Sprites/Asteroids/Big_Asteroid-1.png.png" id="2_sywf3"]
 [ext_resource type="Texture2D" uid="uid://cf4ytmn00xnyf" path="res://Sprites/Asteroids/Big_Crack1-1.png.png" id="3_ptmk5"]
 [ext_resource type="Texture2D" uid="uid://ce4j7lrf3lvas" path="res://Sprites/Asteroids/Big_Crack2-2.png.png" id="4_s8nof"]
@@ -10,7 +10,7 @@
 [node name="Shard_Asteroid" type="Area2D" groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_ui1pm")
+script = ExtResource("1_v41mm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

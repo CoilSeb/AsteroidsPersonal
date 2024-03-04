@@ -22,6 +22,19 @@ text = "Score: "
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Levels_Label" type="Label" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -118.0
+offset_top = 60.0
+offset_right = 118.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "\"R\" to level up (0 levels stored)"
+
 [node name="High_Score" type="Label" parent="."]
 visible = false
 anchors_preset = 5

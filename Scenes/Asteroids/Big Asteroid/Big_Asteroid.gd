@@ -6,7 +6,7 @@ extends Area2D
 @onready var crack_3 = $Sprite2D/Crack3
 @onready var crack_4 = $Sprite2D/Crack4
 
-var shard_scene = preload("res://Scenes/Asteroids/Shard Asteroid/shard.tscn")
+var medium_asteroid_scene = preload("res://Scenes/Asteroids/Medium Asteroid/Medium_asteroid.tscn")
 var screen_size
 var speed: float
 var direction: Vector2
@@ -15,44 +15,44 @@ var health = 50
 var damage = 50
 var old_position: Vector2
 var velocity: Vector2
+var rotation_speed
 
 
 func _ready():
 	screen_size = get_viewport_rect().size
 	set_random_direction_and_speed()
-	add_to_group("Shard_Asteroid")
-	old_position = position
+	add_to_group("Big_Asteroid")
+	rotation_speed = randf_range(-1, 1)
 
 
 func _process(delta):
 	# Screen Wrap
 	if position.x < 0:
 		position.x = screen_size.x
-	elif position.x > screen_size.x:
+	if position.x > screen_size.x:
 		position.x = 0
-
 	if position.y < 0:
 		position.y = screen_size.y
-	elif position.y > screen_size.y:
+	if position.y > screen_size.y:
 		position.y = 0
 	
 	# Moving 
 	position += direction * speed * delta
+	rotation += rotation_speed * delta
 	
 	var new_position = self.position 
 	velocity = (new_position - old_position) / delta
 	old_position = position
-	
 
 
 func set_random_direction_and_speed():
 	var angle = randf_range(0, 2 * PI)  # Random angle in radians
 	direction = Vector2(cos(angle), sin(angle))  # Convert angle to direction vector
-	speed = randf_range(75, 200)  # Random speed between 50 and 100
+	speed = randf_range(75, 200)  # Random speed between 5 and 10
 
 
 func destroy():
-	# Instantiate two medium asteroids using call_deferred
+	# Instantiate two small asteroids using call_deferred
 	call_deferred("create_and_add_asteroids")
 
 
@@ -71,17 +71,20 @@ func damage_asteroid(damage):
 
 
 func create_and_add_asteroids():
-	var i = 0;
-	for k in range(8):
-		var shard = shard_scene.instantiate()
-		shard.position = position
-		var angle = i * PI
-		shard.direction = Vector2(cos(angle), sin(angle))
-		i += 0.25
-		get_parent().add_child(shard)
+	# Instantate two small asteroids
+	var medium_asteroid1 = medium_asteroid_scene.instantiate()
+	var medium_asteroid2 = medium_asteroid_scene.instantiate()
+
+	# Set their positions to the position of the medium asteroid
+	medium_asteroid1.position = self.position
+	medium_asteroid2.position = self.position
+
+	# Add them as children of the medium asteroid's parent
+	self.get_parent().add_child(medium_asteroid1)
+	self.get_parent().add_child(medium_asteroid2)
 	
 	# Increase Score 
-	Ui.increase_score(100) 
+	Ui.increase_score(200)
 
-	# Queue the big asteroid for deletion
-	queue_free()
+	# Queue the medium asteroid for deletion
+	self.queue_free()
