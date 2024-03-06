@@ -58,13 +58,13 @@ func game_over():
 
 
 func spawn_basic_Asteroid():
-	var new_asteroid = basic_asteroid_scenes[randi_range(0,2)].instantiate()
+	var new_asteroid = basic_asteroid_scenes[randi_range(0,basic_asteroid_scenes.size() - 1)].instantiate()
 	add_child(new_asteroid)
 	new_asteroid.global_position = generate_spawn_point()
 
 
 func spawn_special_Asteroid():
-	var new_asteroid = special_asteroid_scenes[randi_range(0,2)].instantiate()
+	var new_asteroid = special_asteroid_scenes[randi_range(0,special_asteroid_scenes.size() - 1)].instantiate()
 	add_child(new_asteroid)
 	new_asteroid.global_position = generate_spawn_point()
 
@@ -96,6 +96,7 @@ func spawn_wave():
 		wave_num += 1
 		for i in range(5):
 			spawn_basic_Asteroid()
+			spawn_special_Asteroid()
 		return
 	if wave_num == 1 && enemies.size() == 0:
 		wave_num += 1

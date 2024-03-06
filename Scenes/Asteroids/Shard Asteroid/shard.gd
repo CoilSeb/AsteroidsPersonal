@@ -22,7 +22,7 @@ func _process(delta):
 	if position.x > screen_size.x:
 		position.x = 0
 	if position.y < 0:
-		position.y = screen_size.y
+		position.y = screen_size.y 
 	if position.y > screen_size.y:
 		position.y = 0
 		

@@ -76,7 +76,7 @@ func _process(_delta):
 	if upgrade_menu.visible == true:
 		if Input.is_action_just_pressed("reroll"):
 			level_up()
-	if Input.is_action_just_pressed("reroll") && levels > 0:
+	if Input.is_action_just_pressed("reroll"):
 		level_up()
 		
 	$PauseMenu/VBoxContainer/Health_Label.text = "Health: " + str(snapped(Global.health, 1)) + " / " + str(Global.max_health)

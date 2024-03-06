@@ -55,36 +55,36 @@ func set_random_direction_and_speed():
 
 
 func destroy():
-	# Instantiate two medium asteroids using call_deferred
-	call_deferred("create_and_add_asteroids")
+	Ui.increase_score(100) 
+	call_deferred("create_shards", 8.0)
+	queue_free()
 
 
 func damage_asteroid(damage):
 	health -= damage
-	if health <= 40:
+	if health <= 40 && health > 30:
 		crack_1.visible = true
-	if health <= 30:
+		call_deferred("create_shards", 3.0)
+	if health <= 30 && health > 20:
 		crack_2.visible = true
-	if health <= 20:
+		call_deferred("create_shards", 3.0)
+	if health <= 20 && health > 10:
 		crack_3.visible = true
-	if health <= 10:
+		call_deferred("create_shards", 1.0)
+	if health <= 10 && health > 0:
 		crack_4.visible = true 
+		call_deferred("create_shards", 2.0)
 	if health <= 0:
 		destroy()
 
 
-func create_and_add_asteroids():
+func create_shards(num: float):
 	var i = 0;
-	for k in range(8):
+	for k in range(num):
+		print(i)
 		var shard = shard_scene.instantiate()
 		shard.position = position
 		var angle = i * PI
 		shard.direction = Vector2(cos(angle), sin(angle))
-		i += 0.25
+		i += 2.0/num
 		get_parent().add_child(shard)
-	
-	# Increase Score 
-	Ui.increase_score(100) 
-
-	# Queue the big asteroid for deletion
-	queue_free()
