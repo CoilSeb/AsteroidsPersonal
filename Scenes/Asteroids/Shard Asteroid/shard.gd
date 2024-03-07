@@ -8,6 +8,8 @@ var old_position: Vector2
 var velocity: Vector2
 var rotation_speed
 var damage = 15
+var health = 100
+var max_health = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,7 +32,7 @@ func _process(delta):
 	rotation += rotation_speed * delta
 
 func damage_asteroid(_damage):
-	queue_free()
+	health -= damage
 
 
 func _on_timer_timeout():

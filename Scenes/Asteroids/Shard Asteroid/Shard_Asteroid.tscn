@@ -16,26 +16,26 @@ script = ExtResource("1_v41mm")
 texture_filter = 1
 texture = ExtResource("2_6dvf6")
 
-[node name="Crack1" type="Sprite2D" parent="Sprite2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-24, -57, -11, -57, 0, -54, 17, -57, 33, -52, 42, -41, 54, -30, 54, -8, 53, -5, 55, 2, 55, 11, 53, 17, 59, 25, 58, 40, 53, 45, 44, 46, 30, 53, 8, 53, -1, 50, -14, 52, -26, 56, -34, 50, -44, 45, -47, 39, -47, 30, -56, 18, -59, 4, -59, -6, -48, -25, -45, -35, -38, -42, -32, -42, -27, -49)
+
+[node name="Crack1" type="Sprite2D" parent="."]
 visible = false
 texture_filter = 1
 texture = ExtResource("3_bi12l")
 
-[node name="Crack2" type="Sprite2D" parent="Sprite2D"]
+[node name="Crack2" type="Sprite2D" parent="."]
 visible = false
 texture_filter = 1
 texture = ExtResource("4_htbst")
 
-[node name="Crack3" type="Sprite2D" parent="Sprite2D"]
+[node name="Crack3" type="Sprite2D" parent="."]
 visible = false
 texture_filter = 1
 texture = ExtResource("5_kcdtt")
 
-[node name="Crack4" type="Sprite2D" parent="Sprite2D"]
+[node name="Crack4" type="Sprite2D" parent="."]
 visible = false
 texture_filter = 1
 texture = ExtResource("6_0wnji")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
-polygon = PackedVector2Array(-24, -57, -11, -57, 0, -54, 17, -57, 33, -52, 42, -41, 54, -30, 54, -8, 53, -5, 55, 2, 55, 11, 53, 17, 59, 25, 58, 40, 53, 45, 44, 46, 30, 53, 8, 53, -1, 50, -14, 52, -26, 56, -34, 50, -44, 45, -47, 39, -47, 30, -56, 18, -59, 4, -59, -6, -48, -25, -45, -35, -38, -42, -32, -42, -27, -49)

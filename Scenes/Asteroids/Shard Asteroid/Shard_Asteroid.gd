@@ -1,10 +1,11 @@
 extends Area2D
 
+const EXPERIENCE = preload("res://Scenes/Experience/Experience.tscn")
 @onready var Ui = get_parent().get_node("UI")
-@onready var crack_1 = $Sprite2D/Crack1
-@onready var crack_2 = $Sprite2D/Crack2
-@onready var crack_3 = $Sprite2D/Crack3
-@onready var crack_4 = $Sprite2D/Crack4
+@onready var crack_1 = $Crack1
+@onready var crack_2 = $Crack2
+@onready var crack_3 = $Crack3
+@onready var crack_4 = $Crack4
 
 var shard_scene = preload("res://Scenes/Asteroids/Shard Asteroid/shard.tscn")
 var screen_size
@@ -63,16 +64,24 @@ func destroy():
 func damage_asteroid(damage):
 	health -= damage
 	if health <= 40 && health > 30:
-		crack_1.visible = true
+		$Sprite2D.hide()
+		crack_1.show()
+	if health <= 40 && health > 39:
 		call_deferred("create_shards", 3.0)
 	if health <= 30 && health > 20:
-		crack_2.visible = true
+		crack_1.hide()
+		crack_2.show()
+	if health <= 30 && health > 29:
 		call_deferred("create_shards", 3.0)
 	if health <= 20 && health > 10:
-		crack_3.visible = true
+		crack_2.hide()
+		crack_3.show()
+	if health <= 20 && health > 19:
 		call_deferred("create_shards", 1.0)
 	if health <= 10 && health > 0:
-		crack_4.visible = true 
+		crack_3.hide()
+		crack_4.show() 
+	if health <= 10 && health > 9:
 		call_deferred("create_shards", 2.0)
 	if health <= 0:
 		destroy()
@@ -81,10 +90,15 @@ func damage_asteroid(damage):
 func create_shards(num: float):
 	var i = 0;
 	for k in range(num):
-		print(i)
 		var shard = shard_scene.instantiate()
 		shard.position = position
 		var angle = i * PI
 		shard.direction = Vector2(cos(angle), sin(angle))
 		i += 2.0/num
 		get_parent().add_child(shard)
+
+
+func make_exp():
+	var exp_shard = EXPERIENCE.instantiate()
+	exp_shard.position = self.position
+	self.get_parent().add_child(exp_shard)
