@@ -98,7 +98,7 @@ func damage_asteroid(damage):
 
 
 func create_shards(num: float):
-	var i = 0;
+	var i = int(rotation) % 10;
 	for k in range(num):
 		var shard = shard_scene.instantiate()
 		shard.position = position
@@ -111,4 +111,4 @@ func create_shards(num: float):
 func make_exp():
 	var exp_shard = EXPERIENCE.instantiate()
 	exp_shard.position = self.position + Vector2(randi_range(-10,10), randi_range(-10,10))
-	call_deferred("get_parent().add_child(exp_shard)")
+	get_parent().add_child(exp_shard)

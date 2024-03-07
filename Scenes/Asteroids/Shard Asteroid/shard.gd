@@ -32,7 +32,7 @@ func _process(delta):
 	rotation += rotation_speed * delta
 
 func damage_asteroid(_damage):
-	health -= damage
+	health -= 0
 
 
 func _on_timer_timeout():
