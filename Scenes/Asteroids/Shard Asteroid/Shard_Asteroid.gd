@@ -17,6 +17,10 @@ var damage = 50
 var old_position: Vector2
 var velocity: Vector2
 var rotation_speed
+var first_spawn = false
+var second_spawn = false
+var third_spawn = false
+var fourth_spawn = false
 
 
 func _ready():
@@ -66,24 +70,30 @@ func damage_asteroid(damage):
 	if health <= 40 && health > 30:
 		$Sprite2D.hide()
 		crack_1.show()
-	if health <= 40 && health > 39:
-		call_deferred("create_shards", 3.0)
+		if !first_spawn:
+			call_deferred("create_shards", 3.0)
+			first_spawn = true
 	if health <= 30 && health > 20:
 		crack_1.hide()
 		crack_2.show()
-	if health <= 30 && health > 29:
-		call_deferred("create_shards", 3.0)
+		if !second_spawn:
+			call_deferred("create_shards", 3.0)
+			second_spawn = true
 	if health <= 20 && health > 10:
 		crack_2.hide()
 		crack_3.show()
-	if health <= 20 && health > 19:
-		call_deferred("create_shards", 1.0)
+		if !third_spawn:
+			call_deferred("create_shards", 1.0)
+			third_spawn = true
 	if health <= 10 && health > 0:
 		crack_3.hide()
 		crack_4.show() 
-	if health <= 10 && health > 9:
-		call_deferred("create_shards", 2.0)
+		if !fourth_spawn:
+			call_deferred("create_shards", 2.0)
+			fourth_spawn = true
 	if health <= 0:
+		for i: int in range(2):
+			call_deferred("make_exp")
 		destroy()
 
 
@@ -100,5 +110,5 @@ func create_shards(num: float):
 
 func make_exp():
 	var exp_shard = EXPERIENCE.instantiate()
-	exp_shard.position = self.position
-	self.get_parent().add_child(exp_shard)
+	exp_shard.position = self.position + Vector2(randi_range(-10,10), randi_range(-10,10))
+	call_deferred("get_parent().add_child(exp_shard)")
