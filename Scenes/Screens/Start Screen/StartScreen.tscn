@@ -1,6 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://dt7sfk6670b88"]
+[gd_scene load_steps=4 format=3 uid="uid://dt7sfk6670b88"]
 
 [ext_resource type="Script" path="res://Scenes/Screens/Start Screen/StartScreen.gd" id="1_70b4p"]
+[ext_resource type="Shader" path="res://Scenes/UI/UI.gdshader" id="2_guaru"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_brg4k"]
+shader = ExtResource("2_guaru")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 2.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 5.0
+shader_parameter/distort_intensity = 0.001
+shader_parameter/noise_opacity = 0.1
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.0
+shader_parameter/aberration = 0.005
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.01
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = -1.145
+shader_parameter/vignette_opacity = 0.3
 
 [node name="Start_Screen" type="CanvasLayer"]
 script = ExtResource("1_70b4p")
@@ -72,6 +97,16 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_brg4k")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.997598)
+mouse_filter = 2
 
 [connection signal="pressed" from="Control/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Control/Exit" to="." method="_on_exit_pressed"]
