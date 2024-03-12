@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://c0jlxjxdu4vma" path="res://Scenes/UI/UI.tscn" id="2_u5fmq"]
 
 [node name="GameScene" type="Node2D"]
-z_index = -1
 script = ExtResource("1_m8r6t")
 metadata/_edit_horizontal_guides_ = []
 metadata/_edit_vertical_guides_ = []
