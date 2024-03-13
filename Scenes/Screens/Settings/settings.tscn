@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://d20tl5j7j0b1p"]
+
+[ext_resource type="Shader" path="res://Scenes/UI/UI.gdshader" id="1_rvgpc"]
+[ext_resource type="Script" path="res://Scenes/Screens/Settings/settings.gd" id="1_vgscm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qw2fw"]
+shader = ExtResource("1_rvgpc")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 2.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 5.0
+shader_parameter/distort_intensity = 0.001
+shader_parameter/noise_opacity = 0.1
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.0
+shader_parameter/aberration = 0.005
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.01
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = -0.65
+shader_parameter/vignette_opacity = 0.3
+
+[node name="Settings" type="CanvasLayer"]
+script = ExtResource("1_vgscm")
+
+[node name="HSlider" type="HSlider" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -153.5
+offset_top = -158.0
+offset_right = 153.5
+offset_bottom = -129.0
+grow_horizontal = 2
+grow_vertical = 0
+value = 100.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_qw2fw")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.997598)
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+metadata/_edit_group_ = true
+
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]

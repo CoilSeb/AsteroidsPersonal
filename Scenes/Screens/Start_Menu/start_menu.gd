@@ -1,7 +1,12 @@
 extends CanvasLayer
 
+@onready var color_rect = $ColorRect
+
 
 func _ready():
+	Global.shader_settings.connect(crt)
+	color_rect.material.set_shader_parameter("aberration", Global.aberration)
+	color_rect.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
 	$Gun_Text.visible = true
 
 
@@ -36,3 +41,8 @@ func delete_text():
 	for child in get_children():
 		if child.name.contains("Text"):
 			child.visible = false
+
+
+func crt(value):
+	color_rect.material.set_shader_parameter("aberration", Global.aberration)
+	color_rect.material.set_shader_parameter("grille_opacity", Global.grille_opacity)

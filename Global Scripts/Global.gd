@@ -38,10 +38,14 @@ const BURN_OUT = preload("res://Upgrades/Combo_Upgradess/burn_out.tres")
 
 signal update_max_health(value)
 signal update_health(value)
+signal shader_settings()
 
 var upgrades_test = start_upgrades.duplicate()
 
 var key_upgrades = []
+
+var grille_opacity = 0.3
+var aberration = 0.005
 
 
 func _ready():

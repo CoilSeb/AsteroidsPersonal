@@ -24,7 +24,7 @@ shader_parameter/brightness = 1.4
 shader_parameter/discolor = true
 shader_parameter/warp_amount = 0.01
 shader_parameter/clip_warp = false
-shader_parameter/vignette_intensity = -1.145
+shader_parameter/vignette_intensity = -0.65
 shader_parameter/vignette_opacity = 0.3
 
 [node name="Start_Menu" type="CanvasLayer"]
@@ -155,6 +155,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 0.997598)
 mouse_filter = 2
+color = Color(1, 1, 1, 0.564706)
 
 [connection signal="pressed" from="Control/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Control/Gun_Button" to="." method="_on_gun_button_pressed"]

@@ -26,7 +26,7 @@ shader_parameter/brightness = 1.4
 shader_parameter/discolor = true
 shader_parameter/warp_amount = 0.01
 shader_parameter/clip_warp = false
-shader_parameter/vignette_intensity = -0.685
+shader_parameter/vignette_intensity = -0.65
 shader_parameter/vignette_opacity = 0.3
 
 [node name="UI" type="CanvasLayer"]

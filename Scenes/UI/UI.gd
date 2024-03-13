@@ -21,6 +21,7 @@ extends CanvasLayer
 @onready var third_upgrade_button = $Upgrade_Menu/Third_Upgrade
 @onready var level_up_timer = $Level_Up_Timer
 @onready var levels_label = $Levels_Label
+@onready var color_rect = $ColorRect
 
 @onready var buttons = [
 	$Upgrade_Menu/First_Upgrade,
@@ -53,6 +54,9 @@ var upgrades = [
 
 
 func _ready():
+	Global.shader_settings.connect(crt)
+	color_rect.material.set_shader_parameter("aberration", Global.aberration)
+	color_rect.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
 	pause_button.connect("pressed", toggle_pause_menu)
 	resume_button.connect("pressed", _on_ResumeButton_pressed)
 	exit_button.connect("pressed", _on_ExitButton_pressed)
@@ -88,6 +92,12 @@ func _process(_delta):
 	$PauseMenu/VBoxContainer/Bullet_Velocity_Label.text = "Bullet Velocity: " + str(Global.bullet_velocity)
 	$PauseMenu/VBoxContainer/Move_Speed_Label.text = "Thrust: " + str(Global.move_speed)
 	$PauseMenu/VBoxContainer/Counter_Thrust_Label.text = "Counter Thrust: " + str(Global.counter_thrust)
+
+
+func crt(value):
+	color_rect.material.set_shader_parameter("aberration", Global.aberration)
+	color_rect.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
+
 
 func toggle_pause_menu():
 	get_tree().paused = !get_tree().paused

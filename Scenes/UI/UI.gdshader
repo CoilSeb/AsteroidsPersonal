@@ -43,7 +43,7 @@ uniform bool discolor = true; // Add a discolor effect simulating a VHS
 uniform float warp_amount :hint_range(0.0, 5.0) = 0.01; // Warp the texture edges simulating the curved glass of a CRT monitor or old TV.
 uniform bool clip_warp = false;
 
-uniform float vignette_intensity = -1.145; // Size of the vignette, how far towards the middle it should go.
+uniform float vignette_intensity = -0.65; // Size of the vignette, how far towards the middle it should go.
 uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.3;
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
