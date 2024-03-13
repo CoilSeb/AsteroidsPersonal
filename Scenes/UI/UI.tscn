@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0jlxjxdu4vma"]
+[gd_scene load_steps=7 format=3 uid="uid://c0jlxjxdu4vma"]
 
 [ext_resource type="Script" path="res://Scenes/UI/UI.gd" id="1_mphwc"]
 [ext_resource type="Texture2D" uid="uid://c81cyxo81c3w6" path="res://Sprites/UI/Bar-1.png.png" id="2_ky7pi"]
 [ext_resource type="Shader" path="res://Scenes/UI/UI.gdshader" id="3_2rjxw"]
 [ext_resource type="Texture2D" uid="uid://c416wpu8cpp4g" path="res://Sprites/UI/Pause_Button-1.png.png" id="3_vwkcr"]
+[ext_resource type="PackedScene" uid="uid://dqx32ytchstvp" path="res://Scenes/Screens/Settings/settings_menu.tscn" id="4_aie5g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dpj74"]
 shader = ExtResource("3_2rjxw")
@@ -24,7 +25,7 @@ shader_parameter/static_noise_intensity = 0.0
 shader_parameter/aberration = 0.003
 shader_parameter/brightness = 1.4
 shader_parameter/discolor = true
-shader_parameter/warp_amount = 0.01
+shader_parameter/warp_amount = 0.0
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = -0.65
 shader_parameter/vignette_opacity = 0.3
@@ -163,7 +164,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.427451)
+color = Color(0, 0, 0, 0.74902)
 
 [node name="First_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
@@ -331,7 +332,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.427451)
+color = Color(0, 0, 0, 0.74902)
 
 [node name="ResumeButton" type="Button" parent="PauseMenu"]
 layout_mode = 1
@@ -483,71 +484,8 @@ expand_icon = true
 wait_time = 0.5
 one_shot = true
 
-[node name="SettingsMenu" type="Control" parent="."]
+[node name="SettingsMenu" parent="." instance=ExtResource("4_aie5g")]
 visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SettingsBG" type="ColorRect" parent="SettingsMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="CRT_Label" type="Label" parent="SettingsMenu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -22.0
-offset_top = -47.0
-offset_right = 22.0
-offset_bottom = -13.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-text = "CRT"
-
-[node name="HSlider" type="HSlider" parent="SettingsMenu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -153.5
-offset_top = -14.5
-offset_right = 153.5
-offset_bottom = 14.5
-grow_horizontal = 2
-grow_vertical = 2
-value = 100.0
-
-[node name="ExitButton" type="Button" parent="SettingsMenu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.5
-offset_top = 160.0
-offset_right = 50.5
-offset_bottom = 240.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(50, 40)
-theme_override_font_sizes/font_size = 52
-text = "Exit"
 
 [node name="CRT_Shader" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_dpj74")
@@ -565,5 +503,3 @@ mouse_filter = 2
 [connection signal="pressed" from="Upgrade_Menu/Reroll_Button" to="." method="_on_reroll_button_pressed"]
 [connection signal="pressed" from="PauseMenu/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="PauseMenu/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="value_changed" from="SettingsMenu/HSlider" to="." method="_on_h_slider_value_changed"]
-[connection signal="pressed" from="SettingsMenu/ExitButton" to="." method="_on_exit_button_pressed"]

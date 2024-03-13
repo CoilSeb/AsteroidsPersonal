@@ -44,8 +44,9 @@ var upgrades_test = start_upgrades.duplicate()
 
 var key_upgrades = []
 
-var grille_opacity = 0.5
 var aberration = 0.003
+var grille_opacity = 0.5
+var fullscreen = false
 
 
 func _ready():

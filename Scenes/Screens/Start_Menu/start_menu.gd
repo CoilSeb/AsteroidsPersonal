@@ -13,6 +13,8 @@ func _ready():
 func _process(_delta):
 	if Input.is_action_just_pressed("shoot"):
 		_on_start_pressed()
+	if Input.is_action_just_pressed("Escape"):
+		_on_exit_pressed()
 	$Control/Current_Weapon_Label.text = "Current Weapon: \n" + Global.weapon
 
 
@@ -46,3 +48,7 @@ func delete_text():
 func crt(value):
 	color_rect.material.set_shader_parameter("aberration", Global.aberration)
 	color_rect.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
+
+
+func _on_exit_pressed():
+	get_tree().change_scene_to_file("res://Scenes/Screens/Start Screen/StartScreen.tscn")

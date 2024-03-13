@@ -76,8 +76,9 @@ func _ready():
 
 
 func _process(_delta):
-	if Input.is_action_just_pressed("Escape"):
-		toggle_pause_menu()
+	if !settings_menu.visible:
+		if Input.is_action_just_pressed("Escape"):
+			toggle_pause_menu()
 	if Global.health <= 0:
 		if Input.is_action_just_pressed("shoot"):
 			restart()
@@ -151,9 +152,9 @@ func restart():
 	if get_tree().paused:
 		upgrade_menu.visible = false
 		toggle_pause_menu()
-		GameScene.get_tree().reload_current_scene()
+		get_tree().change_scene_to_file("res://Scenes/Screens/Start_Menu/start_menu.tscn")
 	else:
-		GameScene.get_tree().reload_current_scene()
+		get_tree().change_scene_to_file("res://Scenes/Screens/Start_Menu/start_menu.tscn")
 
 
 func increase_score(amount):

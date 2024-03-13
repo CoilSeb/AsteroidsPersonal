@@ -25,6 +25,11 @@ func _on_start_pressed():
 	get_tree().change_scene_to_file("res://Scenes/Screens/Start_Menu/start_menu.tscn")
 
 
+func _on_exit_button_pressed():
+	#settings menu exit button
+	settings_menu.hide()
+
+
 func _on_settings_pressed():
 	settings_menu.show()
 
@@ -42,8 +47,3 @@ func _on_h_slider_value_changed(value):
 	Global.shader_settings.emit()
 	Global.aberration = value / 33333
 	Global.grille_opacity = value / 200
-
-
-func _on_exit_button_pressed():
-	#settings menu exit button
-	settings_menu.hide()

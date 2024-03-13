@@ -40,7 +40,7 @@ uniform float aberration : hint_range(-1.0, 1.0) = 0.003; // Chromatic aberratio
 uniform float brightness = 1.4; // When adding scanline gaps and grille the image can get very dark. Brightness tries to compensate for that.
 uniform bool discolor = true; // Add a discolor effect simulating a VHS
 
-uniform float warp_amount :hint_range(0.0, 5.0) = 0.01; // Warp the texture edges simulating the curved glass of a CRT monitor or old TV.
+uniform float warp_amount :hint_range(0.0, 5.0) = 0.0; // Warp the texture edges simulating the curved glass of a CRT monitor or old TV.
 uniform bool clip_warp = false;
 
 uniform float vignette_intensity = -0.65; // Size of the vignette, how far towards the middle it should go.

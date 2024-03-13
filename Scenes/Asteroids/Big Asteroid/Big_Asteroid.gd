@@ -6,6 +6,7 @@ extends Area2D
 @onready var crack_3 = $Sprite2D/Crack3
 @onready var crack_4 = $Sprite2D/Crack4
 
+const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
 var medium_asteroid_scene = preload("res://Scenes/Asteroids/Medium Asteroid/Medium_asteroid.tscn")
 var screen_size
 var speed: float
@@ -52,7 +53,6 @@ func set_random_direction_and_speed():
 
 
 func destroy():
-	# Instantiate two small asteroids using call_deferred
 	call_deferred("create_and_add_asteroids")
 
 
@@ -71,6 +71,11 @@ func damage_asteroid(damage):
 
 
 func create_and_add_asteroids():
+	var particles = ASTEROID_DEATH_PARTICLES.instantiate()
+	particles.position = self.position
+	get_parent().add_child(particles)
+	particles.one_shot = true
+	
 	# Instantate two small asteroids
 	var medium_asteroid1 = medium_asteroid_scene.instantiate()
 	var medium_asteroid2 = medium_asteroid_scene.instantiate()

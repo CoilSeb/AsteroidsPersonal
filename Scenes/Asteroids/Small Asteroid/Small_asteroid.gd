@@ -2,6 +2,7 @@ extends Area2D
 
 @onready var Ui = get_parent().get_node("UI")
 
+const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
 var exp_Scene = preload("res://Scenes/Experience/Experience.tscn")
 var screen_size
 var speed: float
@@ -48,6 +49,11 @@ func set_random_direction_and_speed():
 
 
 func destroy():
+	var particles = ASTEROID_DEATH_PARTICLES.instantiate()
+	particles.position = self.position
+	get_parent().add_child(particles)
+	particles.one_shot = true
+	
 	Ui.increase_score(300)
 	self.queue_free()
 
