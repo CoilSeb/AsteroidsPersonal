@@ -20,7 +20,7 @@ uniform bool overlay = true;
 
 uniform float scanlines_opacity : hint_range(0.0, 1.0) = 0.0;
 uniform float scanlines_width : hint_range(0.0, 0.5) = 0.25;
-uniform float grille_opacity : hint_range(0.0, 1.0) = 0.3;
+uniform float grille_opacity : hint_range(0.0, 1.0) = 0.5;
 uniform vec2 resolution = vec2(640.0, 480.0); // Set the number of rows and columns the texture will be divided in. Scanlines and grille will make a square based on these values
 
 uniform bool pixelate = false; // Fill each square ("pixel") with a sampled color, creating a pixel look and a more accurate representation of how a CRT monitor would work.
@@ -36,7 +36,7 @@ uniform float noise_speed = 5.0; // There is a movement in the noise pattern tha
 
 uniform float static_noise_intensity : hint_range(0.0, 1.0) = 0.0;
 
-uniform float aberration : hint_range(-1.0, 1.0) = 0.005; // Chromatic aberration, a distortion on each color channel.
+uniform float aberration : hint_range(-1.0, 1.0) = 0.003; // Chromatic aberration, a distortion on each color channel.
 uniform float brightness = 1.4; // When adding scanline gaps and grille the image can get very dark. Brightness tries to compensate for that.
 uniform bool discolor = true; // Add a discolor effect simulating a VHS
 

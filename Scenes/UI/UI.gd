@@ -21,7 +21,10 @@ extends CanvasLayer
 @onready var third_upgrade_button = $Upgrade_Menu/Third_Upgrade
 @onready var level_up_timer = $Level_Up_Timer
 @onready var levels_label = $Levels_Label
-@onready var color_rect = $ColorRect
+@onready var settings_menu = $SettingsMenu
+@onready var h_slider = $SettingsMenu/HSlider
+@onready var settings_exit_button = $SettingsMenu/ExitButton
+@onready var crt_shader = $CRT_Shader
 
 @onready var buttons = [
 	$Upgrade_Menu/First_Upgrade,
@@ -55,8 +58,9 @@ var upgrades = [
 
 func _ready():
 	Global.shader_settings.connect(crt)
-	color_rect.material.set_shader_parameter("aberration", Global.aberration)
-	color_rect.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
+	h_slider.value = Global.grille_opacity * 200
+	crt_shader.material.set_shader_parameter("aberration", Global.aberration)
+	crt_shader.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
 	pause_button.connect("pressed", toggle_pause_menu)
 	resume_button.connect("pressed", _on_ResumeButton_pressed)
 	exit_button.connect("pressed", _on_ExitButton_pressed)
@@ -94,9 +98,20 @@ func _process(_delta):
 	$PauseMenu/VBoxContainer/Counter_Thrust_Label.text = "Counter Thrust: " + str(Global.counter_thrust)
 
 
-func crt(value):
-	color_rect.material.set_shader_parameter("aberration", Global.aberration)
-	color_rect.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
+func crt():
+	crt_shader.material.set_shader_parameter("aberration", Global.aberration)
+	crt_shader.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
+
+
+func _on_h_slider_value_changed(value):
+	Global.shader_settings.emit()
+	Global.aberration = value / 33333
+	Global.grille_opacity = value / 200
+
+
+func _on_exit_button_pressed():
+	#settings menu exit button
+	settings_menu.hide()
 
 
 func toggle_pause_menu():
@@ -117,9 +132,14 @@ func _on_ResumeButton_pressed():
 		get_tree().paused = true
 
 
+func _on_settings_button_pressed():
+	settings_menu.show()
+
+
 func _on_ExitButton_pressed():
+	#pause menu exit button
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://Scenes/Screens/Start Screen/StartScreen.tscn")	
+	get_tree().change_scene_to_file("res://Scenes/Screens/Start Screen/StartScreen.tscn")
 
 
 func _on_restart_pressed():

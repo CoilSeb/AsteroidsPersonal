@@ -10,7 +10,7 @@ shader = ExtResource("3_2rjxw")
 shader_parameter/overlay = true
 shader_parameter/scanlines_opacity = 0.0
 shader_parameter/scanlines_width = 0.25
-shader_parameter/grille_opacity = 0.3
+shader_parameter/grille_opacity = 0.5
 shader_parameter/resolution = Vector2(640, 480)
 shader_parameter/pixelate = false
 shader_parameter/roll = false
@@ -21,7 +21,7 @@ shader_parameter/distort_intensity = 0.001
 shader_parameter/noise_opacity = 0.1
 shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.0
-shader_parameter/aberration = 0.005
+shader_parameter/aberration = 0.003
 shader_parameter/brightness = 1.4
 shader_parameter/discolor = true
 shader_parameter/warp_amount = 0.01
@@ -315,7 +315,6 @@ text = "Reroll
 "
 
 [node name="PauseMenu" type="Control" parent="."]
-visible = false
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 15
@@ -351,23 +350,6 @@ pivot_offset = Vector2(104, 40)
 theme_override_font_sizes/font_size = 52
 text = "Resume"
 
-[node name="ExitButton" type="Button" parent="PauseMenu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.5
-offset_top = 60.0
-offset_right = 50.5
-offset_bottom = 140.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(50, 40)
-theme_override_font_sizes/font_size = 52
-text = "Exit"
-
 [node name="Restart" type="Button" parent="PauseMenu"]
 layout_mode = 1
 anchors_preset = 8
@@ -383,6 +365,40 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 52
 text = "Restart Game"
+
+[node name="SettingsButton" type="Button" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = 60.0
+offset_right = 50.5
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 40)
+theme_override_font_sizes/font_size = 52
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = 160.0
+offset_right = 50.5
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 40)
+theme_override_font_sizes/font_size = 52
+text = "Exit"
 
 [node name="Pause_High_Score_Label" type="Label" parent="PauseMenu"]
 layout_mode = 2
@@ -463,7 +479,77 @@ theme_override_font_sizes/font_size = 32
 icon = ExtResource("3_vwkcr")
 expand_icon = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Level_Up_Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="SettingsMenu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsBG" type="ColorRect" parent="SettingsMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CRT_Label" type="Label" parent="SettingsMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -47.0
+offset_right = 22.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "CRT"
+
+[node name="HSlider" type="HSlider" parent="SettingsMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.5
+offset_top = -14.5
+offset_right = 153.5
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+
+[node name="ExitButton" type="Button" parent="SettingsMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = 160.0
+offset_right = 50.5
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 40)
+theme_override_font_sizes/font_size = 52
+text = "Exit"
+
+[node name="CRT_Shader" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_dpj74")
 anchors_preset = 15
 anchor_right = 1.0
@@ -472,13 +558,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Level_Up_Timer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/First_Upgrade" to="." method="_on_first_upgrade_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Second_Upgrade" to="." method="_on_second_upgrade_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Third_Upgrade" to="." method="_on_third_upgrade_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Reroll_Button" to="." method="_on_reroll_button_pressed"]
 [connection signal="pressed" from="PauseMenu/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PauseMenu/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="value_changed" from="SettingsMenu/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="SettingsMenu/ExitButton" to="." method="_on_exit_button_pressed"]
