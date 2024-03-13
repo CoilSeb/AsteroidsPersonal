@@ -51,6 +51,7 @@ var fullscreen = false
 
 func _ready():
 	Global.high_score = load_score()
+	Global.fullscreen = load_fullscreen()
 
 func add_key_upgrades(key_upgrade):
 	key_upgrades.append(key_upgrade)
@@ -102,7 +103,9 @@ func refresh():
 func save_score():
 	var saved_score = FileAccess.open("user://high_score.save", FileAccess.WRITE)
 	var save_text = JSON.stringify({"High Score": Global.high_score})
+	var fullscreen_bool = JSON.stringify({"Fullscreen": fullscreen})
 	saved_score.store_line(save_text)
+	saved_score.store_line(fullscreen_bool)
 
 
 func load_score():
@@ -119,6 +122,24 @@ func load_score():
 		return 0
 	var data = json.get_data()
 	return data["High Score"]
+
+
+func load_fullscreen():
+	if not FileAccess.file_exists("user://high_score.save"):
+		print_debug("File does not exist")
+		return 0
+	var saved_score = FileAccess.open("user://high_score.save", FileAccess.READ)
+	var json_string
+	for i: int in range(2):
+		json_string = saved_score.get_line()
+	
+	var json = JSON.new()
+	var parse_result = json.parse(json_string)
+	if not parse_result == OK:
+		print_debug("No JSON")
+		return 0
+	var data = json.get_data()
+	return data["Fullscreen"] 
 
 
 func get_score_text(value):
