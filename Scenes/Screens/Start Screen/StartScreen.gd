@@ -28,7 +28,6 @@ func _on_start_pressed():
 func _on_exit_button_pressed():
 	#settings menu exit button
 	settings_menu.hide()
-	Global.save_score()
 
 
 func _on_settings_pressed():

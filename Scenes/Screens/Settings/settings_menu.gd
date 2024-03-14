@@ -26,7 +26,9 @@ func _on_h_slider_value_changed(value):
 
 func _on_exit_button_pressed():
 	#settings menu exit button
-	settings_menu.hide()
+	if settings_menu.visible:
+		Global.save_score()
+		settings_menu.hide()
 
 
 func _on_check_button_toggled(toggled_on):
