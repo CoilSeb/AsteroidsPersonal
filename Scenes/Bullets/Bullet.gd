@@ -13,13 +13,13 @@ func _ready():
 func _process(delta):
 	position += direction * bullet_speed * delta
 	if position.x < 0:
-		queue_free()
+		position.x = screen_size.x
 	if position.x > screen_size.x:
-		queue_free()
+		position.x = 0
 	if position.y < 0:
-		queue_free()
+		position.y = screen_size.y
 	if position.y > screen_size.y:
-		queue_free()
+		position.y = 0
 
 
 func _on_area_entered(area):
@@ -27,4 +27,8 @@ func _on_area_entered(area):
 		queue_free()
 		return
 	area.damage_asteroid(damage)
+	queue_free()
+
+
+func _on_timer_timeout():
 	queue_free()

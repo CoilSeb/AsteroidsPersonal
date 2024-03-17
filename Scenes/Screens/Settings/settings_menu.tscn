@@ -37,7 +37,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 text = "CRT"
 
-[node name="HSlider" type="HSlider" parent="."]
+[node name="CRT_Slider" type="HSlider" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -86,6 +86,25 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 32
 text = "Fullscreen"
 
-[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
+[node name="CRT_Line_Edit" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 160.0
+offset_top = -26.5
+offset_right = 288.0
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "100"
+alignment = 1
+max_length = 3
+
+[connection signal="value_changed" from="CRT_Slider" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="text_submitted" from="CRT_Line_Edit" to="." method="_on_crt_line_edit_text_submitted"]

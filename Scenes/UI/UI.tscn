@@ -208,6 +208,7 @@ offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
 
 [node name="Second_Upgrade" type="Button" parent="Upgrade_Menu"]
@@ -252,6 +253,7 @@ offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
 
 [node name="Third_Upgrade" type="Button" parent="Upgrade_Menu"]
@@ -296,6 +298,7 @@ offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
 
 [node name="Reroll_Button" type="Button" parent="Upgrade_Menu"]

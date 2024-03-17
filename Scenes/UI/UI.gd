@@ -22,8 +22,6 @@ extends CanvasLayer
 @onready var level_up_timer = $Level_Up_Timer
 @onready var levels_label = $Levels_Label
 @onready var settings_menu = $SettingsMenu
-@onready var h_slider = $SettingsMenu/HSlider
-@onready var settings_exit_button = $SettingsMenu/ExitButton
 @onready var crt_shader = $CRT_Shader
 
 @onready var buttons = [
@@ -58,7 +56,6 @@ var upgrades = [
 
 func _ready():
 	Global.shader_settings.connect(crt)
-	h_slider.value = Global.grille_opacity * 200
 	crt_shader.material.set_shader_parameter("aberration", Global.aberration)
 	crt_shader.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
 	pause_button.connect("pressed", toggle_pause_menu)
@@ -102,12 +99,6 @@ func _process(_delta):
 func crt():
 	crt_shader.material.set_shader_parameter("aberration", Global.aberration)
 	crt_shader.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
-
-
-func _on_h_slider_value_changed(value):
-	Global.shader_settings.emit()
-	Global.aberration = value / 33333
-	Global.grille_opacity = value / 200
 
 
 func _on_exit_button_pressed():

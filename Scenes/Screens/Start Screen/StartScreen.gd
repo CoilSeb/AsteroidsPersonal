@@ -3,13 +3,11 @@ extends CanvasLayer
 @onready var high_score_label = $Control/High_Score
 @onready var color_rect = $ColorRect
 @onready var settings_menu = $SettingsMenu
-@onready var h_slider = $SettingsMenu/HSlider
 @onready var exit_button = $SettingsMenu/ExitButton
 
 
 func _ready():
 	Global.shader_settings.connect(crt)
-	h_slider.value = Global.grille_opacity * 200
 	color_rect.material.set_shader_parameter("aberration", Global.aberration)
 	color_rect.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
 	high_score_label.text = "High Score: " + Global.get_score_text(Global.high_score)
@@ -41,9 +39,3 @@ func _on_exit_pressed():
 func crt():
 	color_rect.material.set_shader_parameter("aberration", Global.aberration)
 	color_rect.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
-
-
-func _on_h_slider_value_changed(value):
-	Global.shader_settings.emit()
-	Global.aberration = value / 33333
-	Global.grille_opacity = value / 200

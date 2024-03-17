@@ -44,6 +44,7 @@ var upgrades_test = start_upgrades.duplicate()
 
 var key_upgrades = []
 
+var crt_value = 100.0
 var aberration = 0.003
 var grille_opacity = 0.5
 var fullscreen = false
@@ -103,7 +104,8 @@ func save_score():
 	var save_file = FileAccess.open("user://save_file.save", FileAccess.WRITE)
 	save_file.store_var(high_score)
 	save_file.store_var(fullscreen)
-	print("saved")
+	save_file.store_var(crt_value)
+	#print("saved: ", crt_value)
 
 
 func load_score():
@@ -111,9 +113,15 @@ func load_score():
 		var save_file = FileAccess.open("user://save_file.save", FileAccess.READ)
 		high_score = save_file.get_var(high_score)
 		fullscreen = save_file.get_var(fullscreen)
+		crt_value = save_file.get_var(crt_value)
+		aberration = crt_value / 33333.0
+		grille_opacity = crt_value / 200.0
+		#print("loaded: ", crt_value)
 	else:
 		high_score = 0
 		fullscreen = false
+		crt_value = 100.0
+		
 
 
 func get_score_text(value):
