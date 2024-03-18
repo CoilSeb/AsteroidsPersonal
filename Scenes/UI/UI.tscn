@@ -179,6 +179,9 @@ offset_right = -370.0
 offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_left = NodePath("../Third_Upgrade")
+focus_neighbor_right = NodePath("../Second_Upgrade")
+focus_neighbor_bottom = NodePath("../Reroll_Button")
 icon_alignment = 1
 vertical_icon_alignment = 0
 
@@ -224,6 +227,9 @@ offset_right = 200.0
 offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_left = NodePath("../First_Upgrade")
+focus_neighbor_right = NodePath("../Third_Upgrade")
+focus_neighbor_bottom = NodePath("../Reroll_Button")
 icon_alignment = 1
 vertical_icon_alignment = 0
 
@@ -269,6 +275,9 @@ offset_right = 770.0
 offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_left = NodePath("../Second_Upgrade")
+focus_neighbor_right = NodePath("../First_Upgrade")
+focus_neighbor_bottom = NodePath("../Reroll_Button")
 icon_alignment = 1
 vertical_icon_alignment = 0
 
@@ -314,6 +323,9 @@ offset_right = 77.5
 offset_bottom = -110.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_neighbor_left = NodePath("../First_Upgrade")
+focus_neighbor_top = NodePath("../Second_Upgrade")
+focus_neighbor_right = NodePath("../Third_Upgrade")
 theme_override_font_sizes/font_size = 52
 text = "Reroll
 "
@@ -351,6 +363,8 @@ offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(104, 40)
+focus_neighbor_top = NodePath("../ExitButton")
+focus_neighbor_bottom = NodePath("../Restart")
 theme_override_font_sizes/font_size = 52
 text = "Resume"
 
@@ -367,6 +381,8 @@ offset_right = 175.0
 offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_top = NodePath("../ResumeButton")
+focus_neighbor_bottom = NodePath("../SettingsButton")
 theme_override_font_sizes/font_size = 52
 text = "Restart Game"
 
@@ -384,6 +400,8 @@ offset_bottom = 140.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(50, 40)
+focus_neighbor_top = NodePath("../Restart")
+focus_neighbor_bottom = NodePath("../ExitButton")
 theme_override_font_sizes/font_size = 52
 text = "Settings"
 
@@ -401,6 +419,8 @@ offset_bottom = 240.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(50, 40)
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath("../ResumeButton")
 theme_override_font_sizes/font_size = 52
 text = "Exit"
 

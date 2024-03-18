@@ -4,6 +4,8 @@ extends CanvasLayer
 @onready var color_rect = $ColorRect
 @onready var settings_menu = $SettingsMenu
 @onready var exit_button = $SettingsMenu/ExitButton
+@onready var start = $Control/Start
+@onready var settings_button = $Control/Settings
 
 
 func _ready():
@@ -11,11 +13,12 @@ func _ready():
 	color_rect.material.set_shader_parameter("aberration", Global.aberration)
 	color_rect.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
 	high_score_label.text = "High Score: " + Global.get_score_text(Global.high_score)
+	start.grab_focus()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if Input.is_action_just_pressed("shoot"):
-		_on_start_pressed()
+	pass
 
 
 func _on_start_pressed():
@@ -39,3 +42,9 @@ func _on_exit_pressed():
 func crt():
 	color_rect.material.set_shader_parameter("aberration", Global.aberration)
 	color_rect.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
+
+
+func _on_settings_visibility_changed():
+	if settings_menu != null:
+		if !settings_menu.visible:
+			settings_button.grab_focus()

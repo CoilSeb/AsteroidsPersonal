@@ -50,6 +50,8 @@ offset_right = 153.5
 offset_bottom = 14.5
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_top = NodePath("../CheckButton")
+focus_neighbor_bottom = NodePath("../ExitButton")
 value = 100.0
 
 [node name="ExitButton" type="Button" parent="."]
@@ -66,6 +68,8 @@ offset_bottom = 240.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(50, 40)
+focus_neighbor_top = NodePath("../CRT_Slider")
+focus_neighbor_bottom = NodePath("../CheckButton")
 theme_override_font_sizes/font_size = 52
 text = "Exit"
 
@@ -82,7 +86,8 @@ offset_right = 83.5
 offset_bottom = -79.0
 grow_horizontal = 2
 grow_vertical = 2
-focus_mode = 0
+focus_neighbor_top = NodePath("../ExitButton")
+focus_neighbor_bottom = NodePath("../CRT_Slider")
 theme_override_font_sizes/font_size = 32
 text = "Fullscreen"
 
@@ -104,6 +109,7 @@ text = "100"
 alignment = 1
 max_length = 3
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="value_changed" from="CRT_Slider" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]

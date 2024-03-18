@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @onready var color_rect = $ColorRect
+@onready var start = $Control/Start
 
 
 func _ready():
@@ -8,6 +9,7 @@ func _ready():
 	color_rect.material.set_shader_parameter("aberration", Global.aberration)
 	color_rect.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
 	$Gun_Text.visible = true
+	start.grab_focus()
 
 
 func _process(_delta):

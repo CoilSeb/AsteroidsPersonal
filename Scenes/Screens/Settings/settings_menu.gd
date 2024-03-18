@@ -12,6 +12,7 @@ func _ready():
 	crt_slider.value = Global.crt_value
 	crt_line_edit.text = str(Global.crt_value)
 	check_button.button_pressed = Global.fullscreen
+	check_button.grab_focus()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,3 +57,9 @@ func has_letters(your_string):
 func _on_crt_line_edit_text_submitted(new_text):
 	if !has_letters(new_text) && float(new_text) <= 100:
 		crt_slider.value = float(new_text)
+
+
+func _on_visibility_changed():
+	#if settings_menu != null:
+		if self.visible:
+			check_button.grab_focus()
