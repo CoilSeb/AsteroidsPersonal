@@ -8,6 +8,7 @@ extends CanvasLayer
 @onready var exit_button  = $PauseMenu/ExitButton
 @onready var pause_menu = $PauseMenu
 @onready var restart_button = $Restart
+@onready var exit = $Exit
 @onready var restart_pause = $PauseMenu/Restart
 @onready var high_score_label = $High_Score
 @onready var health_bar = $Health_Bar
@@ -74,15 +75,15 @@ func _ready():
 
 func _process(_delta):
 	if !settings_menu.visible:
-		if Input.is_action_just_pressed("Escape"):
+		if Input.is_action_just_pressed("ui_cancel"):
 			toggle_pause_menu()
 	if Global.health <= 0:
-		if Input.is_action_just_pressed("shoot"):
+		if Input.is_action_just_pressed("ui_select"):
 			restart()
 	if upgrade_menu.visible == true:
 		if Input.is_action_just_pressed("reroll"):
 			level_up()
-	if Input.is_action_just_pressed("reroll") && levels > 0:
+	if Input.is_action_just_pressed("reroll"): #&& levels > 0:
 		level_up()
 		
 	$PauseMenu/VBoxContainer/Health_Label.text = "Health: " + str(snapped(Global.health, 1)) + " / " + str(Global.max_health)
@@ -109,12 +110,13 @@ func _on_exit_button_pressed():
 func toggle_pause_menu():
 	get_tree().paused = !get_tree().paused
 	pause_menu.visible = !pause_menu.visible
+	resume_button.grab_focus()
 	if upgrade_menu.visible == true:
 		get_tree().paused = true
 		for button in buttons:
 			button.visible != button.visible
-		return
-	resume_button.grab_focus()
+	if upgrade_menu.visible && !pause_menu.visible:
+		second_upgrade_button.grab_focus()
 
 
 func _on_ResumeButton_pressed():
@@ -164,6 +166,8 @@ func update_health(amount):
 		score_label.set("theme_override_font_sizes/font_size", 56)
 		score_label.position.y = Global.screen_size.y/2 - 45
 		restart_button.visible = true
+		restart_button.grab_focus()
+		exit.show()
 		high_score_label.visible = true
 		high_score_label.text = "High Score: " + Global.get_score_text(Global.high_score)
 		if score > Global.high_score:
@@ -234,6 +238,7 @@ func _on_reroll_button_pressed():
 
 
 func level_up():
+	second_upgrade_button.grab_focus()
 	if !upgrade_menu.visible:
 		levels -= 1
 	update_max_exp()

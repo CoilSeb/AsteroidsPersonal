@@ -13,9 +13,7 @@ func _ready():
 
 
 func _process(_delta):
-	if Input.is_action_just_pressed("shoot"):
-		_on_start_pressed()
-	if Input.is_action_just_pressed("Escape"):
+	if Input.is_action_just_pressed("ui_cancel"):
 		_on_exit_pressed()
 	$Control/Current_Weapon_Label.text = "Current Weapon: \n" + Global.weapon
 

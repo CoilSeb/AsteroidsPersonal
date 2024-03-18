@@ -14,7 +14,7 @@ func _ready():
 	color_rect.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
 	high_score_label.text = "High Score: " + Global.get_score_text(Global.high_score)
 	start.grab_focus()
-	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -42,9 +42,3 @@ func _on_exit_pressed():
 func crt():
 	color_rect.material.set_shader_parameter("aberration", Global.aberration)
 	color_rect.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
-
-
-func _on_settings_visibility_changed():
-	if settings_menu != null:
-		if !settings_menu.visible:
-			settings_button.grab_focus()

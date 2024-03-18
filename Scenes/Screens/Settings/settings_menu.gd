@@ -7,6 +7,10 @@ extends Control
 @onready var check_button = $CheckButton
 @onready var crt_line_edit = $CRT_Line_Edit
 
+@export var my_scenes_button: Button
+
+var focused = false
+
 
 func _ready():
 	crt_slider.value = Global.crt_value
@@ -17,7 +21,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("Escape"):
+	if Input.is_action_just_pressed("ui_cancel"):
 		_on_exit_button_pressed()
 
 
@@ -60,6 +64,8 @@ func _on_crt_line_edit_text_submitted(new_text):
 
 
 func _on_visibility_changed():
-	#if settings_menu != null:
+	if settings_menu != null:
 		if self.visible:
 			check_button.grab_focus()
+		else:
+			my_scenes_button.grab_focus()

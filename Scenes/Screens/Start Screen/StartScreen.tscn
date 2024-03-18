@@ -121,8 +121,9 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 
-[node name="SettingsMenu" parent="." instance=ExtResource("2_cwi8m")]
+[node name="SettingsMenu" parent="." node_paths=PackedStringArray("my_scenes_button") instance=ExtResource("2_cwi8m")]
 visible = false
+my_scenes_button = NodePath("../Control/Settings")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_brg4k")

@@ -73,22 +73,6 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 128
 text = "High Score: "
 
-[node name="Restart" type="Button" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -334.5
-offset_top = 227.5
-offset_right = 334.5
-offset_bottom = 372.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 100
-text = "Restart Game"
-
 [node name="Health_Bar_BG" type="TextureProgressBar" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
@@ -503,12 +487,49 @@ theme_override_font_sizes/font_size = 32
 icon = ExtResource("3_vwkcr")
 expand_icon = true
 
+[node name="Restart" type="Button" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -334.5
+offset_top = 227.5
+offset_right = 334.5
+offset_bottom = 372.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../Exit")
+focus_neighbor_bottom = NodePath("../Exit")
+theme_override_font_sizes/font_size = 100
+text = "Restart Game"
+
+[node name="Exit" type="Button" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -93.0
+offset_top = -160.0
+offset_right = 93.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_top = NodePath("../Restart")
+focus_neighbor_bottom = NodePath("../Restart")
+theme_override_font_sizes/font_size = 100
+text = "Exit"
+
 [node name="Level_Up_Timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 
-[node name="SettingsMenu" parent="." instance=ExtResource("4_aie5g")]
+[node name="SettingsMenu" parent="." node_paths=PackedStringArray("my_scenes_button") instance=ExtResource("4_aie5g")]
 visible = false
+my_scenes_button = NodePath("../PauseMenu/SettingsButton")
 
 [node name="CRT_Shader" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_dpj74")
@@ -519,10 +540,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/First_Upgrade" to="." method="_on_first_upgrade_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Second_Upgrade" to="." method="_on_second_upgrade_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Third_Upgrade" to="." method="_on_third_upgrade_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Reroll_Button" to="." method="_on_reroll_button_pressed"]
 [connection signal="pressed" from="PauseMenu/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="PauseMenu/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_ExitButton_pressed"]
