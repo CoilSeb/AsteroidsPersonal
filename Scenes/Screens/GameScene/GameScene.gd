@@ -44,7 +44,6 @@ func _process(_delta):
 	enemies = get_tree().get_nodes_in_group("Enemy")
 
 
-
 func game_over():
 	
 	return
@@ -92,23 +91,24 @@ func _on_spawn_timer_timeout():
 
 
 func spawn_wave():
-	if wave_num == 0 && enemies.size() == 0:
+	if wave_num == 0 && enemies.size() <= 3:
 		wave_num += 1
-		for i in range(5):
+		for i in range(7):
 			spawn_basic_Asteroid()
+		for i in range(3):
 			spawn_special_Asteroid()
 		return
-	if wave_num == 1 && enemies.size() == 0:
+	if wave_num == 1 && enemies.size() <= 3:
 		wave_num += 1
-		for i in range(9):
+		for i in range(6):
 			spawn_basic_Asteroid()
-		for i in range(1):
+		for i in range(4):
 			spawn_special_Asteroid()
 		return
-	if wave_num == 2 && enemies.size() == 0:
+	if wave_num == 2 && enemies.size() <= 3:
 		wave_num += 1
 		for i in range(8):
 			spawn_basic_Asteroid()
-		for i in range(2):
+		for i in range(4):
 			spawn_special_Asteroid()
 		return

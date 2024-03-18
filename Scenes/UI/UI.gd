@@ -83,7 +83,7 @@ func _process(_delta):
 	if upgrade_menu.visible == true:
 		if Input.is_action_just_pressed("reroll"):
 			level_up()
-	if Input.is_action_just_pressed("reroll"): #&& levels > 0:
+	if Input.is_action_just_pressed("reroll") && (levels > 0 || Global.god_mode):
 		level_up()
 		
 	$PauseMenu/VBoxContainer/Health_Label.text = "Health: " + str(snapped(Global.health, 1)) + " / " + str(Global.max_health)
@@ -210,6 +210,9 @@ func update_max_exp():
 	if levels > 1:
 		levels_label.text = "'R' to level up (" + str(levels) + " levels stored)"
 		levels_label.show()
+	if Global.god_mode:
+		levels_label.text = "'R' to level up (INF levels stored)"
+		levels_label.show()
 
 
 func _on_first_upgrade_pressed():
@@ -242,7 +245,7 @@ func level_up():
 	if !upgrade_menu.visible:
 		levels -= 1
 	update_max_exp()
-	if levels == 0:
+	if levels == 0 && !Global.god_mode:
 		levels_label.hide()
 	get_tree().paused = true
 	upgrade_menu.visible = true

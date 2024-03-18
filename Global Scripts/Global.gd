@@ -19,6 +19,7 @@ var weapon
 var laser_made
 var can_shoot
 var burn_out
+var god_mode = false
 
 var start_upgrades = [
 	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
@@ -33,6 +34,7 @@ var start_upgrades = [
 ]
 const REGEN_WITH_DEGEN = preload("res://Upgrades/Combo_Upgradess/regen_with_degen.tres")
 const NO_GUN_ALL_COLLISION = preload("res://Upgrades/Combo_Upgradess/no_gun_all_collision.tres")
+var no_gun_all_collision = false
 const BIG_RESIST = preload("res://Upgrades/Combo_Upgradess/big_resist.tres")
 const BURN_OUT = preload("res://Upgrades/Combo_Upgradess/burn_out.tres")
 
@@ -72,6 +74,8 @@ func add_key_upgrades(key_upgrade):
 func refresh():
 	upgrades_test = start_upgrades.duplicate()
 	
+	god_mode = false
+	no_gun_all_collision = false
 	health = 300
 	max_health = health
 	health_regen = 0
@@ -97,7 +101,6 @@ func refresh():
 	exp = 0
 	exp_threshold = 30
 	key_upgrades.clear()
-	
 
 
 func save_score():

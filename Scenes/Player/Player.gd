@@ -19,6 +19,7 @@ var weapon = Global.weapon
 var can_move = true
 var burn_out_var = 200
 var burn_out_time = burn_out_var
+var cheat_code = ""
 
 
 func _ready():
@@ -58,10 +59,10 @@ func _physics_process(delta):
 		using_mouse = true
 	if using_mouse == true:
 		rotate(get_angle_to(get_global_mouse_position()) + (0.5 * PI))
-	if Input.is_action_pressed("ui_up") && can_move:
+	if Input.is_action_pressed("move_forward") && can_move:
 		velocity += ((Vector2(0, -1) * thrust * delta).rotated(rotation))
 		thrust_sprite_2d.show()
-	elif Input.is_action_just_pressed("ui_down"):
+	elif Input.is_action_just_pressed("move_backward"):
 		velocity += ((Vector2(0, 10) * counter_thrust * delta).rotated(rotation))
 	else:
 		thrust_sprite_2d.hide()
@@ -71,31 +72,32 @@ func _physics_process(delta):
 		
 	move_and_collide(velocity * delta)
 		
-	if Global.burn_out:
-		$Burn_Out_Bar_BG.show()
-		$Burn_Out_Bar_BG.max_value = burn_out_var
-		$Burn_Out_Bar_BG.value = $Burn_Out_Bar_BG.max_value
-		$Burn_Out_Bar.show()
-		$Burn_Out_Bar.max_value = burn_out_var
-		$Burn_Out_Bar.value = burn_out_time
-	if !Global.can_shoot && burn_out_time < burn_out_var && Global.burn_out:
-		$Burn_Out_Bar.tint_progress = Color(0.576, 0.576, 0.576)
-		burn_out_time += 0.75
-	if !Global.can_shoot && burn_out_time >= burn_out_var && Global.burn_out:
-		$Burn_Out_Bar.tint_progress = Color(255, 255, 255)
-		Global.can_shoot = true
-	if Global.can_shoot && Global.burn_out && burn_out_time < burn_out_var:
-		burn_out_time += 1.5
+	if !Global.no_gun_all_collision:
+		if Global.burn_out:
+			$Burn_Out_Bar_BG.show()
+			$Burn_Out_Bar_BG.max_value = burn_out_var
+			$Burn_Out_Bar_BG.value = $Burn_Out_Bar_BG.max_value
+			$Burn_Out_Bar.show()
+			$Burn_Out_Bar.max_value = burn_out_var
+			$Burn_Out_Bar.value = burn_out_time
+		if !Global.can_shoot && burn_out_time < burn_out_var && Global.burn_out:
+			$Burn_Out_Bar.tint_progress = Color(0.576, 0.576, 0.576)
+			burn_out_time += 0.75
+		if !Global.can_shoot && burn_out_time >= burn_out_var && Global.burn_out:
+			$Burn_Out_Bar.tint_progress = Color(255, 255, 255)
+			Global.can_shoot = true
+		if Global.can_shoot && Global.burn_out && burn_out_time < burn_out_var:
+			burn_out_time += 1.5
 		
 	# Shooting
 	if Global.can_shoot:
 		if weapon == "Laser":
-			if Input.is_action_pressed("ui_select") && !Input.is_action_pressed("ui_up"):
+			if Input.is_action_pressed("ui_select") && !Input.is_action_pressed("move_forward"):
 				if !Global.laser_made:
 					make_laser()
 				laserInstance.global_position = global_position + Vector2(0, -15).rotated(rotation)
 				laserInstance.direction = Vector2.UP.rotated(rotation) 
-			if Input.is_action_just_released("ui_select") || Input.is_action_pressed("ui_up") || Input.is_action_pressed("move_backward"):
+			if Input.is_action_just_released("ui_select") || Input.is_action_pressed("move_forward") || Input.is_action_pressed("move_backward"):
 				destroy_laser()
 				return
 		if weapon == "Gun":
@@ -115,6 +117,27 @@ func _physics_process(delta):
 	if Global.health <= 0:
 		destroy()
 		GameScene.player = true
+		
+	if Input.is_action_just_pressed("ui_cancel"):
+		cheat_code = ""
+	if Input.is_action_just_pressed("H"):
+		cheat_code = cheat_code + "H"
+	if Input.is_action_just_pressed("E"):
+		cheat_code = cheat_code + "E"
+	if Input.is_action_just_pressed("L"):
+		cheat_code = cheat_code + "L"
+	if Input.is_action_just_pressed("O"):
+		cheat_code = cheat_code + "O"
+	if Input.is_action_just_pressed("shoot"):
+		cheat_code = cheat_code + " "
+	if Input.is_action_just_pressed("move_forward"):
+		cheat_code = cheat_code + "W"
+	if Input.is_action_just_pressed("reroll"):
+		cheat_code = cheat_code + "R"
+	if Input.is_action_just_pressed("ui_right"):
+		cheat_code = cheat_code + "D"
+	if cheat_code == "HELLO WORLD":
+		god_mode()
 
 
 func make_laser():
@@ -166,3 +189,12 @@ func destroy():
 		weapons.queue_free()
 	queue_free()
 	GameScene.player = false
+
+
+func god_mode():
+	Global.god_mode = true
+	Global.max_health = 30000000
+	Global.health = 30000000
+	Ui.update_max_health(0)
+	Ui.update_health(0)
+	Global.damage_reduction = 30000000

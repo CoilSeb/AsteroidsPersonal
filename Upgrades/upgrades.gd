@@ -57,6 +57,7 @@ func big_resist():
 	Global.move_speed /= 2
 
 func no_gun_all_collision():
+	Global.no_gun_all_collision = true
 	Global.can_shoot = false
 	Global.collision_damage *= upgrade_value
 
