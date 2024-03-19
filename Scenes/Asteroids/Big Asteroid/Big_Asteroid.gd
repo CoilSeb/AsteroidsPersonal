@@ -49,7 +49,6 @@ func _process(delta):
 	old_position = position
 	
 	if weighted && !counted:
-		print("+", weight)
 		Global.enemy_weight += weight
 		counted = true
 
@@ -94,7 +93,6 @@ func create_and_add_asteroids():
 	
 	if weighted:
 		Global.enemy_weight -= weight
-		print("-", weight)
 		medium_asteroid1.weighted = true
 		medium_asteroid2.weighted = true
 

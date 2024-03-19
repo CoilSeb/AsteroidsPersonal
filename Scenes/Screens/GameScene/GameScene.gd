@@ -123,6 +123,13 @@ func spawn_wave():
 		for i in range(4):
 			spawn_special_Asteroid_with_weight()
 		return
+	if wave_num == 3 && Global.enemy_weight <= 12:
+		#wave_num += 1
+		for i in range(10):
+			spawn_basic_Asteroid_with_weight()
+		for i in range(4):
+			spawn_special_Asteroid_with_weight()
+		return
 
 
 func _on_timer_timeout():
@@ -131,6 +138,3 @@ func _on_timer_timeout():
 		spawn_special_Asteroid()
 	else:
 		spawn_basic_Asteroid()
-	print("enemy spawned")
-	if Global.enemy_weight > 0:
-		print(Global.enemy_weight)

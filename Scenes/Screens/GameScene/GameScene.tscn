@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cl0s7o04ccses"]
+[gd_scene load_steps=4 format=3 uid="uid://cl0s7o04ccses"]
 
 [ext_resource type="Script" path="res://Scenes/Screens/GameScene/GameScene.gd" id="1_m8r6t"]
 [ext_resource type="PackedScene" uid="uid://c0jlxjxdu4vma" path="res://Scenes/UI/UI.tscn" id="2_u5fmq"]
+[ext_resource type="Texture2D" uid="uid://bb16cwspjti6c" path="res://Sprites/Other/BG-1.png (1).png" id="3_annfb"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_m8r6t")
@@ -20,6 +21,15 @@ autostart = true
 [node name="WaveTimer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+offset = Vector2(1024, 720)
+transform = Transform2D(1, 0, 0, 1, 1024, 720)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("3_annfb")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

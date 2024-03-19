@@ -45,7 +45,6 @@ func _process(delta):
 	old_position = position
 	
 	if weighted && !counted:
-		print("+", weight)
 		Global.enemy_weight += weight
 		counted = true
 
@@ -59,7 +58,6 @@ func set_random_direction_and_speed():
 func destroy():
 	if weighted:
 		Global.enemy_weight -= weight
-		print("-", weight)
 	var particles = ASTEROID_DEATH_PARTICLES.instantiate()
 	particles.position = self.position
 	get_parent().add_child(particles)

@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://dyqcmx1cj35wv"]
 
 [ext_resource type="Script" path="res://Scenes/Asteroids/Big Asteroid/Big_Asteroid.gd" id="1_dbir2"]
-[ext_resource type="Texture2D" uid="uid://diia43eytv2d" path="res://Sprites/Asteroids/Big_Asteroid-1.png.png" id="2_pfos4"]
-[ext_resource type="Texture2D" uid="uid://cf4ytmn00xnyf" path="res://Sprites/Asteroids/Big_Crack1-1.png.png" id="3_wa68l"]
-[ext_resource type="Texture2D" uid="uid://ce4j7lrf3lvas" path="res://Sprites/Asteroids/Big_Crack2-2.png.png" id="4_n8tjc"]
-[ext_resource type="Texture2D" uid="uid://cs4hs8gfxfsa6" path="res://Sprites/Asteroids/Big_Crack3-3.png.png" id="5_vawms"]
-[ext_resource type="Texture2D" uid="uid://cbo0cofmvltld" path="res://Sprites/Asteroids/Big_Crack4-4.png.png" id="6_d2254"]
+[ext_resource type="Texture2D" uid="uid://d0miblu24pqpv" path="res://Sprites/Asteroids/Big_Asteroid-1.png-1.png.png" id="2_biqs4"]
+[ext_resource type="Texture2D" uid="uid://ch7odur0llejy" path="res://Sprites/Asteroids/Big_Crack1-1.png-1.png.png" id="3_en5h0"]
+[ext_resource type="Texture2D" uid="uid://dhcsyp8vtftx2" path="res://Sprites/Asteroids/Big_Crack2-2.png-1.png.png" id="4_7jc6j"]
+[ext_resource type="Texture2D" uid="uid://cwdc3hhka1yvo" path="res://Sprites/Asteroids/Big_Crack3-3.png-1.png.png" id="5_y5sm6"]
+[ext_resource type="Texture2D" uid="uid://ba4gbf633cy2b" path="res://Sprites/Asteroids/Big_Crack4-4.png-1.png.png" id="6_wifd0"]
 
 [node name="Big_Asteroid" type="Area2D" groups=["Enemy"]]
 collision_layer = 4
@@ -14,27 +14,28 @@ script = ExtResource("1_dbir2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_pfos4")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_biqs4")
 
 [node name="Crack1" type="Sprite2D" parent="Sprite2D"]
 visible = false
 texture_filter = 1
-texture = ExtResource("3_wa68l")
+texture = ExtResource("3_en5h0")
 
 [node name="Crack2" type="Sprite2D" parent="Sprite2D"]
 visible = false
 texture_filter = 1
-texture = ExtResource("4_n8tjc")
+texture = ExtResource("4_7jc6j")
 
 [node name="Crack3" type="Sprite2D" parent="Sprite2D"]
 visible = false
 texture_filter = 1
-texture = ExtResource("5_vawms")
+texture = ExtResource("5_y5sm6")
 
 [node name="Crack4" type="Sprite2D" parent="Sprite2D"]
 visible = false
 texture_filter = 1
-texture = ExtResource("6_d2254")
+texture = ExtResource("6_wifd0")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
