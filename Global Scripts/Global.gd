@@ -21,7 +21,7 @@ var can_shoot
 var burn_out
 var god_mode = false
 
-var enemies = 0
+var enemy_weight = 0
 
 var start_upgrades = [
 	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
@@ -103,6 +103,7 @@ func refresh():
 	exp = 0
 	exp_threshold = 30
 	key_upgrades.clear()
+	enemy_weight = 0
 
 
 func save_score():

@@ -17,7 +17,9 @@ var damage = 50
 var old_position: Vector2
 var velocity: Vector2
 var rotation_speed
-var num = 0
+var weighted = false
+var counted = false
+var weight = 4
 
 
 func _ready():
@@ -45,6 +47,11 @@ func _process(delta):
 	var new_position = self.position 
 	velocity = (new_position - old_position) / delta
 	old_position = position
+	
+	if weighted && !counted:
+		print("+", weight)
+		Global.enemy_weight += weight
+		counted = true
 
 
 func set_random_direction_and_speed():
@@ -55,8 +62,6 @@ func set_random_direction_and_speed():
 
 func destroy():
 	call_deferred("create_and_add_asteroids")
-	if num == 1:
-		Global.enemies -= 1
 
 
 func damage_asteroid(damage):
@@ -86,6 +91,12 @@ func create_and_add_asteroids():
 	# Set their positions to the position of the medium asteroid
 	medium_asteroid1.position = self.position
 	medium_asteroid2.position = self.position
+	
+	if weighted:
+		Global.enemy_weight -= weight
+		print("-", weight)
+		medium_asteroid1.weighted = true
+		medium_asteroid2.weighted = true
 
 	# Add them as children of the medium asteroid's parent
 	self.get_parent().add_child(medium_asteroid1)

@@ -22,7 +22,9 @@ var first_spawn = false
 var second_spawn = false
 var third_spawn = false
 var fourth_spawn = false
-var num = 0
+var weighted = false
+var counted = false
+var weight = 4
 
 
 func _ready():
@@ -53,6 +55,10 @@ func _process(delta):
 	velocity = (new_position - old_position) / delta
 	old_position = position
 	
+	if weighted && !counted:
+		print("+", weight)
+		Global.enemy_weight += weight
+		counted = true
 
 
 func set_random_direction_and_speed():
@@ -62,8 +68,9 @@ func set_random_direction_and_speed():
 
 
 func destroy():
-	if num == 1:
-		Global.enemies -= 1
+	if weighted:
+		Global.enemy_weight -= weight
+		print("-", weight)
 	var particles = ASTEROID_DEATH_PARTICLES.instantiate()
 	particles.position = self.position
 	get_parent().add_child(particles)
