@@ -20,6 +20,8 @@ var can_move = true
 var burn_out_var = 200
 var burn_out_time = burn_out_var
 var cheat_code = ""
+var rs_look = Vector2(0,0)
+var deadzone = 1
 
 
 func _ready():
@@ -48,13 +50,18 @@ func _physics_process(delta):
 	if position.y > screen_size.y:
 		position.y = 0
 	
+	rs_look.y = Input.get_joy_axis(0, JOY_AXIS_LEFT_Y)
+	rs_look.x = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
+	if rs_look.length() >= deadzone:
+		rotation = rs_look.angle() + (0.5 * PI)
+	
+	rotation -= (Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")) * rotateSpeed * delta
+	
 	# Movement
 	if Input.is_action_pressed("ui_left"):
 		using_mouse = false
-		rotation += -1 * rotateSpeed * delta
 	if Input.is_action_pressed("ui_right"):
 		using_mouse = false
-		rotation += 1 * rotateSpeed * delta
 	if Input.is_action_pressed("M1") || Input.is_action_pressed("M2"):
 		using_mouse = true
 	if using_mouse == true:
@@ -92,23 +99,23 @@ func _physics_process(delta):
 	# Shooting
 	if Global.can_shoot:
 		if weapon == "Laser":
-			if Input.is_action_pressed("ui_select") && !Input.is_action_pressed("move_forward"):
+			if Input.is_action_pressed("shoot") && !Input.is_action_pressed("move_forward"):
 				if !Global.laser_made:
 					make_laser()
 				laserInstance.global_position = global_position + Vector2(0, -15).rotated(rotation)
 				laserInstance.direction = Vector2.UP.rotated(rotation) 
-			if Input.is_action_just_released("ui_select") || Input.is_action_pressed("move_forward") || Input.is_action_pressed("move_backward"):
+			if Input.is_action_just_released("shoot") || Input.is_action_pressed("move_forward") || Input.is_action_pressed("move_backward"):
 				destroy_laser()
 				return
 		if weapon == "Gun":
-			if (Input.is_action_pressed("ui_select") || Input.is_action_pressed("M2")) && shootTimer.time_left == 0:
+			if (Input.is_action_pressed("shoot") || Input.is_action_pressed("M2")) && shootTimer.time_left == 0:
 				var bulletInstance = bulletScene.instantiate()
 				get_parent().add_child(bulletInstance)
 				bulletInstance.global_position = global_position
 				bulletInstance.direction = Vector2.UP.rotated(rotation)
 				shootTimer.start(Global.attack_speed)
 		#Burn Out
-		if Global.burn_out && Input.is_action_pressed("ui_select") && Global.can_shoot:
+		if Global.burn_out && Input.is_action_pressed("shoot") && Global.can_shoot:
 			burn_out_time -= 2.5
 			if burn_out_time <= 0:
 				destroy_laser()

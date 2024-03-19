@@ -15,6 +15,7 @@ var damage = 25
 var old_position: Vector2
 var velocity: Vector2
 var rotation_speed
+var num = 0
 
 
 func _ready():
@@ -52,7 +53,9 @@ func set_random_direction_and_speed():
 
 func destroy():
 	# Instantiate two small asteroids using call_deferred
-	call_deferred("create_and_add_asteroids")	
+	call_deferred("create_and_add_asteroids")
+	if num == 1:
+		Global.enemies -= 1
 
 
 func damage_asteroid(damage):

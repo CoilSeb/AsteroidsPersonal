@@ -10,6 +10,7 @@ var rotation_speed
 var damage = 15
 var health = 100
 var max_health = 100
+var num = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

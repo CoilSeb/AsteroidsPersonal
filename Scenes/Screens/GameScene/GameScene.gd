@@ -11,7 +11,6 @@ var screen_size
 var wave_timer_time = 10
 var wave_time = 35
 var wave_num = 0
-var enemies
 
 var basic_asteroid_scenes = {
 	0: preload("res://Scenes/Asteroids/Medium Asteroid/Medium_asteroid.tscn"),
@@ -41,7 +40,6 @@ func _process(_delta):
 		player = true
 	#if wave_timer.time_left == 0:
 		#spawn_wave()
-	enemies = get_tree().get_nodes_in_group("Enemy")
 
 
 func game_over():
@@ -68,6 +66,22 @@ func spawn_special_Asteroid():
 	new_asteroid.global_position = generate_spawn_point()
 
 
+func spawn_basic_Asteroid_for_wave():
+	var new_asteroid = basic_asteroid_scenes[randi_range(0,basic_asteroid_scenes.size() - 1)].instantiate()
+	add_child(new_asteroid)
+	new_asteroid.global_position = generate_spawn_point()
+	new_asteroid.num = 1
+	Global.enemies += 1
+
+
+func spawn_special_Asteroid_for_wave():
+	var new_asteroid = special_asteroid_scenes[randi_range(0,special_asteroid_scenes.size() - 1)].instantiate()
+	add_child(new_asteroid)
+	new_asteroid.global_position = generate_spawn_point()
+	new_asteroid.num = 1
+	Global.enemies += 1
+
+
 func random_vector(left, right, bottom, top):
 	return Vector2(randf_range(left, right), randf_range(bottom, top))
 
@@ -91,24 +105,38 @@ func _on_spawn_timer_timeout():
 
 
 func spawn_wave():
-	if wave_num == 0 && enemies.size() <= 3:
+	if wave_num == 0 && Global.enemies <= 3:
+		Global.enemies = 0
 		wave_num += 1
 		for i in range(7):
-			spawn_basic_Asteroid()
+			spawn_basic_Asteroid_for_wave()
 		for i in range(3):
-			spawn_special_Asteroid()
+			spawn_special_Asteroid_for_wave()
 		return
-	if wave_num == 1 && enemies.size() <= 3:
+	if wave_num == 1 && Global.enemies <= 3:
+		Global.enemies = 0
 		wave_num += 1
 		for i in range(6):
-			spawn_basic_Asteroid()
+			spawn_basic_Asteroid_for_wave()
 		for i in range(4):
-			spawn_special_Asteroid()
+			spawn_special_Asteroid_for_wave()
 		return
-	if wave_num == 2 && enemies.size() <= 3:
+	if wave_num == 2 && Global.enemies <= 3:
+		Global.enemies = 0
 		wave_num += 1
 		for i in range(8):
-			spawn_basic_Asteroid()
+			spawn_basic_Asteroid_for_wave()
 		for i in range(4):
-			spawn_special_Asteroid()
+			spawn_special_Asteroid_for_wave()
 		return
+
+
+func _on_timer_timeout():
+	var i = randi_range(0,19)
+	if i == 0:
+		spawn_special_Asteroid()
+	else:
+		spawn_basic_Asteroid()
+	print("enemy spawned")
+	if Global.enemies > 0:
+		print(Global.enemies)

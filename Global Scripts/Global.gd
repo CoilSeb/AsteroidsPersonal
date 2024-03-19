@@ -21,6 +21,8 @@ var can_shoot
 var burn_out
 var god_mode = false
 
+var enemies = 0
+
 var start_upgrades = [
 	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
 	preload("res://Upgrades/Solo_Upgrades/attack_speed_up.tres"),

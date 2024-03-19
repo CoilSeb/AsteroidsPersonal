@@ -22,6 +22,7 @@ var first_spawn = false
 var second_spawn = false
 var third_spawn = false
 var fourth_spawn = false
+var num = 0
 
 
 func _ready():
@@ -61,6 +62,8 @@ func set_random_direction_and_speed():
 
 
 func destroy():
+	if num == 1:
+		Global.enemies -= 1
 	var particles = ASTEROID_DEATH_PARTICLES.instantiate()
 	particles.position = self.position
 	get_parent().add_child(particles)

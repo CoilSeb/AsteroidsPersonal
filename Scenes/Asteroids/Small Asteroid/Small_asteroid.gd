@@ -13,6 +13,7 @@ var damage = 12.5
 var old_position: Vector2
 var velocity: Vector2
 var rotation_speed
+var num = 0
 
 
 func _ready():
@@ -49,6 +50,8 @@ func set_random_direction_and_speed():
 
 
 func destroy():
+	if num == 1:
+		Global.enemies -= 1
 	var particles = ASTEROID_DEATH_PARTICLES.instantiate()
 	particles.position = self.position
 	get_parent().add_child(particles)
