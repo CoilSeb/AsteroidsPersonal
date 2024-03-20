@@ -5,7 +5,9 @@ extends Area2D
 @onready var crack_2 = $Sprite2D/Crack2
 @onready var crack_3 = $Sprite2D/Crack3
 @onready var crack_4 = $Sprite2D/Crack4
+@onready var audio_stream_player_2d = $AudioStreamPlayer2D
 
+const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
 const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
 var medium_asteroid_scene = preload("res://Scenes/Asteroids/Medium Asteroid/Medium_asteroid.tscn")
 var screen_size
@@ -67,17 +69,26 @@ func damage_asteroid(damage):
 	health -= damage
 	if health <= 40:
 		crack_1.visible = true
+		audio_stream_player_2d.play()
 	if health <= 30:
 		crack_2.visible = true
+		audio_stream_player_2d.play()
 	if health <= 20:
 		crack_3.visible = true
+		audio_stream_player_2d.play()
 	if health <= 10:
 		crack_4.visible = true 
+		audio_stream_player_2d.play()
 	if health <= 0:
 		destroy()
 
 
 func create_and_add_asteroids():
+	var audio_player = AUDIO_CONTROL.instantiate()
+	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")
+	audio_player.volume_db = 0
+	get_parent().add_child(audio_player)
+	
 	var particles = ASTEROID_DEATH_PARTICLES.instantiate()
 	particles.position = self.position
 	get_parent().add_child(particles)
