@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var death_sound = $Death_Sound
 @onready var weapon_sound = $Weapon_Sound
 
+const PLAYER_DEATH = preload("res://Particles/player_death.tscn")
 var bulletScene = preload("res://Scenes/Bullets/Bullet.tscn")
 var laserScene = preload("res://Scenes/Laser/laser.tscn")
 const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
@@ -207,6 +208,10 @@ func check_velocity(area):
 
 
 func destroy():
+	var player_death = PLAYER_DEATH.instantiate()
+	player_death.position = self.position
+	get_parent().add_child(player_death)
+	player_death.one_shot = true
 	for weapons in get_tree().get_nodes_in_group("weapon"):
 		weapons.queue_free()
 	var audio_player = AUDIO_CONTROL.instantiate()
