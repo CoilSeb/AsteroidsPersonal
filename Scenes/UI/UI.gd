@@ -24,6 +24,7 @@ extends CanvasLayer
 @onready var levels_label = $Levels_Label
 @onready var settings_menu = $SettingsMenu
 @onready var crt_shader = $CRT_Shader
+@onready var audio_stream_player_2d = $AudioStreamPlayer2D
 
 @onready var buttons = [
 	$Upgrade_Menu/First_Upgrade,
@@ -56,6 +57,7 @@ var upgrades = [
 
 
 func _ready():
+	audio_stream_player_2d.play()
 	Global.shader_settings.connect(crt)
 	crt_shader.material.set_shader_parameter("aberration", Global.aberration)
 	crt_shader.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
@@ -102,12 +104,8 @@ func crt():
 	crt_shader.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
 
 
-func _on_exit_button_pressed():
-	#settings menu exit button
-	settings_menu.hide()
-
-
 func toggle_pause_menu():
+	audio_stream_player_2d.play()
 	get_tree().paused = !get_tree().paused
 	pause_menu.visible = !pause_menu.visible
 	resume_button.grab_focus()
@@ -120,6 +118,7 @@ func toggle_pause_menu():
 
 
 func _on_ResumeButton_pressed():
+	audio_stream_player_2d.play()
 	get_tree().paused = false
 	pause_menu.visible = false
 	if upgrade_menu.visible == true:
@@ -129,6 +128,7 @@ func _on_ResumeButton_pressed():
 
 
 func _on_settings_button_pressed():
+	audio_stream_player_2d.play()
 	settings_menu.show()
 
 
@@ -237,6 +237,7 @@ func _on_third_upgrade_pressed():
 
 
 func _on_reroll_button_pressed():
+	audio_stream_player_2d.play()
 	level_up()
 
 
@@ -274,6 +275,7 @@ func get_upgrades():
 
 
 func apply_my_upgrade(my_upgrade, index):
+	audio_stream_player_2d.play()
 	if my_upgrade == null:
 		return
 	Global.upgrades_test.pop_at(index)

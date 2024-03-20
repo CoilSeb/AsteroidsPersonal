@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0jlxjxdu4vma"]
+[gd_scene load_steps=8 format=3 uid="uid://c0jlxjxdu4vma"]
 
 [ext_resource type="Script" path="res://Scenes/UI/UI.gd" id="1_mphwc"]
 [ext_resource type="Texture2D" uid="uid://c81cyxo81c3w6" path="res://Sprites/UI/Bar-1.png.png" id="2_ky7pi"]
 [ext_resource type="Shader" path="res://Scenes/UI/UI.gdshader" id="3_2rjxw"]
 [ext_resource type="Texture2D" uid="uid://c416wpu8cpp4g" path="res://Sprites/UI/Pause_Button-1.png.png" id="3_vwkcr"]
 [ext_resource type="PackedScene" uid="uid://dqx32ytchstvp" path="res://Scenes/Screens/Settings/settings_menu.tscn" id="4_aie5g"]
+[ext_resource type="AudioStream" uid="uid://dri08vbesoouk" path="res://Audio/Sounds/hurt_c_08-102842.mp3" id="6_pm0wa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dpj74"]
 shader = ExtResource("3_2rjxw")
@@ -539,6 +540,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_pm0wa")
 
 [connection signal="pressed" from="Upgrade_Menu/First_Upgrade" to="." method="_on_first_upgrade_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Second_Upgrade" to="." method="_on_second_upgrade_pressed"]

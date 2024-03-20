@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpvi6xh6s2s7t"]
+[gd_scene load_steps=3 format=3 uid="uid://cb77s3b0irsy2"]
+
+[ext_resource type="Texture2D" uid="uid://b8dw468orcq5s" path="res://Sprites/Other/Player_Death_-1.png.png" id="1_uqcvc"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2vkyy"]
 lifetime_randomness = 0.4
@@ -11,7 +13,7 @@ scale_min = 4.0
 scale_max = 4.0
 
 [node name="GPUParticles2D" type="GPUParticles2D"]
-amount = 100
+amount = 15
 process_material = SubResource("ParticleProcessMaterial_2vkyy")
-lifetime = 1.5
+texture = ExtResource("1_uqcvc")
 explosiveness = 1.0
