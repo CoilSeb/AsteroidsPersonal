@@ -173,6 +173,10 @@ func destroy_laser():
 
 
 func _on_area_2d_area_entered(area):
+	if area.is_in_group("Moon_Guy"):
+		Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
+		area.damage_asteroid(Global.collision_damage)
+		check_velocity(area)
 	if area.is_in_group("Big_Asteroid") || area.is_in_group("Shard_Asteroid"): #&& immunity_timer.get_time_left() == 0:
 		Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
 		area.damage_asteroid(Global.collision_damage)

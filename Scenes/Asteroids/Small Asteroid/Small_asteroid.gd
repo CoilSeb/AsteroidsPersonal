@@ -17,11 +17,15 @@ var rotation_speed
 var weighted = false
 var counted = false
 var weight = 1
+var boss = false
+var rotate_angle = 0.0
+
 
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	set_random_direction_and_speed()
+	if !boss:
+		set_random_direction_and_speed()
 	rotation_speed = randf_range(-1, 1)
 	add_to_group("Small_Asteroid")
 
@@ -39,6 +43,9 @@ func _process(delta):
 	
 	# Moving 
 	position += direction * speed * delta
+	if boss:
+		rotate_angle += 0.1 * PI
+		position += Vector2(cos(rotate_angle), sin(rotate_angle))
 	rotation += rotation_speed * delta
 	
 	var new_position = self.position 
