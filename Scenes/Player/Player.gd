@@ -3,9 +3,12 @@ extends CharacterBody2D
 @onready var GameScene = get_parent()
 @onready var Ui = get_parent().get_node("UI")
 @onready var thrust_sprite_2d = $Thrust_Sprite2D
+@onready var death_sound = $Death_Sound
+@onready var weapon_sound = $Weapon_Sound
 
 var bulletScene = preload("res://Scenes/Bullets/Bullet.tscn")
 var laserScene = preload("res://Scenes/Laser/laser.tscn")
+const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
 var laserInstance
 var screen_size
 var rotateSpeed = 5
@@ -34,6 +37,13 @@ func _ready():
 	immunity_timer.set_one_shot(true)
 	immunity_timer.start(2)
 	Ui.increase_score(0)
+	match Global.weapon:
+		"Gun":
+			weapon_sound.stream = load("res://Audio/Sounds/gun.mp3")
+			weapon_sound.pitch_scale = 2
+			weapon_sound.volume_db -= 10
+		"Laser":
+			pass
 
 
 func _physics_process(delta):
@@ -113,6 +123,7 @@ func _physics_process(delta):
 				get_parent().add_child(bulletInstance)
 				bulletInstance.global_position = global_position
 				bulletInstance.direction = Vector2.UP.rotated(rotation)
+				weapon_sound.play()
 				shootTimer.start(Global.attack_speed)
 		#Burn Out
 		if Global.burn_out && Input.is_action_pressed("shoot") && Global.can_shoot:
@@ -183,6 +194,10 @@ func _on_area_2d_area_entered(area):
 			
 	if area.is_in_group("Destroy_Ring"):
 		Ui.update_exp(10)
+		var audio_player = AUDIO_CONTROL.instantiate()
+		audio_player.stream = load("res://Audio/Sounds/retro-game-sfx_jump-bumpwav-14853.mp3")
+		audio_player.volume_db += 20
+		get_parent().add_child(audio_player)
 		area.get_parent().destroy()
 
 
@@ -194,6 +209,9 @@ func check_velocity(area):
 func destroy():
 	for weapons in get_tree().get_nodes_in_group("weapon"):
 		weapons.queue_free()
+	var audio_player = AUDIO_CONTROL.instantiate()
+	audio_player.stream = load("res://Audio/Sounds/retro-video-game-death-95730.mp3")
+	get_parent().add_child(audio_player)
 	queue_free()
 	GameScene.player = false
 

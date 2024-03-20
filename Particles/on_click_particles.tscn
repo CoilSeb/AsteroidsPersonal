@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccwbb4xiirxo7"]
+[gd_scene load_steps=2 format=3 uid="uid://dpvi6xh6s2s7t"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2vkyy"]
 lifetime_randomness = 0.4
@@ -11,6 +11,7 @@ scale_min = 4.0
 scale_max = 4.0
 
 [node name="GPUParticles2D" type="GPUParticles2D"]
-amount = 15
+amount = 100
 process_material = SubResource("ParticleProcessMaterial_2vkyy")
+lifetime = 1.5
 explosiveness = 1.0

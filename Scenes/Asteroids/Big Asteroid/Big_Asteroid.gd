@@ -86,7 +86,7 @@ func damage_asteroid(damage):
 func create_and_add_asteroids():
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")
-	audio_player.volume_db = 0
+	audio_player.volume_db -= 5
 	get_parent().add_child(audio_player)
 	
 	var particles = ASTEROID_DEATH_PARTICLES.instantiate()

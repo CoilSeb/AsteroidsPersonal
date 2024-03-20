@@ -2,6 +2,7 @@ extends Area2D
 
 @onready var Ui = get_parent().get_node("UI")
 
+const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
 const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
 var exp_Scene = preload("res://Scenes/Experience/Experience.tscn")
 var screen_size
@@ -56,6 +57,11 @@ func set_random_direction_and_speed():
 
 
 func destroy():
+	var audio_player = AUDIO_CONTROL.instantiate()
+	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")
+	audio_player.volume_db -= 5
+	get_parent().add_child(audio_player)
+	
 	if weighted:
 		Global.enemy_weight -= weight
 	var particles = ASTEROID_DEATH_PARTICLES.instantiate()

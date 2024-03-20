@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://oavtintayebl"]
+[gd_scene load_steps=6 format=3 uid="uid://oavtintayebl"]
 
 [ext_resource type="Script" path="res://Scenes/Asteroids/Medium Asteroid/Medium_asteroid.gd" id="1_ux4n5"]
 [ext_resource type="Texture2D" uid="uid://dbef6aicystk0" path="res://Sprites/Asteroids/Medium_Asteroid-2.png-1.png.png" id="2_vy8lx"]
 [ext_resource type="Texture2D" uid="uid://tloen5r7y7t4" path="res://Sprites/Asteroids/Medium_Crack1-1.png-1.png.png" id="3_ptyxe"]
 [ext_resource type="Texture2D" uid="uid://kbfw3tklnc87" path="res://Sprites/Asteroids/Medium_Crack2-2.png-1.png.png" id="4_epvqn"]
+[ext_resource type="AudioStream" uid="uid://dri08vbesoouk" path="res://Audio/Sounds/hurt_c_08-102842.mp3" id="5_rlb81"]
 
 [node name="Medium_Asteroid" type="Area2D" groups=["Enemy"]]
 collision_layer = 4
@@ -28,3 +29,7 @@ texture = ExtResource("4_epvqn")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
 polygon = PackedVector2Array(4, -40, 14, -40, 31, -29, 41, -17, 41, -1, 35, 4, 36, 11, 37, 20, 32, 28, 31, 33, 12, 33, 7, 35, -3, 30, -17, 27, -28, 23, -33, 15, -31, 4, -31, -7, -22, -20, -19, -22, -18, -28, -6, -37, -2, -39)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_rlb81")
+volume_db = 1.0
