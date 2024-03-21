@@ -7,10 +7,10 @@ extends CanvasLayer
 @onready var start = $Control/Start
 @onready var settings_button = $Control/Settings
 @onready var audio_stream_player_2d = $AudioStreamPlayer2D
+@onready var music = $Music
 
 
 func _ready():
-	audio_stream_player_2d.play()
 	Global.shader_settings.connect(crt)
 	color_rect.material.set_shader_parameter("aberration", Global.aberration)
 	color_rect.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
@@ -24,12 +24,13 @@ func _process(_delta):
 
 
 func _on_start_pressed():
+	ButtonClick.play()
 	Global.weapon = "Gun"
 	get_tree().change_scene_to_file("res://Scenes/Screens/Start_Menu/start_menu.tscn")
 
 
 func _on_settings_pressed():
-	audio_stream_player_2d.play()
+	ButtonClick.play()
 	settings_menu.show()
 
 

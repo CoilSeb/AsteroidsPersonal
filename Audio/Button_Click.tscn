@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjftl0weeywlu"]
+
+[ext_resource type="AudioStream" uid="uid://bex08ppoigg7q" path="res://Audio/Sounds/mixkit-quick-lock-sound-2854.wav" id="1_hapge"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_hapge")

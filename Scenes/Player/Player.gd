@@ -41,9 +41,10 @@ func _ready():
 	Ui.increase_score(0)
 	match Global.weapon:
 		"Gun":
-			weapon_sound.stream = load("res://Audio/Sounds/gun.mp3")
-			weapon_sound.pitch_scale = 2
-			weapon_sound.volume_db -= 10
+			pass
+			#weapon_sound.stream = load("res://Audio/Sounds/086409_retro-gun-shot-81545.mp3")
+			#weapon_sound.pitch_scale = 1
+			#weapon_sound.volume_db -= 10
 		"Laser":
 			pass
 
@@ -201,8 +202,7 @@ func _on_area_2d_area_entered(area):
 	if area.is_in_group("Destroy_Ring"):
 		Ui.update_exp(10)
 		var audio_player = AUDIO_CONTROL.instantiate()
-		audio_player.stream = load("res://Audio/Sounds/retro-game-sfx_jump-bumpwav-14853.mp3")
-		audio_player.volume_db += 20
+		audio_player.stream = load("res://Audio/Sounds/mixkit-quick-lock-sound-2854.wav")
 		get_parent().add_child(audio_player)
 		area.get_parent().destroy()
 

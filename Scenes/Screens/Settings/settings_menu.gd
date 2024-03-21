@@ -6,6 +6,7 @@ extends Control
 @onready var settings_menu = $"."
 @onready var check_button = $CheckButton
 @onready var crt_line_edit = $CRT_Line_Edit
+@onready var audio_stream_player = $AudioStreamPlayer
 
 @export var my_scenes_button: Button
 
@@ -35,12 +36,14 @@ func _on_h_slider_value_changed(value):
 
 func _on_exit_button_pressed():
 	#settings menu exit button
+	audio_stream_player.play()
 	if settings_menu.visible:
 		Global.save_score()
 		settings_menu.hide()
 
 
 func _on_check_button_toggled(toggled_on):
+	audio_stream_player.play()
 	if toggled_on:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		Global.fullscreen = true

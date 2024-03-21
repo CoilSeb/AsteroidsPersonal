@@ -25,6 +25,7 @@ var weight = 4
 
 
 func _ready():
+	audio_stream_player_2d.volume_db -= 10
 	screen_size = get_viewport_rect().size
 	set_random_direction_and_speed()
 	add_to_group("Big_Asteroid")
@@ -86,6 +87,7 @@ func damage_asteroid(damage):
 func create_and_add_asteroids():
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")
+	audio_player.pitch_scale = 0.5
 	audio_player.volume_db -= 5
 	get_parent().add_child(audio_player)
 	

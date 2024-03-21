@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cleolfa5jahst" path="res://Sprites/Other/Thrust-1.png (2).png" id="3_16tuw"]
 [ext_resource type="Texture2D" uid="uid://c81cyxo81c3w6" path="res://Sprites/UI/Bar-1.png.png" id="4_dmj04"]
 [ext_resource type="AudioStream" uid="uid://cyonip1xrybix" path="res://Audio/Sounds/retro-video-game-death-95730.mp3" id="5_e2vjo"]
-[ext_resource type="AudioStream" uid="uid://c4auph0jiyas" path="res://Audio/Sounds/gun.mp3" id="6_o72hy"]
+[ext_resource type="AudioStream" uid="uid://dlgtdkd5745xy" path="res://Audio/Sounds/lightsaber-ignition-6816.mp3" id="6_aahvw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sawk4"]
 radius = 25.0
@@ -84,7 +84,8 @@ texture_progress = ExtResource("4_dmj04")
 stream = ExtResource("5_e2vjo")
 
 [node name="Weapon_Sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_o72hy")
+stream = ExtResource("6_aahvw")
+pitch_scale = 2.0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Collection_Range" to="." method="_on_collection_range_area_entered"]

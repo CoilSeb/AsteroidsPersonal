@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch07pv1t3e803"]
+
+[ext_resource type="AudioStream" uid="uid://6kc6ifr2uafa" path="res://Audio/Sounds/112bpm_catchy-reverb-synth-loop-30259.mp3" id="1_dw2f0"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_dw2f0")
+autoplay = true

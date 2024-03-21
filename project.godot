@@ -17,6 +17,8 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 [autoload]
 
 Global="*res://Global Scripts/Global.gd"
+Music="*res://Audio/Music.tscn"
+ButtonClick="*res://Audio/Button_Click.tscn"
 
 [display]
 

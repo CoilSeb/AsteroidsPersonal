@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dhcsyp8vtftx2" path="res://Sprites/Asteroids/Big_Crack2-2.png-1.png.png" id="4_7jc6j"]
 [ext_resource type="Texture2D" uid="uid://cwdc3hhka1yvo" path="res://Sprites/Asteroids/Big_Crack3-3.png-1.png.png" id="5_y5sm6"]
 [ext_resource type="Texture2D" uid="uid://ba4gbf633cy2b" path="res://Sprites/Asteroids/Big_Crack4-4.png-1.png.png" id="6_wifd0"]
-[ext_resource type="AudioStream" uid="uid://dri08vbesoouk" path="res://Audio/Sounds/hurt_c_08-102842.mp3" id="7_8jo76"]
+[ext_resource type="AudioStream" uid="uid://df2dht24moj3t" path="res://Audio/Sounds/8-bit-fireball-81148.mp3" id="7_h3qsn"]
 
 [node name="Big_Asteroid" type="Area2D" groups=["Enemy"]]
 collision_layer = 4
@@ -43,5 +43,5 @@ visible = false
 polygon = PackedVector2Array(-24, -57, -11, -57, 0, -54, 17, -57, 33, -52, 42, -41, 54, -30, 54, -8, 53, -5, 55, 2, 55, 11, 53, 17, 59, 25, 58, 40, 53, 45, 44, 46, 30, 53, 8, 53, -1, 50, -14, 52, -26, 56, -34, 50, -44, 45, -47, 39, -47, 30, -56, 18, -59, 4, -59, -6, -48, -25, -45, -35, -38, -42, -32, -42, -27, -49)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_8jo76")
+stream = ExtResource("7_h3qsn")
 volume_db = 1.0

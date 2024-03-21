@@ -91,28 +91,24 @@ func damage_asteroid(damage):
 	if health <= 40 && health > 30:
 		$Sprite2D.hide()
 		crack_1.show()
-		audio_stream_player_2d.play()
 		if !first_spawn:
 			call_deferred("create_shards", 3.0)
 			first_spawn = true
 	if health <= 30 && health > 20:
 		crack_1.hide()
 		crack_2.show()
-		audio_stream_player_2d.play()
 		if !second_spawn:
 			call_deferred("create_shards", 3.0)
 			second_spawn = true
 	if health <= 20 && health > 10:
 		crack_2.hide()
 		crack_3.show()
-		audio_stream_player_2d.play()
 		if !third_spawn:
 			call_deferred("create_shards", 1.0)
 			third_spawn = true
 	if health <= 10 && health > 0:
 		crack_3.hide()
 		crack_4.show() 
-		audio_stream_player_2d.play()
 		if !fourth_spawn:
 			call_deferred("create_shards", 2.0)
 			fourth_spawn = true
