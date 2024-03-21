@@ -7,7 +7,6 @@ extends CanvasLayer
 @onready var start = $Control/Start
 @onready var settings_button = $Control/Settings
 @onready var audio_stream_player_2d = $AudioStreamPlayer2D
-@onready var music = $Music
 
 
 func _ready():

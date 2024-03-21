@@ -2,6 +2,7 @@ extends Node
 
 @onready var screen_size = get_viewport().get_visible_rect().size
 
+# Player Variables
 var high_score = 0
 var health 
 var max_health
@@ -21,8 +22,10 @@ var can_shoot
 var burn_out
 var god_mode = false
 
+# Enemy Variables
 var enemy_weight = 0
 
+# Upgrades
 var start_upgrades = [
 	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
 	preload("res://Upgrades/Solo_Upgrades/attack_speed_up.tres"),
@@ -40,22 +43,35 @@ var no_gun_all_collision = false
 const BIG_RESIST = preload("res://Upgrades/Combo_Upgradess/big_resist.tres")
 const BURN_OUT = preload("res://Upgrades/Combo_Upgradess/burn_out.tres")
 
-signal update_max_health(value)
-signal update_health(value)
-signal shader_settings()
-
 var upgrades_test = start_upgrades.duplicate()
 
 var key_upgrades = []
 
+# Signals
+signal update_max_health(value)
+signal update_health(value)
+signal shader_settings()
+signal update_volume()
+
+# Settings Variables
 var crt_value = 100.0
 var aberration = 0.003
 var grille_opacity = 0.5
 var fullscreen = false
+var music_slider_val = 100.0
+var sound_effects_slider_val = 100.0
+var sound_effects_volume = 0
 
 
 func _ready():
+	#save_score()
 	load_score()
+	update_volume.connect(volume)
+
+
+func volume():
+	Music.volume(music_slider_val)
+
 
 func add_key_upgrades(key_upgrade):
 	key_upgrades.append(key_upgrade)
@@ -111,7 +127,8 @@ func save_score():
 	save_file.store_var(high_score)
 	save_file.store_var(fullscreen)
 	save_file.store_var(crt_value)
-	#print("saved: ", crt_value)
+	save_file.store_var(music_slider_val)
+	save_file.store_var(sound_effects_slider_val)
 
 
 func load_score():
@@ -120,6 +137,8 @@ func load_score():
 		high_score = save_file.get_var(high_score)
 		fullscreen = save_file.get_var(fullscreen)
 		crt_value = save_file.get_var(crt_value)
+		music_slider_val = save_file.get_var(music_slider_val)
+		sound_effects_slider_val = save_file.get_var(sound_effects_slider_val)
 		aberration = crt_value / 33333.0
 		grille_opacity = crt_value / 200.0
 		#print("loaded: ", crt_value)

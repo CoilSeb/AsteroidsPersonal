@@ -57,7 +57,6 @@ var upgrades = [
 
 
 func _ready():
-	audio_stream_player_2d.play()
 	Global.shader_settings.connect(crt)
 	crt_shader.material.set_shader_parameter("aberration", Global.aberration)
 	crt_shader.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
@@ -105,7 +104,7 @@ func crt():
 
 
 func toggle_pause_menu():
-	audio_stream_player_2d.play()
+	ButtonClick.play()
 	get_tree().paused = !get_tree().paused
 	pause_menu.visible = !pause_menu.visible
 	resume_button.grab_focus()
@@ -118,7 +117,7 @@ func toggle_pause_menu():
 
 
 func _on_ResumeButton_pressed():
-	audio_stream_player_2d.play()
+	ButtonClick.play()
 	get_tree().paused = false
 	pause_menu.visible = false
 	if upgrade_menu.visible == true:
@@ -128,17 +127,19 @@ func _on_ResumeButton_pressed():
 
 
 func _on_settings_button_pressed():
-	audio_stream_player_2d.play()
+	ButtonClick.play()
 	settings_menu.show()
 
 
 func _on_ExitButton_pressed():
+	ButtonClick.play()
 	#pause menu exit button
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/Screens/Start Screen/StartScreen.tscn")
 
 
 func _on_restart_pressed():
+	ButtonClick.play()
 	restart()
 
 

@@ -68,8 +68,10 @@ func damage_asteroid(damage):
 	health -= damage
 	if health <= 20:
 		crack_1.visible = true
+		audio_stream_player_2d.play()
 	if health <= 10:
 		crack_2.visible = true 
+		audio_stream_player_2d.play()
 	if health <= 0:
 		destroy()
 
