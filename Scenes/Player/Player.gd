@@ -52,6 +52,7 @@ func _ready():
 
 
 func _physics_process(delta):
+	Global.player_pos = position
 	thrust = Global.move_speed
 	counter_thrust = Global.counter_thrust
 	Ui.update_health(Global.health_regen * delta)

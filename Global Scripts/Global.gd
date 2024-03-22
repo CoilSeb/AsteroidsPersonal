@@ -21,6 +21,7 @@ var laser_made
 var can_shoot
 var burn_out
 var god_mode = false
+var player_pos: Vector2
 
 # Enemy Variables
 var enemy_weight = 0

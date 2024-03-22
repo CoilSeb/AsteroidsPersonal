@@ -1,7 +1,6 @@
 extends Area2D
 
 @onready var Ui = get_parent().get_node("UI")
-@onready var player = get_parent().get_node("Player")
 
 const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
 const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
@@ -98,4 +97,6 @@ func damage_asteroid(damage):
 
 func _on_throw_timer_timeout():
 	if boss:
-		direction = player.position
+		health = 10
+		speed *= 2
+		direction = (Global.player_pos - position).normalized()
