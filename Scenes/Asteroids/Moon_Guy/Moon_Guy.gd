@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var Ui = get_parent().get_node("UI")
+@onready var spawn_timer = $Spawn_Timer
 
 const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
 const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
@@ -18,6 +19,8 @@ var rotation_speed
 var weighted = false
 var counted = false
 var weight = 16
+var i = int(rotation) % 10;
+var asteroid_count = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -125,14 +128,20 @@ func create_and_add_asteroids():
 
 
 func create_surrounding_asteroids(num: float):
-	var i = int(rotation) % 10;
 	for k in range(num):
 		var small_asteroid = SMALL_ASTEROID.instantiate()
+		asteroid_count += 1
 		small_asteroid.boss = true
 		small_asteroid.speed = speed
 		small_asteroid.direction = direction
 		var angle = i * PI
 		#small_asteroid.direction = Vector2(cos(angle), sin(angle))
 		small_asteroid.position = position + Vector2(cos(angle), sin(angle)) * 400
-		i += 2.0/num
+		i += 2.0/25
 		get_parent().add_child(small_asteroid)
+
+
+func _on_spawn_timer_timeout():
+	if asteroid_count < 25:
+		create_surrounding_asteroids(1)
+		spawn_timer.start()

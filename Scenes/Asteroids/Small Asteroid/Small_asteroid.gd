@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var Ui = get_parent().get_node("UI")
+@onready var player = get_parent().get_node("Player")
 
 const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
 const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
@@ -44,8 +45,10 @@ func _process(delta):
 	# Moving 
 	position += direction * speed * delta
 	if boss:
-		rotate_angle += 0.1 * PI
-		position += Vector2(cos(rotate_angle), sin(rotate_angle))
+		pass
+		health = 1000000
+		#rotate_angle += 0.01 * PI
+		#position += Vector2(cos(rotate_angle), sin(rotate_angle))
 	rotation += rotation_speed * delta
 	
 	var new_position = self.position 
@@ -91,3 +94,8 @@ func damage_asteroid(damage):
 	if health <= 0:
 		call_deferred("make_exp")
 		destroy()
+
+
+func _on_throw_timer_timeout():
+	if boss:
+		direction = player.position

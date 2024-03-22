@@ -1,21 +1,26 @@
 [gd_scene load_steps=4 format=3 uid="uid://32yf417wxbhy"]
 
 [ext_resource type="Script" path="res://Scenes/Asteroids/Moon_Guy/Moon_Guy.gd" id="1_0u1ba"]
-[ext_resource type="Texture2D" uid="uid://b5ppcb04px2or" path="res://Sprites/Asteroids/Moon_Guy-1.png (1).png" id="1_bvvqr"]
+[ext_resource type="Texture2D" uid="uid://dc5mcko5ufjfx" path="res://Sprites/Asteroids/Moon_Guy-1.png (1)-1.png.png" id="2_cfqop"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y3b8g"]
-radius = 78.0064
+radius = 312.014
 
 [node name="Moon_Guy" type="Area2D" groups=["Moon_Guy"]]
 z_index = 1
-scale = Vector2(4, 4)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_0u1ba")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_bvvqr")
+texture = ExtResource("2_cfqop")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_y3b8g")
+
+[node name="Spawn_Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Spawn_Timer" to="." method="_on_spawn_timer_timeout"]

@@ -16,3 +16,10 @@ texture = ExtResource("2_imcp2")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
 polygon = PackedVector2Array(-1, -16, 9, -15, 14, -12, 19, -11, 19, 1, 15, 7, 10, 11, -1, 9, -6, 4, -8, -7, -2, -8, -2, -12)
+
+[node name="Throw_Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Throw_Timer" to="." method="_on_throw_timer_timeout"]
