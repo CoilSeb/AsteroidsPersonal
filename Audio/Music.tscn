@@ -1,11 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://ch07pv1t3e803"]
 
-[ext_resource type="AudioStream" uid="uid://cavruwf2t6wil" path="res://Audio/Sounds/112bpm_catchy-reverb-synth-loop-30259-[AudioTrimmer.com].mp3" id="1_14nuy"]
 [ext_resource type="Script" path="res://Audio/Music.gd" id="1_l8ht2"]
+[ext_resource type="AudioStream" uid="uid://cqytkje26tvae" path="res://Audio/Sounds/2018-08-02-17971.mp3" id="2_rjta1"]
 
 [node name="Music" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_l8ht2")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_14nuy")
+stream = ExtResource("2_rjta1")
 autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

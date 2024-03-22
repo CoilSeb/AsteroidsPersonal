@@ -2,7 +2,6 @@ extends CanvasLayer
 
 @onready var color_rect = $ColorRect
 @onready var start = $Control/Start
-@onready var audio_stream_player_2d = $AudioStreamPlayer2D
 
 
 func _ready():

@@ -24,7 +24,7 @@ extends CanvasLayer
 @onready var levels_label = $Levels_Label
 @onready var settings_menu = $SettingsMenu
 @onready var crt_shader = $CRT_Shader
-@onready var audio_stream_player_2d = $AudioStreamPlayer2D
+@onready var level_up_sound = $Level_Up_Sound
 
 @onready var buttons = [
 	$Upgrade_Menu/First_Upgrade,
@@ -57,6 +57,8 @@ var upgrades = [
 
 
 func _ready():
+	Global.update_sound_effects_volume.connect(sound_effects)
+	sound_effects()
 	Global.shader_settings.connect(crt)
 	crt_shader.material.set_shader_parameter("aberration", Global.aberration)
 	crt_shader.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
@@ -96,6 +98,10 @@ func _process(_delta):
 	$PauseMenu/VBoxContainer/Bullet_Velocity_Label.text = "Bullet Velocity: " + str(snapped(Global.bullet_velocity, 1))
 	$PauseMenu/VBoxContainer/Move_Speed_Label.text = "Thrust: " + str(Global.move_speed)
 	$PauseMenu/VBoxContainer/Counter_Thrust_Label.text = "Counter Thrust: " + str(Global.counter_thrust)
+
+
+func sound_effects():
+	level_up_sound.volume_db = Global.sound_effects_volume
 
 
 func crt():
@@ -200,6 +206,7 @@ func update_exp(amount):
 
 func update_max_exp():
 	if Global.exp >= Global.exp_threshold:
+		level_up_sound.play()
 		Global.exp -= Global.exp_threshold
 		Global.exp_threshold *= 1.1
 		exp_bar.max_value = Global.exp_threshold
@@ -238,11 +245,11 @@ func _on_third_upgrade_pressed():
 
 
 func _on_reroll_button_pressed():
-	audio_stream_player_2d.play()
 	level_up()
 
 
 func level_up():
+	ButtonClick.play()
 	second_upgrade_button.grab_focus()
 	if !upgrade_menu.visible:
 		levels -= 1
@@ -276,7 +283,7 @@ func get_upgrades():
 
 
 func apply_my_upgrade(my_upgrade, index):
-	audio_stream_player_2d.play()
+	ButtonClick.play()
 	if my_upgrade == null:
 		return
 	Global.upgrades_test.pop_at(index)

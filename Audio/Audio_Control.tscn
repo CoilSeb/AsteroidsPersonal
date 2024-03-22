@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Audio/Audio_Control.gd" id="1_cf1ca"]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer"]
+process_mode = 3
 autoplay = true
 script = ExtResource("1_cf1ca")
 

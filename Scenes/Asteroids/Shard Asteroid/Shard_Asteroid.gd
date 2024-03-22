@@ -6,7 +6,6 @@ const EXPERIENCE = preload("res://Scenes/Experience/Experience.tscn")
 @onready var crack_2 = $Crack2
 @onready var crack_3 = $Crack3
 @onready var crack_4 = $Crack4
-@onready var audio_stream_player_2d = $AudioStreamPlayer2D
 
 const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
 const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
@@ -71,7 +70,7 @@ func set_random_direction_and_speed():
 func destroy():
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")
-	audio_player.volume_db -= 5
+	audio_player.volume_db = Global.sound_effects_volume - 7
 	get_parent().add_child(audio_player)
 	
 	if weighted:
@@ -91,28 +90,24 @@ func damage_asteroid(damage):
 	if health <= 40 && health > 30:
 		$Sprite2D.hide()
 		crack_1.show()
-		audio_stream_player_2d.play()
 		if !first_spawn:
 			call_deferred("create_shards", 3.0)
 			first_spawn = true
 	if health <= 30 && health > 20:
 		crack_1.hide()
 		crack_2.show()
-		audio_stream_player_2d.play()
 		if !second_spawn:
 			call_deferred("create_shards", 3.0)
 			second_spawn = true
 	if health <= 20 && health > 10:
 		crack_2.hide()
 		crack_3.show()
-		audio_stream_player_2d.play()
 		if !third_spawn:
 			call_deferred("create_shards", 1.0)
 			third_spawn = true
 	if health <= 10 && health > 0:
 		crack_3.hide()
 		crack_4.show()
-		audio_stream_player_2d.play() 
 		if !fourth_spawn:
 			call_deferred("create_shards", 2.0)
 			fourth_spawn = true

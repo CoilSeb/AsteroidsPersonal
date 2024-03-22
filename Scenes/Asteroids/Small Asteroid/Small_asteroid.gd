@@ -66,7 +66,7 @@ func set_random_direction_and_speed():
 func destroy():
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")
-	audio_player.volume_db -= 5
+	audio_player.volume_db = Global.sound_effects_volume - 7
 	get_parent().add_child(audio_player)
 	
 	if weighted:

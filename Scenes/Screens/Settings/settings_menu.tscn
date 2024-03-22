@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqx32ytchstvp"]
+[gd_scene load_steps=2 format=3 uid="uid://dqx32ytchstvp"]
 
 [ext_resource type="Script" path="res://Scenes/Screens/Settings/settings_menu.gd" id="1_ml5jl"]
-[ext_resource type="AudioStream" uid="uid://dpi8cf6ldj15k" path="res://Audio/Sounds/retro-game-sfx_jump-bumpwav-14853.mp3" id="2_nxky1"]
 
 [node name="SettingsMenu" type="Control"]
 process_mode = 3
@@ -211,9 +210,6 @@ theme_override_font_sizes/font_size = 32
 text = "100"
 alignment = 1
 max_length = 3
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_nxky1")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="value_changed" from="CRT_Slider" to="." method="_on_h_slider_value_changed"]

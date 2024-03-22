@@ -1,5 +1,7 @@
 extends Area2D
 
+const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
+
 var direction: Vector2
 var bullet_speed = Global.bullet_velocity
 var screen_size
@@ -23,6 +25,10 @@ func _process(delta):
 
 
 func _on_area_entered(area):
+	var audio_player = AUDIO_CONTROL.instantiate()
+	audio_player.stream = load("res://Audio/Sounds/hurt_c_08-102842.mp3")
+	audio_player.volume_db = Global.sound_effects_volume
+	get_parent().add_child(audio_player)
 	if area.is_in_group("Shard"):
 		queue_free()
 		return

@@ -9,7 +9,6 @@ extends Control
 @onready var music_volume_label = $Music_Volume_Label
 @onready var music_volume_slider = $Music_Volume_Slider
 @onready var music_volume_edit = $Music_Volume_Edit
-@onready var audio_stream_player = $AudioStreamPlayer
 @onready var sound_effects_volume_label = $Sound_Effects_Volume_Label
 @onready var sound_effects_volume_slider = $Sound_Effects_Volume_Slider
 @onready var sound_effects_volume_edit = $Sound_Effects_Volume_Edit
@@ -87,7 +86,7 @@ func _on_visibility_changed():
 func _on_music_volume_slider_value_changed(value):
 	Global.music_slider_val = value
 	music_volume_edit.text = str(Global.music_slider_val)
-	Global.update_volume.emit()
+	Global.update_music_volume.emit()
 
 
 func _on_music_volume_edit_text_submitted(new_text):
@@ -98,8 +97,10 @@ func _on_music_volume_edit_text_submitted(new_text):
 func _on_sound_effects_volume_slider_value_changed(value):
 	Global.sound_effects_slider_val = value
 	sound_effects_volume_edit.text = str(Global.sound_effects_slider_val)
+	Global.sound_effects_volume = 0 - (100 - value)/3
 	if value == 0:
 		Global.sound_effects_volume = -100000
+	Global.update_sound_effects_volume.emit()
 
 
 func _on_sound_effects_volume_edit_text_submitted(new_text):

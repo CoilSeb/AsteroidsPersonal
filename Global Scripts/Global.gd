@@ -51,7 +51,8 @@ var key_upgrades = []
 signal update_max_health(value)
 signal update_health(value)
 signal shader_settings()
-signal update_volume()
+signal update_music_volume()
+signal update_sound_effects_volume()
 
 # Settings Variables
 var crt_value = 100.0
@@ -66,7 +67,7 @@ var sound_effects_volume = 0
 func _ready():
 	#save_score()
 	load_score()
-	update_volume.connect(volume)
+	update_music_volume.connect(volume)
 
 
 func volume():

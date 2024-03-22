@@ -3,8 +3,8 @@ extends CharacterBody2D
 @onready var GameScene = get_parent()
 @onready var Ui = get_parent().get_node("UI")
 @onready var thrust_sprite_2d = $Thrust_Sprite2D
-@onready var death_sound = $Death_Sound
 @onready var weapon_sound = $Weapon_Sound
+@onready var hit_sound = $Hit_Sound
 
 const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
 const PLAYER_DEATH = preload("res://Particles/player_death.tscn")
@@ -30,6 +30,8 @@ var deadzone = 1
 
 
 func _ready():
+	Global.update_sound_effects_volume.connect(sound_effects)
+	sound_effects()
 	screen_size = get_viewport_rect().size
 	shootTimer = Timer.new()
 	add_child(shootTimer)
@@ -174,6 +176,7 @@ func destroy_laser():
 
 
 func _on_area_2d_area_entered(area):
+	hit_sound.play()
 	if area.is_in_group("Moon_Guy"):
 		Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
 		area.damage_asteroid(Global.collision_damage)
@@ -203,6 +206,7 @@ func _on_area_2d_area_entered(area):
 		Ui.update_exp(10)
 		var audio_player = AUDIO_CONTROL.instantiate()
 		audio_player.stream = load("res://Audio/Sounds/mixkit-quick-lock-sound-2854.wav")
+		audio_player.volume_db = Global.sound_effects_volume - 10
 		get_parent().add_child(audio_player)
 		area.get_parent().destroy()
 
@@ -227,6 +231,7 @@ func destroy():
 		weapons.queue_free()
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/retro-video-game-death-95730.mp3")
+	audio_player.volume_db = Global.sound_effects_volume
 	get_parent().add_child(audio_player)
 	queue_free()
 	GameScene.player = false
@@ -239,3 +244,8 @@ func god_mode():
 	Ui.update_max_health(0)
 	Ui.update_health(0)
 	Global.damage_reduction = 30000000
+
+
+func sound_effects():
+	weapon_sound.volume_db = Global.sound_effects_volume
+	hit_sound.volume_db = Global.sound_effects_volume
