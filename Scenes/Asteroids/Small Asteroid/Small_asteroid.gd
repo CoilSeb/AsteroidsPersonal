@@ -90,7 +90,8 @@ func make_exp():
 func damage_asteroid(damage):
 	health -= damage
 	if health <= 0:
-		call_deferred("make_exp")
+		if !boss:
+			call_deferred("make_exp")
 		destroy()
 
 

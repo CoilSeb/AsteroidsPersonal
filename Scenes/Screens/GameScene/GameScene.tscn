@@ -1,36 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cl0s7o04ccses"]
+[gd_scene load_steps=5 format=3 uid="uid://cl0s7o04ccses"]
 
 [ext_resource type="Script" path="res://Scenes/Screens/GameScene/GameScene.gd" id="1_m8r6t"]
 [ext_resource type="PackedScene" uid="uid://c0jlxjxdu4vma" path="res://Scenes/UI/UI.tscn" id="2_u5fmq"]
 [ext_resource type="Texture2D" uid="uid://bb16cwspjti6c" path="res://Sprites/Other/BG-1.png (1).png" id="3_annfb"]
 [ext_resource type="Texture2D" uid="uid://caysh2ok52ufi" path="res://Sprites/Asteroids/Moon_Guy_Warning_64-1.png.png" id="4_to3f7"]
-[ext_resource type="Texture2D" uid="uid://d2xaf00d31pj5" path="res://Sprites/Asteroids/Moon_Guy_Warning_128-1.png.png" id="5_vtn4d"]
-[ext_resource type="Texture2D" uid="uid://c0bq8afcd1x4g" path="res://Sprites/Asteroids/Moon_Guy_Warning_256-1.png.png" id="6_6ssyu"]
-[ext_resource type="Texture2D" uid="uid://68if7jqe72kv" path="res://Sprites/Asteroids/Moon_Guy_Warning_512-1.png.png" id="7_6puk2"]
-[ext_resource type="Texture2D" uid="uid://o2b2u1qt24i4" path="res://Sprites/Asteroids/Moon_Guy_Warning_1024-1.png.png" id="8_q231w"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_tovb7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_to3f7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_vtn4d")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_6ssyu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_6puk2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_q231w")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_m8r6t")
@@ -59,9 +32,10 @@ transform = Transform2D(1, 0, 0, 1, 1024, 720)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource("3_annfb")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(982, 542)
-sprite_frames = SubResource("SpriteFrames_tovb7")
+[node name="Moon_Guy_Warning" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(956, 545)
+texture = ExtResource("4_to3f7")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

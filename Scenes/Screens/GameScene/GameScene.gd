@@ -4,13 +4,15 @@ extends Node
 @onready var ScoreLabel = Ui.get_node("Score_Label")
 @onready var spawnTimer = $SpawnTimer
 @onready var wave_timer = $WaveTimer
+@onready var moon_guy_warning = $Moon_Guy_Warning
 
 var playerScene = preload("res://Scenes/Player/Player.tscn")
 var player = true
 var screen_size
 var wave_timer_time = 10
 var wave_time = 35
-var wave_num = 5
+var wave_num = 4
+var start_moon_guy_warning = false
 
 var basic_asteroid_scenes = {
 	0: preload("res://Scenes/Asteroids/Medium Asteroid/Medium_asteroid.tscn"),
@@ -31,7 +33,7 @@ func _ready():
 		#print(player)
 
 
-func _process(_delta): 
+func _process(_delta):
 	if !player:
 		#print(player)
 		var playerInstance = playerScene.instantiate()
@@ -40,6 +42,17 @@ func _process(_delta):
 		#print(playerInstance.position)
 		player = true
 	#print(Global.enemy_weight)
+	
+	if start_moon_guy_warning:
+		if moon_guy_warning.scale <= Vector2(16, 16):
+			moon_guy_warning.scale += Vector2(0.05, 0.05)
+		else:
+			moon_guy_warning.hide()
+			var moon_guy = moon_guy_scene.instantiate()
+			add_child(moon_guy)
+			moon_guy.global_position = screen_size/2
+			moon_guy.weighted = true
+			start_moon_guy_warning = false
 
 
 func game_over():
@@ -133,10 +146,8 @@ func spawn_wave():
 		return
 	if wave_num == 4 && Global.enemy_weight <= 0:
 		wave_num += 1
-		var moon_guy = moon_guy_scene.instantiate()
-		add_child(moon_guy)
-		moon_guy.global_position = screen_size/2
-		moon_guy.weighted = true
+		moon_guy_warning.show()
+		start_moon_guy_warning = true
 		return
 
 
