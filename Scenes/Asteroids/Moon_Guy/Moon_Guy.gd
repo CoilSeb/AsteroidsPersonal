@@ -20,7 +20,6 @@ var weighted = false
 var counted = false
 var weight = 16
 var i = int(rotation) % 10;
-var asteroid_count = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -54,6 +53,11 @@ func _process(delta):
 	if weighted && !counted:
 		Global.enemy_weight += weight
 		counted = true
+		
+	if spawn_timer.time_left == 0:
+		if Global.moon_guy_asteroid_count < 25:
+			create_surrounding_asteroids(1)
+			spawn_timer.start()
 
 
 func set_random_direction_and_speed():
@@ -130,7 +134,7 @@ func create_and_add_asteroids():
 func create_surrounding_asteroids(num: float):
 	for k in range(num):
 		var small_asteroid = SMALL_ASTEROID.instantiate()
-		asteroid_count += 1
+		Global.moon_guy_asteroid_count += 1
 		small_asteroid.boss = true
 		small_asteroid.speed = speed
 		small_asteroid.direction = direction
@@ -139,9 +143,3 @@ func create_surrounding_asteroids(num: float):
 		small_asteroid.position = position + Vector2(cos(angle), sin(angle)) * 400
 		i += 2.0/25
 		get_parent().add_child(small_asteroid)
-
-
-func _on_spawn_timer_timeout():
-	if asteroid_count < 25:
-		create_surrounding_asteroids(1)
-		spawn_timer.start()

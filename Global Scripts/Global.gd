@@ -25,6 +25,7 @@ var player_pos: Vector2
 
 # Enemy Variables
 var enemy_weight = 0
+var moon_guy_asteroid_count = 0
 
 # Upgrades
 var start_upgrades = [

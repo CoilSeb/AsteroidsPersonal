@@ -10,7 +10,7 @@ var player = true
 var screen_size
 var wave_timer_time = 10
 var wave_time = 35
-var wave_num = 0
+var wave_num = 5
 
 var basic_asteroid_scenes = {
 	0: preload("res://Scenes/Asteroids/Medium Asteroid/Medium_asteroid.tscn"),
@@ -22,6 +22,7 @@ var special_asteroid_scenes = {
 	0: preload("res://Scenes/Asteroids/Shard Asteroid/Shard_Asteroid.tscn"),
 }
 
+var moon_guy_scene = preload("res://Scenes/Asteroids/Moon_Guy/Moon_Guy.tscn")
 
 func _ready():
 	screen_size = get_viewport().get_visible_rect().size
@@ -124,11 +125,18 @@ func spawn_wave():
 			spawn_special_Asteroid_with_weight()
 		return
 	if wave_num == 3 && Global.enemy_weight <= 12:
-		#wave_num += 1
+		wave_num += 1
 		for i in range(10):
 			spawn_basic_Asteroid_with_weight()
 		for i in range(4):
 			spawn_special_Asteroid_with_weight()
+		return
+	if wave_num == 4 && Global.enemy_weight <= 0:
+		wave_num += 1
+		var moon_guy = moon_guy_scene.instantiate()
+		add_child(moon_guy)
+		moon_guy.global_position = screen_size/2
+		moon_guy.weighted = true
 		return
 
 

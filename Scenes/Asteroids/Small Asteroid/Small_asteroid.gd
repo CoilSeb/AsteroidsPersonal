@@ -26,6 +26,8 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	if !boss:
 		set_random_direction_and_speed()
+	else:
+		health = 1000000
 	rotation_speed = randf_range(-1, 1)
 	add_to_group("Small_Asteroid")
 
@@ -43,11 +45,7 @@ func _process(delta):
 	
 	# Moving 
 	position += direction * speed * delta
-	if boss:
-		pass
-		health = 1000000
-		#rotate_angle += 0.01 * PI
-		#position += Vector2(cos(rotate_angle), sin(rotate_angle))
+
 	rotation += rotation_speed * delta
 	
 	var new_position = self.position 
@@ -66,6 +64,7 @@ func set_random_direction_and_speed():
 
 
 func destroy():
+	Global.moon_guy_asteroid_count -= 1
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")
 	audio_player.volume_db = Global.sound_effects_volume - 7
@@ -98,5 +97,5 @@ func damage_asteroid(damage):
 func _on_throw_timer_timeout():
 	if boss:
 		health = 10
-		speed *= 2
+		speed *= 4
 		direction = (Global.player_pos - position).normalized()
