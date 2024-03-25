@@ -25,6 +25,9 @@ extends CanvasLayer
 @onready var settings_menu = $SettingsMenu
 @onready var crt_shader = $CRT_Shader
 @onready var level_up_sound = $Level_Up_Sound
+@onready var moon_guy_layover = $Moon_Guy_Layover
+@onready var moon_guy_health_bar_bg = $Moon_Guy_Layover/Moon_Guy_Health_Bar_BG
+@onready var moon_guy_health_bar = $Moon_Guy_Layover/Moon_Guy_Health_Bar
 
 @onready var buttons = [
 	$Upgrade_Menu/First_Upgrade,
@@ -57,6 +60,7 @@ var upgrades = [
 
 
 func _ready():
+	Global.moon_guy_health.connect(moon_guy_health)
 	Global.update_sound_effects_volume.connect(sound_effects)
 	sound_effects()
 	Global.shader_settings.connect(crt)
@@ -98,6 +102,13 @@ func _process(_delta):
 	$PauseMenu/VBoxContainer/Bullet_Velocity_Label.text = "Bullet Velocity: " + str(snapped(Global.bullet_velocity, 1))
 	$PauseMenu/VBoxContainer/Move_Speed_Label.text = "Thrust: " + str(Global.move_speed)
 	$PauseMenu/VBoxContainer/Counter_Thrust_Label.text = "Counter Thrust: " + str(Global.counter_thrust)
+
+
+func moon_guy_health(damage):
+	moon_guy_layover.show()
+	moon_guy_health_bar.value -= damage
+	if moon_guy_health_bar.value <= 0:
+		moon_guy_layover.hide()
 
 
 func sound_effects():

@@ -3,6 +3,7 @@ extends Area2D
 @onready var Ui = get_parent().get_node("UI")
 @onready var spawn_timer = $Spawn_Timer
 
+const EXPERIENCE = preload("res://Scenes/Experience/Experience.tscn")
 const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
 const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
 const BIG_ASTEROID = preload("res://Scenes/Asteroids/Big Asteroid/Big_Asteroid.tscn")
@@ -10,9 +11,9 @@ const SMALL_ASTEROID = preload("res://Scenes/Asteroids/Small Asteroid/Small_aste
 var screen_size
 var speed: float
 var direction: Vector2
-var max_health = 250
-var health = 250
-var damage = 250
+var max_health = 750
+var health = 750
+var damage = 100
 var old_position: Vector2
 var velocity: Vector2
 var rotation_speed
@@ -24,10 +25,11 @@ var i = int(rotation) % 10;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.moon_guy_health.emit(0)
 	screen_size = get_viewport_rect().size
 	set_random_direction_and_speed()
 	rotation_speed = randf_range(-0.05, 0.05)
-	call_deferred("create_surrounding_asteroids",25)
+	call_deferred("create_surrounding_asteroids",25, true)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,7 +58,7 @@ func _process(delta):
 		
 	if spawn_timer.time_left == 0:
 		if Global.moon_guy_asteroid_count < 25:
-			create_surrounding_asteroids(1)
+			create_surrounding_asteroids(1, false)
 			spawn_timer.start()
 
 
@@ -72,6 +74,7 @@ func destroy():
 
 func damage_asteroid(damage):
 	health -= damage
+	Global.moon_guy_health.emit(damage)
 	#if health <= 200:
 		##crack_1.visible = true
 		#audio_stream_player_2d.play()
@@ -85,10 +88,16 @@ func damage_asteroid(damage):
 		##crack_4.visible = true 
 		#audio_stream_player_2d.play()
 	if health <= 0:
+		Global.moon_guy_health.emit(750)
 		destroy()
 
 
 func create_and_add_asteroids():
+	for i in range(16):
+		var exp_shard = EXPERIENCE.instantiate()
+		exp_shard.position = self.position + Vector2(randi_range(-20,20), randi_range(-20,20))
+		get_parent().add_child(exp_shard)
+	
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")
 	audio_player.volume_db = Global.sound_effects_volume - 7
@@ -131,13 +140,15 @@ func create_and_add_asteroids():
 	self.queue_free()
 
 
-func create_surrounding_asteroids(num: float):
+func create_surrounding_asteroids(num: float, initial: bool):
 	for k in range(num):
 		var small_asteroid = SMALL_ASTEROID.instantiate()
 		Global.moon_guy_asteroid_count += 1
 		small_asteroid.boss = true
 		small_asteroid.speed = speed
 		small_asteroid.direction = direction
+		if initial:
+			small_asteroid.initial = true
 		var angle = i * PI
 		#small_asteroid.direction = Vector2(cos(angle), sin(angle))
 		small_asteroid.position = position + Vector2(cos(angle), sin(angle)) * 400

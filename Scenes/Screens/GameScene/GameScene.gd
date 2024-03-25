@@ -4,6 +4,7 @@ extends Node
 @onready var ScoreLabel = Ui.get_node("Score_Label")
 @onready var spawnTimer = $SpawnTimer
 @onready var wave_timer = $WaveTimer
+@onready var timer = $Timer
 @onready var moon_guy_warning = $Moon_Guy_Warning
 
 var playerScene = preload("res://Scenes/Player/Player.tscn")
@@ -11,7 +12,7 @@ var player = true
 var screen_size
 var wave_timer_time = 10
 var wave_time = 35
-var wave_num = 4
+var wave_num = 0
 var start_moon_guy_warning = false
 
 var basic_asteroid_scenes = {
@@ -149,6 +150,9 @@ func spawn_wave():
 		moon_guy_warning.show()
 		start_moon_guy_warning = true
 		return
+	if wave_num == 5 && Global.enemy_weight <= 12:
+		timer.start(1)
+		timer.wait_time == 1
 
 
 func _on_timer_timeout():

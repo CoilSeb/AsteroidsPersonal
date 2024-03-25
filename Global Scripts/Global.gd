@@ -55,6 +55,7 @@ signal update_health(value)
 signal shader_settings()
 signal update_music_volume()
 signal update_sound_effects_volume()
+signal moon_guy_health(value)
 
 # Settings Variables
 var crt_value = 100.0

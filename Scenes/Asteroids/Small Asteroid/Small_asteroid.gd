@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var Ui = get_parent().get_node("UI")
+@onready var throw_timer = $Throw_Timer
 
 const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
 const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
@@ -18,6 +19,7 @@ var weighted = false
 var counted = false
 var weight = 1
 var boss = false
+var initial = false
 var rotate_angle = 0.0
 
 
@@ -28,6 +30,8 @@ func _ready():
 		set_random_direction_and_speed()
 	else:
 		health = 1000000
+	if initial:
+		throw_timer.start(1)
 	rotation_speed = randf_range(-1, 1)
 	add_to_group("Small_Asteroid")
 
@@ -64,7 +68,6 @@ func set_random_direction_and_speed():
 
 
 func destroy():
-	Global.moon_guy_asteroid_count -= 1
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")
 	audio_player.volume_db = Global.sound_effects_volume - 7
@@ -97,6 +100,7 @@ func damage_asteroid(damage):
 
 func _on_throw_timer_timeout():
 	if boss:
+		Global.moon_guy_asteroid_count -= 1
 		health = 10
 		speed *= 4
 		direction = (Global.player_pos - position).normalized()

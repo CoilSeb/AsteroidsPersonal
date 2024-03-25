@@ -177,12 +177,13 @@ func destroy_laser():
 
 
 func _on_area_2d_area_entered(area):
-	hit_sound.play()
 	if area.is_in_group("Moon_Guy"):
+		hit_sound.play()
 		Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
 		area.damage_asteroid(Global.collision_damage)
 		check_velocity(area)
 	if area.is_in_group("Big_Asteroid") || area.is_in_group("Shard_Asteroid"): #&& immunity_timer.get_time_left() == 0:
+		hit_sound.play()
 		Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
 		area.damage_asteroid(Global.collision_damage)
 		#print("player ", velocity.length())
@@ -190,16 +191,19 @@ func _on_area_2d_area_entered(area):
 		check_velocity(area)
 			
 	if area.is_in_group("Medium_Asteroid"): #&& immunity_timer.get_time_left() == 0:
+		hit_sound.play()
 		Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
 		area.damage_asteroid(Global.collision_damage)
 		check_velocity(area)
 			
 	if area.is_in_group("Small_Asteroid"): #&& immunity_timer.get_time_left() == 0:
+		hit_sound.play()
 		Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
 		area.damage_asteroid(Global.collision_damage)
 		check_velocity(area)
 			
 	if area.is_in_group("Shard"):
+		hit_sound.play()
 		Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
 		area.queue_free()
 			
