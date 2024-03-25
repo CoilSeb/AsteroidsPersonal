@@ -5,6 +5,7 @@
 
 [node name="Shard" type="Area2D" groups=["Shard"]]
 collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_olui0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

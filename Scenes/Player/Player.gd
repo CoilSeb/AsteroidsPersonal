@@ -205,7 +205,7 @@ func _on_area_2d_area_entered(area):
 	if area.is_in_group("Shard"):
 		hit_sound.play()
 		Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
-		area.queue_free()
+		area.damage_asteroid(Global.collision_damage)
 			
 	if area.is_in_group("Destroy_Ring"):
 		Ui.update_exp(10)

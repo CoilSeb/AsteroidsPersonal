@@ -29,9 +29,6 @@ func _on_area_entered(area):
 	audio_player.stream = load("res://Audio/Sounds/hurt_c_08-102842.mp3")
 	audio_player.volume_db = Global.sound_effects_volume
 	get_parent().add_child(audio_player)
-	if area.is_in_group("Shard"):
-		queue_free()
-		return
 	area.damage_asteroid(damage)
 	queue_free()
 
