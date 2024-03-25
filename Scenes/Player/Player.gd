@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var thrust_sprite_2d = $Thrust_Sprite2D
 @onready var weapon_sound = $Weapon_Sound
 @onready var hit_sound = $Hit_Sound
+@onready var collection_range = $Collection_Range
 
 const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
 const PLAYER_DEATH = preload("res://Particles/player_death.tscn")
@@ -31,6 +32,7 @@ var deadzone = 1
 
 func _ready():
 	Global.update_sound_effects_volume.connect(sound_effects)
+	Global.upgrade_pull_range.connect(increase_exp_pull_range)
 	sound_effects()
 	screen_size = get_viewport_rect().size
 	shootTimer = Timer.new()
@@ -129,6 +131,7 @@ func _physics_process(delta):
 				get_parent().add_child(bulletInstance)
 				bulletInstance.global_position = global_position
 				bulletInstance.direction = Vector2.UP.rotated(rotation)
+				bulletInstance.scale += Global.weapon_scale
 				weapon_sound.play()
 				shootTimer.start(Global.attack_speed)
 		#Burn Out
@@ -168,6 +171,7 @@ func make_laser():
 	laserInstance = laserScene.instantiate()
 	get_parent().add_child(laserInstance)
 	Global.laser_made = true
+	laserInstance.scale += Global.weapon_scale
 
 
 func destroy_laser():
@@ -254,3 +258,7 @@ func god_mode():
 func sound_effects():
 	weapon_sound.volume_db = Global.sound_effects_volume
 	hit_sound.volume_db = Global.sound_effects_volume
+
+
+func increase_exp_pull_range():
+	collection_range.scale += Global.exp_pull_range

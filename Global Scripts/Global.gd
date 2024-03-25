@@ -22,6 +22,8 @@ var can_shoot
 var burn_out
 var god_mode = false
 var player_pos: Vector2
+var weapon_scale = Vector2(0,0)
+var exp_pull_range = Vector2(0,0)
 
 # Enemy Variables
 var enemy_weight = 0
@@ -38,6 +40,8 @@ var start_upgrades = [
 	preload("res://Upgrades/Solo_Upgrades/health_regen.tres"),
 	preload("res://Upgrades/Solo_Upgrades/bullet_velocity.tres"),
 	preload("res://Upgrades/Solo_Upgrades/damage_reduction.tres"),
+	preload("res://Upgrades/Solo_Upgrades/weapon_scale_up.tres"),
+	preload("res://Upgrades/Solo_Upgrades/exp_pull_range.tres"),
 ]
 const REGEN_WITH_DEGEN = preload("res://Upgrades/Combo_Upgradess/regen_with_degen.tres")
 const NO_GUN_ALL_COLLISION = preload("res://Upgrades/Combo_Upgradess/no_gun_all_collision.tres")
@@ -56,6 +60,7 @@ signal shader_settings()
 signal update_music_volume()
 signal update_sound_effects_volume()
 signal moon_guy_health(value)
+signal upgrade_pull_range()
 
 # Settings Variables
 var crt_value = 100.0
@@ -102,6 +107,8 @@ func refresh():
 	max_health = health
 	health_regen = 0
 	damage_reduction = 0
+	weapon_scale = Vector2(0,0)
+	exp_pull_range = Vector2(0,0)
 	
 	move_speed = 500
 	counter_thrust = 0

@@ -40,6 +40,17 @@ func upgrade_player():
 			big_resist()
 		"burn_out":
 			burn_out()
+		"weapon_scale":
+			weapon_scale()
+		"exp_pull_range":
+			exp_pull_range()
+
+func exp_pull_range():
+	Global.exp_pull_range += Vector2(upgrade_value,upgrade_value)
+	Global.upgrade_pull_range.emit()
+
+func weapon_scale():
+	Global.weapon_scale += Vector2(upgrade_value,upgrade_value)
 
 func burn_out():
 	Global.burn_out = true
