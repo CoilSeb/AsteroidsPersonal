@@ -1,7 +1,58 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgok41wy4ltpm"]
+[gd_scene load_steps=11 format=3 uid="uid://bgok41wy4ltpm"]
 
 [ext_resource type="Script" path="res://Scenes/Asteroids/Shard Asteroid/shard.gd" id="1_olui0"]
 [ext_resource type="Texture2D" uid="uid://bdrqgatfkqou3" path="res://Sprites/Asteroids/New Piskel-1.png (1).png" id="2_23gxl"]
+[ext_resource type="Texture2D" uid="uid://th08x787wlky" path="res://Sprites/Asteroids/Fade_Away.png" id="3_8f2fd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abwjn"]
+atlas = ExtResource("3_8f2fd")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuu5v"]
+atlas = ExtResource("3_8f2fd")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qisvg"]
+atlas = ExtResource("3_8f2fd")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbslg"]
+atlas = ExtResource("3_8f2fd")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70rgw"]
+atlas = ExtResource("3_8f2fd")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8c6uf"]
+atlas = ExtResource("3_8f2fd")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_enq6h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abwjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wuu5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qisvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbslg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70rgw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8c6uf")
+}],
+"loop": false,
+"name": &"default",
+"speed": 6.0
+}]
 
 [node name="Shard" type="Area2D" groups=["Shard"]]
 collision_layer = 4
@@ -20,5 +71,10 @@ polygon = PackedVector2Array(11, -24, 11, -13, 12, -13, 12, 9, 11, 10, 8, 11, 4,
 wait_time = 5.0
 one_shot = true
 autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_enq6h")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

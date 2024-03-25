@@ -1,6 +1,8 @@
 extends Area2D
 
 @onready var screen_size = get_viewport_rect().size
+@onready var sprite_2d = $Sprite2D
+@onready var animated_sprite_2d = $AnimatedSprite2D
 
 var speed: float
 var direction: Vector2
@@ -39,4 +41,7 @@ func damage_asteroid(damage):
 
 
 func _on_timer_timeout():
+	animated_sprite_2d.show()
+	animated_sprite_2d.play("default")
+	await animated_sprite_2d.animation_finished
 	queue_free()
