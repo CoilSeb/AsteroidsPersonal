@@ -30,6 +30,8 @@ var enemy_weight = 0
 var moon_guy_asteroid_count = 0
 
 # Upgrades
+var gun_upgrades
+
 var start_upgrades = [
 	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
 	preload("res://Upgrades/Solo_Upgrades/attack_speed_up.tres"),
