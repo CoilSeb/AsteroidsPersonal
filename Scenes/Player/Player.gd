@@ -12,7 +12,17 @@ const PLAYER_DEATH = preload("res://Particles/player_death.tscn")
 var bulletScene = preload("res://Scenes/Bullets/Bullet.tscn")
 var laserScene = preload("res://Scenes/Laser/laser.tscn")
 const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
-var laserInstance
+var laser1
+var laser2
+var laser3
+var laser4
+var laser5
+var laser6
+var laser7
+var laser8
+var laser9
+var laser10
+var laser11
 var screen_size
 var rotateSpeed = 5
 var thrust 
@@ -120,8 +130,29 @@ func _physics_process(delta):
 			if Input.is_action_pressed("shoot") && !Input.is_action_pressed("move_forward"):
 				if !Global.laser_made:
 					make_laser()
-				laserInstance.global_position = global_position + Vector2(0, -15).rotated(rotation)
-				laserInstance.direction = Vector2.UP.rotated(rotation) 
+				var offset = laser1.scale.x * 10.0
+				laser1.global_position = global_position + Vector2(-offset * 5, -15).rotated(rotation)
+				laser1.direction = Vector2.UP.rotated(rotation) 
+				laser2.global_position = global_position + Vector2(-offset * 4, -15).rotated(rotation)
+				laser2.direction = Vector2.UP.rotated(rotation) 
+				laser3.global_position = global_position + Vector2(-offset * 3, -15).rotated(rotation)
+				laser3.direction = Vector2.UP.rotated(rotation) 
+				laser4.global_position = global_position + Vector2(-offset * 2, -15).rotated(rotation)
+				laser4.direction = Vector2.UP.rotated(rotation) 
+				laser5.global_position = global_position + Vector2(-offset * 1, -15).rotated(rotation)
+				laser5.direction = Vector2.UP.rotated(rotation)
+				laser6.global_position = global_position + Vector2(0, -15).rotated(rotation)
+				laser6.direction = Vector2.UP.rotated(rotation)
+				laser7.global_position = global_position + Vector2(offset * 1, -15).rotated(rotation)
+				laser7.direction = Vector2.UP.rotated(rotation)
+				laser8.global_position = global_position + Vector2(offset * 2, -15).rotated(rotation)
+				laser8.direction = Vector2.UP.rotated(rotation)
+				laser9.global_position = global_position + Vector2(offset * 3, -15).rotated(rotation)
+				laser9.direction = Vector2.UP.rotated(rotation)
+				laser10.global_position = global_position + Vector2(offset * 4, -15).rotated(rotation)
+				laser10.direction = Vector2.UP.rotated(rotation)
+				laser11.global_position = global_position + Vector2(offset * 5, -15).rotated(rotation)
+				laser11.direction = Vector2.UP.rotated(rotation)
 			if Input.is_action_just_released("shoot") || Input.is_action_pressed("move_forward") || Input.is_action_pressed("move_backward"):
 				destroy_laser()
 				return
@@ -168,15 +199,65 @@ func _physics_process(delta):
 
 
 func make_laser():
-	laserInstance = laserScene.instantiate()
-	get_parent().add_child(laserInstance)
+	laser1 = laserScene.instantiate()
+	get_parent().add_child(laser1)
 	Global.laser_made = true
-	laserInstance.scale += Global.weapon_scale
+	laser1.scale += Global.weapon_scale
+	laser2 = laserScene.instantiate()
+	get_parent().add_child(laser2)
+	Global.laser_made = true
+	laser2.scale += Global.weapon_scale
+	laser3 = laserScene.instantiate()
+	get_parent().add_child(laser3)
+	Global.laser_made = true
+	laser3.scale += Global.weapon_scale
+	laser4 = laserScene.instantiate()
+	get_parent().add_child(laser4)
+	Global.laser_made = true
+	laser4.scale += Global.weapon_scale
+	laser5 = laserScene.instantiate()
+	get_parent().add_child(laser5)
+	Global.laser_made = true
+	laser5.scale += Global.weapon_scale
+	laser6 = laserScene.instantiate()
+	get_parent().add_child(laser6)
+	Global.laser_made = true
+	laser6.scale += Global.weapon_scale
+	laser7 = laserScene.instantiate()
+	get_parent().add_child(laser7)
+	Global.laser_made = true
+	laser7.scale += Global.weapon_scale
+	laser8 = laserScene.instantiate()
+	get_parent().add_child(laser8)
+	Global.laser_made = true
+	laser8.scale += Global.weapon_scale
+	laser9 = laserScene.instantiate()
+	get_parent().add_child(laser9)
+	Global.laser_made = true
+	laser9.scale += Global.weapon_scale
+	laser10 = laserScene.instantiate()
+	get_parent().add_child(laser10)
+	Global.laser_made = true
+	laser10.scale += Global.weapon_scale
+	laser11 = laserScene.instantiate()
+	get_parent().add_child(laser11)
+	Global.laser_made = true
+	laser11.scale += Global.weapon_scale
 
 
 func destroy_laser():
-	if laserInstance != null:
-		laserInstance.queue_free()
+	if laser1 != null:
+		laser1.queue_free()
+		laser2.queue_free()
+		laser3.queue_free()
+		laser4.queue_free()
+		laser5.queue_free()
+		laser6.queue_free()
+		laser7.queue_free()
+		laser8.queue_free()
+		laser9.queue_free()
+		laser10.queue_free()
+		laser11.queue_free()
 		Global.laser_made = false
 
 

@@ -19,6 +19,7 @@ var rotation_speed
 var weighted = false
 var counted = false
 var weight = 2
+var dead = false
 
 
 func _ready():
@@ -69,7 +70,8 @@ func damage_asteroid(damage):
 		crack_1.visible = true
 	if health <= 10:
 		crack_2.visible = true 
-	if health <= 0:
+	if health <= 0 && !dead:
+		dead = true
 		destroy()
 
 

@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmiu6wiv2qyw3"]
+
+[ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_awws1"]
+[ext_resource type="Texture2D" uid="uid://cy2p3man040cg" path="res://Sprites/Other/Player-1.png.png" id="2_fdo7j"]
+[ext_resource type="Texture2D" uid="uid://cleolfa5jahst" path="res://Sprites/Other/Thrust-1.png (2).png" id="3_16tuw"]
+[ext_resource type="Texture2D" uid="uid://c81cyxo81c3w6" path="res://Sprites/UI/Bar-1.png.png" id="4_dmj04"]
+[ext_resource type="AudioStream" uid="uid://dlgtdkd5745xy" path="res://Audio/Sounds/lightsaber-ignition-6816.mp3" id="6_aahvw"]
+[ext_resource type="AudioStream" uid="uid://dri08vbesoouk" path="res://Audio/Sounds/hurt_c_08-102842.mp3" id="6_uarmo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sawk4"]
+radius = 27.0
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 10
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_awws1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+scale = Vector2(0.25, 0.35)
+texture = ExtResource("2_fdo7j")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -0.499998)
+scale = Vector2(1, 1.47917)
+polygon = PackedVector2Array(0, -14.5352, -16, 15.2112, 0, 7.77463, 16, 15.2112)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 12
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(0, -0.499998)
+scale = Vector2(1, 1.47917)
+polygon = PackedVector2Array(0, -14.5352, -16, 15.2112, 0, 7.77463, 16, 15.2112)
+
+[node name="Collection_Range" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collection_Range"]
+shape = SubResource("CircleShape2D_sawk4")
+
+[node name="Thrust_Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 25)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_16tuw")
+
+[node name="Burn_Out_Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Burn_Out_Cooldown_Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Burn_Out_Bar_BG" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = 10.0
+offset_top = 4.0
+offset_right = 35.0
+offset_bottom = 16.0
+rotation = -1.91986
+value = 100.0
+nine_patch_stretch = true
+texture_progress = ExtResource("4_dmj04")
+tint_progress = Color(0.447059, 0.447059, 0.447059, 1)
+
+[node name="Burn_Out_Bar" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = 10.0
+offset_top = 4.0
+offset_right = 35.0
+offset_bottom = 16.0
+rotation = -1.91986
+value = 50.0
+nine_patch_stretch = true
+texture_progress = ExtResource("4_dmj04")
+
+[node name="Weapon_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_aahvw")
+pitch_scale = 2.0
+
+[node name="Hit_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_uarmo")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Collection_Range" to="." method="_on_collection_range_area_entered"]

@@ -26,6 +26,7 @@ var fourth_spawn = false
 var weighted = false
 var counted = false
 var weight = 4
+var dead = false
 
 
 func _ready():
@@ -111,7 +112,8 @@ func damage_asteroid(damage):
 		if !fourth_spawn:
 			call_deferred("create_shards", 2.0)
 			fourth_spawn = true
-	if health <= 0:
+	if health <= 0 && !dead:
+		dead = true
 		for i: int in range(2):
 			call_deferred("make_exp")
 		destroy()

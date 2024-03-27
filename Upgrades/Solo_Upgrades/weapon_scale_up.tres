@@ -5,14 +5,14 @@
 [sub_resource type="Resource" id="Resource_2o0uw"]
 script = ExtResource("1_dgl57")
 upgrade_name = "weapon_scale"
-upgrade_text = "Double your weapon size"
+upgrade_text = "Increase beam width"
 upgrade_value = 1.0
 key_upgrade = false
 
 [sub_resource type="Resource" id="Resource_mstfa"]
 script = ExtResource("1_dgl57")
 upgrade_name = "weapon_scale"
-upgrade_text = "Double your weapon size"
+upgrade_text = "Increase beam width"
 upgrade_value = 1.0
 key_upgrade = false
 next_upgrade = SubResource("Resource_2o0uw")
@@ -20,7 +20,7 @@ next_upgrade = SubResource("Resource_2o0uw")
 [resource]
 script = ExtResource("1_dgl57")
 upgrade_name = "weapon_scale"
-upgrade_text = "Double your weapon size"
+upgrade_text = "Increase beam width"
 upgrade_value = 1.0
 key_upgrade = false
 next_upgrade = SubResource("Resource_mstfa")

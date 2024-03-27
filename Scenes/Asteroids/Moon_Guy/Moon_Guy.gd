@@ -21,6 +21,7 @@ var weighted = false
 var counted = false
 var weight = 16
 var i = int(rotation) % 10;
+var dead = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -87,7 +88,8 @@ func damage_asteroid(damage):
 	#if health <= 10:
 		##crack_4.visible = true 
 		#audio_stream_player_2d.play()
-	if health <= 0:
+	if health <= 0 && !dead:
+		dead = true
 		Global.moon_guy_health.emit(750)
 		destroy()
 

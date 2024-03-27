@@ -21,6 +21,7 @@ var weight = 1
 var boss = false
 var initial = false
 var rotate_angle = 0.0
+var dead = false
 
 
 
@@ -92,7 +93,8 @@ func make_exp():
 
 func damage_asteroid(damage):
 	health -= damage
-	if health <= 0:
+	if health <= 0 && !dead:
+		dead = true
 		if !boss:
 			call_deferred("make_exp")
 		destroy()

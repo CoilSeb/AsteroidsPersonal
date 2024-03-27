@@ -30,7 +30,18 @@ var enemy_weight = 0
 var moon_guy_asteroid_count = 0
 
 # Upgrades
-var gun_upgrades
+var gun_upgrades = [
+	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
+	preload("res://Upgrades/Solo_Upgrades/attack_speed_up.tres"),
+	preload("res://Upgrades/Solo_Upgrades/collision_damage_up.tres"),
+	preload("res://Upgrades/Solo_Upgrades/health_up.tres"),
+	preload("res://Upgrades/Solo_Upgrades/move_speed.tres"),
+	preload("res://Upgrades/Solo_Upgrades/counter_thrust.tres"),
+	preload("res://Upgrades/Solo_Upgrades/health_regen.tres"),
+	preload("res://Upgrades/Solo_Upgrades/bullet_velocity.tres"),
+	preload("res://Upgrades/Solo_Upgrades/damage_reduction.tres"),
+	preload("res://Upgrades/Solo_Upgrades/exp_pull_range.tres"),
+]
 
 var start_upgrades = [
 	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
@@ -51,7 +62,7 @@ var no_gun_all_collision = false
 const BIG_RESIST = preload("res://Upgrades/Combo_Upgradess/big_resist.tres")
 const BURN_OUT = preload("res://Upgrades/Combo_Upgradess/burn_out.tres")
 
-var upgrades_test = start_upgrades.duplicate()
+var upgrades_test
 
 var key_upgrades = []
 
@@ -121,6 +132,7 @@ func refresh():
 		"Gun":
 			damage = 10
 			attack_speed = 0.75
+			upgrades_test = gun_upgrades.duplicate()
 		"Laser":
 			damage = 1
 			attack_speed = 0.1
