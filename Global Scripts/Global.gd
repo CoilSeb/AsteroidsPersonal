@@ -30,32 +30,27 @@ var enemy_weight = 0
 var moon_guy_asteroid_count = 0
 
 # Upgrades
-var gun_upgrades = [
-	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
-	preload("res://Upgrades/Solo_Upgrades/attack_speed_up.tres"),
+var base_upgrades = [
 	preload("res://Upgrades/Solo_Upgrades/collision_damage_up.tres"),
 	preload("res://Upgrades/Solo_Upgrades/health_up.tres"),
 	preload("res://Upgrades/Solo_Upgrades/move_speed.tres"),
 	preload("res://Upgrades/Solo_Upgrades/counter_thrust.tres"),
 	preload("res://Upgrades/Solo_Upgrades/health_regen.tres"),
-	preload("res://Upgrades/Solo_Upgrades/bullet_velocity.tres"),
 	preload("res://Upgrades/Solo_Upgrades/damage_reduction.tres"),
 	preload("res://Upgrades/Solo_Upgrades/exp_pull_range.tres"),
 ]
 
-var start_upgrades = [
+var gun_upgrades = [
 	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
 	preload("res://Upgrades/Solo_Upgrades/attack_speed_up.tres"),
-	preload("res://Upgrades/Solo_Upgrades/collision_damage_up.tres"),
-	preload("res://Upgrades/Solo_Upgrades/health_up.tres"),
-	preload("res://Upgrades/Solo_Upgrades/move_speed.tres"),
-	preload("res://Upgrades/Solo_Upgrades/counter_thrust.tres"),
-	preload("res://Upgrades/Solo_Upgrades/health_regen.tres"),
 	preload("res://Upgrades/Solo_Upgrades/bullet_velocity.tres"),
-	preload("res://Upgrades/Solo_Upgrades/damage_reduction.tres"),
-	preload("res://Upgrades/Solo_Upgrades/weapon_scale_up.tres"),
-	preload("res://Upgrades/Solo_Upgrades/exp_pull_range.tres"),
 ]
+
+var laser_upgrades = [
+	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
+	preload("res://Upgrades/Solo_Upgrades/weapon_scale_up.tres"),
+]
+
 const REGEN_WITH_DEGEN = preload("res://Upgrades/Combo_Upgradess/regen_with_degen.tres")
 const NO_GUN_ALL_COLLISION = preload("res://Upgrades/Combo_Upgradess/no_gun_all_collision.tres")
 var no_gun_all_collision = false
@@ -112,8 +107,7 @@ func add_key_upgrades(key_upgrade):
 
 
 func refresh():
-	upgrades_test = start_upgrades.duplicate()
-	
+	upgrades_test = base_upgrades.duplicate()
 	god_mode = false
 	no_gun_all_collision = false
 	health = 300
@@ -132,11 +126,15 @@ func refresh():
 		"Gun":
 			damage = 10
 			attack_speed = 0.75
-			upgrades_test = gun_upgrades.duplicate()
+			upgrades_test = base_upgrades.duplicate()
+			var gun_test = gun_upgrades.duplicate()
+			upgrades_test += gun_test
 		"Laser":
 			damage = 1
 			attack_speed = 0.1
 			laser_made = false
+			var laser_test = laser_upgrades.duplicate()
+			upgrades_test += laser_test
 	
 	bullet_velocity = 700
 	collision_damage = 10
