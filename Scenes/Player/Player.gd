@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var weapon_sound = $Weapon_Sound
 @onready var hit_sound = $Hit_Sound
 @onready var collection_range = $Collection_Range
+@onready var hit_timer = $Hit_Timer
 
 const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
 const PLAYER_DEATH = preload("res://Particles/player_death.tscn")
@@ -262,35 +263,37 @@ func destroy_laser():
 
 
 func _on_area_2d_area_entered(area):
-	if area.is_in_group("Moon_Guy"):
-		hit_sound.play()
-		Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
-		area.damage_asteroid(Global.collision_damage)
-		check_velocity(area)
-	if area.is_in_group("Big_Asteroid") || area.is_in_group("Shard_Asteroid"): #&& immunity_timer.get_time_left() == 0:
-		hit_sound.play()
-		Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
-		area.damage_asteroid(Global.collision_damage)
-		#print("player ", velocity.length())
-		#print("area ", area.velocity.length())
-		check_velocity(area)
-			
-	if area.is_in_group("Medium_Asteroid"): #&& immunity_timer.get_time_left() == 0:
-		hit_sound.play()
-		Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
-		area.damage_asteroid(Global.collision_damage)
-		check_velocity(area)
-			
-	if area.is_in_group("Small_Asteroid"): #&& immunity_timer.get_time_left() == 0:
-		hit_sound.play()
-		Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
-		area.damage_asteroid(Global.collision_damage)
-		check_velocity(area)
-			
-	if area.is_in_group("Shard"):
-		hit_sound.play()
-		Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
-		area.damage_asteroid(Global.collision_damage)
+	if hit_timer.time_left == 0:
+		hit_timer.start()
+		if area.is_in_group("Moon_Guy"):
+			hit_sound.play()
+			Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
+			area.damage_asteroid(Global.collision_damage)
+			check_velocity(area)
+		if area.is_in_group("Big_Asteroid") || area.is_in_group("Shard_Asteroid"): #&& immunity_timer.get_time_left() == 0:
+			hit_sound.play()
+			Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
+			area.damage_asteroid(Global.collision_damage)
+			#print("player ", velocity.length())
+			#print("area ", area.velocity.length())
+			check_velocity(area)
+				
+		if area.is_in_group("Medium_Asteroid"): #&& immunity_timer.get_time_left() == 0:
+			hit_sound.play()
+			Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
+			area.damage_asteroid(Global.collision_damage)
+			check_velocity(area)
+				
+		if area.is_in_group("Small_Asteroid"): #&& immunity_timer.get_time_left() == 0:
+			hit_sound.play()
+			Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
+			area.damage_asteroid(Global.collision_damage)
+			check_velocity(area)
+				
+		if area.is_in_group("Shard"):
+			hit_sound.play()
+			Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
+			area.damage_asteroid(Global.collision_damage)
 			
 	if area.is_in_group("Destroy_Ring"):
 		Ui.update_exp(10)
@@ -299,6 +302,7 @@ func _on_area_2d_area_entered(area):
 		audio_player.volume_db = Global.sound_effects_volume - 10
 		get_parent().add_child(audio_player)
 		area.get_parent().destroy()
+				
 
 
 func check_velocity(area):

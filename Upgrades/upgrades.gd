@@ -44,6 +44,14 @@ func upgrade_player():
 			weapon_scale()
 		"exp_pull_range":
 			exp_pull_range()
+		"gatling_gun":
+			gatling_gun()
+
+func gatling_gun():
+	Global.attack_speed = 0.2
+	#Global.weapon_scale -= Vector2(0.25,0.25)
+	Global.deviation = 0.15
+	Global.bullet_time += 0.5
 
 func exp_pull_range():
 	Global.exp_pull_range += Vector2(upgrade_value,upgrade_value)

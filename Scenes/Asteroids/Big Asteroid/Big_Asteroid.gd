@@ -9,6 +9,7 @@ extends Area2D
 const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
 const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
 var medium_asteroid_scene = preload("res://Scenes/Asteroids/Medium Asteroid/Medium_asteroid.tscn")
+var exp_Scene = preload("res://Scenes/Experience/Experience.tscn")
 var screen_size
 var speed: float
 var direction: Vector2
@@ -81,6 +82,10 @@ func damage_asteroid(damage):
 
 
 func create_and_add_asteroids():
+	var i = randi_range(0,1)
+	if i == 0:
+		call_deferred("make_exp")
+	
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")
 	audio_player.volume_db = Global.sound_effects_volume - 7
@@ -113,3 +118,9 @@ func create_and_add_asteroids():
 
 	# Queue the medium asteroid for deletion
 	self.queue_free()
+
+
+func make_exp():
+	var exp_shard = exp_Scene.instantiate()
+	exp_shard.position = self.position
+	self.get_parent().add_child(exp_shard)

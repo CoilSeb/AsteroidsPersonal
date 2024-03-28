@@ -133,6 +133,48 @@ nine_patch_stretch = true
 texture_progress = ExtResource("2_ky7pi")
 tint_progress = Color(1, 1, 1, 0.168627)
 
+[node name="Evo_Bar" type="TextureProgressBar" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1639.0
+offset_top = 32.0
+offset_right = -81.0
+offset_bottom = 60.0
+grow_horizontal = 2
+max_value = 10.0
+fill_mode = 6
+nine_patch_stretch = true
+texture_progress = ExtResource("2_ky7pi")
+tint_progress = Color(1, 1, 1, 0.815686)
+
+[node name="Evo_Bar_BG" type="TextureProgressBar" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1639.0
+offset_top = 32.0
+offset_right = -81.0
+offset_bottom = 60.0
+grow_horizontal = 2
+max_value = 10.0
+value = 10.0
+fill_mode = 6
+nine_patch_stretch = true
+texture_progress = ExtResource("2_ky7pi")
+tint_progress = Color(1, 1, 1, 0.168627)
+
+[node name="Evo_Label" type="Label" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 322.0
+offset_top = 22.0
+offset_right = 674.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "\"E\" TO EVOLVE WEAPON"
+
 [node name="Moon_Guy_Layover" type="Control" parent="."]
 visible = false
 layout_mode = 3

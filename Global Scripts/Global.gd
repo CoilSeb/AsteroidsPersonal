@@ -20,6 +20,8 @@ var weapon
 var laser_made
 var can_shoot
 var burn_out
+var deviation
+var bullet_time
 var god_mode = false
 var player_pos: Vector2
 var weapon_scale = Vector2(0,0)
@@ -46,6 +48,10 @@ var gun_upgrades = [
 	preload("res://Upgrades/Gun_Upgrades/damage_up.tres"),
 ]
 
+var gun_evolutions = [
+	preload("res://Upgrades/Gun_Upgrades/Evolutions/Gatling_Gun.tres"),
+]
+
 var laser_upgrades = [
 	preload("res://Upgrades/Gun_Upgrades/damage_up.tres"),
 	preload("res://Upgrades/Base_Upgrades/weapon_scale_up.tres"),
@@ -58,6 +64,7 @@ const BIG_RESIST = preload("res://Upgrades/Combo_Upgradess/big_resist.tres")
 const BURN_OUT = preload("res://Upgrades/Combo_Upgradess/burn_out.tres")
 
 var upgrades_test
+var evolutions_test
 
 var key_upgrades = []
 
@@ -69,6 +76,7 @@ signal update_music_volume()
 signal update_sound_effects_volume()
 signal moon_guy_health(value)
 signal upgrade_pull_range()
+signal evo_upgrade()
 
 # Settings Variables
 var crt_value = 100.0
@@ -126,8 +134,10 @@ func refresh():
 		"Gun":
 			damage = 10
 			attack_speed = 0.75
+			bullet_velocity = 700
 			upgrades_test = base_upgrades.duplicate()
 			var gun_test = gun_upgrades.duplicate()
+			evolutions_test = gun_evolutions.duplicate()
 			upgrades_test += gun_test
 		"Laser":
 			damage = 1
@@ -136,11 +146,12 @@ func refresh():
 			var laser_test = laser_upgrades.duplicate()
 			upgrades_test += laser_test
 	
-	bullet_velocity = 700
+	deviation = 0
+	bullet_time = 1
 	collision_damage = 10
 	
 	exp = 0
-	exp_threshold = 30
+	exp_threshold = 1
 	key_upgrades.clear()
 	enemy_weight = 0
 

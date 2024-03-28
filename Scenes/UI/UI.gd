@@ -15,6 +15,9 @@ extends CanvasLayer
 @onready var health_bar_bg = $Health_Bar_BG
 @onready var exp_bar = $Exp_Bar
 @onready var exp_bar_bg = $Exp_Bar_BG
+@onready var evo_bar = $Evo_Bar
+@onready var evo_bar_bg = $Evo_Bar_BG
+@onready var evo_label = $Evo_Label
 @onready var upgrade_menu = $Upgrade_Menu
 @onready var upgrade_dim_overlay = $Upgrade_Menu/Upgrade_Dim_Overlay
 @onready var first_upgrade_button = $Upgrade_Menu/First_Upgrade
@@ -51,7 +54,9 @@ var score = 0
 var first_upgrade: upgrade
 var second_upgrade: upgrade
 var third_upgrade: upgrade
-var levels = 0
+var stored_levels = 0
+var total_level = 0
+var evolved = false
 var upgrades = [
 	first_upgrade,
 	second_upgrade,
@@ -90,8 +95,10 @@ func _process(_delta):
 	if upgrade_menu.visible == true:
 		if Input.is_action_just_pressed("reroll"):
 			level_up()
-	if Input.is_action_just_pressed("reroll") && (levels > 0 || Global.god_mode):
+	if Input.is_action_just_pressed("reroll") && (stored_levels > 0 || Global.god_mode):
 		level_up()
+	if Input.is_action_just_pressed("E") && (total_level >= 10 || Global.god_mode) && !evolved:
+		evo_level_up()
 		
 	$PauseMenu/VBoxContainer/Health_Label.text = "Health: " + str(snapped(Global.health, 1)) + " / " + str(Global.max_health)
 	$PauseMenu/VBoxContainer/Health_Regen_Label.text = "Health Regen: " + str(Global.health_regen) + " (sec)"
@@ -216,18 +223,22 @@ func update_exp(amount):
 
 
 func update_max_exp():
+	if total_level == 9:
+		evo_label.show()
 	if Global.exp >= Global.exp_threshold:
+		total_level += 1
+		evo_bar.value = total_level
 		level_up_sound.play()
 		Global.exp -= Global.exp_threshold
 		Global.exp_threshold *= 1.1
 		exp_bar.max_value = Global.exp_threshold
 		exp_bar.value = Global.exp
-		levels += 1
-	if levels == 1:
-		levels_label.text = "'R' to level up (" + str(levels) + " level stored)"
+		stored_levels += 1
+	if stored_levels == 1:
+		levels_label.text = "'R' to level up (" + str(stored_levels) + " level stored)"
 		levels_label.show()
-	if levels > 1:
-		levels_label.text = "'R' to level up (" + str(levels) + " levels stored)"
+	if stored_levels > 1:
+		levels_label.text = "'R' to level up (" + str(stored_levels) + " levels stored)"
 		levels_label.show()
 	if Global.god_mode:
 		levels_label.text = "'R' to level up (INF levels stored)"
@@ -263,13 +274,25 @@ func level_up():
 	ButtonClick.play()
 	second_upgrade_button.grab_focus()
 	if !upgrade_menu.visible:
-		levels -= 1
+		stored_levels -= 1
 	update_max_exp()
-	if levels == 0 && !Global.god_mode:
+	if stored_levels == 0 && !Global.god_mode:
 		levels_label.hide()
 	get_tree().paused = true
 	upgrade_menu.visible = true
 	get_upgrades()
+	level_up_timer.start()
+
+
+func evo_level_up():
+	ButtonClick.play()
+	second_upgrade_button.grab_focus()
+	if !upgrade_menu.visible:
+		evolved = true
+	evo_label.hide()
+	get_tree().paused = true
+	upgrade_menu.visible = true
+	get_evolutions()
 	level_up_timer.start()
 
 
@@ -279,6 +302,26 @@ func get_upgrades():
 	for i in range(3):
 		if Global.upgrades_test.size() - 1 >= i:
 			var my_upgrade = Global.upgrades_test[i]
+			
+			text_labels[i].text = "[center]" + my_upgrade.upgrade_text
+			textures[i].texture = my_upgrade.upgrade_texture
+			upgrades[i] = my_upgrade
+		else:
+			text_labels[i].text = "null"
+			textures[i].texture = null
+			upgrades[i] = null
+		
+	first_upgrade = upgrades[0]
+	second_upgrade = upgrades[1]
+	third_upgrade = upgrades[2]
+
+
+func get_evolutions():
+	Global.evolutions_test.shuffle()
+
+	for i in range(3):
+		if Global.evolutions_test.size() - 1 >= i:
+			var my_upgrade = Global.evolutions_test[i]
 			
 			text_labels[i].text = "[center]" + my_upgrade.upgrade_text
 			textures[i].texture = my_upgrade.upgrade_texture
