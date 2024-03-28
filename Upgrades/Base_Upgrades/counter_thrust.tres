@@ -1,30 +1,30 @@
 [gd_resource type="Resource" script_class="upgrade" load_steps=5 format=3 uid="uid://pxaa6cerj3qs"]
 
-[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_wg1gf"]
-[ext_resource type="Texture2D" uid="uid://b31q7hn7mrahg" path="res://Sprites/Upgrades/Counter_Thrust_Upgrade-1.png.png" id="2_sut6x"]
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_e6bac"]
+[ext_resource type="Texture2D" uid="uid://b31q7hn7mrahg" path="res://Sprites/Upgrades/Counter_Thrust_Upgrade-1.png.png" id="2_qv463"]
 
 [sub_resource type="Resource" id="Resource_0nun0"]
-script = ExtResource("1_wg1gf")
+script = ExtResource("1_e6bac")
 upgrade_name = "counter_thrust"
 upgrade_text = "Upgrade counter thrust by 300 "
 upgrade_value = 300.0
-upgrade_texture = ExtResource("2_sut6x")
+upgrade_texture = ExtResource("2_qv463")
 key_upgrade = false
 
 [sub_resource type="Resource" id="Resource_ukgxh"]
-script = ExtResource("1_wg1gf")
+script = ExtResource("1_e6bac")
 upgrade_name = "counter_thrust"
 upgrade_text = "Upgrade counter thrust by 200 "
 upgrade_value = 200.0
-upgrade_texture = ExtResource("2_sut6x")
+upgrade_texture = ExtResource("2_qv463")
 key_upgrade = false
 next_upgrade = SubResource("Resource_0nun0")
 
 [resource]
-script = ExtResource("1_wg1gf")
+script = ExtResource("1_e6bac")
 upgrade_name = "counter_thrust"
 upgrade_text = "Upgrade counter thrust by 1000"
 upgrade_value = 1000.0
-upgrade_texture = ExtResource("2_sut6x")
+upgrade_texture = ExtResource("2_qv463")
 key_upgrade = false
 next_upgrade = SubResource("Resource_ukgxh")

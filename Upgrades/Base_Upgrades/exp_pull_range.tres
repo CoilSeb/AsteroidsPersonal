@@ -1,16 +1,16 @@
 [gd_resource type="Resource" script_class="upgrade" load_steps=4 format=3 uid="uid://daanhjvtqfmdd"]
 
-[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_amhjf"]
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_4qpv8"]
 
 [sub_resource type="Resource" id="Resource_1xnnh"]
-script = ExtResource("1_amhjf")
+script = ExtResource("1_4qpv8")
 upgrade_name = "exp_pull_range"
 upgrade_text = "Increase your Exp collection range even more"
 upgrade_value = 1.0
 key_upgrade = null
 
 [sub_resource type="Resource" id="Resource_d7cq7"]
-script = ExtResource("1_amhjf")
+script = ExtResource("1_4qpv8")
 upgrade_name = "exp_pull_range"
 upgrade_text = "Increase your Exp collection range more"
 upgrade_value = 1.0
@@ -18,7 +18,7 @@ key_upgrade = null
 next_upgrade = SubResource("Resource_1xnnh")
 
 [resource]
-script = ExtResource("1_amhjf")
+script = ExtResource("1_4qpv8")
 upgrade_name = "exp_pull_range"
 upgrade_text = "Increase your Exp collection range"
 upgrade_value = 2.0

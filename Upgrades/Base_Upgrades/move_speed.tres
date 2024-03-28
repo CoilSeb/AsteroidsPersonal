@@ -1,30 +1,30 @@
 [gd_resource type="Resource" script_class="upgrade" load_steps=5 format=3 uid="uid://bakxv18ok30ql"]
 
-[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_qtpcb"]
-[ext_resource type="Texture2D" uid="uid://buw1idxg8dvq" path="res://Sprites/Upgrades/Move_Speed_Upgrade-1.png.png" id="2_rqkj7"]
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_sy8wp"]
+[ext_resource type="Texture2D" uid="uid://buw1idxg8dvq" path="res://Sprites/Upgrades/Move_Speed_Upgrade-1.png.png" id="2_xvyna"]
 
 [sub_resource type="Resource" id="Resource_krdgh"]
-script = ExtResource("1_qtpcb")
+script = ExtResource("1_sy8wp")
 upgrade_name = "move_speed"
 upgrade_text = "Upgrades move_speed by 200"
 upgrade_value = 200.0
-upgrade_texture = ExtResource("2_rqkj7")
+upgrade_texture = ExtResource("2_xvyna")
 key_upgrade = true
 
 [sub_resource type="Resource" id="Resource_cfgst"]
-script = ExtResource("1_qtpcb")
+script = ExtResource("1_sy8wp")
 upgrade_name = "move_speed"
 upgrade_text = "Upgrades move_speed by 150"
 upgrade_value = 150.0
-upgrade_texture = ExtResource("2_rqkj7")
+upgrade_texture = ExtResource("2_xvyna")
 key_upgrade = false
 next_upgrade = SubResource("Resource_krdgh")
 
 [resource]
-script = ExtResource("1_qtpcb")
+script = ExtResource("1_sy8wp")
 upgrade_name = "move_speed"
 upgrade_text = "Upgrades move_speed by 100"
 upgrade_value = 100.0
-upgrade_texture = ExtResource("2_rqkj7")
+upgrade_texture = ExtResource("2_xvyna")
 key_upgrade = false
 next_upgrade = SubResource("Resource_cfgst")

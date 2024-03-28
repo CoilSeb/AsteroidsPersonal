@@ -1,30 +1,30 @@
 [gd_resource type="Resource" script_class="upgrade" load_steps=5 format=3 uid="uid://c7fq1vkkarc5n"]
 
-[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_6ron8"]
-[ext_resource type="Texture2D" uid="uid://devvm3fjv12by" path="res://Sprites/Upgrades/Damage_Reduction-1.png.png" id="2_j8ijc"]
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_ijnqp"]
+[ext_resource type="Texture2D" uid="uid://devvm3fjv12by" path="res://Sprites/Upgrades/Damage_Reduction-1.png.png" id="2_rj8s5"]
 
 [sub_resource type="Resource" id="Resource_88u3g"]
-script = ExtResource("1_6ron8")
+script = ExtResource("1_ijnqp")
 upgrade_name = "damage_reduction"
 upgrade_text = "Increase damage reduction percentage by 12.5"
 upgrade_value = 0.125
-upgrade_texture = ExtResource("2_j8ijc")
+upgrade_texture = ExtResource("2_rj8s5")
 key_upgrade = true
 
 [sub_resource type="Resource" id="Resource_pd8ey"]
-script = ExtResource("1_6ron8")
+script = ExtResource("1_ijnqp")
 upgrade_name = "damage_reduction"
 upgrade_text = "Increase damage reduction percentage by 7.5"
 upgrade_value = 0.075
-upgrade_texture = ExtResource("2_j8ijc")
+upgrade_texture = ExtResource("2_rj8s5")
 key_upgrade = false
 next_upgrade = SubResource("Resource_88u3g")
 
 [resource]
-script = ExtResource("1_6ron8")
+script = ExtResource("1_ijnqp")
 upgrade_name = "damage_reduction"
 upgrade_text = "Add a percentage based damage reduction of 5% to your player"
 upgrade_value = 0.05
-upgrade_texture = ExtResource("2_j8ijc")
+upgrade_texture = ExtResource("2_rj8s5")
 key_upgrade = false
 next_upgrade = SubResource("Resource_pd8ey")

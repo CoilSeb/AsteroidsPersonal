@@ -1,30 +1,30 @@
 [gd_resource type="Resource" script_class="upgrade" load_steps=5 format=3 uid="uid://cxm7y6arl8o4e"]
 
-[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_nplsq"]
-[ext_resource type="Texture2D" uid="uid://viiw63qghf3s" path="res://Sprites/Upgrades/Health_Upgrade-1.png.png" id="2_1x2gu"]
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_mokfx"]
+[ext_resource type="Texture2D" uid="uid://viiw63qghf3s" path="res://Sprites/Upgrades/Health_Upgrade-1.png.png" id="2_sdyxx"]
 
 [sub_resource type="Resource" id="Resource_rkgik"]
-script = ExtResource("1_nplsq")
+script = ExtResource("1_mokfx")
 upgrade_name = "health"
 upgrade_text = "Upgrades health by 150"
 upgrade_value = 150.0
-upgrade_texture = ExtResource("2_1x2gu")
+upgrade_texture = ExtResource("2_sdyxx")
 key_upgrade = true
 
 [sub_resource type="Resource" id="Resource_84j6l"]
-script = ExtResource("1_nplsq")
+script = ExtResource("1_mokfx")
 upgrade_name = "health"
 upgrade_text = "Upgrades health by 100"
 upgrade_value = 100.0
-upgrade_texture = ExtResource("2_1x2gu")
+upgrade_texture = ExtResource("2_sdyxx")
 key_upgrade = null
 next_upgrade = SubResource("Resource_rkgik")
 
 [resource]
-script = ExtResource("1_nplsq")
+script = ExtResource("1_mokfx")
 upgrade_name = "health"
 upgrade_text = "Upgrades health by 50"
 upgrade_value = 50.0
-upgrade_texture = ExtResource("2_1x2gu")
+upgrade_texture = ExtResource("2_sdyxx")
 key_upgrade = null
 next_upgrade = SubResource("Resource_84j6l")

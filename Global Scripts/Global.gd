@@ -31,24 +31,24 @@ var moon_guy_asteroid_count = 0
 
 # Upgrades
 var base_upgrades = [
-	preload("res://Upgrades/Solo_Upgrades/collision_damage_up.tres"),
-	preload("res://Upgrades/Solo_Upgrades/health_up.tres"),
-	preload("res://Upgrades/Solo_Upgrades/move_speed.tres"),
-	preload("res://Upgrades/Solo_Upgrades/counter_thrust.tres"),
-	preload("res://Upgrades/Solo_Upgrades/health_regen.tres"),
-	preload("res://Upgrades/Solo_Upgrades/damage_reduction.tres"),
-	preload("res://Upgrades/Solo_Upgrades/exp_pull_range.tres"),
+	preload("res://Upgrades/Base_Upgrades/collision_damage_up.tres"),
+	preload("res://Upgrades/Base_Upgrades/health_up.tres"),
+	preload("res://Upgrades/Base_Upgrades/move_speed.tres"),
+	preload("res://Upgrades/Base_Upgrades/counter_thrust.tres"),
+	preload("res://Upgrades/Base_Upgrades/health_regen.tres"),
+	preload("res://Upgrades/Base_Upgrades/damage_reduction.tres"),
+	preload("res://Upgrades/Base_Upgrades/exp_pull_range.tres"),
 ]
 
 var gun_upgrades = [
-	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
-	preload("res://Upgrades/Solo_Upgrades/attack_speed_up.tres"),
-	preload("res://Upgrades/Solo_Upgrades/bullet_velocity.tres"),
+	preload("res://Upgrades/Gun_Upgrades/attack_speed_up.tres"),
+	preload("res://Upgrades/Gun_Upgrades/bullet_velocity.tres"),
+	preload("res://Upgrades/Gun_Upgrades/damage_up.tres"),
 ]
 
 var laser_upgrades = [
-	preload("res://Upgrades/Solo_Upgrades/damage_up.tres"),
-	preload("res://Upgrades/Solo_Upgrades/weapon_scale_up.tres"),
+	preload("res://Upgrades/Gun_Upgrades/damage_up.tres"),
+	preload("res://Upgrades/Base_Upgrades/weapon_scale_up.tres"),
 ]
 
 const REGEN_WITH_DEGEN = preload("res://Upgrades/Combo_Upgradess/regen_with_degen.tres")

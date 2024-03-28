@@ -1,30 +1,30 @@
 [gd_resource type="Resource" script_class="upgrade" load_steps=5 format=3 uid="uid://4c6yrbsmwgns"]
 
-[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_vivkn"]
-[ext_resource type="Texture2D" uid="uid://dsj2buvcsbci" path="res://Sprites/Upgrades/Damage_Upgrade-1.png (2).png" id="2_wfgwu"]
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_tnnqp"]
+[ext_resource type="Texture2D" uid="uid://dsj2buvcsbci" path="res://Sprites/Upgrades/Damage_Upgrade-1.png (2).png" id="2_ajbvl"]
 
 [sub_resource type="Resource" id="Resource_sqvx0"]
-script = ExtResource("1_vivkn")
+script = ExtResource("1_tnnqp")
 upgrade_name = "damage"
 upgrade_text = "Upgrades bullet damage by 30%"
 upgrade_value = 0.3
-upgrade_texture = ExtResource("2_wfgwu")
+upgrade_texture = ExtResource("2_ajbvl")
 key_upgrade = true
 
 [sub_resource type="Resource" id="Resource_rw4ql"]
-script = ExtResource("1_vivkn")
+script = ExtResource("1_tnnqp")
 upgrade_name = "damage"
 upgrade_text = "Upgrades bullet damage by 22.5%"
 upgrade_value = 0.225
-upgrade_texture = ExtResource("2_wfgwu")
+upgrade_texture = ExtResource("2_ajbvl")
 key_upgrade = false
 next_upgrade = SubResource("Resource_sqvx0")
 
 [resource]
-script = ExtResource("1_vivkn")
+script = ExtResource("1_tnnqp")
 upgrade_name = "damage"
 upgrade_text = "Upgrades bullet damage by 15%"
 upgrade_value = 0.15
-upgrade_texture = ExtResource("2_wfgwu")
+upgrade_texture = ExtResource("2_ajbvl")
 key_upgrade = false
 next_upgrade = SubResource("Resource_rw4ql")
