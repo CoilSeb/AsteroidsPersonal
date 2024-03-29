@@ -22,6 +22,10 @@ var can_shoot
 var burn_out
 var gatling_gun
 var smg
+var bulldozer
+var bulldozer_bullet_health
+var heavy_weaponry
+var ghost_bullets
 var deviation
 var bullet_time
 var god_mode = false
@@ -53,6 +57,7 @@ var gun_upgrades = [
 var gun_evolutions = [
 	preload("res://Upgrades/Gun_Upgrades/Evolutions/Gatling_Gun.tres"),
 	preload("res://Upgrades/Gun_Upgrades/Evolutions/SMG.tres"),
+	preload("res://Upgrades/Gun_Upgrades/Evolutions/Bulldozer.tres"),
 ]
 
 var laser_upgrades = [
@@ -140,6 +145,10 @@ func refresh():
 			bullet_velocity = 700
 			gatling_gun = false
 			smg = false
+			bulldozer = false
+			heavy_weaponry = false
+			ghost_bullets = false
+			bulldozer_bullet_health = 0
 			upgrades_test = base_upgrades.duplicate()
 			var gun_test = gun_upgrades.duplicate()
 			evolutions_test = gun_evolutions.duplicate()
@@ -156,7 +165,7 @@ func refresh():
 	collision_damage = 10
 	
 	exp = 0
-	exp_threshold = 1
+	exp_threshold = 50
 	key_upgrades.clear()
 	enemy_weight = 0
 

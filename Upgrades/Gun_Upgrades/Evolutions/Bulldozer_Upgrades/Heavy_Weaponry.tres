@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="upgrade" load_steps=2 format=3 uid="uid://bo6d6mk2dift3"]
+
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_03xdr"]
+
+[resource]
+script = ExtResource("1_03xdr")
+upgrade_name = "heavy_weaponry"
+upgrade_text = "Bullets become bigger and healthier. Shooting has knockback."
+upgrade_value = 0.0
+key_upgrade = false

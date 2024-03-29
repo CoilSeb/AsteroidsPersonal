@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="upgrade" load_steps=2 format=3 uid="uid://dvntlnytvnri6"]
+
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_eahcq"]
+
+[resource]
+script = ExtResource("1_eahcq")
+upgrade_name = "twin_barrels"
+upgrade_text = "Increase spread and fire rate"
+upgrade_value = 0.0
+key_upgrade = false

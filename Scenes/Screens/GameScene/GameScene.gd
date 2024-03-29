@@ -151,8 +151,8 @@ func spawn_wave():
 		start_moon_guy_warning = true
 		return
 	if wave_num == 5 && Global.enemy_weight <= 12:
-		timer.start(1)
 		timer.wait_time == 1
+		timer.start(1)
 
 
 func _on_timer_timeout():

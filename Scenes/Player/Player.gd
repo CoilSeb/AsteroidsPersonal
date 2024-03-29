@@ -42,6 +42,7 @@ var deadzone = 1
 
 
 func _ready():
+	#god_mode()
 	Global.update_sound_effects_volume.connect(sound_effects)
 	Global.upgrade_pull_range.connect(increase_exp_pull_range)
 	sound_effects()
@@ -169,6 +170,8 @@ func _physics_process(delta):
 				bulletInstance.scale += Global.weapon_scale
 				weapon_sound.play()
 				shootTimer.start(Global.attack_speed)
+				if Global.heavy_weaponry:
+					velocity = Vector2.DOWN.rotated(rotation) * 200
 		#Burn Out
 		if Global.burn_out && Input.is_action_pressed("shoot") && Global.can_shoot:
 			burn_out_time -= 2.5

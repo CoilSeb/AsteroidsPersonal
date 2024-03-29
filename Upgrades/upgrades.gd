@@ -48,21 +48,70 @@ func upgrade_player():
 			gatling_gun()
 		"smg":
 			smg()
+		"bulldozer":
+			bulldozer()
+		"heavy_weaponry":
+			heavy_weaponry()
+		"ghost_bullets":
+			ghost_bullets()
+		"concentrated_fire":
+			concentrated_fire()
+		"rapid_fire":
+			rapid_fire()
+		"muzzle_break":
+			muzzle_break()
+		"twin_barrels":
+			twin_barrels()
+
+func twin_barrels():
+	Global.attack_speed = 0.005
+	Global.deviation = 0.6
+
+func muzzle_break():
+	Global.deviation = 0.15
+
+func rapid_fire():
+	Global.attack_speed -= 0.025
+
+func concentrated_fire():
+	Global.deviation = 0.05
+
+func ghost_bullets():
+	Global.ghost_bullets = true
+	Global.bullet_time = 3
+	Global.bulldozer_bullet_health += 200
+
+func heavy_weaponry():
+	Global.bulldozer_bullet_health += 50
+	Global.weapon_scale += Vector2(2, 2)
+	Global.heavy_weaponry = true
+
+func bulldozer():
+	Global.attack_speed += 0.5
+	Global.damage *= 1.5
+	Global.bulldozer = true
+	Global.bulldozer_bullet_health += 100
+	Global.weapon_scale += Vector2(2, 2)
+	var bulldozer_upgrades = [load("res://Upgrades/Gun_Upgrades/Evolutions/Bulldozer_Upgrades/Heavy_Weaponry.tres"), load("res://Upgrades/Gun_Upgrades/Evolutions/Bulldozer_Upgrades/Ghost_Bullets.tres")]
+	Global.upgrades_test += bulldozer_upgrades
 
 func smg():
-	Global.attack_speed = 0.025
-	Global.deviation = 0.4
+	Global.attack_speed = 0.03
+	Global.deviation = 0.3
 	Global.bullet_time -= 0.5
 	Global.weapon_scale -= Vector2(0.5,0.5)
 	Global.damage /= 3
 	Global.smg = true
+	var smg_upgrades = [load("res://Upgrades/Gun_Upgrades/Evolutions/SMG_Upgrades/Muzzle_Brake.tres"), load("res://Upgrades/Gun_Upgrades/Evolutions/SMG_Upgrades/Twin_Barrels.tres")]
+	Global.upgrades_test += smg_upgrades
 
 func gatling_gun():
-	Global.attack_speed = 0.2
-	#Global.weapon_scale -= Vector2(0.25,0.25)
+	Global.attack_speed = 0.1                      
 	Global.deviation = 0.25
 	Global.bullet_time += 0.5
 	Global.gatling_gun = true
+	var gatling_upgrades = [load("res://Upgrades/Gun_Upgrades/Evolutions/Gatling_Gun_Upgrades/Concentrated_Fire.tres"), load("res://Upgrades/Gun_Upgrades/Evolutions/Gatling_Gun_Upgrades/Rapid_Fire.tres")]
+	Global.upgrades_test += gatling_upgrades
 
 func exp_pull_range():
 	Global.exp_pull_range += Vector2(upgrade_value,upgrade_value)

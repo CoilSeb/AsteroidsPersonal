@@ -8,11 +8,15 @@ var direction: Vector2
 var bullet_speed = Global.bullet_velocity
 var screen_size
 var damage = Global.damage
+var health = Global.bulldozer_bullet_health
 
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	timer.start(Global.bullet_time)
+	if !Global.bulldozer:
+		timer.start(Global.bullet_time)
+	elif Global.ghost_bullets:
+		timer.start(Global.bullet_time)
 
 
 func _process(delta):
@@ -28,6 +32,15 @@ func _process(delta):
 
 
 func _on_area_entered(area):
+	if Global.bulldozer:
+		health -= area.damage
+		area.damage_asteroid(damage)
+		if area.health > 0 && !Global.ghost_bullets:
+			direction *= -1
+		if health <= 0:
+			pass
+		else:
+			return
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/hurt_c_08-102842.mp3")
 	audio_player.volume_db = Global.sound_effects_volume

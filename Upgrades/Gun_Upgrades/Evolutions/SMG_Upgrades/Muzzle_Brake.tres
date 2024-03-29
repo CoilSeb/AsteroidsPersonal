@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="upgrade" load_steps=2 format=3 uid="uid://b4bvoaaphf2vq"]
+
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_hpspa"]
+
+[resource]
+script = ExtResource("1_hpspa")
+upgrade_name = "muzzle_break"
+upgrade_text = "Decrease spread"
+upgrade_value = null
+key_upgrade = null

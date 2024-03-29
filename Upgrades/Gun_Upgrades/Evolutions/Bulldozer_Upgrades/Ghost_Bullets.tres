@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="upgrade" load_steps=2 format=3 uid="uid://drtnou2ebknsl"]
+
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_58mxj"]
+
+[resource]
+script = ExtResource("1_58mxj")
+upgrade_name = "ghost_bullets"
+upgrade_text = "Bullets pass through all objects but slowly lose health. Bullets become much healthier."
+upgrade_value = 0.0
+key_upgrade = false

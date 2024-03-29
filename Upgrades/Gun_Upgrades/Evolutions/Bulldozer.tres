@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="upgrade" load_steps=2 format=3 uid="uid://bve26jhbuc3un"]
+
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_i68p4"]
+
+[resource]
+script = ExtResource("1_i68p4")
+upgrade_name = "bulldozer"
+upgrade_text = "Bullets gain health and only dissapear when their health is depleted. Shoot slower. Bullets do more damage and are bigger. "
+upgrade_value = 0.0
+key_upgrade = false
