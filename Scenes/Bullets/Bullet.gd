@@ -8,20 +8,15 @@ var direction: Vector2
 var bullet_speed = Global.bullet_velocity
 var screen_size
 var damage = Global.damage
-var deviation = Global.deviation
 
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	var i = randi_range(0,1)
-	if i == 0:
-		deviation *= -1
-	direction += Vector2(deviation, deviation)
 	timer.start(Global.bullet_time)
 
 
 func _process(delta):
-	position += (direction + Vector2(deviation, deviation)) * bullet_speed * delta
+	position += (direction * bullet_speed * delta)
 	if position.x < 0:
 		position.x = screen_size.x
 	if position.x > screen_size.x:

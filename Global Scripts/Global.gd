@@ -20,6 +20,8 @@ var weapon
 var laser_made
 var can_shoot
 var burn_out
+var gatling_gun
+var smg
 var deviation
 var bullet_time
 var god_mode = false
@@ -50,6 +52,7 @@ var gun_upgrades = [
 
 var gun_evolutions = [
 	preload("res://Upgrades/Gun_Upgrades/Evolutions/Gatling_Gun.tres"),
+	preload("res://Upgrades/Gun_Upgrades/Evolutions/SMG.tres"),
 ]
 
 var laser_upgrades = [
@@ -135,6 +138,8 @@ func refresh():
 			damage = 10
 			attack_speed = 0.75
 			bullet_velocity = 700
+			gatling_gun = false
+			smg = false
 			upgrades_test = base_upgrades.duplicate()
 			var gun_test = gun_upgrades.duplicate()
 			evolutions_test = gun_evolutions.duplicate()

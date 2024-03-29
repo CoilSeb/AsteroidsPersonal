@@ -159,10 +159,13 @@ func _physics_process(delta):
 				return
 		if weapon == "Gun":
 			if (Input.is_action_pressed("shoot") || Input.is_action_pressed("M2")) && shootTimer.time_left == 0:
+				if Global.gatling_gun && Input.is_action_pressed("move_forward"):
+					return
 				var bulletInstance = bulletScene.instantiate()
 				get_parent().add_child(bulletInstance)
 				bulletInstance.global_position = global_position
-				bulletInstance.direction = Vector2.UP.rotated(rotation)
+				var i = randf_range(-Global.deviation, Global.deviation)
+				bulletInstance.direction = Vector2.UP.rotated(rotation + i)
 				bulletInstance.scale += Global.weapon_scale
 				weapon_sound.play()
 				shootTimer.start(Global.attack_speed)
