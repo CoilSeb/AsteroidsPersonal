@@ -20,7 +20,7 @@ next_upgrade = SubResource("Resource_2o0uw")
 [resource]
 script = ExtResource("1_wnpcf")
 upgrade_name = "weapon_scale"
-upgrade_text = "Increase beam width"
+upgrade_text = "Increase beam width and damage"
 upgrade_value = 0.1
 key_upgrade = false
 next_upgrade = SubResource("Resource_mstfa")
