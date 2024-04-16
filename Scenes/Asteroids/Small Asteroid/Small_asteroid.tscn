@@ -1,7 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://efl3216d0618"]
+[gd_scene load_steps=8 format=3 uid="uid://efl3216d0618"]
 
 [ext_resource type="Script" path="res://Scenes/Asteroids/Small Asteroid/Small_asteroid.gd" id="1_7qam3"]
 [ext_resource type="Texture2D" uid="uid://6e4fciphwbl" path="res://Sprites/Asteroids/Small_Asteroid-3.png-1.png.png" id="2_imcp2"]
+[ext_resource type="Texture2D" uid="uid://c32me3hybx5xd" path="res://Sprites/Asteroids/Small_Asteroid-3_Fade_Away.png.png" id="3_vl508"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nr6m"]
+atlas = ExtResource("3_vl508")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6k0m"]
+atlas = ExtResource("3_vl508")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgynf"]
+atlas = ExtResource("3_vl508")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0vwog"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nr6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6k0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgynf")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Small_Asteroid" type="Area2D" groups=["Enemy"]]
 collision_layer = 4
@@ -21,5 +51,10 @@ polygon = PackedVector2Array(-1, -16, 9, -15, 14, -12, 19, -11, 19, 1, 15, 7, 10
 wait_time = 10.0
 one_shot = true
 autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_0vwog")
 
 [connection signal="timeout" from="Throw_Timer" to="." method="_on_throw_timer_timeout"]

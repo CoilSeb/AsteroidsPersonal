@@ -83,6 +83,7 @@ signal shader_settings()
 signal update_music_volume()
 signal update_sound_effects_volume()
 signal moon_guy_health(value)
+signal moon_guy_dead()
 signal upgrade_pull_range()
 signal evo_upgrade()
 
@@ -100,6 +101,12 @@ func _ready():
 	#save_score()
 	load_score()
 	update_music_volume.connect(volume)
+	moon_guy_dead.connect(delete_moon_guy_small_asteroids)
+
+
+func delete_moon_guy_small_asteroids():
+	for asteroid in get_tree().get_nodes_in_group("Boss"):
+		asteroid.fade_away()
 
 
 func volume():
@@ -128,7 +135,7 @@ func refresh():
 	no_gun_all_collision = false
 	health = 300
 	max_health = health
-	health_regen = 0
+	health_regen = 0.1
 	damage_reduction = 0
 	weapon_scale = Vector2(0,0)
 	exp_pull_range = Vector2(0,0)

@@ -52,10 +52,6 @@ func _process(delta):
 	var new_position = self.position 
 	velocity = (new_position - old_position) / delta
 	old_position = position
-	
-	if weighted && !counted:
-		Global.enemy_weight += weight
-		counted = true
 		
 	if spawn_timer.time_left == 0:
 		if Global.moon_guy_asteroid_count < 25:
@@ -90,6 +86,7 @@ func damage_asteroid(damage):
 		#audio_stream_player_2d.play()
 	if health <= 0 && !dead:
 		dead = true
+		Global.moon_guy_dead.emit()
 		Global.moon_guy_health.emit(750)
 		destroy()
 

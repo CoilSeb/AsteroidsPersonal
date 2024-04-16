@@ -2,6 +2,7 @@ extends Area2D
 
 @onready var Ui = get_parent().get_node("UI")
 @onready var throw_timer = $Throw_Timer
+@onready var animated_sprite_2d = $AnimatedSprite2D
 
 const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
 const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
@@ -31,10 +32,18 @@ func _ready():
 		set_random_direction_and_speed()
 	else:
 		health = 1000000
+		add_to_group("Boss")
 	if initial:
 		throw_timer.start(1)
 	rotation_speed = randf_range(-1, 1)
 	add_to_group("Small_Asteroid")
+
+
+func fade_away():
+	animated_sprite_2d.show()
+	animated_sprite_2d.play("default")
+	await animated_sprite_2d.animation_finished
+	queue_free()
 
 
 func _process(delta):

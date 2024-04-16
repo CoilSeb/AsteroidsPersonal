@@ -12,7 +12,7 @@ var player = true
 var screen_size
 var wave_timer_time = 10
 var wave_time = 35
-var wave_num = 0
+var wave_num = 4
 var start_moon_guy_warning = false
 
 var basic_asteroid_scenes = {
@@ -146,13 +146,14 @@ func spawn_wave():
 			spawn_special_Asteroid_with_weight()
 		return
 	if wave_num == 4 && Global.enemy_weight <= 0:
+		Global.enemy_weight += 16
 		wave_num += 1
 		moon_guy_warning.show()
 		start_moon_guy_warning = true
 		return
 	if wave_num == 5 && Global.enemy_weight <= 12:
-		timer.wait_time == 1
-		timer.start(1)
+		timer.wait_time == 0.25
+		timer.start(0.25)
 
 
 func _on_timer_timeout():
