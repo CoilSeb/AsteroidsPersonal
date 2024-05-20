@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dgmbib7ld88gb" path="res://Sprites/Asteroids/Shard_Crack4-5.png-1.png.png" id="6_wuhvl"]
 
 [node name="Shard_Asteroid" type="Area2D" groups=["Enemy"]]
+scale = Vector2(0.5, 0.5)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_v41mm")

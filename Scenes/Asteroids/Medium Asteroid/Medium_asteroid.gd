@@ -77,9 +77,7 @@ func damage_asteroid(damage):
 
 
 func create_and_add_asteroids():
-	var i = randi_range(0,1)
-	if i == 0:
-		call_deferred("make_exp")
+	call_deferred("make_exp")
 	
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")

@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://kbfw3tklnc87" path="res://Sprites/Asteroids/Medium_Crack2-2.png-1.png.png" id="4_bl0vw"]
 
 [node name="Medium_Asteroid" type="Area2D" groups=["Enemy"]]
+scale = Vector2(0.5, 0.5)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_3563y")

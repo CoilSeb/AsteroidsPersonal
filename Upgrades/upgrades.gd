@@ -64,24 +64,30 @@ func upgrade_player():
 			twin_barrels()
 
 func twin_barrels():
+	Global.upgrades_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/SMG_Upgrades/Muzzle_Brake.tres"))
 	Global.attack_speed = 0.005
 	Global.deviation = 0.6
 
 func muzzle_break():
+	Global.upgrades_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/SMG_Upgrades/Twin_Barrels.tres"))
 	Global.deviation = 0.15
 
 func rapid_fire():
+	Global.upgrades_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/Gatling_Gun_Upgrades/Concentrated_Fire.tres"))
 	Global.attack_speed -= 0.025
 
 func concentrated_fire():
+	Global.upgrades_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/Gatling_Gun_Upgrades/Rapid_Fire.tres"))
 	Global.deviation = 0.05
 
 func ghost_bullets():
+	Global.upgrades_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/Bulldozer_Upgrades/Heavy_Weaponry.tres"))
 	Global.ghost_bullets = true
 	Global.bullet_time = 3
 	Global.bulldozer_bullet_health += 200
 
 func heavy_weaponry():
+	Global.upgrades_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/Bulldozer_Upgrades/Ghost_Bullets.tres"))
 	Global.bulldozer_bullet_health += 50
 	Global.weapon_scale += Vector2(2, 2)
 	Global.heavy_weaponry = true

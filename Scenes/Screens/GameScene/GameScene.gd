@@ -12,7 +12,7 @@ var player = true
 var screen_size
 var wave_timer_time = 10
 var wave_time = 35
-var wave_num = 4
+var wave_num = 0
 var start_moon_guy_warning = false
 
 var basic_asteroid_scenes = {
@@ -157,8 +157,9 @@ func spawn_wave():
 
 
 func _on_timer_timeout():
-	var i = randi_range(0,19)
-	if i == 0:
-		spawn_special_Asteroid()
-	else:
-		spawn_basic_Asteroid()
+	pass
+	#var i = randi_range(0,19)
+	#if i == 0:
+		#spawn_special_Asteroid()
+	#else:
+		#spawn_basic_Asteroid()
