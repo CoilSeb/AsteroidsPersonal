@@ -14,6 +14,7 @@ var damage
 var attack_speed 
 var bullet_velocity 
 var collision_damage 
+var money
 var exp 
 var exp_threshold 
 var weapon
@@ -156,13 +157,13 @@ func refresh():
 			heavy_weaponry = false
 			ghost_bullets = false
 			bulldozer_bullet_health = 0
-			upgrades_test = base_upgrades.duplicate()
 			var gun_test = gun_upgrades.duplicate()
 			evolutions_test = gun_evolutions.duplicate()
 			upgrades_test += gun_test
 		"Laser":
-			damage = 1
+			damage = 100
 			attack_speed = 0.1
+			bullet_velocity = 0
 			laser_made = false
 			var laser_test = laser_upgrades.duplicate()
 			upgrades_test += laser_test
@@ -171,6 +172,7 @@ func refresh():
 	bullet_time = 1
 	collision_damage = 10
 	
+	money = 100
 	exp = 0
 	exp_threshold = 50
 	key_upgrades.clear()

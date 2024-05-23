@@ -19,7 +19,7 @@ var velocity: Vector2
 var rotation_speed
 var weighted = false
 var counted = false
-var weight = 16
+var weight = 40
 var i = int(rotation) % 10;
 var dead = false
 
@@ -92,10 +92,11 @@ func damage_asteroid(damage):
 
 
 func create_and_add_asteroids():
-	for i in range(16):
-		var exp_shard = EXPERIENCE.instantiate()
-		exp_shard.position = self.position + Vector2(randi_range(-20,20), randi_range(-20,20))
-		get_parent().add_child(exp_shard)
+	#for i in range(16):
+		#var exp_shard = EXPERIENCE.instantiate()
+		#exp_shard.position = self.position + Vector2(randi_range(-20,20), randi_range(-20,20))
+		#get_parent().add_child(exp_shard)
+	Global.money += randi_range(30,50)
 	
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")
@@ -108,30 +109,15 @@ func create_and_add_asteroids():
 	particles.one_shot = true
 	
 	# Instantate two small asteroids
-	var big_asteroid1 = BIG_ASTEROID.instantiate()
-	var big_asteroid2 = BIG_ASTEROID.instantiate()
-	var big_asteroid3 = BIG_ASTEROID.instantiate()
-	var big_asteroid4 = BIG_ASTEROID.instantiate()
-
-	# Set their positions to the position of the big asteroid
-	big_asteroid1.position = self.position
-	big_asteroid2.position = self.position
-	big_asteroid3.position = self.position
-	big_asteroid4.position = self.position
+	for i in range(10):
+		var big_asteroid1 = BIG_ASTEROID.instantiate()
+		big_asteroid1.position = self.position
+		big_asteroid1.weighted = true
+		self.get_parent().add_child(big_asteroid1)
 	
 	if weighted:
 		Global.enemy_weight -= weight
-		big_asteroid1.weighted = true
-		big_asteroid2.weighted = true
-		big_asteroid3.weighted = true
-		big_asteroid4.weighted = true
 
-	# Add them as children of the big asteroid's parent
-	self.get_parent().add_child(big_asteroid1)
-	self.get_parent().add_child(big_asteroid2)
-	self.get_parent().add_child(big_asteroid3)
-	self.get_parent().add_child(big_asteroid4)
-	
 	# Increase Score 
 	Ui.increase_score(200)
 

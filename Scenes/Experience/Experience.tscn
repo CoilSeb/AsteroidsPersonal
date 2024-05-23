@@ -10,6 +10,7 @@ radius = 112.018
 radius = 7.0
 
 [node name="Experience" type="Area2D"]
+scale = Vector2(0.75, 0.75)
 collision_layer = 8
 collision_mask = 16
 script = ExtResource("1_up6ha")

@@ -13,6 +13,7 @@ extends CanvasLayer
 @onready var high_score_label = $High_Score
 @onready var health_bar = $Health_Bar
 @onready var health_bar_bg = $Health_Bar_BG
+@onready var money_label = $Money_Label
 @onready var exp_bar = $Exp_Bar
 @onready var exp_bar_bg = $Exp_Bar_BG
 @onready var evo_bar = $Evo_Bar
@@ -23,6 +24,9 @@ extends CanvasLayer
 @onready var first_upgrade_button = $Upgrade_Menu/First_Upgrade
 @onready var second_upgrade_button = $Upgrade_Menu/Second_Upgrade
 @onready var third_upgrade_button = $Upgrade_Menu/Third_Upgrade
+@onready var fourth_upgrade_button = $Upgrade_Menu/Fourth_Upgrade
+@onready var fifth_upgrade_button = $Upgrade_Menu/Fifth_Upgrade
+@onready var sixth_upgrade_button = $Upgrade_Menu/Sixth_Upgrade
 @onready var level_up_timer = $Level_Up_Timer
 @onready var levels_label = $Levels_Label
 @onready var settings_menu = $SettingsMenu
@@ -35,25 +39,52 @@ extends CanvasLayer
 @onready var buttons = [
 	$Upgrade_Menu/First_Upgrade,
 	$Upgrade_Menu/Second_Upgrade,
-	$Upgrade_Menu/Third_Upgrade
+	$Upgrade_Menu/Third_Upgrade,
+	$Upgrade_Menu/Fourth_Upgrade,
+	$Upgrade_Menu/Fifth_Upgrade,
+	$Upgrade_Menu/Sixth_Upgrade
 ]
 
 @onready var textures = [
 	$Upgrade_Menu/First_Upgrade/TextureRect1,
 	$Upgrade_Menu/Second_Upgrade/TextureRect2,
 	$Upgrade_Menu/Third_Upgrade/TextureRect3,
+	$Upgrade_Menu/Fourth_Upgrade/TextureRect1,
+	$Upgrade_Menu/Fifth_Upgrade/TextureRect2,
+	$Upgrade_Menu/Sixth_Upgrade/TextureRect3
 ] 
 
 @onready var text_labels = [
 	$Upgrade_Menu/First_Upgrade/RichTextLabel1,
 	$Upgrade_Menu/Second_Upgrade/RichTextLabel2,
-	$Upgrade_Menu/Third_Upgrade/RichTextLabel3
+	$Upgrade_Menu/Third_Upgrade/RichTextLabel3,
+	$Upgrade_Menu/Fourth_Upgrade/RichTextLabel1,
+	$Upgrade_Menu/Fifth_Upgrade/RichTextLabel2,
+	$Upgrade_Menu/Sixth_Upgrade/RichTextLabel3
+]
+
+@onready var cost_labels = [
+	$Upgrade_Menu/First_Upgrade/Cost_Label,
+	$Upgrade_Menu/Second_Upgrade/Cost_Label,
+	$Upgrade_Menu/Third_Upgrade/Cost_Label,
+	$Upgrade_Menu/Fourth_Upgrade/Cost_Label,
+	$Upgrade_Menu/Fifth_Upgrade/Cost_Label,
+	$Upgrade_Menu/Sixth_Upgrade/Cost_Label
 ]
 
 var score = 0
 var first_upgrade: upgrade
 var second_upgrade: upgrade
 var third_upgrade: upgrade
+var fourth_upgrade: upgrade
+var fifth_upgrade: upgrade
+var sixth_upgrade: upgrade
+var first_upgrade_cost: int
+var second_upgrade_cost: int
+var third_upgrade_cost: int
+var fourth_upgrade_cost: int
+var fifth_upgrade_cost: int
+var sixth_upgrade_cost: int
 var stored_levels = 0
 var total_level = 0
 var evolved = false
@@ -61,6 +92,17 @@ var upgrades = [
 	first_upgrade,
 	second_upgrade,
 	third_upgrade,
+	fourth_upgrade,
+	fifth_upgrade,
+	sixth_upgrade
+]
+var upgrades_cost = [
+	first_upgrade_cost,
+	second_upgrade_cost,
+	third_upgrade_cost,
+	fourth_upgrade_cost,
+	fifth_upgrade_cost,
+	sixth_upgrade_cost
 ]
 
 
@@ -86,6 +128,7 @@ func _ready():
 
 
 func _process(_delta):
+	money_label.text = "$" + str(Global.money)
 	if !settings_menu.visible:
 		if Input.is_action_just_pressed("ui_cancel"):
 			toggle_pause_menu()
@@ -246,28 +289,84 @@ func update_max_exp():
 
 
 func _on_first_upgrade_pressed():
-	if level_up_timer.time_left == 0:
-		get_tree().paused = false
-		upgrade_menu.visible = false
+	if level_up_timer.time_left == 0 && Global.money >= first_upgrade_cost:
+		Global.money -= first_upgrade_cost
+		#get_tree().paused = false
+		#upgrade_menu.visible = false
 		apply_my_upgrade(first_upgrade, 0)
+		first_upgrade = null
+		upgrades[0] = null
+		first_upgrade_button.hide()
 
 
 func _on_second_upgrade_pressed():
-	if level_up_timer.time_left == 0:
-		get_tree().paused = false
-		upgrade_menu.visible = false
+	if level_up_timer.time_left == 0 && Global.money >= second_upgrade_cost:
+		Global.money -= second_upgrade_cost
+		#get_tree().paused = false
+		#upgrade_menu.visible = false
 		apply_my_upgrade(second_upgrade, 1)
+		second_upgrade = null
+		upgrades[1] = null
+		second_upgrade_button.hide()
 
 
 func _on_third_upgrade_pressed():
-	if level_up_timer.time_left == 0:
-		get_tree().paused = false
-		upgrade_menu.visible = false
+	if level_up_timer.time_left == 0 && Global.money >= third_upgrade_cost:
+		Global.money -= third_upgrade_cost
+		#get_tree().paused = false
+		#upgrade_menu.visible = false
 		apply_my_upgrade(third_upgrade, 2)
+		third_upgrade = null
+		upgrades[2] = null
+		third_upgrade_button.hide()
+
+
+func _on_fourth_upgrade_pressed():
+	if level_up_timer.time_left == 0 && Global.money >= fourth_upgrade_cost:
+		Global.money -= fourth_upgrade_cost
+		#get_tree().paused = false
+		#upgrade_menu.visible = false
+		apply_my_upgrade(fourth_upgrade, 3)
+		fourth_upgrade = null
+		upgrades[3] = null
+		fourth_upgrade_button.hide()
+
+
+func _on_fifth_upgrade_pressed():
+	if level_up_timer.time_left == 0 && Global.money >= fifth_upgrade_cost:
+		Global.money -= fifth_upgrade_cost
+		#get_tree().paused = false
+		#upgrade_menu.visible = false
+		apply_my_upgrade(fifth_upgrade, 4)
+		fifth_upgrade = null
+		upgrades[4] = null
+		fifth_upgrade_button.hide()
+
+
+func _on_sixth_upgrade_pressed():
+	if level_up_timer.time_left == 0 && Global.money >= sixth_upgrade_cost:
+		Global.money -= sixth_upgrade_cost
+		#get_tree().paused = false
+		#upgrade_menu.visible = false
+		apply_my_upgrade(sixth_upgrade, 5)
+		sixth_upgrade = null
+		upgrades[5] = null
+		sixth_upgrade_button.hide()
 
 
 func _on_reroll_button_pressed():
 	level_up()
+
+
+func _on_next_wave_button_pressed():
+	get_tree().paused = false
+	upgrade_menu.visible = false
+	first_upgrade_button.show()
+	second_upgrade_button.show()
+	third_upgrade_button.show()
+	fourth_upgrade_button.show()
+	fifth_upgrade_button.show()
+	sixth_upgrade_button.show()
 
 
 func level_up():
@@ -298,14 +397,19 @@ func evo_level_up():
 
 func get_upgrades():
 	Global.upgrades_test.shuffle()
+	print("\n")
+	for up in Global.upgrades_test:
+		print(up.upgrade_name)
 
-	for i in range(3):
+	for i in range(6):
 		if Global.upgrades_test.size() - 1 >= i:
 			var my_upgrade = Global.upgrades_test[i]
 			
 			text_labels[i].text = "[center]" + my_upgrade.upgrade_text
 			textures[i].texture = my_upgrade.upgrade_texture
 			upgrades[i] = my_upgrade
+			upgrades_cost[i] = randi_range(10, 25)
+			cost_labels[i].text = "$" + str(upgrades_cost[i])
 		else:
 			text_labels[i].text = "null"
 			textures[i].texture = null
@@ -314,6 +418,15 @@ func get_upgrades():
 	first_upgrade = upgrades[0]
 	second_upgrade = upgrades[1]
 	third_upgrade = upgrades[2]
+	fourth_upgrade = upgrades[3]
+	fifth_upgrade = upgrades[4]
+	sixth_upgrade = upgrades[5]
+	first_upgrade_cost = upgrades_cost[0]
+	second_upgrade_cost = upgrades_cost[1]
+	third_upgrade_cost = upgrades_cost[2]
+	fourth_upgrade_cost = upgrades_cost[3]
+	fifth_upgrade_cost = upgrades_cost[4]
+	sixth_upgrade_cost = upgrades_cost[5]
 
 
 func get_evolutions():
@@ -345,8 +458,11 @@ func apply_my_upgrade(my_upgrade, index):
 	if my_upgrade.next_upgrade != null:
 		Global.upgrades_test.append(my_upgrade.next_upgrade)
 		
-	for i in range(upgrades.size()-1):
-		upgrades[i] = null
-	first_upgrade = null
-	second_upgrade = null
-	third_upgrade = null
+	#for i in range(upgrades.size()-1):
+		#upgrades[i] = null
+	#first_upgrade = null
+	#second_upgrade = null
+	#third_upgrade = null
+	#fourth_upgrade = null
+	#fifth_upgrade = null
+	#sixth_upgrade = null

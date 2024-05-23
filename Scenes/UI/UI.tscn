@@ -236,7 +236,6 @@ texture_progress = ExtResource("2_ky7pi")
 tint_progress = Color(0.866667, 0, 0.0745098, 0.717647)
 
 [node name="Upgrade_Menu" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -253,6 +252,18 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.74902)
 
+[node name="THE_STORE_Label" type="Label" parent="Upgrade_Menu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -262.0
+offset_right = 263.0
+offset_bottom = 137.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 100
+text = "THE STORE"
+
 [node name="First_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
 anchors_preset = 8
@@ -261,9 +272,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -770.0
-offset_top = -440.0
+offset_top = -365.0
 offset_right = -370.0
-offset_bottom = 260.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath("../Third_Upgrade")
@@ -274,17 +285,13 @@ vertical_icon_alignment = 0
 
 [node name="TextureRect1" type="TextureRect" parent="Upgrade_Menu/First_Upgrade"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -160.0
-offset_top = -350.0
 offset_right = 160.0
-offset_bottom = -30.0
+offset_bottom = 160.0
 grow_horizontal = 2
-grow_vertical = 2
 
 [node name="RichTextLabel1" type="RichTextLabel" parent="Upgrade_Menu/First_Upgrade"]
 custom_minimum_size = Vector2(0, 400)
@@ -293,13 +300,27 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -350.0
-offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
+
+[node name="Cost_Label" type="Label" parent="Upgrade_Menu/First_Upgrade"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "$"
+horizontal_alignment = 1
 
 [node name="Second_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
@@ -309,9 +330,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -200.0
-offset_top = -440.0
+offset_top = -365.0
 offset_right = 200.0
-offset_bottom = 260.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath("../First_Upgrade")
@@ -328,9 +349,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -160.0
-offset_top = -350.0
+offset_top = -80.0
 offset_right = 160.0
-offset_bottom = -30.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -341,13 +362,27 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -350.0
-offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
+
+[node name="Cost_Label" type="Label" parent="Upgrade_Menu/Second_Upgrade"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "$"
+horizontal_alignment = 1
 
 [node name="Third_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
@@ -357,9 +392,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 370.0
-offset_top = -440.0
+offset_top = -365.0
 offset_right = 770.0
-offset_bottom = 260.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath("../Second_Upgrade")
@@ -376,9 +411,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -160.0
-offset_top = -350.0
+offset_top = -80.0
 offset_right = 160.0
-offset_bottom = -30.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -389,13 +424,209 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -350.0
-offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
+
+[node name="Cost_Label" type="Label" parent="Upgrade_Menu/Third_Upgrade"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "$"
+horizontal_alignment = 1
+
+[node name="Fourth_Upgrade" type="Button" parent="Upgrade_Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -770.0
+offset_top = 60.0
+offset_right = -370.0
+offset_bottom = 410.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../Third_Upgrade")
+focus_neighbor_right = NodePath("../Second_Upgrade")
+focus_neighbor_bottom = NodePath("../Reroll_Button")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="TextureRect1" type="TextureRect" parent="Upgrade_Menu/Fourth_Upgrade"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_right = 160.0
+offset_bottom = 160.0
+grow_horizontal = 2
+
+[node name="RichTextLabel1" type="RichTextLabel" parent="Upgrade_Menu/Fourth_Upgrade"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+
+[node name="Cost_Label" type="Label" parent="Upgrade_Menu/Fourth_Upgrade"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "$"
+horizontal_alignment = 1
+
+[node name="Fifth_Upgrade" type="Button" parent="Upgrade_Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 60.0
+offset_right = 200.0
+offset_bottom = 410.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../First_Upgrade")
+focus_neighbor_right = NodePath("../Third_Upgrade")
+focus_neighbor_bottom = NodePath("../Reroll_Button")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="TextureRect2" type="TextureRect" parent="Upgrade_Menu/Fifth_Upgrade"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -80.0
+offset_right = 160.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Upgrade_Menu/Fifth_Upgrade"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+
+[node name="Cost_Label" type="Label" parent="Upgrade_Menu/Fifth_Upgrade"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "$"
+horizontal_alignment = 1
+
+[node name="Sixth_Upgrade" type="Button" parent="Upgrade_Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 370.0
+offset_top = 60.0
+offset_right = 770.0
+offset_bottom = 410.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../Second_Upgrade")
+focus_neighbor_right = NodePath("../First_Upgrade")
+focus_neighbor_bottom = NodePath("../Reroll_Button")
+icon_alignment = 1
+vertical_icon_alignment = 0
+
+[node name="TextureRect3" type="TextureRect" parent="Upgrade_Menu/Sixth_Upgrade"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -80.0
+offset_right = 160.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Upgrade_Menu/Sixth_Upgrade"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+
+[node name="Cost_Label" type="Label" parent="Upgrade_Menu/Sixth_Upgrade"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "$"
+horizontal_alignment = 1
 
 [node name="Reroll_Button" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
@@ -405,9 +636,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -77.5
-offset_top = -190.0
+offset_top = -105.0
 offset_right = 77.5
-offset_bottom = -110.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 0
 focus_neighbor_left = NodePath("../First_Upgrade")
@@ -415,6 +646,26 @@ focus_neighbor_top = NodePath("../Second_Upgrade")
 focus_neighbor_right = NodePath("../Third_Upgrade")
 theme_override_font_sizes/font_size = 52
 text = "Reroll
+"
+
+[node name="Next_Wave_Button" type="Button" parent="Upgrade_Menu"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -305.0
+offset_top = -105.0
+offset_right = -26.0
+offset_bottom = -25.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_neighbor_left = NodePath("../First_Upgrade")
+focus_neighbor_top = NodePath("../Second_Upgrade")
+focus_neighbor_right = NodePath("../Third_Upgrade")
+theme_override_font_sizes/font_size = 52
+text = "Next Wave
 "
 
 [node name="PauseMenu" type="Control" parent="."]
@@ -591,6 +842,14 @@ theme_override_font_sizes/font_size = 32
 icon = ExtResource("3_vwkcr")
 expand_icon = true
 
+[node name="Money_Label" type="Label" parent="."]
+offset_left = 15.0
+offset_top = 20.0
+offset_right = 55.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 32
+text = "$0"
+
 [node name="Restart" type="Button" parent="."]
 visible = false
 anchors_preset = 8
@@ -636,6 +895,7 @@ visible = false
 my_scenes_button = NodePath("../PauseMenu/SettingsButton")
 
 [node name="CRT_Shader" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_dpj74")
 anchors_preset = 15
 anchor_right = 1.0
@@ -650,7 +910,11 @@ stream = ExtResource("6_akabl")
 [connection signal="pressed" from="Upgrade_Menu/First_Upgrade" to="." method="_on_first_upgrade_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Second_Upgrade" to="." method="_on_second_upgrade_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Third_Upgrade" to="." method="_on_third_upgrade_pressed"]
+[connection signal="pressed" from="Upgrade_Menu/Fourth_Upgrade" to="." method="_on_fourth_upgrade_pressed"]
+[connection signal="pressed" from="Upgrade_Menu/Fifth_Upgrade" to="." method="_on_fifth_upgrade_pressed"]
+[connection signal="pressed" from="Upgrade_Menu/Sixth_Upgrade" to="." method="_on_sixth_upgrade_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Reroll_Button" to="." method="_on_reroll_button_pressed"]
+[connection signal="pressed" from="Upgrade_Menu/Next_Wave_Button" to="." method="_on_next_wave_button_pressed"]
 [connection signal="pressed" from="PauseMenu/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="PauseMenu/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
