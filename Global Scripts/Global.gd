@@ -14,7 +14,6 @@ var damage
 var attack_speed 
 var bullet_velocity 
 var collision_damage 
-var money
 var exp 
 var exp_threshold 
 var weapon
@@ -33,10 +32,15 @@ var god_mode = false
 var player_pos: Vector2
 var weapon_scale = Vector2(0,0)
 var exp_pull_range = Vector2(0,0)
+var money
+var inflation
+var inflation_rate
+var reroll_cost
 
 # Enemy Variables
 var enemy_weight = 0
 var moon_guy_asteroid_count = 0
+var wave_num
 
 # Upgrades
 var base_upgrades = [
@@ -87,6 +91,8 @@ signal moon_guy_health(value)
 signal moon_guy_dead()
 signal upgrade_pull_range()
 signal evo_upgrade()
+signal update_money(amount)
+signal wave_num_update(wave_num)
 
 # Settings Variables
 var crt_value = 100.0
@@ -132,6 +138,7 @@ func add_key_upgrades(key_upgrade):
 
 func refresh():
 	upgrades_test = base_upgrades.duplicate()
+	wave_num = 0
 	god_mode = false
 	no_gun_all_collision = false
 	health = 300
@@ -172,7 +179,10 @@ func refresh():
 	bullet_time = 1
 	collision_damage = 10
 	
-	money = 100
+	reroll_cost = 25
+	inflation = 1
+	inflation_rate = 1.1
+	money = 0
 	exp = 0
 	exp_threshold = 50
 	key_upgrades.clear()

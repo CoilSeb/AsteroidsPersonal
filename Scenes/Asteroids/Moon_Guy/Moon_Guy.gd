@@ -96,7 +96,7 @@ func create_and_add_asteroids():
 		#var exp_shard = EXPERIENCE.instantiate()
 		#exp_shard.position = self.position + Vector2(randi_range(-20,20), randi_range(-20,20))
 		#get_parent().add_child(exp_shard)
-	Global.money += randi_range(30,50)
+	Global.update_money.emit(randi_range(150,200))
 	
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")

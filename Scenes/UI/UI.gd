@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+const MONEY_TIMER = preload("res://Scenes/Experience/money_timer.tscn")
+
 @onready var GameScene = get_parent()
 @onready var score_label = $Score_Label
 @onready var pause_button = $PauseButton
@@ -14,6 +16,7 @@ extends CanvasLayer
 @onready var health_bar = $Health_Bar
 @onready var health_bar_bg = $Health_Bar_BG
 @onready var money_label = $Money_Label
+@onready var money_v_box_container = $Money_Label/VBoxContainer
 @onready var exp_bar = $Exp_Bar
 @onready var exp_bar_bg = $Exp_Bar_BG
 @onready var evo_bar = $Evo_Bar
@@ -27,6 +30,7 @@ extends CanvasLayer
 @onready var fourth_upgrade_button = $Upgrade_Menu/Fourth_Upgrade
 @onready var fifth_upgrade_button = $Upgrade_Menu/Fifth_Upgrade
 @onready var sixth_upgrade_button = $Upgrade_Menu/Sixth_Upgrade
+@onready var reroll_button = $Upgrade_Menu/Reroll_Button
 @onready var level_up_timer = $Level_Up_Timer
 @onready var levels_label = $Levels_Label
 @onready var settings_menu = $SettingsMenu
@@ -35,6 +39,10 @@ extends CanvasLayer
 @onready var moon_guy_layover = $Moon_Guy_Layover
 @onready var moon_guy_health_bar_bg = $Moon_Guy_Layover/Moon_Guy_Health_Bar_BG
 @onready var moon_guy_health_bar = $Moon_Guy_Layover/Moon_Guy_Health_Bar
+@onready var wave_counter_label = $Wave_Counter_Label
+@onready var wave_counter_timer = $Wave_Counter_Timer
+@onready var wave_blink_timer = $Wave_Blink_Timer
+@onready var wave_number_label = $Wave_Number_Label
 
 @onready var buttons = [
 	$Upgrade_Menu/First_Upgrade,
@@ -107,6 +115,8 @@ var upgrades_cost = [
 
 
 func _ready():
+	Global.wave_num_update.connect(wave_num)
+	Global.update_money.connect(update_money)
 	Global.moon_guy_health.connect(moon_guy_health)
 	Global.update_sound_effects_volume.connect(sound_effects)
 	sound_effects()
@@ -152,6 +162,38 @@ func _process(_delta):
 	$PauseMenu/VBoxContainer/Bullet_Velocity_Label.text = "Bullet Velocity: " + str(snapped(Global.bullet_velocity, 1))
 	$PauseMenu/VBoxContainer/Move_Speed_Label.text = "Thrust: " + str(Global.move_speed)
 	$PauseMenu/VBoxContainer/Counter_Thrust_Label.text = "Counter Thrust: " + str(Global.counter_thrust)
+	reroll_button.text = "Reroll\n" + str(Global.reroll_cost)
+
+
+func wave_num(wave_num):
+	wave_counter_label.hide()
+	wave_counter_timer.start()
+	wave_blink_timer.one_shot = false
+	wave_blink_timer.start()
+	if str(wave_num) == "moon_guy":
+		wave_counter_label.text = "MOON GUY"
+		return
+	wave_counter_label.text = "WAVE " + str(wave_num)
+
+
+func _on_wave_counter_timer_timeout():
+	wave_blink_timer.one_shot = true
+	wave_counter_label.visible = true
+
+
+func _on_wave_blink_timer_timeout():
+	wave_counter_label.visible = !wave_counter_label.visible
+
+
+func update_money(amount):
+	var new_label = Label.new()
+	if amount >= 0:
+		new_label.text = "+$" + str(amount)
+	else:
+		new_label.text = "-$" + str(amount)
+	money_v_box_container.add_child(new_label)
+	var new_timer = MONEY_TIMER.instantiate()
+	new_label.add_child(new_timer)
 
 
 func moon_guy_health(damage):
@@ -290,10 +332,8 @@ func update_max_exp():
 
 func _on_first_upgrade_pressed():
 	if level_up_timer.time_left == 0 && Global.money >= first_upgrade_cost:
-		Global.money -= first_upgrade_cost
-		#get_tree().paused = false
-		#upgrade_menu.visible = false
-		apply_my_upgrade(first_upgrade, 0)
+		Global.update_money.emit(-first_upgrade_cost)
+		apply_my_upgrade(first_upgrade)
 		first_upgrade = null
 		upgrades[0] = null
 		first_upgrade_button.hide()
@@ -301,10 +341,8 @@ func _on_first_upgrade_pressed():
 
 func _on_second_upgrade_pressed():
 	if level_up_timer.time_left == 0 && Global.money >= second_upgrade_cost:
-		Global.money -= second_upgrade_cost
-		#get_tree().paused = false
-		#upgrade_menu.visible = false
-		apply_my_upgrade(second_upgrade, 1)
+		Global.update_money.emit(-second_upgrade_cost)
+		apply_my_upgrade(second_upgrade)
 		second_upgrade = null
 		upgrades[1] = null
 		second_upgrade_button.hide()
@@ -312,10 +350,8 @@ func _on_second_upgrade_pressed():
 
 func _on_third_upgrade_pressed():
 	if level_up_timer.time_left == 0 && Global.money >= third_upgrade_cost:
-		Global.money -= third_upgrade_cost
-		#get_tree().paused = false
-		#upgrade_menu.visible = false
-		apply_my_upgrade(third_upgrade, 2)
+		Global.update_money.emit(-third_upgrade_cost)
+		apply_my_upgrade(third_upgrade)
 		third_upgrade = null
 		upgrades[2] = null
 		third_upgrade_button.hide()
@@ -323,10 +359,8 @@ func _on_third_upgrade_pressed():
 
 func _on_fourth_upgrade_pressed():
 	if level_up_timer.time_left == 0 && Global.money >= fourth_upgrade_cost:
-		Global.money -= fourth_upgrade_cost
-		#get_tree().paused = false
-		#upgrade_menu.visible = false
-		apply_my_upgrade(fourth_upgrade, 3)
+		Global.update_money.emit(-fourth_upgrade_cost)
+		apply_my_upgrade(fourth_upgrade)
 		fourth_upgrade = null
 		upgrades[3] = null
 		fourth_upgrade_button.hide()
@@ -334,10 +368,8 @@ func _on_fourth_upgrade_pressed():
 
 func _on_fifth_upgrade_pressed():
 	if level_up_timer.time_left == 0 && Global.money >= fifth_upgrade_cost:
-		Global.money -= fifth_upgrade_cost
-		#get_tree().paused = false
-		#upgrade_menu.visible = false
-		apply_my_upgrade(fifth_upgrade, 4)
+		Global.update_money.emit(-fifth_upgrade_cost)
+		apply_my_upgrade(fifth_upgrade)
 		fifth_upgrade = null
 		upgrades[4] = null
 		fifth_upgrade_button.hide()
@@ -345,20 +377,28 @@ func _on_fifth_upgrade_pressed():
 
 func _on_sixth_upgrade_pressed():
 	if level_up_timer.time_left == 0 && Global.money >= sixth_upgrade_cost:
-		Global.money -= sixth_upgrade_cost
-		#get_tree().paused = false
-		#upgrade_menu.visible = false
-		apply_my_upgrade(sixth_upgrade, 5)
+		Global.update_money.emit(-sixth_upgrade_cost)
+		apply_my_upgrade(sixth_upgrade)
 		sixth_upgrade = null
 		upgrades[5] = null
 		sixth_upgrade_button.hide()
 
 
 func _on_reroll_button_pressed():
-	level_up()
+	if level_up_timer.time_left == 0 && Global.money >= Global.reroll_cost:
+		Global.update_money.emit(-Global.reroll_cost)
+		level_up()
+		first_upgrade_button.show()
+		second_upgrade_button.show()
+		third_upgrade_button.show()
+		fourth_upgrade_button.show()
+		fifth_upgrade_button.show()
+		sixth_upgrade_button.show()
 
 
 func _on_next_wave_button_pressed():
+	wave_number_label.text = "Wave " + str(Global.wave_num)
+	Global.update_money.emit(int(Global.money * .5))
 	get_tree().paused = false
 	upgrade_menu.visible = false
 	first_upgrade_button.show()
@@ -397,9 +437,7 @@ func evo_level_up():
 
 func get_upgrades():
 	Global.upgrades_test.shuffle()
-	print("\n")
-	for up in Global.upgrades_test:
-		print(up.upgrade_name)
+	Global.reroll_cost = round(25 * Global.inflation)
 
 	for i in range(6):
 		if Global.upgrades_test.size() - 1 >= i:
@@ -408,7 +446,7 @@ func get_upgrades():
 			text_labels[i].text = "[center]" + my_upgrade.upgrade_text
 			textures[i].texture = my_upgrade.upgrade_texture
 			upgrades[i] = my_upgrade
-			upgrades_cost[i] = randi_range(10, 25)
+			upgrades_cost[i] = round(randi_range(50, 100) * Global.inflation)
 			cost_labels[i].text = "$" + str(upgrades_cost[i])
 		else:
 			text_labels[i].text = "null"
@@ -449,20 +487,11 @@ func get_evolutions():
 	third_upgrade = upgrades[2]
 
 
-func apply_my_upgrade(my_upgrade, index):
+func apply_my_upgrade(my_upgrade):
 	ButtonClick.play()
 	if my_upgrade == null:
 		return
-	Global.upgrades_test.pop_at(index)
+	Global.upgrades_test.erase(my_upgrade)
 	my_upgrade.upgrade_player()
-	if my_upgrade.next_upgrade != null:
+	if my_upgrade.next_upgrade:
 		Global.upgrades_test.append(my_upgrade.next_upgrade)
-		
-	#for i in range(upgrades.size()-1):
-		#upgrades[i] = null
-	#first_upgrade = null
-	#second_upgrade = null
-	#third_upgrade = null
-	#fourth_upgrade = null
-	#fifth_upgrade = null
-	#sixth_upgrade = null

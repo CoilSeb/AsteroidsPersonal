@@ -74,6 +74,44 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 128
 text = "High Score: "
 
+[node name="Wave_Counter_Label" type="Label" parent="."]
+process_mode = 1
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.5
+offset_top = -470.5
+offset_right = 145.5
+offset_bottom = -333.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "Wave "
+
+[node name="Wave_Number_Label" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = 20.0
+offset_right = -80.0
+offset_bottom = 65.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "Wave 1 "
+
+[node name="Wave_Counter_Timer" type="Timer" parent="."]
+process_mode = 1
+wait_time = 3.0
+one_shot = true
+
+[node name="Wave_Blink_Timer" type="Timer" parent="."]
+process_mode = 1
+wait_time = 0.5
+
 [node name="Health_Bar_BG" type="TextureProgressBar" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
@@ -134,6 +172,7 @@ texture_progress = ExtResource("2_ky7pi")
 tint_progress = Color(1, 1, 1, 0.168627)
 
 [node name="Evo_Bar" type="TextureProgressBar" parent="."]
+visible = false
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 1639.0
@@ -148,6 +187,7 @@ texture_progress = ExtResource("2_ky7pi")
 tint_progress = Color(1, 1, 1, 0.815686)
 
 [node name="Evo_Bar_BG" type="TextureProgressBar" parent="."]
+visible = false
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 1639.0
@@ -236,6 +276,7 @@ texture_progress = ExtResource("2_ky7pi")
 tint_progress = Color(0.866667, 0, 0.0745098, 0.717647)
 
 [node name="Upgrade_Menu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -644,9 +685,9 @@ grow_vertical = 0
 focus_neighbor_left = NodePath("../First_Upgrade")
 focus_neighbor_top = NodePath("../Second_Upgrade")
 focus_neighbor_right = NodePath("../Third_Upgrade")
-theme_override_font_sizes/font_size = 52
+theme_override_font_sizes/font_size = 32
 text = "Reroll
-"
+25"
 
 [node name="Next_Wave_Button" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
@@ -850,6 +891,17 @@ offset_bottom = 65.0
 theme_override_font_sizes/font_size = 32
 text = "$0"
 
+[node name="VBoxContainer" type="VBoxContainer" parent="Money_Label"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.0
+offset_top = 39.0
+offset_right = 57.0
+offset_bottom = 170.0
+grow_horizontal = 2
+theme_override_constants/separation = 0
+
 [node name="Restart" type="Button" parent="."]
 visible = false
 anchors_preset = 8
@@ -895,7 +947,6 @@ visible = false
 my_scenes_button = NodePath("../PauseMenu/SettingsButton")
 
 [node name="CRT_Shader" type="ColorRect" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_dpj74")
 anchors_preset = 15
 anchor_right = 1.0
@@ -907,6 +958,8 @@ mouse_filter = 2
 [node name="Level_Up_Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_akabl")
 
+[connection signal="timeout" from="Wave_Counter_Timer" to="." method="_on_wave_counter_timer_timeout"]
+[connection signal="timeout" from="Wave_Blink_Timer" to="." method="_on_wave_blink_timer_timeout"]
 [connection signal="pressed" from="Upgrade_Menu/First_Upgrade" to="." method="_on_first_upgrade_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Second_Upgrade" to="." method="_on_second_upgrade_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Third_Upgrade" to="." method="_on_third_upgrade_pressed"]

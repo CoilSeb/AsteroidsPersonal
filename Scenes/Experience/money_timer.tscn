@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://2w5dmuynip5p"]
+
+[ext_resource type="Script" path="res://Scenes/Experience/money_timer.gd" id="1_gpsp0"]
+
+[node name="Money_Timer" type="Timer"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+script = ExtResource("1_gpsp0")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="timeout" from="." to="." method="_on_timeout"]

@@ -78,7 +78,7 @@ func damage_asteroid(damage):
 
 func create_and_add_asteroids():
 	#call_deferred("make_exp")
-	Global.money += randi_range(6,10)
+	Global.update_money.emit(randi_range(6,10))
 	
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")

@@ -105,7 +105,7 @@ func damage_asteroid(damage):
 	if health <= 0 && !dead:
 		dead = true
 		if !boss:
-			Global.money += randi_range(1,5)
+			Global.update_money.emit(randi_range(1,5))
 			#call_deferred("make_exp")
 		destroy()
 

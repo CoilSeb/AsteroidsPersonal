@@ -10,9 +10,6 @@ extends Node
 var playerScene = preload("res://Scenes/Player/Player.tscn")
 var player = true
 var screen_size
-var wave_timer_time = 10
-var wave_time = 35
-var wave_num = 0
 var start_moon_guy_warning = false
 
 var basic_asteroid_scenes = {
@@ -117,49 +114,55 @@ func _on_spawn_timer_timeout():
 
 
 func spawn_wave():
-	if wave_num == 0 && Global.enemy_weight <= 0:
-		Ui.level_up()
-		wave_num += 1
+	if Global.wave_num == 0 && Global.enemy_weight <= 0:
+		#await get_tree().create_timer(1).timeout
+		Global.wave_num += 1
+		Global.wave_num_update.emit(Global.wave_num)
 		for i in range(7):
 			spawn_basic_Asteroid_with_weight()
 		for i in range(3):
 			spawn_special_Asteroid_with_weight()
 		return
-	if wave_num == 1 && Global.enemy_weight == 0:
+	if Global.wave_num == 1 && Global.enemy_weight == 0:
+		Global.wave_num += 1
+		Global.inflation *= Global.inflation_rate
 		Ui.level_up()
-		wave_num += 1
+		Global.wave_num_update.emit(Global.wave_num)
 		for i in range(6):
 			spawn_basic_Asteroid_with_weight()
 		for i in range(4):
 			spawn_special_Asteroid_with_weight()
 		return
-	if wave_num == 2 && Global.enemy_weight <= 0:
+	if Global.wave_num == 2 && Global.enemy_weight <= 0:
+		Global.inflation *= Global.inflation_rate
 		Ui.level_up()
-		wave_num += 1
+		Global.wave_num += 1
+		Global.wave_num_update.emit(Global.wave_num)
 		for i in range(8):
 			spawn_basic_Asteroid_with_weight()
 		for i in range(4):
 			spawn_special_Asteroid_with_weight()
 		return
-	if wave_num == 3 && Global.enemy_weight <= 0:
+	if Global.wave_num == 3 && Global.enemy_weight <= 0:
+		Global.inflation *= Global.inflation_rate
 		Ui.level_up()
-		wave_num += 1
+		Global.wave_num += 1
+		Global.wave_num_update.emit(Global.wave_num)
 		for i in range(10):
 			spawn_basic_Asteroid_with_weight()
 		for i in range(4):
 			spawn_special_Asteroid_with_weight()
 		return
-	if wave_num == 4 && Global.enemy_weight <= 0:
+	if Global.wave_num == 4 && Global.enemy_weight <= 0:
+		Global.inflation *= Global.inflation_rate
 		Ui.level_up()
-		Global.enemy_weight += 16
-		wave_num += 1
+		Global.enemy_weight += 40
+		Global.wave_num = 0
+		Global.wave_num_update.emit("moon_guy")
 		moon_guy_warning.show()
 		start_moon_guy_warning = true
 		return
-	if wave_num == 5 && Global.enemy_weight <= 0:
-		Ui.level_up()
-		timer.wait_time == 0.25
-		timer.start(0.25)
+
 
 
 func _on_timer_timeout():

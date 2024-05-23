@@ -43,6 +43,7 @@ var deadzone = 1
 
 func _ready():
 	#god_mode()
+	Global.update_money.connect(update_money)
 	Global.update_sound_effects_volume.connect(sound_effects)
 	Global.upgrade_pull_range.connect(increase_exp_pull_range)
 	sound_effects()
@@ -353,3 +354,7 @@ func sound_effects():
 
 func increase_exp_pull_range():
 	collection_range.scale += Global.exp_pull_range
+
+
+func update_money(amount):
+	Global.money += amount

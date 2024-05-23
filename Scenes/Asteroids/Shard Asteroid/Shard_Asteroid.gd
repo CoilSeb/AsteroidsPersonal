@@ -114,7 +114,7 @@ func damage_asteroid(damage):
 			fourth_spawn = true
 	if health <= 0 && !dead:
 		dead = true
-		Global.money += randi_range(16,20)
+		Global.update_money.emit(randi_range(16,20))
 		#for i: int in range(2):
 			#call_deferred("make_exp")
 		destroy()
