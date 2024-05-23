@@ -156,7 +156,7 @@ func refresh():
 	match weapon:
 		"Gun":
 			damage = 10
-			attack_speed = 0.75
+			attack_speed = 0.5
 			bullet_velocity = 700
 			gatling_gun = false
 			smg = false
@@ -168,7 +168,7 @@ func refresh():
 			evolutions_test = gun_evolutions.duplicate()
 			upgrades_test += gun_test
 		"Laser":
-			damage = 100
+			damage = 1
 			attack_speed = 0.1
 			bullet_velocity = 0
 			laser_made = false
