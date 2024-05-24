@@ -41,6 +41,9 @@ var reroll_cost
 var enemy_weight = 0
 var moon_guy_asteroid_count = 0
 var wave_num
+var wave_time
+
+var asteroids_taking_damage = []
 
 # Upgrades
 var base_upgrades = [
@@ -139,6 +142,7 @@ func add_key_upgrades(key_upgrade):
 func refresh():
 	upgrades_test = base_upgrades.duplicate()
 	wave_num = 0
+	wave_time = 0
 	god_mode = false
 	no_gun_all_collision = false
 	health = 300

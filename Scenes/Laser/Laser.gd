@@ -6,7 +6,6 @@ extends RayCast2D
 @onready var shoot_timer = $Shoot_Timer
 
 const MAX_LENGTH = 20000
-var damage = Global.damage / 11.0
 var direction
 
 
@@ -15,6 +14,7 @@ func _ready():
 
 
 func _process(delta):
+	var damage = Global.damage / 11.0
 	if Input.is_action_pressed("shoot") || Input.is_action_pressed("M2"):
 		laser.target_position = direction * MAX_LENGTH
 		if laser.is_colliding():

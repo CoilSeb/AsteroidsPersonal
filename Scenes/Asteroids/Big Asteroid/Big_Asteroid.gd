@@ -62,8 +62,8 @@ func set_random_direction_and_speed():
 	speed = randf_range(75, 200)  # Random speed between 5 and 10
 
 
-func destroy():
-	call_deferred("create_and_add_asteroids")
+func destroy(money_bool):
+	call_deferred("create_and_add_asteroids", money_bool)
 
 
 func damage_asteroid(damage):
@@ -78,12 +78,13 @@ func damage_asteroid(damage):
 		crack_4.visible = true 
 	if health <= 0 && !dead:
 		dead = true
-		destroy()
+		destroy(true)
 
 
-func create_and_add_asteroids():
+func create_and_add_asteroids(money_bool):
 	#call_deferred("make_exp")
-	Global.update_money.emit(randi_range(11,15))
+	if money_bool:
+		Global.update_money.emit(randi_range(11,15))
 	
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")

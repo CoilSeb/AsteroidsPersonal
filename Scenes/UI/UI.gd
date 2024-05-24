@@ -43,6 +43,8 @@ const MONEY_TIMER = preload("res://Scenes/Experience/money_timer.tscn")
 @onready var wave_counter_timer = $Wave_Counter_Timer
 @onready var wave_blink_timer = $Wave_Blink_Timer
 @onready var wave_number_label = $Wave_Number_Label
+@onready var wave_timer_label = $Wave_Timer_Label
+@onready var next_wave_button = $Upgrade_Menu/Next_Wave_Button
 
 @onready var buttons = [
 	$Upgrade_Menu/First_Upgrade,
@@ -138,6 +140,7 @@ func _ready():
 
 
 func _process(_delta):
+	wave_timer_label.text = str(round(Global.wave_time))
 	money_label.text = "$" + str(Global.money)
 	if !settings_menu.visible:
 		if Input.is_action_just_pressed("ui_cancel"):
@@ -162,11 +165,13 @@ func _process(_delta):
 	$PauseMenu/VBoxContainer/Bullet_Velocity_Label.text = "Bullet Velocity: " + str(snapped(Global.bullet_velocity, 1))
 	$PauseMenu/VBoxContainer/Move_Speed_Label.text = "Thrust: " + str(Global.move_speed)
 	$PauseMenu/VBoxContainer/Counter_Thrust_Label.text = "Counter Thrust: " + str(Global.counter_thrust)
-	reroll_button.text = "Reroll\n" + str(Global.reroll_cost)
+	reroll_button.text = "Reroll\n$" + str(Global.reroll_cost)
+	next_wave_button.text = "Next Wave\n(Interest = $" + str(round(Global.money * 0.5)) + ")"
 
 
 func wave_num(wave_num):
 	wave_counter_label.hide()
+	wave_timer_label.hide()
 	wave_counter_timer.start()
 	wave_blink_timer.one_shot = false
 	wave_blink_timer.start()
@@ -179,6 +184,7 @@ func wave_num(wave_num):
 func _on_wave_counter_timer_timeout():
 	wave_blink_timer.one_shot = true
 	wave_counter_label.visible = true
+	wave_timer_label.show()
 
 
 func _on_wave_blink_timer_timeout():
@@ -446,7 +452,7 @@ func get_upgrades():
 			text_labels[i].text = "[center]" + my_upgrade.upgrade_text
 			textures[i].texture = my_upgrade.upgrade_texture
 			upgrades[i] = my_upgrade
-			upgrades_cost[i] = round(randi_range(50, 100) * Global.inflation)
+			upgrades_cost[i] = round(randi_range(50, 75) * Global.inflation)
 			cost_labels[i].text = "$" + str(upgrades_cost[i])
 		else:
 			text_labels[i].text = "null"

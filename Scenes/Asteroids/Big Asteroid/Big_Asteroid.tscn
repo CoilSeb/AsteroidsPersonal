@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cwdc3hhka1yvo" path="res://Sprites/Asteroids/Big_Crack3-3.png-1.png.png" id="5_y5sm6"]
 [ext_resource type="Texture2D" uid="uid://ba4gbf633cy2b" path="res://Sprites/Asteroids/Big_Crack4-4.png-1.png.png" id="6_wifd0"]
 
-[node name="Big_Asteroid" type="Area2D" groups=["Enemy"]]
+[node name="Big_Asteroid" type="Area2D" groups=["Big Asteroid", "Enemy"]]
 scale = Vector2(0.75, 0.75)
 collision_layer = 4
 collision_mask = 2

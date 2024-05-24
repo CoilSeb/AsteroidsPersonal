@@ -125,7 +125,7 @@ func exp_pull_range():
 
 func weapon_scale():
 	Global.weapon_scale += Vector2(upgrade_value,upgrade_value)
-	Global.damage *= 1.10
+	Global.damage *= 1.25
 
 func burn_out():
 	Global.burn_out = true

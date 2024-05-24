@@ -68,12 +68,14 @@ func set_random_direction_and_speed():
 	speed = randf_range(75, 200)  # Random speed between 50 and 100
 
 
-func destroy():
+func destroy(money_bool):
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")
 	audio_player.volume_db = Global.sound_effects_volume - 7
 	get_parent().add_child(audio_player)
 	
+	if money_bool:
+		Global.update_money.emit(randi_range(16,20))
 	if weighted:
 		Global.enemy_weight -= weight
 	var particles = ASTEROID_DEATH_PARTICLES.instantiate()
@@ -114,10 +116,9 @@ func damage_asteroid(damage):
 			fourth_spawn = true
 	if health <= 0 && !dead:
 		dead = true
-		Global.update_money.emit(randi_range(16,20))
 		#for i: int in range(2):
 			#call_deferred("make_exp")
-		destroy()
+		destroy(true)
 
 
 func create_shards(num: float):

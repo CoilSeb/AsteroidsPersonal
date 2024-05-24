@@ -15,11 +15,8 @@ metadata/_edit_vertical_guides_ = []
 [node name="SpawnTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
-autostart = true
-
 [node name="WaveTimer" type="Timer" parent="."]
+wait_time = 34.5
 one_shot = true
 autostart = true
 
@@ -38,5 +35,4 @@ position = Vector2(956, 545)
 texture = ExtResource("4_to3f7")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

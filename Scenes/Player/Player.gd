@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var hit_sound = $Hit_Sound
 @onready var collection_range = $Collection_Range
 @onready var hit_timer = $Hit_Timer
+@onready var laser_charge_timer = $Laser_Charge_Timer
 
 const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
 const PLAYER_DEATH = preload("res://Particles/player_death.tscn")
@@ -39,6 +40,8 @@ var burn_out_time = burn_out_var
 var cheat_code = ""
 var rs_look = Vector2(0,0)
 var deadzone = 1
+var laser_charge_bool = false
+var laser_done = false
 
 
 func _ready():
@@ -128,9 +131,27 @@ func _physics_process(delta):
 			burn_out_time += 1.5
 		
 	# Shooting
+	print(Global.damage)
 	if Global.can_shoot:
 		if weapon == "Laser":
 			if Input.is_action_pressed("shoot") && !Input.is_action_pressed("move_forward"):
+				if laser_charge_timer.is_stopped() && !laser_done:
+					laser_charge_timer.start()
+				if laser_charge_bool:
+					Global.damage *= 3
+					laser1.scale *= 2
+					laser2.scale *= 2
+					laser3.scale *= 2
+					laser4.scale *= 2
+					laser5.scale *= 2
+					laser6.scale *= 2
+					laser7.scale *= 2
+					laser8.scale *= 2
+					laser9.scale *= 2
+					laser10.scale *= 2
+					laser11.scale *= 2
+					laser_charge_bool = false
+					
 				if !Global.laser_made:
 					make_laser()
 				var offset = laser1.scale.x * 10.0
@@ -157,6 +178,10 @@ func _physics_process(delta):
 				laser11.global_position = global_position + Vector2(offset * 5, -15).rotated(rotation)
 				laser11.direction = Vector2.UP.rotated(rotation)
 			if Input.is_action_just_released("shoot") || Input.is_action_pressed("move_forward") || Input.is_action_pressed("move_backward"):
+				laser_charge_bool = false
+				if laser_done:
+					Global.damage /= 3
+				laser_done = false
 				destroy_laser()
 				return
 		if weapon == "Gun":
@@ -204,6 +229,12 @@ func _physics_process(delta):
 		cheat_code = cheat_code + "D"
 	if cheat_code == "HELLO WORLD":
 		god_mode()
+
+
+func _on_laser_charge_timer_timeout():
+	if Input.is_action_pressed("shoot") && !Input.is_action_pressed("move_forward"):
+		laser_charge_bool = true
+		laser_done = true
 
 
 func make_laser():
@@ -271,7 +302,6 @@ func destroy_laser():
 
 func _on_area_2d_area_entered(area):
 	if hit_timer.time_left == 0:
-		hit_timer.start()
 		if area.is_in_group("Moon_Guy"):
 			hit_sound.play()
 			Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
@@ -314,6 +344,7 @@ func _on_area_2d_area_entered(area):
 
 func check_velocity(area):
 	if area.health > 0:
+		hit_timer.start()
 		velocity = (velocity * -0.5) + (area.velocity * 2)
 
 

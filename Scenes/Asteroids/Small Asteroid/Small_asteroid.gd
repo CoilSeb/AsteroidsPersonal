@@ -77,11 +77,13 @@ func set_random_direction_and_speed():
 	speed = randf_range(75, 200) # Random speed between 5 and 10 
 
 
-func destroy():
+func destroy(money_bool):
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")
 	audio_player.volume_db = Global.sound_effects_volume - 7
 	get_parent().add_child(audio_player)
+	if !boss && money_bool:
+		Global.update_money.emit(randi_range(1,5))
 	
 	if weighted:
 		Global.enemy_weight -= weight
@@ -104,10 +106,7 @@ func damage_asteroid(damage):
 	health -= damage
 	if health <= 0 && !dead:
 		dead = true
-		if !boss:
-			Global.update_money.emit(randi_range(1,5))
-			#call_deferred("make_exp")
-		destroy()
+		destroy(true)
 
 
 func _on_throw_timer_timeout():

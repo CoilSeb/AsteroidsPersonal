@@ -65,8 +65,8 @@ func set_random_direction_and_speed():
 	speed = randf_range(50, 100)  # Random speed between 5 and 10
 
 
-func destroy():
-	call_deferred("create_and_add_asteroids")
+func destroy(money_bool):
+	call_deferred("create_and_add_asteroids", money_bool)
 
 
 func damage_asteroid(damage):
@@ -88,15 +88,16 @@ func damage_asteroid(damage):
 		dead = true
 		Global.moon_guy_dead.emit()
 		Global.moon_guy_health.emit(750)
-		destroy()
+		destroy(true)
 
 
-func create_and_add_asteroids():
+func create_and_add_asteroids(money_bool):
 	#for i in range(16):
 		#var exp_shard = EXPERIENCE.instantiate()
 		#exp_shard.position = self.position + Vector2(randi_range(-20,20), randi_range(-20,20))
 		#get_parent().add_child(exp_shard)
-	Global.update_money.emit(randi_range(150,200))
+	if money_bool:
+		Global.update_money.emit(randi_range(150,200))
 	
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")
