@@ -28,7 +28,6 @@ var heavy_weaponry
 var ghost_bullets
 var deviation
 var bullet_time
-var god_mode = false
 var player_pos: Vector2
 var weapon_scale = Vector2(0,0)
 var exp_pull_range = Vector2(0,0)
@@ -36,6 +35,7 @@ var money
 var inflation
 var inflation_rate
 var reroll_cost
+var dev_mode
 
 # Enemy Variables
 var enemy_weight = 0
@@ -53,7 +53,7 @@ var base_upgrades = [
 	preload("res://Upgrades/Base_Upgrades/counter_thrust.tres"),
 	preload("res://Upgrades/Base_Upgrades/health_regen.tres"),
 	preload("res://Upgrades/Base_Upgrades/damage_reduction.tres"),
-	preload("res://Upgrades/Base_Upgrades/exp_pull_range.tres"),
+	#preload("res://Upgrades/Base_Upgrades/exp_pull_range.tres"),
 ]
 
 var gun_upgrades = [
@@ -69,8 +69,8 @@ var gun_evolutions = [
 ]
 
 var laser_upgrades = [
-	preload("res://Upgrades/Gun_Upgrades/damage_up.tres"),
-	preload("res://Upgrades/Base_Upgrades/weapon_scale_up.tres"),
+	preload("res://Upgrades/Laser_Upgrades/damage_up.tres"),
+	#preload("res://Upgrades/Base_Upgrades/weapon_scale_up.tres"),
 ]
 
 const REGEN_WITH_DEGEN = preload("res://Upgrades/Combo_Upgradess/regen_with_degen.tres")
@@ -143,7 +143,6 @@ func refresh():
 	upgrades_test = base_upgrades.duplicate()
 	wave_num = 0
 	wave_time = 0
-	god_mode = false
 	no_gun_all_collision = false
 	health = 300
 	max_health = health
@@ -191,6 +190,13 @@ func refresh():
 	exp_threshold = 50
 	key_upgrades.clear()
 	enemy_weight = 0
+	
+	if dev_mode:
+		health = 30000000
+		max_health = health
+		health_regen = 100
+		damage_reduction = 100
+		money = 10000000
 
 
 func save_score():

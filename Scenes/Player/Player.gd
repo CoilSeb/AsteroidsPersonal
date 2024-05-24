@@ -37,7 +37,6 @@ var weapon = Global.weapon
 var can_move = true
 var burn_out_var = 200
 var burn_out_time = burn_out_var
-var cheat_code = ""
 var rs_look = Vector2(0,0)
 var deadzone = 1
 var laser_charge_bool = false
@@ -45,7 +44,6 @@ var laser_done = false
 
 
 func _ready():
-	#god_mode()
 	Global.update_money.connect(update_money)
 	Global.update_sound_effects_volume.connect(sound_effects)
 	Global.upgrade_pull_range.connect(increase_exp_pull_range)
@@ -131,7 +129,6 @@ func _physics_process(delta):
 			burn_out_time += 1.5
 		
 	# Shooting
-	print(Global.damage)
 	if Global.can_shoot:
 		if weapon == "Laser":
 			if Input.is_action_pressed("shoot") && !Input.is_action_pressed("move_forward"):
@@ -208,27 +205,6 @@ func _physics_process(delta):
 	if Global.health <= 0:
 		destroy()
 		GameScene.player = true
-		
-	if Input.is_action_just_pressed("ui_cancel"):
-		cheat_code = ""
-	if Input.is_action_just_pressed("H"):
-		cheat_code = cheat_code + "H"
-	if Input.is_action_just_pressed("E"):
-		cheat_code = cheat_code + "E"
-	if Input.is_action_just_pressed("L"):
-		cheat_code = cheat_code + "L"
-	if Input.is_action_just_pressed("O"):
-		cheat_code = cheat_code + "O"
-	if Input.is_action_just_pressed("shoot"):
-		cheat_code = cheat_code + " "
-	if Input.is_action_just_pressed("move_forward"):
-		cheat_code = cheat_code + "W"
-	if Input.is_action_just_pressed("reroll"):
-		cheat_code = cheat_code + "R"
-	if Input.is_action_just_pressed("ui_right"):
-		cheat_code = cheat_code + "D"
-	if cheat_code == "HELLO WORLD":
-		god_mode()
 
 
 func _on_laser_charge_timer_timeout():
@@ -367,15 +343,6 @@ func destroy():
 	get_parent().add_child(audio_player)
 	queue_free()
 	GameScene.player = false
-
-
-func god_mode():
-	Global.god_mode = true
-	Global.max_health = 30000000
-	Global.health = 30000000
-	Ui.update_max_health(0)
-	Ui.update_health(0)
-	Global.damage_reduction = 30000000
 
 
 func sound_effects():

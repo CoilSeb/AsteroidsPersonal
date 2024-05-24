@@ -144,13 +144,10 @@ offset_bottom = -88.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/normal_font_size = 24
-text = "A laser that fires in an infinite line, damaging the first thing in its path. Due to immense heat requirements, all fuel must go to the laser to fire.
+text = "A laser that fires in an infinite line, damaging the first thing in its path. Due to immense heat requirements, all fuel must go to the laser to charge.
 
 - Cannot fire while thrusting
-- Max attack speed
-- Minimum damage
-- 1% max health damage per tick
-- All attack speed and bullet velocity upgrades converted into damage"
+- Starts at low damage and size, but increases the longer it fires"
 fit_content = true
 
 [node name="Gun_Text" type="RichTextLabel" parent="."]
@@ -169,9 +166,23 @@ grow_vertical = 0
 theme_override_font_sizes/normal_font_size = 24
 text = "The default gun. 
 
-- Well rounded attack speed and damage
-- No special changes to upgrades"
+- Well rounded attack speed and damage"
 fit_content = true
+
+[node name="CheckBox" type="CheckButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -109.5
+offset_right = 94.0
+offset_bottom = -56.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Dev_Mode"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_xnixt")
@@ -188,3 +199,4 @@ color = Color(1, 1, 1, 0.564706)
 [connection signal="pressed" from="Control/Gun_Button" to="." method="_on_gun_button_pressed"]
 [connection signal="pressed" from="Control/Laser_Button" to="." method="_on_laser_button_pressed"]
 [connection signal="pressed" from="Control/Exit" to="." method="_on_exit_pressed"]
+[connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]

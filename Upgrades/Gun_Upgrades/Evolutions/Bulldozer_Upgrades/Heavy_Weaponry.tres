@@ -7,4 +7,6 @@ script = ExtResource("1_03xdr")
 upgrade_name = "heavy_weaponry"
 upgrade_text = "Bullets become bigger and healthier. Shooting has knockback."
 upgrade_value = 0.0
+upgrade_cost = 75
+upgrade_rarity_color = Color(0.156863, 0.643137, 1, 0.0980392)
 key_upgrade = false

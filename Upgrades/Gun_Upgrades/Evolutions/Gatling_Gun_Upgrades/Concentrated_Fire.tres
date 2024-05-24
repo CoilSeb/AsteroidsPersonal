@@ -7,4 +7,6 @@ script = ExtResource("1_1a5l8")
 upgrade_name = "concentrated_fire"
 upgrade_text = "Decrease weapon spread."
 upgrade_value = 0.0
+upgrade_cost = 75
+upgrade_rarity_color = Color(0.156863, 0.643137, 1, 0.0980392)
 key_upgrade = false

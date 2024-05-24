@@ -116,6 +116,7 @@ func _on_spawn_timer_timeout():
 func spawn_wave():
 	if Global.wave_num == 0 && Global.enemy_weight <= 0:
 		#await get_tree().create_timer(1).timeout
+		#Ui.level_up()
 		Global.wave_num += 1
 		Global.wave_num_update.emit(Global.wave_num)
 		for i in range(15):
@@ -123,12 +124,12 @@ func spawn_wave():
 		for i in range(3):
 			spawn_special_Asteroid_with_weight()
 		return
-	if Global.wave_num == 1 && Global.enemy_weight == 0:
+	if Global.wave_num == 1 && Global.enemy_weight <= 0:
 		await get_tree().create_timer(0.5, false).timeout
-		Global.wave_num += 1
 		Global.inflation *= Global.inflation_rate
 		Ui.level_up()
 		wave_timer.start()
+		Global.wave_num += 1
 		Global.wave_num_update.emit(Global.wave_num)
 		for i in range(14):
 			spawn_basic_Asteroid_with_weight()

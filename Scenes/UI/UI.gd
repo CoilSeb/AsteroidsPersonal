@@ -82,6 +82,15 @@ const MONEY_TIMER = preload("res://Scenes/Experience/money_timer.tscn")
 	$Upgrade_Menu/Sixth_Upgrade/Cost_Label
 ]
 
+@onready var rarity_color_rects = [
+	$Upgrade_Menu/First_Upgrade/Rarity_Color,
+	$Upgrade_Menu/Second_Upgrade/Rarity_Color,
+	$Upgrade_Menu/Third_Upgrade/Rarity_Color,
+	$Upgrade_Menu/Fourth_Upgrade/Rarity_Color,
+	$Upgrade_Menu/Fifth_Upgrade/Rarity_Color,
+	$Upgrade_Menu/Sixth_Upgrade/Rarity_Color
+]
+
 var score = 0
 var first_upgrade: upgrade
 var second_upgrade: upgrade
@@ -192,14 +201,16 @@ func _on_wave_blink_timer_timeout():
 
 
 func update_money(amount):
+	var money_tween = get_tree().create_tween()
 	var new_label = Label.new()
+	money_tween.bind_node(new_label)
 	if amount >= 0:
 		new_label.text = "+$" + str(amount)
 	else:
 		new_label.text = "-$" + str(amount)
 	money_v_box_container.add_child(new_label)
-	var new_timer = MONEY_TIMER.instantiate()
-	new_label.add_child(new_timer)
+	money_tween.tween_property(new_label, "modulate", Color8(255, 255, 255, 0), 2.5)
+	money_tween.tween_callback(new_label.queue_free)
 
 
 func moon_guy_health(damage):
@@ -331,9 +342,7 @@ func update_max_exp():
 	if stored_levels > 1:
 		levels_label.text = "'R' to level up (" + str(stored_levels) + " levels stored)"
 		levels_label.show()
-	if Global.god_mode:
-		levels_label.text = "'R' to level up (INF levels stored)"
-		levels_label.show()
+
 
 
 func _on_first_upgrade_pressed():
@@ -442,9 +451,24 @@ func evo_level_up():
 
 
 func get_upgrades():
+	var evolution = randi_range(0,19)
+	#print(evolution)
+	match Global.weapon:
+		"Gun":
+			for each_upgrade in Global.upgrades_test:
+				#print("Searching: ", each_upgrade.upgrade_name)
+				for each_big_upgrade in Global.evolutions_test:
+					#print("Comparing: ", each_big_upgrade.upgrade_name)
+					if each_upgrade == each_big_upgrade:
+						Global.upgrades_test.erase(each_upgrade)
+			#print(roll)
+			if (evolution == 0):
+				Global.upgrades_test += Global.evolutions_test
+				#for each_upgrade in Global.upgrades_test:
+					#print(each_upgrade.upgrade_name)
+				#print("\n")
 	Global.upgrades_test.shuffle()
 	Global.reroll_cost = round(25 * Global.inflation)
-
 	for i in range(6):
 		if Global.upgrades_test.size() - 1 >= i:
 			var my_upgrade = Global.upgrades_test[i]
@@ -452,8 +476,9 @@ func get_upgrades():
 			text_labels[i].text = "[center]" + my_upgrade.upgrade_text
 			textures[i].texture = my_upgrade.upgrade_texture
 			upgrades[i] = my_upgrade
-			upgrades_cost[i] = round(randi_range(50, 75) * Global.inflation)
+			upgrades_cost[i] = round(my_upgrade.upgrade_cost + randi_range(0,25) * Global.inflation)
 			cost_labels[i].text = "$" + str(upgrades_cost[i])
+			rarity_color_rects[i].color = my_upgrade.upgrade_rarity_color
 		else:
 			text_labels[i].text = "null"
 			textures[i].texture = null
@@ -475,7 +500,7 @@ func get_upgrades():
 
 func get_evolutions():
 	Global.evolutions_test.shuffle()
-
+	
 	for i in range(3):
 		if Global.evolutions_test.size() - 1 >= i:
 			var my_upgrade = Global.evolutions_test[i]
@@ -498,6 +523,7 @@ func apply_my_upgrade(my_upgrade):
 	if my_upgrade == null:
 		return
 	Global.upgrades_test.erase(my_upgrade)
+	Global.evolutions_test.erase(my_upgrade)
 	my_upgrade.upgrade_player()
 	if my_upgrade.next_upgrade:
 		Global.upgrades_test.append(my_upgrade.next_upgrade)

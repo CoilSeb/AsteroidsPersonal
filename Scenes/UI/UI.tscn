@@ -343,6 +343,16 @@ focus_neighbor_bottom = NodePath("../Reroll_Button")
 icon_alignment = 1
 vertical_icon_alignment = 0
 
+[node name="Rarity_Color" type="ColorRect" parent="Upgrade_Menu/First_Upgrade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.615686, 0.615686, 0.615686, 0.196078)
+
 [node name="TextureRect1" type="TextureRect" parent="Upgrade_Menu/First_Upgrade"]
 layout_mode = 1
 anchors_preset = 5
@@ -400,6 +410,16 @@ focus_neighbor_right = NodePath("../Third_Upgrade")
 focus_neighbor_bottom = NodePath("../Reroll_Button")
 icon_alignment = 1
 vertical_icon_alignment = 0
+
+[node name="Rarity_Color" type="ColorRect" parent="Upgrade_Menu/Second_Upgrade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.615686, 0.615686, 0.615686, 0.196078)
 
 [node name="TextureRect2" type="TextureRect" parent="Upgrade_Menu/Second_Upgrade"]
 layout_mode = 1
@@ -463,6 +483,16 @@ focus_neighbor_bottom = NodePath("../Reroll_Button")
 icon_alignment = 1
 vertical_icon_alignment = 0
 
+[node name="Rarity_Color" type="ColorRect" parent="Upgrade_Menu/Third_Upgrade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.615686, 0.615686, 0.615686, 0.196078)
+
 [node name="TextureRect3" type="TextureRect" parent="Upgrade_Menu/Third_Upgrade"]
 layout_mode = 1
 anchors_preset = 8
@@ -525,6 +555,16 @@ focus_neighbor_bottom = NodePath("../Reroll_Button")
 icon_alignment = 1
 vertical_icon_alignment = 0
 
+[node name="Rarity_Color" type="ColorRect" parent="Upgrade_Menu/Fourth_Upgrade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.615686, 0.615686, 0.615686, 0.196078)
+
 [node name="TextureRect1" type="TextureRect" parent="Upgrade_Menu/Fourth_Upgrade"]
 layout_mode = 1
 anchors_preset = 5
@@ -582,6 +622,16 @@ focus_neighbor_right = NodePath("../Third_Upgrade")
 focus_neighbor_bottom = NodePath("../Reroll_Button")
 icon_alignment = 1
 vertical_icon_alignment = 0
+
+[node name="Rarity_Color" type="ColorRect" parent="Upgrade_Menu/Fifth_Upgrade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.615686, 0.615686, 0.615686, 0.196078)
 
 [node name="TextureRect2" type="TextureRect" parent="Upgrade_Menu/Fifth_Upgrade"]
 layout_mode = 1
@@ -644,6 +694,16 @@ focus_neighbor_right = NodePath("../First_Upgrade")
 focus_neighbor_bottom = NodePath("../Reroll_Button")
 icon_alignment = 1
 vertical_icon_alignment = 0
+
+[node name="Rarity_Color" type="ColorRect" parent="Upgrade_Menu/Sixth_Upgrade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.615686, 0.615686, 0.615686, 0.196078)
 
 [node name="TextureRect3" type="TextureRect" parent="Upgrade_Menu/Sixth_Upgrade"]
 layout_mode = 1

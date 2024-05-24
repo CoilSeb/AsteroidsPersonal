@@ -5,6 +5,7 @@ extends CanvasLayer
 
 
 func _ready():
+	Global.dev_mode = false
 	Global.shader_settings.connect(crt)
 	color_rect.material.set_shader_parameter("aberration", Global.aberration)
 	color_rect.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
@@ -54,3 +55,10 @@ func crt(value):
 func _on_exit_pressed():
 	ButtonClick.play()
 	get_tree().change_scene_to_file("res://Scenes/Screens/Start Screen/StartScreen.tscn")
+
+
+func _on_check_box_toggled(toggled_on):
+	if toggled_on:
+		Global.dev_mode = true
+	else: 
+		Global.dev_mode = false

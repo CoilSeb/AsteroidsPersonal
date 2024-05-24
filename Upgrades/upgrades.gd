@@ -6,6 +6,8 @@ class_name upgrade
 @export var upgrade_text : String = ""
 @export var upgrade_value : float = 0
 @export var upgrade_texture: Texture
+@export var upgrade_cost: int = 0
+@export var upgrade_rarity_color: Color = Color("9d9d9d32")
 @export var key_upgrade: bool
 @export var next_upgrade : upgrade = null
 
@@ -93,7 +95,7 @@ func heavy_weaponry():
 	Global.heavy_weaponry = true
 
 func bulldozer():
-	Global.attack_speed += 0.5
+	Global.attack_speed *= 2
 	Global.damage *= 1.5
 	Global.bulldozer = true
 	Global.bulldozer_bullet_health += 100

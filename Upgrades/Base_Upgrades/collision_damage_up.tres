@@ -9,6 +9,8 @@ upgrade_name = "collision_damage"
 upgrade_text = "Upgrades the collision damage of your character by 15"
 upgrade_value = 15.0
 upgrade_texture = ExtResource("2_e1ebs")
+upgrade_cost = 0
+upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.196078)
 key_upgrade = true
 
 [sub_resource type="Resource" id="Resource_4fqwf"]
@@ -17,6 +19,8 @@ upgrade_name = "collision_damage"
 upgrade_text = "Upgrades the collision damage of your character by 10"
 upgrade_value = 10.0
 upgrade_texture = ExtResource("2_e1ebs")
+upgrade_cost = 0
+upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.196078)
 key_upgrade = false
 next_upgrade = SubResource("Resource_u7ngy")
 
@@ -26,5 +30,7 @@ upgrade_name = "collision_damage"
 upgrade_text = "Upgrades the collision damage of your character by 5"
 upgrade_value = 5.0
 upgrade_texture = ExtResource("2_e1ebs")
+upgrade_cost = 50
+upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.0980392)
 key_upgrade = false
 next_upgrade = SubResource("Resource_4fqwf")
