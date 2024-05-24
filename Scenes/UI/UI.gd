@@ -204,6 +204,7 @@ func update_money(amount):
 	var money_tween = get_tree().create_tween()
 	var new_label = Label.new()
 	money_tween.bind_node(new_label)
+	money_tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	if amount >= 0:
 		new_label.text = "+$" + str(amount)
 	else:
@@ -462,7 +463,7 @@ func get_upgrades():
 					if each_upgrade == each_big_upgrade:
 						Global.upgrades_test.erase(each_upgrade)
 			#print(roll)
-			if (evolution == 0):
+			if (evolution == 0) || Global.upgrades_test.size() <= 6:
 				Global.upgrades_test += Global.evolutions_test
 				#for each_upgrade in Global.upgrades_test:
 					#print(each_upgrade.upgrade_name)
@@ -523,7 +524,10 @@ func apply_my_upgrade(my_upgrade):
 	if my_upgrade == null:
 		return
 	Global.upgrades_test.erase(my_upgrade)
-	Global.evolutions_test.erase(my_upgrade)
+	if Global.evolutions_test:
+		Global.evolutions_test.erase(my_upgrade)
 	my_upgrade.upgrade_player()
 	if my_upgrade.next_upgrade:
 		Global.upgrades_test.append(my_upgrade.next_upgrade)
+		my_upgrade.next_upgrade.upgrade_rarity_color = my_upgrade.upgrade_rarity_color
+		my_upgrade.next_upgrade.upgrade_cost = my_upgrade.upgrade_cost
