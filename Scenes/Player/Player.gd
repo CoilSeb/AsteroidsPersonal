@@ -41,6 +41,7 @@ var rs_look = Vector2(0,0)
 var deadzone = 1
 var laser_charge_bool = false
 var laser_done = false
+var thrusting = false
 
 
 func _ready():
@@ -101,6 +102,15 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_forward") && can_move:
 		velocity += ((Vector2(0, -1) * thrust * delta).rotated(rotation))
 		thrust_sprite_2d.show()
+		if !thrusting:
+			var thrust_tween = get_tree().create_tween()
+			thrust_tween.bind_node(thrust_sprite_2d)
+			thrust_tween.tween_property(thrust_sprite_2d, "modulate", Color8(255, 255, 255, 100), 0.5)
+			thrust_tween.tween_property(thrust_sprite_2d, "modulate", Color8(255, 255, 255, 255), 0.5)
+			thrusting = true
+			await get_tree().create_timer(1, false).timeout
+			thrusting = false
+		
 	elif Input.is_action_just_pressed("move_backward"):
 		velocity += ((Vector2(0, 10) * counter_thrust * delta).rotated(rotation))
 	else:
@@ -278,9 +288,6 @@ func destroy_laser():
 
 func _on_area_2d_area_entered(area):
 	if hit_timer.time_left == 0:
-		var hit_tween = get_tree().create_tween()
-		hit_tween.tween_property(self, "modulate", Color8(255, 255, 255, 0), 0.19)
-		hit_tween.tween_property(self, "modulate", Color8(255, 255, 255, 255), 0.01)
 		if area.is_in_group("Moon_Guy"):
 			hit_sound.play()
 			Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
@@ -323,8 +330,12 @@ func _on_area_2d_area_entered(area):
 
 func check_velocity(area):
 	if area.health > 0:
-		hit_timer.start()
 		velocity = (velocity * -0.5) + (area.velocity * 2)
+		var hit_tween = get_tree().create_tween()
+		hit_tween.bind_node(self)
+		hit_timer.start()
+		hit_tween.tween_property(self, "modulate", Color8(255, 255, 255, 0), 0.19)
+		hit_tween.tween_property(self, "modulate", Color8(255, 255, 255, 255), 0.01)
 
 
 func destroy():

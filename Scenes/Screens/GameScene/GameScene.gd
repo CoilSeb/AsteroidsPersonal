@@ -115,7 +115,7 @@ func _on_spawn_timer_timeout():
 
 func spawn_wave():
 	if Global.wave_num == 0 && Global.enemy_weight <= 0:
-		#await get_tree().create_timer(1).timeout
+		#await get_tree().create_timer(0.5, false).timeout
 		#Ui.level_up()
 		Global.wave_num += 1
 		Global.wave_num_update.emit(Global.wave_num)
@@ -179,13 +179,12 @@ func _on_wave_timer_timeout():
 	for asteroid in get_tree().get_nodes_in_group("Medium Asteroid"):
 		asteroid.destroy(false)
 	await get_tree().create_timer(0.01).timeout
+	for asteroid in get_tree().get_nodes_in_group("Small Asteroid"):
+		asteroid.destroy(false)
 	for asteroid in get_tree().get_nodes_in_group("Enemy"):
 		asteroid.destroy(false)
 	await get_tree().create_timer(0.01).timeout
 	for asteroid in get_tree().get_nodes_in_group("Shard"):
 		asteroid.queue_free()
-	await get_tree().create_timer(0.01).timeout
-	for asteroid in get_tree().get_nodes_in_group("Small Asteroid"):
-		asteroid.destroy(false)
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.02).timeout
 	Global.sound_effects_volume = temp_vol

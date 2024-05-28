@@ -9,6 +9,7 @@ const EXPERIENCE = preload("res://Scenes/Experience/Experience.tscn")
 
 const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
 const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
+const EXPLOSION_AREA = preload("res://Scenes/Asteroids/Explosion/explosion_area.tscn")
 var shard_scene = preload("res://Scenes/Asteroids/Shard Asteroid/shard.tscn")
 var screen_size
 var speed: float
@@ -76,6 +77,11 @@ func destroy(money_bool):
 	
 	if money_bool:
 		Global.update_money.emit(randi_range(40,75))
+		var explosion = EXPLOSION_AREA.instantiate()
+		explosion.damage = 20
+		explosion.size = 5
+		explosion.position = position
+		get_parent().call_deferred("add_child", explosion)
 	if weighted:
 		Global.enemy_weight -= weight
 	var particles = ASTEROID_DEATH_PARTICLES.instantiate()

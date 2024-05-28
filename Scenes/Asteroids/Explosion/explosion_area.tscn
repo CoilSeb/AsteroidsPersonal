@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://ctlc84ocacbvi"]
+
+[ext_resource type="Script" path="res://Scenes/Asteroids/Explosion/explosion_area.gd" id="1_hdctd"]
+[ext_resource type="Texture2D" uid="uid://dupo53aomaj04" path="res://Sprites/Asteroids/Explosion.png" id="2_2dglm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hsmk"]
+atlas = ExtResource("2_2dglm")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkgo6"]
+atlas = ExtResource("2_2dglm")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuf3o"]
+atlas = ExtResource("2_2dglm")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4kih"]
+atlas = ExtResource("2_2dglm")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ul1i"]
+atlas = ExtResource("2_2dglm")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1s8tb"]
+atlas = ExtResource("2_2dglm")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5xjx"]
+atlas = ExtResource("2_2dglm")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8p3cx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hsmk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkgo6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kuf3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4kih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ul1i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1s8tb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5xjx")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iqxso"]
+radius = 57.0351
+
+[node name="Explosion_Area" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_hdctd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8p3cx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_iqxso")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

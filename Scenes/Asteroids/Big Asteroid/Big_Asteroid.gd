@@ -8,6 +8,7 @@ extends Area2D
 
 const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
 const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
+const EXPLOSION_AREA = preload("res://Scenes/Asteroids/Explosion/explosion_area.tscn")
 var medium_asteroid_scene = preload("res://Scenes/Asteroids/Medium Asteroid/Medium_asteroid.tscn")
 var exp_Scene = preload("res://Scenes/Experience/Experience.tscn")
 var screen_size
@@ -83,9 +84,6 @@ func damage_asteroid(damage_taken):
 
 func create_and_add_asteroids(money_bool):
 	#call_deferred("make_exp")
-	if money_bool:
-		Global.update_money.emit(randi_range(20,40))
-	
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")
 	audio_player.volume_db = Global.sound_effects_volume - 7
@@ -112,6 +110,16 @@ func create_and_add_asteroids(money_bool):
 	# Add them as children of the medium asteroid's parent
 	self.get_parent().add_child(medium_asteroid1)
 	self.get_parent().add_child(medium_asteroid2)
+	
+	if money_bool:
+		Global.update_money.emit(randi_range(20,40))
+		var explosion = EXPLOSION_AREA.instantiate()
+		explosion.damage = 20
+		explosion.size = 3
+		explosion.child1 = medium_asteroid1
+		explosion.child2 = medium_asteroid2
+		explosion.position = position
+		get_parent().call_deferred("add_child", explosion)
 	
 	# Increase Score 
 	Ui.increase_score(200)

@@ -309,11 +309,11 @@ func update_max_health(amount):
 	#update_health(Global.max_health - Global.health)
 	health_bar.max_value = Global.max_health
 	if health_bar.max_value >= 950:
-		health_bar.set_deferred("size.x", 1900)
-		health_bar_bg.set_deferred("size.x", 1900)
+		health_bar.size.x = 1900
+		health_bar_bg.size.x = 1900
 	else: 
-		health_bar.set_deferred("size.x", health_bar.max_value * 2)
-		health_bar_bg.set_deferred("size.x", health_bar.size.x)
+		health_bar.size.x = health_bar.max_value * 2
+		health_bar_bg.size.x = health_bar.size.x
 	health_bar.position.x = ((1920 - health_bar.size.x)/2)
 	health_bar_bg.position.x = ((1920 - health_bar.size.x)/2)
 

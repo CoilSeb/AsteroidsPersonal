@@ -3,7 +3,7 @@ extends Area2D
 @onready var timer = $Timer
 
 const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
-
+const EXPLOSION_AREA = preload("res://Scenes/Asteroids/Explosion/explosion_area.tscn")
 var direction: Vector2
 var bullet_speed = Global.bullet_velocity
 var screen_size
@@ -46,8 +46,19 @@ func _on_area_entered(area):
 	audio_player.volume_db = Global.sound_effects_volume
 	get_parent().add_child(audio_player)
 	area.damage_asteroid(damage)
+	destroy(area)
+
+
+func destroy(area):
+	if Global.explosive_rounds:
+		var explosion = EXPLOSION_AREA.instantiate()
+		explosion.damage = 5
+		explosion.size = 1
+		#explosion.child1 = area
+		explosion.position = position
+		get_parent().call_deferred("add_child", explosion)
 	queue_free()
 
 
 func _on_timer_timeout():
-	queue_free()
+	destroy(self)

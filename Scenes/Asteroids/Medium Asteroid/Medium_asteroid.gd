@@ -6,6 +6,7 @@ extends Area2D
 
 const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
 const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
+const EXPLOSION_AREA = preload("res://Scenes/Asteroids/Explosion/explosion_area.tscn")
 var small_asteroid_scene = preload("res://Scenes/Asteroids/Small Asteroid/Small_asteroid.tscn")
 var exp_Scene = preload("res://Scenes/Experience/Experience.tscn")
 var screen_size
@@ -61,7 +62,6 @@ func set_random_direction_and_speed():
 
 
 func destroy(money_bool):
-	# Instantiate two small asteroids using call_deferred
 	call_deferred("create_and_add_asteroids", money_bool)
 
 
@@ -78,8 +78,6 @@ func damage_asteroid(damage_taken):
 
 func create_and_add_asteroids(money_bool):
 	#call_deferred("make_exp")
-	if money_bool:
-		Global.update_money.emit(randi_range(10,20))
 	
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")
@@ -107,6 +105,16 @@ func create_and_add_asteroids(money_bool):
 	# Add them as children of the medium asteroid's parent
 	self.get_parent().add_child(small_asteroid1)
 	self.get_parent().add_child(small_asteroid2)
+	
+	if money_bool:
+		Global.update_money.emit(randi_range(10,20))
+		var explosion = EXPLOSION_AREA.instantiate()
+		explosion.damage = 10
+		explosion.size = 2
+		explosion.child1 = small_asteroid1
+		explosion.child2 = small_asteroid2
+		explosion.position = position
+		get_parent().call_deferred("add_child", explosion)
 	
 	# Increase Score 
 	Ui.increase_score(200)

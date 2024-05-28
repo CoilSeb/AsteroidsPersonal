@@ -36,6 +36,7 @@ var inflation
 var inflation_rate
 var reroll_cost
 var dev_mode
+var explosive_rounds
 
 # Enemy Variables
 var enemy_weight = 0
@@ -60,6 +61,7 @@ var gun_upgrades = [
 	preload("res://Upgrades/Gun_Upgrades/attack_speed_up.tres"),
 	preload("res://Upgrades/Gun_Upgrades/bullet_velocity.tres"),
 	preload("res://Upgrades/Gun_Upgrades/damage_up.tres"),
+	preload("res://Upgrades/Gun_Upgrades/explosive_rounds.tres"),
 ]
 
 var gun_evolutions = [
@@ -166,6 +168,7 @@ func refresh():
 			bulldozer = false
 			heavy_weaponry = false
 			ghost_bullets = false
+			explosive_rounds = false
 			bulldozer_bullet_health = 0
 			var gun_test = gun_upgrades.duplicate()
 			evolutions_test = gun_evolutions.duplicate()

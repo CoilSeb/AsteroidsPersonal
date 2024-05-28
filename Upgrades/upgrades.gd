@@ -64,6 +64,11 @@ func upgrade_player():
 			muzzle_break()
 		"twin_barrels":
 			twin_barrels()
+		"explosive_rounds":
+			explosive_rounds()
+
+func explosive_rounds():
+	Global.explosive_rounds = true
 
 func twin_barrels():
 	Global.upgrades_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/SMG_Upgrades/Muzzle_Brake.tres"))
