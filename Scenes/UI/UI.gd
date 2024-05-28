@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 const MONEY_TIMER = preload("res://Scenes/Experience/money_timer.tscn")
-
+const SOLD_1_PNG = preload("res://Sprites/Upgrades/Sold-1.png.png")
 @onready var GameScene = get_parent()
 @onready var score_label = $Score_Label
 @onready var pause_button = $PauseButton
@@ -92,6 +92,7 @@ const MONEY_TIMER = preload("res://Scenes/Experience/money_timer.tscn")
 ]
 
 var score = 0
+var reroll_cost = 25
 var first_upgrade: upgrade
 var second_upgrade: upgrade
 var third_upgrade: upgrade
@@ -178,16 +179,16 @@ func _process(_delta):
 	next_wave_button.text = "Next Wave\n(Interest = $" + str(round(Global.money * 0.5)) + ")"
 
 
-func wave_num(wave_num):
+func wave_num(wave_number):
 	wave_counter_label.hide()
 	wave_timer_label.hide()
 	wave_counter_timer.start()
 	wave_blink_timer.one_shot = false
 	wave_blink_timer.start()
-	if str(wave_num) == "moon_guy":
+	if str(wave_number) == "moon_guy":
 		wave_counter_label.text = "MOON GUY"
 		return
-	wave_counter_label.text = "WAVE " + str(wave_num)
+	wave_counter_label.text = "WAVE " + str(wave_number)
 
 
 func _on_wave_counter_timer_timeout():
@@ -237,8 +238,6 @@ func toggle_pause_menu():
 	resume_button.grab_focus()
 	if upgrade_menu.visible == true:
 		get_tree().paused = true
-		for button in buttons:
-			button.visible != button.visible
 	if upgrade_menu.visible && !pause_menu.visible:
 		second_upgrade_button.grab_focus()
 
@@ -310,32 +309,32 @@ func update_max_health(amount):
 	#update_health(Global.max_health - Global.health)
 	health_bar.max_value = Global.max_health
 	if health_bar.max_value >= 950:
-		health_bar.size.x = 1900
-		health_bar_bg.size.x = 1900
+		health_bar.set_deferred("size.x", 1900)
+		health_bar_bg.set_deferred("size.x", 1900)
 	else: 
-		health_bar.size.x = health_bar.max_value * 2
-		health_bar_bg.size.x = health_bar.size.x
+		health_bar.set_deferred("size.x", health_bar.max_value * 2)
+		health_bar_bg.set_deferred("size.x", health_bar.size.x)
 	health_bar.position.x = ((1920 - health_bar.size.x)/2)
 	health_bar_bg.position.x = ((1920 - health_bar.size.x)/2)
 
 
 func update_exp(amount):
-	Global.exp += amount
-	exp_bar.value = Global.exp
+	Global.experience += amount
+	exp_bar.value = Global.experience
 	update_max_exp()
 
 
 func update_max_exp():
 	if total_level == 9:
 		evo_label.show()
-	if Global.exp >= Global.exp_threshold:
+	if Global.experience >= Global.exp_threshold:
 		total_level += 1
 		evo_bar.value = total_level
 		level_up_sound.play()
-		Global.exp -= Global.exp_threshold
+		Global.experience -= Global.exp_threshold
 		Global.exp_threshold *= 1.1
 		exp_bar.max_value = Global.exp_threshold
-		exp_bar.value = Global.exp
+		exp_bar.value = Global.experience
 		stored_levels += 1
 	if stored_levels == 1:
 		levels_label.text = "'R' to level up (" + str(stored_levels) + " level stored)"
@@ -352,7 +351,7 @@ func _on_first_upgrade_pressed():
 		apply_my_upgrade(first_upgrade)
 		first_upgrade = null
 		upgrades[0] = null
-		first_upgrade_button.hide()
+		sold(0)
 
 
 func _on_second_upgrade_pressed():
@@ -361,7 +360,7 @@ func _on_second_upgrade_pressed():
 		apply_my_upgrade(second_upgrade)
 		second_upgrade = null
 		upgrades[1] = null
-		second_upgrade_button.hide()
+		sold(1)
 
 
 func _on_third_upgrade_pressed():
@@ -370,7 +369,7 @@ func _on_third_upgrade_pressed():
 		apply_my_upgrade(third_upgrade)
 		third_upgrade = null
 		upgrades[2] = null
-		third_upgrade_button.hide()
+		sold(2)
 
 
 func _on_fourth_upgrade_pressed():
@@ -379,7 +378,7 @@ func _on_fourth_upgrade_pressed():
 		apply_my_upgrade(fourth_upgrade)
 		fourth_upgrade = null
 		upgrades[3] = null
-		fourth_upgrade_button.hide()
+		sold(3)
 
 
 func _on_fifth_upgrade_pressed():
@@ -388,7 +387,7 @@ func _on_fifth_upgrade_pressed():
 		apply_my_upgrade(fifth_upgrade)
 		fifth_upgrade = null
 		upgrades[4] = null
-		fifth_upgrade_button.hide()
+		sold(4)
 
 
 func _on_sixth_upgrade_pressed():
@@ -397,19 +396,21 @@ func _on_sixth_upgrade_pressed():
 		apply_my_upgrade(sixth_upgrade)
 		sixth_upgrade = null
 		upgrades[5] = null
-		sixth_upgrade_button.hide()
+		sold(5)
+
+
+func sold(index):
+	buttons[index].disabled = true
+	textures[index].texture = SOLD_1_PNG
+	cost_labels[index].text = ""
+	text_labels[index].text = ""
+	rarity_color_rects[index].color = Color("9d9d9d19")
 
 
 func _on_reroll_button_pressed():
 	if level_up_timer.time_left == 0 && Global.money >= Global.reroll_cost:
 		Global.update_money.emit(-Global.reroll_cost)
 		level_up()
-		first_upgrade_button.show()
-		second_upgrade_button.show()
-		third_upgrade_button.show()
-		fourth_upgrade_button.show()
-		fifth_upgrade_button.show()
-		sixth_upgrade_button.show()
 
 
 func _on_next_wave_button_pressed():
@@ -417,12 +418,9 @@ func _on_next_wave_button_pressed():
 	Global.update_money.emit(int(Global.money * .5))
 	get_tree().paused = false
 	upgrade_menu.visible = false
-	first_upgrade_button.show()
-	second_upgrade_button.show()
-	third_upgrade_button.show()
-	fourth_upgrade_button.show()
-	fifth_upgrade_button.show()
-	sixth_upgrade_button.show()
+	for button in buttons:
+			button.disabled = false
+	reroll_cost = 25
 
 
 func level_up():
@@ -463,23 +461,25 @@ func get_upgrades():
 					if each_upgrade == each_big_upgrade:
 						Global.upgrades_test.erase(each_upgrade)
 			#print(roll)
-			if (evolution == 0) || Global.upgrades_test.size() <= 6:
+			if (evolution == 0):
 				Global.upgrades_test += Global.evolutions_test
 				#for each_upgrade in Global.upgrades_test:
 					#print(each_upgrade.upgrade_name)
 				#print("\n")
 	Global.upgrades_test.shuffle()
-	Global.reroll_cost = round(25 * Global.inflation)
+	Global.reroll_cost = round(reroll_cost * Global.inflation)
+	reroll_cost += (5 * Global.inflation)
 	for i in range(6):
 		if Global.upgrades_test.size() - 1 >= i:
 			var my_upgrade = Global.upgrades_test[i]
 			
-			text_labels[i].text = "[center]" + my_upgrade.upgrade_text
-			textures[i].texture = my_upgrade.upgrade_texture
-			upgrades[i] = my_upgrade
-			upgrades_cost[i] = round(my_upgrade.upgrade_cost + randi_range(0,25) * Global.inflation)
-			cost_labels[i].text = "$" + str(upgrades_cost[i])
-			rarity_color_rects[i].color = my_upgrade.upgrade_rarity_color
+			if !buttons[i].disabled:
+				text_labels[i].text = "[center]" + my_upgrade.upgrade_text
+				textures[i].texture = my_upgrade.upgrade_texture
+				upgrades[i] = my_upgrade
+				upgrades_cost[i] = round(my_upgrade.upgrade_cost + randi_range(0,25) * Global.inflation)
+				cost_labels[i].text = "$" + str(upgrades_cost[i])
+				rarity_color_rects[i].color = my_upgrade.upgrade_rarity_color
 		else:
 			text_labels[i].text = "null"
 			textures[i].texture = null

@@ -34,8 +34,8 @@ func _process(delta):
 	position += direction * speed * delta
 	rotation += rotation_speed * delta
 
-func damage_asteroid(damage):
-	health -= damage
+func damage_asteroid(damage_taken):
+	health -= damage_taken
 	if health <= 0:
 		queue_free()
 

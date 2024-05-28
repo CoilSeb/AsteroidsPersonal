@@ -69,9 +69,9 @@ func destroy(money_bool):
 	call_deferred("create_and_add_asteroids", money_bool)
 
 
-func damage_asteroid(damage):
-	health -= damage
-	Global.moon_guy_health.emit(damage)
+func damage_asteroid(damage_taken):
+	health -= damage_taken
+	Global.moon_guy_health.emit(damage_taken)
 	#if health <= 200:
 		##crack_1.visible = true
 		#audio_stream_player_2d.play()
@@ -110,7 +110,7 @@ func create_and_add_asteroids(money_bool):
 	particles.one_shot = true
 	
 	# Instantate two small asteroids
-	for i in range(10):
+	for j in range(10):
 		var big_asteroid1 = BIG_ASTEROID.instantiate()
 		big_asteroid1.position = self.position
 		big_asteroid1.weighted = true

@@ -83,7 +83,7 @@ func destroy(money_bool):
 	audio_player.volume_db = Global.sound_effects_volume - 7
 	get_parent().add_child(audio_player)
 	if !boss && money_bool:
-		Global.update_money.emit(randi_range(1,5))
+		Global.update_money.emit(randi_range(5,10))
 	
 	if weighted:
 		Global.enemy_weight -= weight
@@ -102,8 +102,8 @@ func make_exp():
 	self.get_parent().add_child(exp_shard)
 
 
-func damage_asteroid(damage):
-	health -= damage
+func damage_asteroid(damage_taken):
+	health -= damage_taken
 	if health <= 0 && !dead:
 		dead = true
 		destroy(true)

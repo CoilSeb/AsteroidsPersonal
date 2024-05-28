@@ -14,7 +14,7 @@ var damage
 var attack_speed 
 var bullet_velocity 
 var collision_damage 
-var exp 
+var experience
 var exp_threshold 
 var weapon
 var laser_made
@@ -186,7 +186,7 @@ func refresh():
 	inflation = 1
 	inflation_rate = 1.1
 	money = 0
-	exp = 0
+	experience = 0
 	exp_threshold = 50
 	key_upgrades.clear()
 	enemy_weight = 0

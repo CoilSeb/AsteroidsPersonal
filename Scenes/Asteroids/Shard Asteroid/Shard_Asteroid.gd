@@ -75,7 +75,7 @@ func destroy(money_bool):
 	get_parent().add_child(audio_player)
 	
 	if money_bool:
-		Global.update_money.emit(randi_range(16,20))
+		Global.update_money.emit(randi_range(40,75))
 	if weighted:
 		Global.enemy_weight -= weight
 	var particles = ASTEROID_DEATH_PARTICLES.instantiate()
@@ -88,8 +88,8 @@ func destroy(money_bool):
 	queue_free()
 
 
-func damage_asteroid(damage):
-	health -= damage
+func damage_asteroid(damage_taken):
+	health -= damage_taken
 	if health <= 40 && health > 30:
 		$Sprite2D.hide()
 		crack_1.show()

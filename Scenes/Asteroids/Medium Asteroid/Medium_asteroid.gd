@@ -65,8 +65,8 @@ func destroy(money_bool):
 	call_deferred("create_and_add_asteroids", money_bool)
 
 
-func damage_asteroid(damage):
-	health -= damage
+func damage_asteroid(damage_taken):
+	health -= damage_taken
 	if health <= 20:
 		crack_1.visible = true
 	if health <= 10:
@@ -79,7 +79,7 @@ func damage_asteroid(damage):
 func create_and_add_asteroids(money_bool):
 	#call_deferred("make_exp")
 	if money_bool:
-		Global.update_money.emit(randi_range(6,10))
+		Global.update_money.emit(randi_range(10,20))
 	
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")

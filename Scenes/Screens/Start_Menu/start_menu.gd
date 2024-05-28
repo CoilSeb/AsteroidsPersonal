@@ -47,7 +47,7 @@ func delete_text():
 			child.visible = false
 
 
-func crt(value):
+func crt(_value):
 	color_rect.material.set_shader_parameter("aberration", Global.aberration)
 	color_rect.material.set_shader_parameter("grille_opacity", Global.grille_opacity)
 

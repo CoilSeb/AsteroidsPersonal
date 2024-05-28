@@ -278,6 +278,9 @@ func destroy_laser():
 
 func _on_area_2d_area_entered(area):
 	if hit_timer.time_left == 0:
+		var hit_tween = get_tree().create_tween()
+		hit_tween.tween_property(self, "modulate", Color8(255, 255, 255, 0), 0.19)
+		hit_tween.tween_property(self, "modulate", Color8(255, 255, 255, 255), 0.01)
 		if area.is_in_group("Moon_Guy"):
 			hit_sound.play()
 			Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))

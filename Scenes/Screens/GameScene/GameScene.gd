@@ -119,10 +119,8 @@ func spawn_wave():
 		#Ui.level_up()
 		Global.wave_num += 1
 		Global.wave_num_update.emit(Global.wave_num)
-		for i in range(15):
+		for i in range(25):
 			spawn_basic_Asteroid_with_weight()
-		for i in range(3):
-			spawn_special_Asteroid_with_weight()
 		return
 	if Global.wave_num == 1 && Global.enemy_weight <= 0:
 		await get_tree().create_timer(0.5, false).timeout
@@ -131,9 +129,9 @@ func spawn_wave():
 		wave_timer.start()
 		Global.wave_num += 1
 		Global.wave_num_update.emit(Global.wave_num)
-		for i in range(14):
+		for i in range(24):
 			spawn_basic_Asteroid_with_weight()
-		for i in range(4):
+		for i in range(1):
 			spawn_special_Asteroid_with_weight()
 		return
 	if Global.wave_num == 2 && Global.enemy_weight <= 0:
@@ -143,7 +141,7 @@ func spawn_wave():
 		wave_timer.start()
 		Global.wave_num += 1
 		Global.wave_num_update.emit(Global.wave_num)
-		for i in range(16):
+		for i in range(21):
 			spawn_basic_Asteroid_with_weight()
 		for i in range(4):
 			spawn_special_Asteroid_with_weight()
@@ -155,7 +153,7 @@ func spawn_wave():
 		wave_timer.start()
 		Global.wave_num += 1
 		Global.wave_num_update.emit(Global.wave_num)
-		for i in range(18):
+		for i in range(21):
 			spawn_basic_Asteroid_with_weight()
 		for i in range(4):
 			spawn_special_Asteroid_with_weight()
