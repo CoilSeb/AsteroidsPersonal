@@ -8,5 +8,5 @@ upgrade_name = "regen_with_degen"
 upgrade_text = "Regenerate 75 health per second, but devide your max health by 3"
 upgrade_value = 3.0
 upgrade_cost = 50
-upgrade_rarity_color = Color(0.156863, 0.643137, 1, 0.0980392)
+upgrade_rarity = "Rare"
 key_upgrade = false

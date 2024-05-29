@@ -8,5 +8,5 @@ upgrade_name = "no_gun_all_collision"
 upgrade_text = "Remove your ability to shoot and double collision damage"
 upgrade_value = 2.0
 upgrade_cost = 50
-upgrade_rarity_color = Color(0.156863, 0.643137, 1, 0.0980392)
+upgrade_rarity = "Rare"
 key_upgrade = false

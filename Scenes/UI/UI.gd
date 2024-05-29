@@ -450,7 +450,17 @@ func evo_level_up():
 
 
 func get_upgrades():
-	var evolution = randi_range(0,0)
+	var evolution = randi_range(0, 0)
+	var rare = randi_range(0, 0)
+	var l_index = randi_range(0, 4)
+	var r_index = randi_range(0, 4)
+	var done = false
+	while !done:
+		if l_index == r_index:
+			r_index = randi_range(0, 5)
+		else:
+			done = true
+	Global.upgrades_test.shuffle()
 	#print(evolution)
 	match Global.weapon:
 		"Gun":
@@ -458,11 +468,15 @@ func get_upgrades():
 				for each_big_upgrade in Global.evolutions_test:
 					if each_upgrade == each_big_upgrade:
 						Global.upgrades_test.erase(each_upgrade)
+			for each_upgrade in Global.upgrades_test:
+				for each_big_upgrade in Global.rare_upgrades:
+					if each_upgrade == each_big_upgrade:
+						Global.upgrades_test.erase(each_upgrade)
 			if (evolution == 0) && Global.evolutions_test.size() > 0:
-				Global.upgrades_test.shuffle()
-				Global.upgrades_test.insert(randi_range(0, 5), Global.evolutions_test[randi_range(0, Global.evolutions_test.size() - 1)])
-			else:
-				Global.upgrades_test.shuffle()
+				Global.upgrades_test.insert(l_index, Global.evolutions_test[randi_range(0, Global.evolutions_test.size() - 1)])
+			if (rare == 0) && Global.rare_upgrades.size() > 0:
+				Global.upgrades_test.insert(r_index, Global.rare_upgrades[randi_range(0, Global.rare_upgrades.size() - 1)])
+				
 	Global.reroll_cost = round(reroll_cost * Global.inflation)
 	reroll_cost += (5 * Global.inflation)
 	for i in range(6):
@@ -475,7 +489,15 @@ func get_upgrades():
 				upgrades[i] = my_upgrade
 				upgrades_cost[i] = round(my_upgrade.upgrade_cost + randi_range(0,25) * Global.inflation)
 				cost_labels[i].text = "$" + str(upgrades_cost[i])
-				rarity_color_rects[i].color = my_upgrade.upgrade_rarity_color
+				match my_upgrade.upgrade_rarity:
+					"Common":
+						rarity_color_rects[i].color = Color8(255, 255, 255, 10)
+					"Uncommon":
+						rarity_color_rects[i].color = Color8(0, 192, 52, 35)
+					"Rare":
+						rarity_color_rects[i].color = Color8(0, 72, 191, 35)
+					"Legendary":
+						rarity_color_rects[i].color = Color8(191, 96, 0, 35)
 		else:
 			text_labels[i].text = "null"
 			textures[i].texture = null

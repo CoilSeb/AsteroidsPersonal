@@ -10,7 +10,7 @@ upgrade_text = "Upgrade the velocity of your bullets by 30%"
 upgrade_value = 0.3
 upgrade_texture = ExtResource("2_tongi")
 upgrade_cost = 0
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.196078)
+upgrade_rarity = "Common"
 key_upgrade = true
 
 [sub_resource type="Resource" id="Resource_hcjij"]
@@ -20,7 +20,7 @@ upgrade_text = "Upgrade the velocity of your bullets by 22.5%"
 upgrade_value = 0.225
 upgrade_texture = ExtResource("2_tongi")
 upgrade_cost = 0
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.196078)
+upgrade_rarity = "Common"
 key_upgrade = false
 next_upgrade = SubResource("Resource_hm4dw")
 
@@ -31,6 +31,6 @@ upgrade_text = "Upgrade the velocity of your bullets by 15%"
 upgrade_value = 0.15
 upgrade_texture = ExtResource("2_tongi")
 upgrade_cost = 50
-upgrade_rarity_color = Color(0, 0.745098, 0.215686, 0.0980392)
+upgrade_rarity = "Uncommon"
 key_upgrade = false
 next_upgrade = SubResource("Resource_hcjij")

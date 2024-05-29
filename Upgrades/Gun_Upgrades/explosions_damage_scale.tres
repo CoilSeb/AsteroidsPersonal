@@ -8,7 +8,7 @@ upgrade_name = "explosions_damage_scale"
 upgrade_text = "Explosion damage scales better with bullet damage"
 upgrade_value = 0.25
 upgrade_cost = 50
-upgrade_rarity_color = Color(0, 0.745098, 0.215686, 0.0980392)
+upgrade_rarity = "Common"
 key_upgrade = false
 
 [resource]
@@ -17,6 +17,6 @@ upgrade_name = "explosions_damage_scale"
 upgrade_text = "Explosion damage scales with bullet damage"
 upgrade_value = 0.25
 upgrade_cost = 50
-upgrade_rarity_color = Color(0, 0.745098, 0.215686, 0.0980392)
+upgrade_rarity = "Uncommon"
 key_upgrade = false
 next_upgrade = SubResource("Resource_5vwiw")

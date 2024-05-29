@@ -9,8 +9,8 @@ upgrade_name = "attack_speed"
 upgrade_text = "Reduce attack cooldown by 20% "
 upgrade_value = 0.2
 upgrade_texture = ExtResource("2_7w627")
-upgrade_cost = null
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.196078)
+upgrade_cost = 0
+upgrade_rarity = "Common"
 key_upgrade = true
 
 [sub_resource type="Resource" id="Resource_8ie3u"]
@@ -19,9 +19,9 @@ upgrade_name = "attack_speed"
 upgrade_text = "Reduce attack cooldown by another 15% faster"
 upgrade_value = 0.15
 upgrade_texture = ExtResource("2_7w627")
-upgrade_cost = null
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.196078)
-key_upgrade = null
+upgrade_cost = 0
+upgrade_rarity = "Common"
+key_upgrade = false
 next_upgrade = SubResource("Resource_lvvjd")
 
 [resource]
@@ -31,6 +31,6 @@ upgrade_text = "Reduce attack cooldown by 15% "
 upgrade_value = 0.15
 upgrade_texture = ExtResource("2_7w627")
 upgrade_cost = 50
-upgrade_rarity_color = Color(0, 0.745098, 0.215686, 0.0980392)
-key_upgrade = null
+upgrade_rarity = "Uncommon"
+key_upgrade = false
 next_upgrade = SubResource("Resource_8ie3u")

@@ -8,5 +8,5 @@ upgrade_name = "burn_out"
 upgrade_text = "Your attack cooldown is reduced by 50%, but firing for too long cause weapon malfunction"
 upgrade_value = 0.5
 upgrade_cost = 50
-upgrade_rarity_color = Color(0.156863, 0.643137, 1, 0.0980392)
+upgrade_rarity = "Rare"
 key_upgrade = false

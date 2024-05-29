@@ -8,5 +8,5 @@ upgrade_name = "ghost_bullets"
 upgrade_text = "Bullets pass through all objects but slowly lose health. Bullets become much healthier."
 upgrade_value = 0.0
 upgrade_cost = 75
-upgrade_rarity_color = Color(0.156863, 0.643137, 1, 0.0980392)
+upgrade_rarity = "Rare"
 key_upgrade = false

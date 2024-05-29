@@ -82,6 +82,8 @@ var gun_evolutions = [
 	preload("res://Upgrades/Legendary_Upgrades/asteroids_explode.tres"),
 ]
 
+var rare_upgrades = []
+
 var laser_upgrades = [
 	preload("res://Upgrades/Laser_Upgrades/damage_up.tres"),
 	#preload("res://Upgrades/Base_Upgrades/weapon_scale_up.tres"),
