@@ -77,11 +77,12 @@ func destroy(money_bool):
 	
 	if money_bool:
 		Global.update_money.emit(randi_range(40,75))
-		var explosion = EXPLOSION_AREA.instantiate()
-		explosion.damage = 20
-		explosion.size = 5
-		explosion.position = position
-		get_parent().call_deferred("add_child", explosion)
+		if Global.explosive_asteroids:
+			var explosion = EXPLOSION_AREA.instantiate()
+			explosion.damage = 20
+			explosion.size = 3
+			explosion.position = position
+			get_parent().call_deferred("add_child", explosion)
 	if weighted:
 		Global.enemy_weight -= weight
 	var particles = ASTEROID_DEATH_PARTICLES.instantiate()

@@ -66,9 +66,30 @@ func upgrade_player():
 			twin_barrels()
 		"explosive_rounds":
 			explosive_rounds()
+		"explosive_rounds_radius":
+			explosive_rounds_radius()
+		"explosions_radius_scale":
+			explosions_radius_scale()
+		"explosions_damage_scale":
+			explosions_damage_scale()
+		"asteroids_explode":
+			asteroids_explode()
+
+func asteroids_explode():
+	Global.explosive_asteroids = true
+
+func explosions_damage_scale():
+	Global.explosion_scale_damage += upgrade_value
+
+func explosions_radius_scale():
+	Global.explosion_scale_radius += upgrade_value
+
+func explosive_rounds_radius():
+	Global.explosion_base_radius += upgrade_value
 
 func explosive_rounds():
 	Global.explosive_rounds = true
+	Global.explosion_base_damage += upgrade_value
 
 func twin_barrels():
 	Global.upgrades_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/SMG_Upgrades/Muzzle_Brake.tres"))
@@ -125,6 +146,8 @@ func gatling_gun():
 	Global.gatling_gun = true
 	var gatling_upgrades = [load("res://Upgrades/Gun_Upgrades/Evolutions/Gatling_Gun_Upgrades/Concentrated_Fire.tres"), load("res://Upgrades/Gun_Upgrades/Evolutions/Gatling_Gun_Upgrades/Rapid_Fire.tres")]
 	Global.upgrades_test += gatling_upgrades
+	Global.evolutions_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/SMG.tres"))
+	Global.evolutions_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/Bulldozer.tres"))
 
 func exp_pull_range():
 	Global.exp_pull_range += Vector2(upgrade_value,upgrade_value)

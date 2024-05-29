@@ -5,6 +5,7 @@ extends Node
 @onready var spawnTimer = $SpawnTimer
 @onready var wave_timer = $WaveTimer
 @onready var moon_guy_warning = $Moon_Guy_Warning
+@onready var asteroid_timer = $AsteroidTimer
 
 var playerScene = preload("res://Scenes/Player/Player.tscn")
 var player = true
@@ -31,6 +32,7 @@ func _ready():
 
 
 func _process(_delta):
+	#print(Global.enemy_weight)
 	Global.wave_time = wave_timer.time_left
 	if !player:
 		#print(player)
@@ -65,16 +67,16 @@ func game_over():
 			#child.queue_free()
 
 
-func spawn_basic_Asteroid():
-	var new_asteroid = basic_asteroid_scenes[randi_range(0,basic_asteroid_scenes.size() - 1)].instantiate()
-	add_child(new_asteroid)
-	new_asteroid.global_position = generate_spawn_point()
-
-
-func spawn_special_Asteroid():
-	var new_asteroid = special_asteroid_scenes[randi_range(0,special_asteroid_scenes.size() - 1)].instantiate()
-	add_child(new_asteroid)
-	new_asteroid.global_position = generate_spawn_point()
+#func spawn_basic_Asteroid():
+	#var new_asteroid = basic_asteroid_scenes[randi_range(0,basic_asteroid_scenes.size() - 1)].instantiate()
+	#add_child(new_asteroid)
+	#new_asteroid.global_position = generate_spawn_point()
+#
+#
+#func spawn_special_Asteroid():
+	#var new_asteroid = special_asteroid_scenes[randi_range(0,special_asteroid_scenes.size() - 1)].instantiate()
+	#add_child(new_asteroid)
+	#new_asteroid.global_position = generate_spawn_point()
 
 
 func spawn_basic_Asteroid_with_weight():
@@ -123,6 +125,7 @@ func spawn_wave():
 			spawn_basic_Asteroid_with_weight()
 		return
 	if Global.wave_num == 1 && Global.enemy_weight <= 0:
+		_on_wave_timer_timeout()
 		await get_tree().create_timer(0.5, false).timeout
 		Global.inflation *= Global.inflation_rate
 		Ui.level_up()
@@ -135,6 +138,7 @@ func spawn_wave():
 			spawn_special_Asteroid_with_weight()
 		return
 	if Global.wave_num == 2 && Global.enemy_weight <= 0:
+		_on_wave_timer_timeout()
 		await get_tree().create_timer(0.5, false).timeout
 		Global.inflation *= Global.inflation_rate
 		Ui.level_up()
@@ -147,6 +151,7 @@ func spawn_wave():
 			spawn_special_Asteroid_with_weight()
 		return
 	if Global.wave_num == 3 && Global.enemy_weight <= 0:
+		_on_wave_timer_timeout()
 		await get_tree().create_timer(0.5, false).timeout
 		Global.inflation *= Global.inflation_rate
 		Ui.level_up()
@@ -159,6 +164,7 @@ func spawn_wave():
 			spawn_special_Asteroid_with_weight()
 		return
 	if Global.wave_num == 4 && Global.enemy_weight <= 0:
+		_on_wave_timer_timeout()
 		await get_tree().create_timer(0.5, false).timeout
 		Global.inflation *= Global.inflation_rate
 		Ui.level_up()
@@ -186,5 +192,15 @@ func _on_wave_timer_timeout():
 	await get_tree().create_timer(0.01).timeout
 	for asteroid in get_tree().get_nodes_in_group("Shard"):
 		asteroid.queue_free()
+	for weapon in get_tree().get_nodes_in_group("weapon"):
+		weapon.queue_free()
 	await get_tree().create_timer(0.02).timeout
+	Global.enemy_weight = 0
 	Global.sound_effects_volume = temp_vol
+
+
+func _on_asteroid_timer_timeout():
+	var i = randi_range(0,10)
+	if i == 0:
+		spawn_special_Asteroid_with_weight()
+	spawn_basic_Asteroid_with_weight()

@@ -80,11 +80,12 @@ func set_random_direction_and_speed():
 
 func destroy(money_bool):
 	if money_bool:
-		var explosion = EXPLOSION_AREA.instantiate()
-		explosion.damage = 5
-		explosion.size = 1
-		explosion.position = position
-		get_parent().call_deferred("add_child", explosion)
+		if Global.explosive_asteroids:
+			var explosion = EXPLOSION_AREA.instantiate()
+			explosion.damage = 5
+			explosion.size = 1
+			explosion.position = position
+			get_parent().call_deferred("add_child", explosion)
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/8-bit-fireball-81148.mp3")
 	audio_player.volume_db = Global.sound_effects_volume - 7

@@ -20,6 +20,10 @@ wait_time = 34.5
 one_shot = true
 autostart = true
 
+[node name="AsteroidTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 offset = Vector2(1024, 720)
 transform = Transform2D(1, 0, 0, 1, 1024, 720)
@@ -36,3 +40,4 @@ texture = ExtResource("4_to3f7")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
+[connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]

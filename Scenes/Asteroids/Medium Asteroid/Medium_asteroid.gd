@@ -108,13 +108,14 @@ func create_and_add_asteroids(money_bool):
 	
 	if money_bool:
 		Global.update_money.emit(randi_range(10,20))
-		var explosion = EXPLOSION_AREA.instantiate()
-		explosion.damage = 10
-		explosion.size = 2
-		explosion.child1 = small_asteroid1
-		explosion.child2 = small_asteroid2
-		explosion.position = position
-		get_parent().call_deferred("add_child", explosion)
+		if Global.explosive_asteroids:
+			var explosion = EXPLOSION_AREA.instantiate()
+			explosion.damage = 10
+			explosion.size = 2
+			explosion.child1 = small_asteroid1
+			explosion.child2 = small_asteroid2
+			explosion.position = position
+			get_parent().call_deferred("add_child", explosion)
 	
 	# Increase Score 
 	Ui.increase_score(200)

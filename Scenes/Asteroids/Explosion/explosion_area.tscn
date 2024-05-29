@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ctlc84ocacbvi"]
+[gd_scene load_steps=13 format=3 uid="uid://ctlc84ocacbvi"]
 
 [ext_resource type="Script" path="res://Scenes/Asteroids/Explosion/explosion_area.gd" id="1_hdctd"]
 [ext_resource type="Texture2D" uid="uid://dupo53aomaj04" path="res://Sprites/Asteroids/Explosion.png" id="2_2dglm"]
@@ -15,21 +15,25 @@ region = Rect2(128, 0, 128, 128)
 atlas = ExtResource("2_2dglm")
 region = Rect2(256, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i4kih"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_612e0"]
 atlas = ExtResource("2_2dglm")
 region = Rect2(0, 128, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ul1i"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nj60"]
 atlas = ExtResource("2_2dglm")
 region = Rect2(128, 128, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1s8tb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6oq8"]
 atlas = ExtResource("2_2dglm")
 region = Rect2(256, 128, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h5xjx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dywe"]
 atlas = ExtResource("2_2dglm")
 region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihe1p"]
+atlas = ExtResource("2_2dglm")
+region = Rect2(128, 256, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8p3cx"]
 animations = [{
@@ -44,16 +48,19 @@ animations = [{
 "texture": SubResource("AtlasTexture_kuf3o")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_i4kih")
+"texture": SubResource("AtlasTexture_612e0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8ul1i")
+"texture": SubResource("AtlasTexture_5nj60")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1s8tb")
+"texture": SubResource("AtlasTexture_j6oq8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h5xjx")
+"texture": SubResource("AtlasTexture_5dywe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihe1p")
 }],
 "loop": false,
 "name": &"default",

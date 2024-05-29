@@ -1026,7 +1026,7 @@ theme_override_font_sizes/font_size = 100
 text = "Exit"
 
 [node name="Level_Up_Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.1
 one_shot = true
 
 [node name="SettingsMenu" parent="." node_paths=PackedStringArray("my_scenes_button") instance=ExtResource("4_aie5g")]

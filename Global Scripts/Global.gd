@@ -3,20 +3,23 @@ extends Node
 @onready var screen_size = get_viewport().get_visible_rect().size
 
 # Player Variables
+var player_pos: Vector2
 var high_score = 0
+# Health Variables
 var health 
 var max_health
 var health_regen
+# Hull Variables
 var damage_reduction
+var collision_damage 
+# Movement Variables
 var move_speed
 var counter_thrust
+# Weapon Variables
+var weapon
 var damage 
 var attack_speed 
-var bullet_velocity 
-var collision_damage 
-var experience
-var exp_threshold 
-var weapon
+var bullet_velocity
 var laser_made
 var can_shoot
 var burn_out
@@ -28,15 +31,25 @@ var heavy_weaponry
 var ghost_bullets
 var deviation
 var bullet_time
-var player_pos: Vector2
-var weapon_scale = Vector2(0,0)
-var exp_pull_range = Vector2(0,0)
+var no_gun_all_collision
+# Explosive Variables
+var explosive_rounds: float
+var explosion_base_damage: float
+var explosion_scale_damage: float
+var explosion_base_radius: float
+var explosion_scale_radius: float
+var explosive_asteroids: bool
+# Money Variables
 var money
 var inflation
 var inflation_rate
 var reroll_cost
 var dev_mode
-var explosive_rounds
+# Unused
+var exp_pull_range = Vector2(0,0)
+var weapon_scale = Vector2(0,0)
+var experience
+var exp_threshold 
 
 # Enemy Variables
 var enemy_weight = 0
@@ -44,9 +57,7 @@ var moon_guy_asteroid_count = 0
 var wave_num
 var wave_time
 
-var asteroids_taking_damage = []
-
-# Upgrades
+# Upgrade Arrays
 var base_upgrades = [
 	preload("res://Upgrades/Base_Upgrades/collision_damage_up.tres"),
 	preload("res://Upgrades/Base_Upgrades/health_up.tres"),
@@ -68,6 +79,7 @@ var gun_evolutions = [
 	preload("res://Upgrades/Gun_Upgrades/Evolutions/Gatling_Gun.tres"),
 	preload("res://Upgrades/Gun_Upgrades/Evolutions/SMG.tres"),
 	preload("res://Upgrades/Gun_Upgrades/Evolutions/Bulldozer.tres"),
+	preload("res://Upgrades/Legendary_Upgrades/asteroids_explode.tres"),
 ]
 
 var laser_upgrades = [
@@ -75,16 +87,19 @@ var laser_upgrades = [
 	#preload("res://Upgrades/Base_Upgrades/weapon_scale_up.tres"),
 ]
 
-const REGEN_WITH_DEGEN = preload("res://Upgrades/Combo_Upgradess/regen_with_degen.tres")
-const NO_GUN_ALL_COLLISION = preload("res://Upgrades/Combo_Upgradess/no_gun_all_collision.tres")
-var no_gun_all_collision = false
-const BIG_RESIST = preload("res://Upgrades/Combo_Upgradess/big_resist.tres")
-const BURN_OUT = preload("res://Upgrades/Combo_Upgradess/burn_out.tres")
-
 var upgrades_test
 var evolutions_test
 
 var key_upgrades = []
+
+# Preload Upgrades
+const REGEN_WITH_DEGEN = preload("res://Upgrades/Combo_Upgradess/regen_with_degen.tres")
+const NO_GUN_ALL_COLLISION = preload("res://Upgrades/Combo_Upgradess/no_gun_all_collision.tres")
+const BIG_RESIST = preload("res://Upgrades/Combo_Upgradess/big_resist.tres")
+const BURN_OUT = preload("res://Upgrades/Combo_Upgradess/burn_out.tres")
+const EXPLOSIVE_ROUNDS_RADIUS = preload("res://Upgrades/Gun_Upgrades/explosive_rounds_radius.tres")
+const EXPLOSIONS_RADIUS_SCALE = preload("res://Upgrades/Gun_Upgrades/explosions_radius_scale.tres")
+const EXPLOSIONS_DAMAGE_SCALE = preload("res://Upgrades/Gun_Upgrades/explosions_damage_scale.tres")
 
 # Signals
 signal update_max_health(value)
@@ -127,6 +142,13 @@ func volume():
 
 func add_key_upgrades(key_upgrade):
 	key_upgrades.append(key_upgrade)
+	if key_upgrades.has("explosive_rounds") and !key_upgrades.has("explosive_rounds_radius"):
+		key_upgrades.append("explosive_rounds_radius")
+		key_upgrades.append("explosions_damage_scale")
+		upgrades_test.append(EXPLOSIVE_ROUNDS_RADIUS)
+		upgrades_test.append(EXPLOSIONS_DAMAGE_SCALE)
+		key_upgrades.append("explosions_radius_scale")
+		upgrades_test.append(EXPLOSIONS_RADIUS_SCALE)
 	if key_upgrades.has("health_regen") and key_upgrades.has("health") and !key_upgrades.has("regen_with_degen"):
 		key_upgrades.append("regen_with_degen")
 		upgrades_test.append(REGEN_WITH_DEGEN)
@@ -169,6 +191,10 @@ func refresh():
 			heavy_weaponry = false
 			ghost_bullets = false
 			explosive_rounds = false
+			explosion_base_damage = 5.0
+			explosion_scale_damage = 1.0
+			explosion_base_radius = 1.0
+			explosion_scale_radius = 1.0
 			bulldozer_bullet_health = 0
 			var gun_test = gun_upgrades.duplicate()
 			evolutions_test = gun_evolutions.duplicate()
@@ -181,6 +207,7 @@ func refresh():
 			var laser_test = laser_upgrades.duplicate()
 			upgrades_test += laser_test
 	
+	explosive_asteroids = false
 	deviation = 0
 	bullet_time = 1
 	collision_damage = 10

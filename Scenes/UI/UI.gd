@@ -158,13 +158,13 @@ func _process(_delta):
 	if Global.health <= 0:
 		if Input.is_action_just_pressed("ui_select"):
 			restart()
-	if upgrade_menu.visible == true:
-		if Input.is_action_just_pressed("reroll"):
-			level_up()
-	if Input.is_action_just_pressed("reroll") && (stored_levels > 0 || Global.god_mode):
+	#if upgrade_menu.visible == true:
+	if Input.is_action_just_pressed("reroll"):
 		level_up()
-	if Input.is_action_just_pressed("E") && (total_level >= 10 || Global.god_mode) && !evolved:
-		evo_level_up()
+	#if Input.is_action_just_pressed("reroll") && (stored_levels > 0 || Global.god_mode):
+		#level_up()
+	#if Input.is_action_just_pressed("E") && (total_level >= 10 || Global.god_mode) && !evolved:
+		#evo_level_up()
 		
 	$PauseMenu/VBoxContainer/Health_Label.text = "Health: " + str(snapped(Global.health, 1)) + " / " + str(Global.max_health)
 	$PauseMenu/VBoxContainer/Health_Regen_Label.text = "Health Regen: " + str(Global.health_regen) + " (sec)"
@@ -450,23 +450,19 @@ func evo_level_up():
 
 
 func get_upgrades():
-	var evolution = randi_range(0,19)
+	var evolution = randi_range(0,0)
 	#print(evolution)
 	match Global.weapon:
 		"Gun":
 			for each_upgrade in Global.upgrades_test:
-				#print("Searching: ", each_upgrade.upgrade_name)
 				for each_big_upgrade in Global.evolutions_test:
-					#print("Comparing: ", each_big_upgrade.upgrade_name)
 					if each_upgrade == each_big_upgrade:
 						Global.upgrades_test.erase(each_upgrade)
-			#print(roll)
-			if (evolution == 0):
-				Global.upgrades_test += Global.evolutions_test
-				#for each_upgrade in Global.upgrades_test:
-					#print(each_upgrade.upgrade_name)
-				#print("\n")
-	Global.upgrades_test.shuffle()
+			if (evolution == 0) && Global.evolutions_test.size() > 0:
+				Global.upgrades_test.shuffle()
+				Global.upgrades_test.insert(randi_range(0, 5), Global.evolutions_test[randi_range(0, Global.evolutions_test.size() - 1)])
+			else:
+				Global.upgrades_test.shuffle()
 	Global.reroll_cost = round(reroll_cost * Global.inflation)
 	reroll_cost += (5 * Global.inflation)
 	for i in range(6):

@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="upgrade" load_steps=4 format=3 uid="uid://wp3ln10agpcl"]
+
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_quv7w"]
+
+[sub_resource type="Resource" id="Resource_j5173"]
+script = ExtResource("1_quv7w")
+upgrade_name = "explosive_rounds_radius"
+upgrade_text = "Bullet explosions are huge"
+upgrade_value = 0.125
+upgrade_cost = 50
+upgrade_rarity_color = Color(0, 0.745098, 0.215686, 0.0980392)
+key_upgrade = false
+
+[sub_resource type="Resource" id="Resource_pqrmg"]
+script = ExtResource("1_quv7w")
+upgrade_name = "explosive_rounds_radius"
+upgrade_text = "Bullet explosions are even bigger"
+upgrade_value = 0.1
+upgrade_cost = 50
+upgrade_rarity_color = Color(0, 0.745098, 0.215686, 0.0980392)
+key_upgrade = false
+next_upgrade = SubResource("Resource_j5173")
+
+[resource]
+script = ExtResource("1_quv7w")
+upgrade_name = "explosive_rounds_radius"
+upgrade_text = "Bullet explosions are bigger"
+upgrade_value = 0.1
+upgrade_cost = 50
+upgrade_rarity_color = Color(0, 0.745098, 0.215686, 0.0980392)
+key_upgrade = true
+next_upgrade = SubResource("Resource_pqrmg")

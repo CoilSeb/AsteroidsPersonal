@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="upgrade" load_steps=3 format=3 uid="uid://d1c5y0kn6ghd2"]
+
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_b0hdw"]
+
+[sub_resource type="Resource" id="Resource_yp3p0"]
+script = ExtResource("1_b0hdw")
+upgrade_name = "explosions_radius_scale"
+upgrade_text = "Explosion size scales better with bullet damage "
+upgrade_value = 0.15
+upgrade_cost = 50
+upgrade_rarity_color = Color(0, 0.745098, 0.215686, 0.0980392)
+key_upgrade = false
+
+[resource]
+script = ExtResource("1_b0hdw")
+upgrade_name = "explosions_radius_scale"
+upgrade_text = "Explosion size scales with bullet damage "
+upgrade_value = 0.15
+upgrade_cost = 50
+upgrade_rarity_color = Color(0, 0.745098, 0.215686, 0.0980392)
+key_upgrade = false
+next_upgrade = SubResource("Resource_yp3p0")

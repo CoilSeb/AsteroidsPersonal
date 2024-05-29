@@ -3,7 +3,7 @@ extends Area2D
 @onready var timer = $Timer
 
 const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
-const EXPLOSION_AREA = preload("res://Scenes/Asteroids/Explosion/explosion_area.tscn")
+const EXPLOSION_AREA = preload("res://Scenes/Bullets/Explosion/bullet_explosion_area.tscn")
 var direction: Vector2
 var bullet_speed = Global.bullet_velocity
 var screen_size
@@ -32,6 +32,7 @@ func _process(delta):
 
 
 func _on_area_entered(area):
+	
 	if Global.bulldozer:
 		health -= area.damage
 		area.damage_asteroid(damage)
@@ -40,6 +41,18 @@ func _on_area_entered(area):
 		if health <= 0:
 			pass
 		else:
+			if Global.explosive_rounds:
+				var explosion = EXPLOSION_AREA.instantiate()
+				if damage > 10 && Global.explosion_scale_damage > 1:
+					explosion.damage = Global.explosion_base_damage * ((log(damage)/log(10) * Global.explosion_scale_damage))
+				else:
+					explosion.damage = Global.explosion_base_damage + (Global.explosion_scale_damage - 1)
+				if damage > 10 && Global.explosion_scale_radius > 1:
+					explosion.size = Global.explosion_base_radius * ((log(damage) * Global.explosion_scale_radius)/2)
+				else:
+					explosion.size = Global.explosion_base_radius + (Global.explosion_scale_radius - 1)
+				explosion.position = position
+				get_parent().call_deferred("add_child", explosion)
 			return
 	var audio_player = AUDIO_CONTROL.instantiate()
 	audio_player.stream = load("res://Audio/Sounds/hurt_c_08-102842.mp3")
@@ -49,12 +62,17 @@ func _on_area_entered(area):
 	destroy(area)
 
 
-func destroy(area):
+func destroy(_area):
 	if Global.explosive_rounds:
 		var explosion = EXPLOSION_AREA.instantiate()
-		explosion.damage = 5
-		explosion.size = 1
-		#explosion.child1 = area
+		if damage > 10 && Global.explosion_scale_damage > 1:
+			explosion.damage = Global.explosion_base_damage * ((log(damage)/log(10) * Global.explosion_scale_damage))
+		else:
+			explosion.damage = Global.explosion_base_damage + (Global.explosion_scale_damage - 1)
+		if damage > 10 && Global.explosion_scale_radius > 1:
+			explosion.size = Global.explosion_base_radius * ((log(damage) * Global.explosion_scale_radius)/2)
+		else:
+			explosion.size = Global.explosion_base_radius + (Global.explosion_scale_radius - 1)
 		explosion.position = position
 		get_parent().call_deferred("add_child", explosion)
 	queue_free()

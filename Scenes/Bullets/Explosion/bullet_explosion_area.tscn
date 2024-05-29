@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://dogwkpbvu3srv"]
+
+[ext_resource type="Script" path="res://Scenes/Bullets/Explosion/bullet_explosion_area.gd" id="1_abmua"]
+[ext_resource type="Texture2D" uid="uid://dnvqft31fbjph" path="res://Sprites/Other/Bullet_Explosion(2).png" id="2_prve0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyll8"]
+atlas = ExtResource("2_prve0")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpjpp"]
+atlas = ExtResource("2_prve0")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5at4"]
+atlas = ExtResource("2_prve0")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijfbr"]
+atlas = ExtResource("2_prve0")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w37kc"]
+atlas = ExtResource("2_prve0")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndtvx"]
+atlas = ExtResource("2_prve0")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyuem"]
+atlas = ExtResource("2_prve0")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhgda"]
+atlas = ExtResource("2_prve0")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ty2sn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyll8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpjpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5at4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijfbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w37kc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndtvx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyuem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhgda")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bwl88"]
+radius = 23.0217
+
+[node name="bullet_explosion_area" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_abmua")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ty2sn")
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bwl88")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
