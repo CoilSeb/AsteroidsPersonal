@@ -10,7 +10,7 @@ upgrade_text = "Upgrades health regeneration by 3"
 upgrade_value = 3.0
 upgrade_texture = ExtResource("2_pkpy6")
 upgrade_cost = 0
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.196078)
+upgrade_rarity = "Common"
 key_upgrade = true
 
 [sub_resource type="Resource" id="Resource_f2fme"]
@@ -20,7 +20,7 @@ upgrade_text = "Upgrades health regeneration by 1.5"
 upgrade_value = 1.5
 upgrade_texture = ExtResource("2_pkpy6")
 upgrade_cost = 0
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.196078)
+upgrade_rarity = "Common"
 key_upgrade = false
 next_upgrade = SubResource("Resource_rewdk")
 
@@ -31,6 +31,6 @@ upgrade_text = "Upgrades health regeneration by 0.5"
 upgrade_value = 0.5
 upgrade_texture = ExtResource("2_pkpy6")
 upgrade_cost = 50
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.0980392)
+upgrade_rarity = "Common"
 key_upgrade = false
 next_upgrade = SubResource("Resource_f2fme")

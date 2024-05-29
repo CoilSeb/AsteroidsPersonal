@@ -10,7 +10,7 @@ upgrade_text = "Upgrade counter thrust by 300 "
 upgrade_value = 300.0
 upgrade_texture = ExtResource("2_qv463")
 upgrade_cost = 50
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.0980392)
+upgrade_rarity = "Common"
 key_upgrade = false
 
 [sub_resource type="Resource" id="Resource_ukgxh"]
@@ -20,7 +20,7 @@ upgrade_text = "Upgrade counter thrust by 200 "
 upgrade_value = 200.0
 upgrade_texture = ExtResource("2_qv463")
 upgrade_cost = 50
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.0980392)
+upgrade_rarity = "Common"
 key_upgrade = false
 next_upgrade = SubResource("Resource_0nun0")
 
@@ -31,6 +31,6 @@ upgrade_text = "Upgrade counter thrust by 1000"
 upgrade_value = 1000.0
 upgrade_texture = ExtResource("2_qv463")
 upgrade_cost = 50
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.0980392)
+upgrade_rarity = "Common"
 key_upgrade = false
 next_upgrade = SubResource("Resource_ukgxh")

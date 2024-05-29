@@ -10,7 +10,7 @@ upgrade_text = "Upgrades health by 150"
 upgrade_value = 150.0
 upgrade_texture = ExtResource("2_sdyxx")
 upgrade_cost = 0
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.196078)
+upgrade_rarity = "Common"
 key_upgrade = true
 
 [sub_resource type="Resource" id="Resource_84j6l"]
@@ -20,7 +20,7 @@ upgrade_text = "Upgrades health by 100"
 upgrade_value = 100.0
 upgrade_texture = ExtResource("2_sdyxx")
 upgrade_cost = 0
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.196078)
+upgrade_rarity = "Common"
 key_upgrade = false
 next_upgrade = SubResource("Resource_rkgik")
 
@@ -31,6 +31,6 @@ upgrade_text = "Upgrades health by 50"
 upgrade_value = 50.0
 upgrade_texture = ExtResource("2_sdyxx")
 upgrade_cost = 50
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.0980392)
+upgrade_rarity = "Common"
 key_upgrade = false
 next_upgrade = SubResource("Resource_84j6l")

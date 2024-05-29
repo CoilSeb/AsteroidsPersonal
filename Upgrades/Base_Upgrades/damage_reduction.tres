@@ -10,7 +10,7 @@ upgrade_text = "Increase damage reduction percentage by 12.5"
 upgrade_value = 0.125
 upgrade_texture = ExtResource("2_rj8s5")
 upgrade_cost = 0
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.196078)
+upgrade_rarity = "Common"
 key_upgrade = true
 
 [sub_resource type="Resource" id="Resource_pd8ey"]
@@ -20,7 +20,7 @@ upgrade_text = "Increase damage reduction percentage by 7.5"
 upgrade_value = 0.075
 upgrade_texture = ExtResource("2_rj8s5")
 upgrade_cost = 0
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.196078)
+upgrade_rarity = "Common"
 key_upgrade = false
 next_upgrade = SubResource("Resource_88u3g")
 
@@ -31,6 +31,6 @@ upgrade_text = "Add a percentage based damage reduction of 5% to your player"
 upgrade_value = 0.05
 upgrade_texture = ExtResource("2_rj8s5")
 upgrade_cost = 50
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.0980392)
+upgrade_rarity = "Common"
 key_upgrade = false
 next_upgrade = SubResource("Resource_pd8ey")

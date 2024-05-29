@@ -547,5 +547,4 @@ func apply_my_upgrade(my_upgrade):
 	my_upgrade.upgrade_player()
 	if my_upgrade.next_upgrade:
 		Global.upgrades_test.append(my_upgrade.next_upgrade)
-		my_upgrade.next_upgrade.upgrade_rarity_color = my_upgrade.upgrade_rarity_color
 		my_upgrade.next_upgrade.upgrade_cost = my_upgrade.upgrade_cost
