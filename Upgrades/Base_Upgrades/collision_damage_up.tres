@@ -6,7 +6,8 @@
 [sub_resource type="Resource" id="Resource_u7ngy"]
 script = ExtResource("1_s4ob0")
 upgrade_name = "collision_damage"
-upgrade_text = "Upgrades the collision damage of your character by 15"
+upgrade_title = "Titanium Nose III"
+upgrade_text = "Increase the collision damage of your character"
 upgrade_value = 15.0
 upgrade_texture = ExtResource("2_e1ebs")
 upgrade_cost = 50
@@ -16,7 +17,8 @@ key_upgrade = true
 [sub_resource type="Resource" id="Resource_4fqwf"]
 script = ExtResource("1_s4ob0")
 upgrade_name = "collision_damage"
-upgrade_text = "Upgrades the collision damage of your character by 10"
+upgrade_title = "Titanium Nose II"
+upgrade_text = "Increase the collision damage of your character"
 upgrade_value = 10.0
 upgrade_texture = ExtResource("2_e1ebs")
 upgrade_cost = 50
@@ -27,7 +29,8 @@ next_upgrade = SubResource("Resource_u7ngy")
 [resource]
 script = ExtResource("1_s4ob0")
 upgrade_name = "collision_damage"
-upgrade_text = "Upgrades the collision damage of your character by 5"
+upgrade_title = "Titanium Nose I"
+upgrade_text = "Increase the collision damage of your character"
 upgrade_value = 5.0
 upgrade_texture = ExtResource("2_e1ebs")
 upgrade_cost = 50

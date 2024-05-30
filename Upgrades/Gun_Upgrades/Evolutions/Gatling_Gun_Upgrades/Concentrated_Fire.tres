@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_1a5l8")
 upgrade_name = "concentrated_fire"
+upgrade_title = "Concentrated Fire"
 upgrade_text = "Decrease weapon spread."
 upgrade_value = 0.0
 upgrade_cost = 75

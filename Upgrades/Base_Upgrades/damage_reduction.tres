@@ -6,7 +6,8 @@
 [sub_resource type="Resource" id="Resource_88u3g"]
 script = ExtResource("1_ijnqp")
 upgrade_name = "damage_reduction"
-upgrade_text = "Increase damage reduction percentage by 12.5"
+upgrade_title = "Armor Plating III"
+upgrade_text = "Increase damage reduction even more"
 upgrade_value = 0.125
 upgrade_texture = ExtResource("2_rj8s5")
 upgrade_cost = 0
@@ -16,7 +17,8 @@ key_upgrade = true
 [sub_resource type="Resource" id="Resource_pd8ey"]
 script = ExtResource("1_ijnqp")
 upgrade_name = "damage_reduction"
-upgrade_text = "Increase damage reduction percentage by 7.5"
+upgrade_title = "Armor Plating II"
+upgrade_text = "Increase damage reduction"
 upgrade_value = 0.075
 upgrade_texture = ExtResource("2_rj8s5")
 upgrade_cost = 0
@@ -27,7 +29,8 @@ next_upgrade = SubResource("Resource_88u3g")
 [resource]
 script = ExtResource("1_ijnqp")
 upgrade_name = "damage_reduction"
-upgrade_text = "Add a percentage based damage reduction of 5% to your player"
+upgrade_title = "Armor Plating I"
+upgrade_text = "Add a percentage based damage reduction to your player"
 upgrade_value = 0.05
 upgrade_texture = ExtResource("2_rj8s5")
 upgrade_cost = 50

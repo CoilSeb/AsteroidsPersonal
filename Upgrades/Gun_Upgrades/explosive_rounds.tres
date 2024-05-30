@@ -5,25 +5,28 @@
 [sub_resource type="Resource" id="Resource_nytct"]
 script = ExtResource("1_0w4hn")
 upgrade_name = "explosive_rounds"
+upgrade_title = "Potent Explosives III"
 upgrade_text = "Explosions do even more damage"
 upgrade_value = 0.5
 upgrade_cost = 0
-upgrade_rarity = "Common"
+upgrade_rarity = "Uncommon"
 key_upgrade = false
 
 [sub_resource type="Resource" id="Resource_plcib"]
 script = ExtResource("1_0w4hn")
 upgrade_name = "explosive_rounds"
+upgrade_title = "Potent Explosives II"
 upgrade_text = "Explosions do more damage"
 upgrade_value = 0.5
 upgrade_cost = 50
-upgrade_rarity = "Common"
+upgrade_rarity = "Uncommon"
 key_upgrade = false
 next_upgrade = SubResource("Resource_nytct")
 
 [resource]
 script = ExtResource("1_0w4hn")
 upgrade_name = "explosive_rounds"
+upgrade_title = "Potent Explosives I"
 upgrade_text = "Bullets become explosive"
 upgrade_value = 0.0
 upgrade_cost = 50

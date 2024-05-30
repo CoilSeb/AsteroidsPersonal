@@ -8,7 +8,7 @@ upgrade_name = "weapon_scale"
 upgrade_text = "Increase beam width"
 upgrade_value = 0.1
 upgrade_cost = 0
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.196078)
+upgrade_rarity = "Common"
 key_upgrade = false
 
 [sub_resource type="Resource" id="Resource_mstfa"]
@@ -17,7 +17,7 @@ upgrade_name = "weapon_scale"
 upgrade_text = "Increase beam width"
 upgrade_value = 0.1
 upgrade_cost = 0
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.196078)
+upgrade_rarity = "Common"
 key_upgrade = false
 next_upgrade = SubResource("Resource_2o0uw")
 
@@ -27,6 +27,6 @@ upgrade_name = "weapon_scale"
 upgrade_text = "Increase beam width and damage"
 upgrade_value = 0.1
 upgrade_cost = 50
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.0980392)
+upgrade_rarity = "Common"
 key_upgrade = false
 next_upgrade = SubResource("Resource_mstfa")

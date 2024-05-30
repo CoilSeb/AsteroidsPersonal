@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_qofiw")
 upgrade_name = "gatling_gun"
+upgrade_title = "Gatling Gun"
 upgrade_text = "Turn your gun into a long range gatling gun"
 upgrade_value = 0.0
 upgrade_cost = 100

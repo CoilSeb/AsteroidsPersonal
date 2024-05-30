@@ -5,7 +5,8 @@
 [resource]
 script = ExtResource("1_xg86i")
 upgrade_name = "burn_out"
-upgrade_text = "Your attack cooldown is reduced by 50%, but firing for too long cause weapon malfunction"
+upgrade_title = "Overclock"
+upgrade_text = "Your attack cooldown is reduced dramatically, but firing for too long cause weapon malfunction"
 upgrade_value = 0.5
 upgrade_cost = 50
 upgrade_rarity = "Rare"

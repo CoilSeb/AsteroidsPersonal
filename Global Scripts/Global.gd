@@ -32,6 +32,9 @@ var ghost_bullets
 var deviation
 var bullet_time
 var no_gun_all_collision
+var homing_strength: float
+var bullet_count
+var spread
 # Explosive Variables
 var explosive_rounds: float
 var explosion_base_damage: float
@@ -62,7 +65,7 @@ var base_upgrades = [
 	preload("res://Upgrades/Base_Upgrades/collision_damage_up.tres"),
 	preload("res://Upgrades/Base_Upgrades/health_up.tres"),
 	preload("res://Upgrades/Base_Upgrades/move_speed.tres"),
-	preload("res://Upgrades/Base_Upgrades/counter_thrust.tres"),
+	#preload("res://Upgrades/Base_Upgrades/counter_thrust.tres"),
 	preload("res://Upgrades/Base_Upgrades/health_regen.tres"),
 	preload("res://Upgrades/Base_Upgrades/damage_reduction.tres"),
 	#preload("res://Upgrades/Base_Upgrades/exp_pull_range.tres"),
@@ -73,12 +76,17 @@ var gun_upgrades = [
 	preload("res://Upgrades/Gun_Upgrades/bullet_velocity.tres"),
 	preload("res://Upgrades/Gun_Upgrades/damage_up.tres"),
 	preload("res://Upgrades/Gun_Upgrades/explosive_rounds.tres"),
+	preload("res://Upgrades/Gun_Upgrades/homing.tres"),
+	preload("res://Upgrades/Gun_Upgrades/bullet_count.tres"),
 ]
 
 var gun_evolutions = [
 	preload("res://Upgrades/Gun_Upgrades/Evolutions/Gatling_Gun.tres"),
 	preload("res://Upgrades/Gun_Upgrades/Evolutions/SMG.tres"),
 	preload("res://Upgrades/Gun_Upgrades/Evolutions/Bulldozer.tres"),
+]
+
+var legendary_upgrades = [
 	preload("res://Upgrades/Legendary_Upgrades/asteroids_explode.tres"),
 ]
 
@@ -91,7 +99,7 @@ var laser_upgrades = [
 
 var upgrades_test
 var evolutions_test
-
+var legendary_test
 var key_upgrades = []
 
 # Preload Upgrades
@@ -100,8 +108,6 @@ const NO_GUN_ALL_COLLISION = preload("res://Upgrades/Combo_Upgradess/no_gun_all_
 const BIG_RESIST = preload("res://Upgrades/Combo_Upgradess/big_resist.tres")
 const BURN_OUT = preload("res://Upgrades/Combo_Upgradess/burn_out.tres")
 const EXPLOSIVE_ROUNDS_RADIUS = preload("res://Upgrades/Gun_Upgrades/explosive_rounds_radius.tres")
-const EXPLOSIONS_RADIUS_SCALE = preload("res://Upgrades/Gun_Upgrades/explosions_radius_scale.tres")
-const EXPLOSIONS_DAMAGE_SCALE = preload("res://Upgrades/Gun_Upgrades/explosions_damage_scale.tres")
 
 # Signals
 signal update_max_health(value)
@@ -146,11 +152,7 @@ func add_key_upgrades(key_upgrade):
 	key_upgrades.append(key_upgrade)
 	if key_upgrades.has("explosive_rounds") and !key_upgrades.has("explosive_rounds_radius"):
 		key_upgrades.append("explosive_rounds_radius")
-		key_upgrades.append("explosions_damage_scale")
 		upgrades_test.append(EXPLOSIVE_ROUNDS_RADIUS)
-		upgrades_test.append(EXPLOSIONS_DAMAGE_SCALE)
-		key_upgrades.append("explosions_radius_scale")
-		upgrades_test.append(EXPLOSIONS_RADIUS_SCALE)
 	if key_upgrades.has("health_regen") and key_upgrades.has("health") and !key_upgrades.has("regen_with_degen"):
 		key_upgrades.append("regen_with_degen")
 		upgrades_test.append(REGEN_WITH_DEGEN)
@@ -187,6 +189,9 @@ func refresh():
 			damage = 10
 			attack_speed = 0.5
 			bullet_velocity = 700
+			homing_strength = 0.0
+			bullet_count = 1
+			spread = 5
 			gatling_gun = false
 			smg = false
 			bulldozer = false
@@ -200,6 +205,7 @@ func refresh():
 			bulldozer_bullet_health = 0
 			var gun_test = gun_upgrades.duplicate()
 			evolutions_test = gun_evolutions.duplicate()
+			legendary_test = evolutions_test + legendary_upgrades
 			upgrades_test += gun_test
 		"Laser":
 			damage = 1

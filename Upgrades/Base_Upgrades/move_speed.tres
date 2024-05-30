@@ -6,7 +6,8 @@
 [sub_resource type="Resource" id="Resource_krdgh"]
 script = ExtResource("1_sy8wp")
 upgrade_name = "move_speed"
-upgrade_text = "Upgrades move_speed by 200"
+upgrade_title = "Thrusters III"
+upgrade_text = "Increase thrust even more"
 upgrade_value = 200.0
 upgrade_texture = ExtResource("2_xvyna")
 upgrade_cost = 0
@@ -16,7 +17,8 @@ key_upgrade = true
 [sub_resource type="Resource" id="Resource_cfgst"]
 script = ExtResource("1_sy8wp")
 upgrade_name = "move_speed"
-upgrade_text = "Upgrades move_speed by 150"
+upgrade_title = "Thrusters II"
+upgrade_text = "Increase thrust more"
 upgrade_value = 150.0
 upgrade_texture = ExtResource("2_xvyna")
 upgrade_cost = 0
@@ -27,7 +29,8 @@ next_upgrade = SubResource("Resource_krdgh")
 [resource]
 script = ExtResource("1_sy8wp")
 upgrade_name = "move_speed"
-upgrade_text = "Upgrades move_speed by 100"
+upgrade_title = "Thrusters I"
+upgrade_text = "Increase thrust"
 upgrade_value = 100.0
 upgrade_texture = ExtResource("2_xvyna")
 upgrade_cost = 50

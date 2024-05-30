@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_vceoa")
 upgrade_name = "no_gun_all_collision"
+upgrade_title = "Lethal Force"
 upgrade_text = "Remove your ability to shoot and double collision damage"
 upgrade_value = 2.0
 upgrade_cost = 50

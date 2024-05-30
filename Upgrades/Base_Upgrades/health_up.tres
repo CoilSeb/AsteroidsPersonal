@@ -6,7 +6,8 @@
 [sub_resource type="Resource" id="Resource_rkgik"]
 script = ExtResource("1_mokfx")
 upgrade_name = "health"
-upgrade_text = "Upgrades health by 150"
+upgrade_title = "Reinforced Hull III"
+upgrade_text = "Increase health even more"
 upgrade_value = 150.0
 upgrade_texture = ExtResource("2_sdyxx")
 upgrade_cost = 0
@@ -16,7 +17,8 @@ key_upgrade = true
 [sub_resource type="Resource" id="Resource_84j6l"]
 script = ExtResource("1_mokfx")
 upgrade_name = "health"
-upgrade_text = "Upgrades health by 100"
+upgrade_title = "Reinforced Hull II"
+upgrade_text = "Increase health more"
 upgrade_value = 100.0
 upgrade_texture = ExtResource("2_sdyxx")
 upgrade_cost = 0
@@ -27,7 +29,8 @@ next_upgrade = SubResource("Resource_rkgik")
 [resource]
 script = ExtResource("1_mokfx")
 upgrade_name = "health"
-upgrade_text = "Upgrades health by 50"
+upgrade_title = "Reinforced Hull I"
+upgrade_text = "Increase health"
 upgrade_value = 50.0
 upgrade_texture = ExtResource("2_sdyxx")
 upgrade_cost = 50

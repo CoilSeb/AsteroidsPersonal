@@ -5,7 +5,8 @@
 [resource]
 script = ExtResource("1_58mxj")
 upgrade_name = "ghost_bullets"
-upgrade_text = "Bullets pass through all objects but slowly lose health. Bullets become much healthier."
+upgrade_title = "Ghost Bullets"
+upgrade_text = "Bullets pass through all objects but slowly lose health. "
 upgrade_value = 0.0
 upgrade_cost = 75
 upgrade_rarity = "Rare"

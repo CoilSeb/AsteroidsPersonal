@@ -8,7 +8,7 @@ upgrade_name = "exp_pull_range"
 upgrade_text = "Increase your Exp collection range even more"
 upgrade_value = 1.0
 upgrade_cost = 0
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.196078)
+upgrade_rarity = "Common"
 key_upgrade = false
 
 [sub_resource type="Resource" id="Resource_d7cq7"]
@@ -17,7 +17,7 @@ upgrade_name = "exp_pull_range"
 upgrade_text = "Increase your Exp collection range more"
 upgrade_value = 1.0
 upgrade_cost = 0
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.196078)
+upgrade_rarity = "Common"
 key_upgrade = false
 next_upgrade = SubResource("Resource_1xnnh")
 
@@ -27,6 +27,6 @@ upgrade_name = "exp_pull_range"
 upgrade_text = "Increase your Exp collection range"
 upgrade_value = 2.0
 upgrade_cost = 50
-upgrade_rarity_color = Color(0.615686, 0.615686, 0.615686, 0.0980392)
+upgrade_rarity = "Common"
 key_upgrade = false
 next_upgrade = SubResource("Resource_d7cq7")

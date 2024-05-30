@@ -66,11 +66,20 @@ const SOLD_1_PNG = preload("res://Sprites/Upgrades/Sold-1.png.png")
 
 @onready var text_labels = [
 	$Upgrade_Menu/First_Upgrade/RichTextLabel1,
-	$Upgrade_Menu/Second_Upgrade/RichTextLabel2,
-	$Upgrade_Menu/Third_Upgrade/RichTextLabel3,
+	$Upgrade_Menu/Second_Upgrade/RichTextLabel1,
+	$Upgrade_Menu/Third_Upgrade/RichTextLabel1,
 	$Upgrade_Menu/Fourth_Upgrade/RichTextLabel1,
-	$Upgrade_Menu/Fifth_Upgrade/RichTextLabel2,
-	$Upgrade_Menu/Sixth_Upgrade/RichTextLabel3
+	$Upgrade_Menu/Fifth_Upgrade/RichTextLabel1,
+	$Upgrade_Menu/Sixth_Upgrade/RichTextLabel1,
+]
+
+@onready var titles = [
+	$Upgrade_Menu/First_Upgrade/Title,
+	$Upgrade_Menu/Second_Upgrade/Title,
+	$Upgrade_Menu/Third_Upgrade/Title,
+	$Upgrade_Menu/Fourth_Upgrade/Title,
+	$Upgrade_Menu/Fifth_Upgrade/Title,
+	$Upgrade_Menu/Sixth_Upgrade/Title,
 ]
 
 @onready var cost_labels = [
@@ -182,6 +191,7 @@ var upgrades_cost = [
 
 
 func _ready():
+	upgrade_menu.hide()
 	Global.wave_num_update.connect(wave_num)
 	Global.update_money.connect(update_money)
 	Global.moon_guy_health.connect(moon_guy_health)
@@ -520,20 +530,18 @@ func get_upgrades():
 			done = true
 	Global.upgrades_test.shuffle()
 	#print(evolution)
-	match Global.weapon:
-		"Gun":
-			for each_upgrade in Global.upgrades_test:
-				for each_big_upgrade in Global.evolutions_test:
-					if each_upgrade == each_big_upgrade:
-						Global.upgrades_test.erase(each_upgrade)
-			for each_upgrade in Global.upgrades_test:
-				for each_big_upgrade in Global.rare_upgrades:
-					if each_upgrade == each_big_upgrade:
-						Global.upgrades_test.erase(each_upgrade)
-			if (evolution == 0) && Global.evolutions_test.size() > 0:
-				Global.upgrades_test.insert(l_index, Global.evolutions_test[randi_range(0, Global.evolutions_test.size() - 1)])
-			if (rare == 0) && Global.rare_upgrades.size() > 0:
-				Global.upgrades_test.insert(r_index, Global.rare_upgrades[randi_range(0, Global.rare_upgrades.size() - 1)])
+	for each_upgrade in Global.upgrades_test:
+		for each_big_upgrade in Global.legendary_test:
+			if each_upgrade == each_big_upgrade:
+				Global.upgrades_test.erase(each_upgrade)
+	for each_upgrade in Global.upgrades_test:
+		for each_big_upgrade in Global.rare_upgrades:
+			if each_upgrade == each_big_upgrade:
+				Global.upgrades_test.erase(each_upgrade)
+	if (rare == 0) && Global.rare_upgrades.size() > 0:
+		Global.upgrades_test.insert(r_index, Global.rare_upgrades[randi_range(0, Global.rare_upgrades.size() - 1)])
+	if (evolution == 0) && Global.legendary_test.size() > 0:
+		Global.upgrades_test.insert(l_index, Global.legendary_test[randi_range(0, Global.legendary_test.size() - 1)])
 				
 	Global.reroll_cost = round(reroll_cost * Global.inflation)
 	reroll_cost += (5 * Global.inflation)
@@ -542,6 +550,7 @@ func get_upgrades():
 			var my_upgrade = Global.upgrades_test[i]
 			
 			if !buttons[i].disabled:
+				titles[i].text = "[center]" + my_upgrade.upgrade_title
 				text_labels[i].text = "[center]" + my_upgrade.upgrade_text
 				textures[i].texture = my_upgrade.upgrade_texture
 				upgrades[i] = my_upgrade
@@ -603,8 +612,8 @@ func apply_my_upgrade(my_upgrade):
 	if my_upgrade == null:
 		return
 	Global.upgrades_test.erase(my_upgrade)
-	if Global.evolutions_test.has(my_upgrade):
-		Global.evolutions_test.erase(my_upgrade)
+	if Global.legendary_test.has(my_upgrade):
+		Global.legendary_test.erase(my_upgrade)
 	if Global.rare_upgrades.has(my_upgrade):
 		Global.rare_upgrades.erase(my_upgrade)
 	my_upgrade.upgrade_player()

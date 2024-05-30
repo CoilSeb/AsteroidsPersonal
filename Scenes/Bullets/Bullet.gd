@@ -9,18 +9,29 @@ var bullet_speed = Global.bullet_velocity
 var screen_size
 var damage = Global.damage
 var health = Global.bulldozer_bullet_health
+var bullet_time_offset = randf_range(0, 0.075)
 
 
 func _ready():
 	screen_size = get_viewport_rect().size
 	if !Global.bulldozer:
-		timer.start(Global.bullet_time)
+		timer.start(Global.bullet_time + bullet_time_offset)
 	elif Global.ghost_bullets:
-		timer.start(Global.bullet_time)
+		timer.start(Global.bullet_time + bullet_time_offset)
 
 
 func _process(delta):
+	if Global.homing_strength > 0:
+		var areas: Array = $Area2D.get_overlapping_areas()
+		if areas:
+			var closest_area = areas[0]
+			for area in areas:
+				if global_position.distance_to(area.position) < global_position.distance_to(closest_area.position):
+					closest_area = area
+			var new_direction = global_position.direction_to(closest_area.global_position)
+			direction = lerp(direction, new_direction, delta * Global.homing_strength)
 	position += (direction * bullet_speed * delta)
+	rotation = direction.angle() + (0.5 * PI)
 	if position.x < 0:
 		position.x = screen_size.x
 	if position.x > screen_size.x:
@@ -32,7 +43,6 @@ func _process(delta):
 
 
 func _on_area_entered(area):
-	
 	if Global.bulldozer:
 		health -= area.damage
 		area.damage_asteroid(damage)
@@ -43,14 +53,11 @@ func _on_area_entered(area):
 		else:
 			if Global.explosive_rounds:
 				var explosion = EXPLOSION_AREA.instantiate()
-				if damage > 10 && Global.explosion_scale_damage > 1:
-					explosion.damage = Global.explosion_base_damage * ((log(damage)/log(10) * Global.explosion_scale_damage))
+				explosion.damage = Global.explosion_base_damage * (log(damage)/log(10))
+				if damage > 10:
+					explosion.size = Global.explosion_base_radius * (log(damage)/log(10))
 				else:
-					explosion.damage = Global.explosion_base_damage + (Global.explosion_scale_damage - 1)
-				if damage > 10 && Global.explosion_scale_radius > 1:
-					explosion.size = Global.explosion_base_radius * ((log(damage) * Global.explosion_scale_radius)/2)
-				else:
-					explosion.size = Global.explosion_base_radius + (Global.explosion_scale_radius - 1)
+					explosion.size = Global.explosion_base_radius
 				explosion.position = position
 				get_parent().call_deferred("add_child", explosion)
 			return
@@ -64,17 +71,15 @@ func _on_area_entered(area):
 
 func destroy(_area):
 	if Global.explosive_rounds:
-		var explosion = EXPLOSION_AREA.instantiate()
-		if damage > 10 && Global.explosion_scale_damage > 1:
-			explosion.damage = Global.explosion_base_damage * ((log(damage)/log(10) * Global.explosion_scale_damage))
-		else:
-			explosion.damage = Global.explosion_base_damage + (Global.explosion_scale_damage - 1)
-		if damage > 10 && Global.explosion_scale_radius > 1:
-			explosion.size = Global.explosion_base_radius * ((log(damage) * Global.explosion_scale_radius)/2)
-		else:
-			explosion.size = Global.explosion_base_radius + (Global.explosion_scale_radius - 1)
-		explosion.position = position
-		get_parent().call_deferred("add_child", explosion)
+			var explosion = EXPLOSION_AREA.instantiate()
+			explosion.damage = Global.explosion_base_damage * (log(damage)/log(10))
+			if damage > 10:
+				explosion.size = Global.explosion_base_radius * (log(damage)/log(10))
+			else:
+				explosion.size = Global.explosion_base_radius
+			explosion.position = position
+			get_parent().call_deferred("add_child", explosion)
+			print(explosion.damage, " ", explosion.size)
 	queue_free()
 
 

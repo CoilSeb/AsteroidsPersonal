@@ -140,6 +140,8 @@ func _physics_process(delta):
 		
 	# Shooting
 	if Global.can_shoot:
+		var angle = 0 - (Global.bullet_count * Global.spread)/2.0 + Global.spread/2.0
+		#print(angle)
 		if weapon == "Laser":
 			if Input.is_action_pressed("shoot") && !Input.is_action_pressed("move_forward"):
 				if laser_charge_timer.is_stopped() && !laser_done:
@@ -195,16 +197,18 @@ func _physics_process(delta):
 			if (Input.is_action_pressed("shoot") || Input.is_action_pressed("M2")) && shootTimer.time_left == 0:
 				if Global.gatling_gun && Input.is_action_pressed("move_forward"):
 					return
-				var bulletInstance = bulletScene.instantiate()
-				get_parent().add_child(bulletInstance)
-				bulletInstance.global_position = global_position
-				var i = randf_range(-Global.deviation, Global.deviation)
-				bulletInstance.direction = Vector2.UP.rotated(rotation + i)
-				bulletInstance.scale += Global.weapon_scale
-				weapon_sound.play()
-				shootTimer.start(Global.attack_speed)
-				if Global.heavy_weaponry:
-					velocity = Vector2.DOWN.rotated(rotation) * 200
+				for i in range(Global.bullet_count):
+					var bulletInstance = bulletScene.instantiate()
+					get_parent().add_child(bulletInstance)
+					bulletInstance.global_position = global_position
+					var deviation = randf_range(-Global.deviation, Global.deviation)
+					bulletInstance.direction = Vector2.UP.rotated(rotation + deviation + deg_to_rad(angle))
+					bulletInstance.scale += Global.weapon_scale
+					weapon_sound.play()
+					shootTimer.start(Global.attack_speed)
+					if Global.heavy_weaponry:
+						velocity = Vector2.DOWN.rotated(rotation) * 200
+					angle += Global.spread
 		#Burn Out
 		if Global.burn_out && Input.is_action_pressed("shoot") && Global.can_shoot:
 			burn_out_time -= 2.5

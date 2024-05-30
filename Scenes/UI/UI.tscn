@@ -322,6 +322,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -10.0
+offset_right = 1.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.74902)
@@ -387,19 +391,47 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel1" type="RichTextLabel" parent="Upgrade_Menu/First_Upgrade"]
-custom_minimum_size = Vector2(0, 400)
+[node name="ColorRect" type="ColorRect" parent="Upgrade_Menu/First_Upgrade"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -400.0
+offset_left = 19.0
+offset_top = -102.0
+offset_right = -19.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="RichTextLabel1" type="RichTextLabel" parent="Upgrade_Menu/First_Upgrade"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = 105.0
+offset_right = -24.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
+fit_content = true
+
+[node name="Title" type="RichTextLabel" parent="Upgrade_Menu/First_Upgrade"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -53.0
+offset_bottom = -8.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+fit_content = true
 
 [node name="Cost_Label" type="Label" parent="Upgrade_Menu/First_Upgrade"]
 layout_mode = 1
@@ -409,8 +441,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = -23.0
+offset_top = -50.0
 offset_right = 20.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
@@ -422,16 +455,14 @@ position = Vector2(391, 176)
 emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="Upgrade_Menu/First_Upgrade"]
 position = Vector2(10, 176)
 emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="Upgrade_Menu/First_Upgrade"]
 position = Vector2(200, 347)
@@ -439,8 +470,7 @@ rotation = 1.5708
 emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="GPUParticles2D4" type="GPUParticles2D" parent="Upgrade_Menu/First_Upgrade"]
 position = Vector2(200, 9)
@@ -448,8 +478,7 @@ rotation = 1.5708
 emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="Second_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
@@ -499,18 +528,47 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="Upgrade_Menu/Second_Upgrade"]
-custom_minimum_size = Vector2(0, 400)
+[node name="ColorRect" type="ColorRect" parent="Upgrade_Menu/Second_Upgrade"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = -102.0
+offset_right = -19.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="RichTextLabel1" type="RichTextLabel" parent="Upgrade_Menu/Second_Upgrade"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = 105.0
+offset_right = -24.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
+fit_content = true
+
+[node name="Title" type="RichTextLabel" parent="Upgrade_Menu/Second_Upgrade"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -53.0
+offset_bottom = -8.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+fit_content = true
 
 [node name="Cost_Label" type="Label" parent="Upgrade_Menu/Second_Upgrade"]
 layout_mode = 1
@@ -520,8 +578,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = -23.0
+offset_top = -50.0
 offset_right = 20.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
@@ -533,7 +592,7 @@ position = Vector2(391, 176)
 emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="Upgrade_Menu/Second_Upgrade"]
 position = Vector2(10, 176)
@@ -541,7 +600,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="Upgrade_Menu/Second_Upgrade"]
 position = Vector2(200, 347)
@@ -550,7 +609,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="GPUParticles2D4" type="GPUParticles2D" parent="Upgrade_Menu/Second_Upgrade"]
 position = Vector2(200, 9)
@@ -559,7 +618,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="Third_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
@@ -609,18 +668,47 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="Upgrade_Menu/Third_Upgrade"]
-custom_minimum_size = Vector2(0, 400)
+[node name="ColorRect" type="ColorRect" parent="Upgrade_Menu/Third_Upgrade"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = -102.0
+offset_right = -19.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="RichTextLabel1" type="RichTextLabel" parent="Upgrade_Menu/Third_Upgrade"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = 105.0
+offset_right = -24.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
+fit_content = true
+
+[node name="Title" type="RichTextLabel" parent="Upgrade_Menu/Third_Upgrade"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -53.0
+offset_bottom = -8.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+fit_content = true
 
 [node name="Cost_Label" type="Label" parent="Upgrade_Menu/Third_Upgrade"]
 layout_mode = 1
@@ -630,8 +718,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = -23.0
+offset_top = -50.0
 offset_right = 20.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
@@ -644,7 +733,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="Upgrade_Menu/Third_Upgrade"]
 position = Vector2(10, 176)
@@ -652,7 +741,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="Upgrade_Menu/Third_Upgrade"]
 position = Vector2(200, 347)
@@ -661,7 +750,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="GPUParticles2D4" type="GPUParticles2D" parent="Upgrade_Menu/Third_Upgrade"]
 position = Vector2(200, 9)
@@ -670,7 +759,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="Fourth_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
@@ -720,18 +809,47 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel1" type="RichTextLabel" parent="Upgrade_Menu/Fourth_Upgrade"]
-custom_minimum_size = Vector2(0, 400)
+[node name="ColorRect" type="ColorRect" parent="Upgrade_Menu/Fourth_Upgrade"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = -102.0
+offset_right = -19.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="RichTextLabel1" type="RichTextLabel" parent="Upgrade_Menu/Fourth_Upgrade"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = 105.0
+offset_right = -24.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
+fit_content = true
+
+[node name="Title" type="RichTextLabel" parent="Upgrade_Menu/Fourth_Upgrade"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -53.0
+offset_bottom = -8.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+fit_content = true
 
 [node name="Cost_Label" type="Label" parent="Upgrade_Menu/Fourth_Upgrade"]
 layout_mode = 1
@@ -741,8 +859,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = -23.0
+offset_top = -50.0
 offset_right = 20.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
@@ -755,7 +874,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="Upgrade_Menu/Fourth_Upgrade"]
 position = Vector2(10, 176)
@@ -763,7 +882,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="Upgrade_Menu/Fourth_Upgrade"]
 position = Vector2(200, 347)
@@ -772,7 +891,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="GPUParticles2D4" type="GPUParticles2D" parent="Upgrade_Menu/Fourth_Upgrade"]
 position = Vector2(200, 9)
@@ -781,7 +900,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="Fifth_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
@@ -831,18 +950,47 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="Upgrade_Menu/Fifth_Upgrade"]
-custom_minimum_size = Vector2(0, 400)
+[node name="ColorRect" type="ColorRect" parent="Upgrade_Menu/Fifth_Upgrade"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = -102.0
+offset_right = -19.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="RichTextLabel1" type="RichTextLabel" parent="Upgrade_Menu/Fifth_Upgrade"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = 105.0
+offset_right = -24.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
+fit_content = true
+
+[node name="Title" type="RichTextLabel" parent="Upgrade_Menu/Fifth_Upgrade"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -53.0
+offset_bottom = -8.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+fit_content = true
 
 [node name="Cost_Label" type="Label" parent="Upgrade_Menu/Fifth_Upgrade"]
 layout_mode = 1
@@ -852,8 +1000,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = -23.0
+offset_top = -50.0
 offset_right = 20.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
@@ -866,7 +1015,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="Upgrade_Menu/Fifth_Upgrade"]
 position = Vector2(10, 176)
@@ -874,7 +1023,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="Upgrade_Menu/Fifth_Upgrade"]
 position = Vector2(200, 347)
@@ -883,7 +1032,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="GPUParticles2D4" type="GPUParticles2D" parent="Upgrade_Menu/Fifth_Upgrade"]
 position = Vector2(200, 9)
@@ -892,7 +1041,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="Sixth_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
@@ -942,18 +1091,47 @@ offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="Upgrade_Menu/Sixth_Upgrade"]
-custom_minimum_size = Vector2(0, 400)
+[node name="ColorRect" type="ColorRect" parent="Upgrade_Menu/Sixth_Upgrade"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = -102.0
+offset_right = -19.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 0
+color = Color(0, 0, 0, 0.784314)
+
+[node name="RichTextLabel1" type="RichTextLabel" parent="Upgrade_Menu/Sixth_Upgrade"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = 105.0
+offset_right = -24.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
+fit_content = true
+
+[node name="Title" type="RichTextLabel" parent="Upgrade_Menu/Sixth_Upgrade"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -53.0
+offset_bottom = -8.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+fit_content = true
 
 [node name="Cost_Label" type="Label" parent="Upgrade_Menu/Sixth_Upgrade"]
 layout_mode = 1
@@ -963,8 +1141,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = -23.0
+offset_top = -50.0
 offset_right = 20.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
@@ -977,7 +1156,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="Upgrade_Menu/Sixth_Upgrade"]
 position = Vector2(10, 176)
@@ -985,7 +1164,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="Upgrade_Menu/Sixth_Upgrade"]
 position = Vector2(200, 347)
@@ -994,7 +1173,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="GPUParticles2D4" type="GPUParticles2D" parent="Upgrade_Menu/Sixth_Upgrade"]
 position = Vector2(200, 9)
@@ -1003,7 +1182,7 @@ emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_wnhn1")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 5.0
 
 [node name="Reroll_Button" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
@@ -1283,6 +1462,7 @@ visible = false
 my_scenes_button = NodePath("../PauseMenu/SettingsButton")
 
 [node name="CRT_Shader" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_dpj74")
 anchors_preset = 15
 anchor_right = 1.0

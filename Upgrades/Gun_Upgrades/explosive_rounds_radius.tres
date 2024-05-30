@@ -5,25 +5,28 @@
 [sub_resource type="Resource" id="Resource_j5173"]
 script = ExtResource("1_quv7w")
 upgrade_name = "explosive_rounds_radius"
+upgrade_title = "Blast Radius III"
 upgrade_text = "Bullet explosions are huge"
 upgrade_value = 0.125
 upgrade_cost = 50
-upgrade_rarity = "Common"
+upgrade_rarity = "Uncommon"
 key_upgrade = false
 
 [sub_resource type="Resource" id="Resource_pqrmg"]
 script = ExtResource("1_quv7w")
 upgrade_name = "explosive_rounds_radius"
+upgrade_title = "Blast Radius II"
 upgrade_text = "Bullet explosions are even bigger"
 upgrade_value = 0.1
 upgrade_cost = 50
-upgrade_rarity = "Common"
+upgrade_rarity = "Uncommon"
 key_upgrade = false
 next_upgrade = SubResource("Resource_j5173")
 
 [resource]
 script = ExtResource("1_quv7w")
 upgrade_name = "explosive_rounds_radius"
+upgrade_title = "Blast Radius I"
 upgrade_text = "Bullet explosions are bigger"
 upgrade_value = 0.1
 upgrade_cost = 50

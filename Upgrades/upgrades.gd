@@ -3,6 +3,7 @@ extends Resource
 class_name upgrade
 
 @export var upgrade_name : String = ""
+@export var upgrade_title: String = ""
 @export var upgrade_text : String = ""
 @export var upgrade_value : float = 0
 @export var upgrade_texture: Texture
@@ -74,6 +75,25 @@ func upgrade_player():
 			explosions_damage_scale()
 		"asteroids_explode":
 			asteroids_explode()
+		"homing":
+			homing()
+		"bullet_count":
+			bullet_count()
+		"bullet_count_double":
+			bullet_count_double()
+
+func bullet_count_double():
+	Global.bullet_count *= 2
+	Global.spread *= 1
+	Global.damage /= 1.5
+
+func bullet_count():
+	Global.bullet_count += upgrade_value
+	Global.spread += upgrade_value * 0.5
+	Global.damage /= upgrade_value
+
+func homing():
+	Global.homing_strength += upgrade_value
 
 func asteroids_explode():
 	Global.explosive_asteroids = true
@@ -122,8 +142,8 @@ func bulldozer():
 	Global.weapon_scale += Vector2(2, 2)
 	var bulldozer_upgrades = [load("res://Upgrades/Gun_Upgrades/Evolutions/Bulldozer_Upgrades/Heavy_Weaponry.tres"), load("res://Upgrades/Gun_Upgrades/Evolutions/Bulldozer_Upgrades/Ghost_Bullets.tres")]
 	Global.rare_upgrades += bulldozer_upgrades
-	Global.evolutions_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/SMG.tres"))
-	Global.evolutions_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/Gatling_Gun.tres"))
+	Global.legendary_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/SMG.tres"))
+	Global.legendary_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/Gatling_Gun.tres"))
 
 func smg():
 	Global.attack_speed = 0.03
@@ -134,8 +154,8 @@ func smg():
 	Global.smg = true
 	var smg_upgrades = [load("res://Upgrades/Gun_Upgrades/Evolutions/SMG_Upgrades/Muzzle_Brake.tres"), load("res://Upgrades/Gun_Upgrades/Evolutions/SMG_Upgrades/Twin_Barrels.tres")]
 	Global.rare_upgrades += smg_upgrades
-	Global.evolutions_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/Gatling_Gun.tres"))
-	Global.evolutions_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/Bulldozer.tres"))
+	Global.legendary_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/Gatling_Gun.tres"))
+	Global.legendary_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/Bulldozer.tres"))
 
 func gatling_gun():
 	Global.attack_speed = 0.1                      
@@ -144,8 +164,8 @@ func gatling_gun():
 	Global.gatling_gun = true
 	var gatling_upgrades = [load("res://Upgrades/Gun_Upgrades/Evolutions/Gatling_Gun_Upgrades/Concentrated_Fire.tres"), load("res://Upgrades/Gun_Upgrades/Evolutions/Gatling_Gun_Upgrades/Rapid_Fire.tres")]
 	Global.rare_upgrades += gatling_upgrades
-	Global.evolutions_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/SMG.tres"))
-	Global.evolutions_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/Bulldozer.tres"))
+	Global.legendary_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/SMG.tres"))
+	Global.legendary_test.erase(load("res://Upgrades/Gun_Upgrades/Evolutions/Bulldozer.tres"))
 
 func exp_pull_range():
 	Global.exp_pull_range += Vector2(upgrade_value,upgrade_value)

@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_wbua2")
 upgrade_name = "rapid_fire"
+upgrade_title = "Rapid Fire"
 upgrade_text = "Increase fire rate."
 upgrade_value = 0.0
 upgrade_cost = 75

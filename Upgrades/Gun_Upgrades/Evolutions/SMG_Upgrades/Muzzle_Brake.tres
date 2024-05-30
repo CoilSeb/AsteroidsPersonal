@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_hpspa")
 upgrade_name = "muzzle_break"
+upgrade_title = "Muzzle Break"
 upgrade_text = "Decrease spread"
 upgrade_value = 0.0
 upgrade_cost = 75

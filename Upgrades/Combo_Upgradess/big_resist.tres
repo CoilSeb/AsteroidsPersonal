@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_didpx")
 upgrade_name = "big_resist"
+upgrade_title = "Battleship"
 upgrade_text = "Double your damage reduction, but cut your thrust in half"
 upgrade_value = 0.0
 upgrade_cost = 50

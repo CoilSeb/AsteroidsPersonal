@@ -22,5 +22,13 @@ shape = SubResource("CircleShape2D_fw18q")
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+scale = Vector2(100, 100)
+polygon = PackedVector2Array(0, 0, -9.33333, -9.33333, 9.33333, -9.33333)
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -206,7 +206,6 @@ func _on_wave_timer_timeout():
 
 func _on_asteroid_timer_timeout():
 	var i = randi_range(0,10)
-	print("anything")
 	if i == 0:
 		spawn_special_Asteroid_with_weight()
 	spawn_basic_Asteroid_with_weight()

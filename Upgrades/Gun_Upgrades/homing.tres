@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="upgrade" load_steps=4 format=3 uid="uid://pvtwfbm6ev4w"]
+
+[ext_resource type="Script" path="res://Upgrades/upgrades.gd" id="1_kjo8j"]
+
+[sub_resource type="Resource" id="Resource_xjb6c"]
+script = ExtResource("1_kjo8j")
+upgrade_name = "homing"
+upgrade_title = "Smart Bullets III"
+upgrade_text = "Increase the homing strength of your bullets even more"
+upgrade_value = 0.5
+upgrade_cost = 0
+upgrade_rarity = "Uncommon"
+key_upgrade = false
+
+[sub_resource type="Resource" id="Resource_gj5f0"]
+script = ExtResource("1_kjo8j")
+upgrade_name = "homing"
+upgrade_title = "Smart Bullets II"
+upgrade_text = "Increase the homing strength of your bullets"
+upgrade_value = 0.5
+upgrade_cost = 0
+upgrade_rarity = "Uncommon"
+key_upgrade = false
+next_upgrade = SubResource("Resource_xjb6c")
+
+[resource]
+script = ExtResource("1_kjo8j")
+upgrade_name = "homing"
+upgrade_title = "Smart Bullets I"
+upgrade_text = "Add a small amount of  homing to your bullets "
+upgrade_value = 1.0
+upgrade_cost = 50
+upgrade_rarity = "Uncommon"
+key_upgrade = false
+next_upgrade = SubResource("Resource_gj5f0")

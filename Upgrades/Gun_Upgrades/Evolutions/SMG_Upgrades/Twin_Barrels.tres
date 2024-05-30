@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_eahcq")
 upgrade_name = "twin_barrels"
+upgrade_title = "Twin Barrels"
 upgrade_text = "Increase spread and fire rate"
 upgrade_value = 0.0
 upgrade_cost = 75
