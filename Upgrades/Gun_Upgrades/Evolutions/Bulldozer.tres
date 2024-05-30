@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_i68p4")
 upgrade_name = "bulldozer"
-upgrade_text = "Bullets gain health and only dissapear when their health is depleted. Shoot slower. Bullets do more damage and are bigger. "
+upgrade_text = "Bullets gain health and bounce off asteroids"
 upgrade_value = 0.0
 upgrade_cost = 100
 upgrade_rarity = "Legendary"

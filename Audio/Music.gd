@@ -11,7 +11,9 @@ var music_list = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var i = randi_range(0, music_list.size() - 1)
+	audio_stream_player.stream = music_list[i]
+	audio_stream_player.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,11 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0jlxjxdu4vma"]
+[gd_scene load_steps=10 format=3 uid="uid://c0jlxjxdu4vma"]
 
 [ext_resource type="Script" path="res://Scenes/UI/UI.gd" id="1_mphwc"]
 [ext_resource type="Texture2D" uid="uid://c81cyxo81c3w6" path="res://Sprites/UI/Bar-1.png.png" id="2_ky7pi"]
 [ext_resource type="Shader" path="res://Scenes/UI/UI.gdshader" id="3_2rjxw"]
+[ext_resource type="Texture2D" uid="uid://b7kfmiudhmkgw" path="res://Sprites/Common_Border-1.png.png" id="3_uwkv4"]
 [ext_resource type="Texture2D" uid="uid://c416wpu8cpp4g" path="res://Sprites/UI/Pause_Button-1.png.png" id="3_vwkcr"]
 [ext_resource type="PackedScene" uid="uid://dqx32ytchstvp" path="res://Scenes/Screens/Settings/settings_menu.tscn" id="4_aie5g"]
 [ext_resource type="AudioStream" uid="uid://dpnswdf45u1qi" path="res://Audio/Sounds/coin-upaif-14631.mp3" id="6_akabl"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wnhn1"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(30, 200, 0)
+angle_max = 90.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_min = 5.0
+scale_max = 5.0
+color = Color(0.745098, 0.6, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dpj74"]
 shader = ExtResource("3_2rjxw")
@@ -343,6 +357,12 @@ focus_neighbor_bottom = NodePath("../Reroll_Button")
 icon_alignment = 1
 vertical_icon_alignment = 0
 
+[node name="Sprite2D" type="Sprite2D" parent="Upgrade_Menu/First_Upgrade"]
+modulate = Color(0.745098, 0.6, 0, 1)
+position = Vector2(200, 176)
+scale = Vector2(6.25, 5.5)
+texture = ExtResource("3_uwkv4")
+
 [node name="Rarity_Color" type="ColorRect" parent="Upgrade_Menu/First_Upgrade"]
 layout_mode = 1
 anchors_preset = 15
@@ -374,6 +394,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -400.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -396,6 +417,40 @@ theme_override_font_sizes/font_size = 32
 text = "$"
 horizontal_alignment = 1
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Upgrade_Menu/First_Upgrade"]
+position = Vector2(391, 176)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Upgrade_Menu/First_Upgrade"]
+position = Vector2(10, 176)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Upgrade_Menu/First_Upgrade"]
+position = Vector2(200, 347)
+rotation = 1.5708
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Upgrade_Menu/First_Upgrade"]
+position = Vector2(200, 9)
+rotation = 1.5708
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
 [node name="Second_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
 anchors_preset = 8
@@ -414,6 +469,11 @@ focus_neighbor_right = NodePath("../Third_Upgrade")
 focus_neighbor_bottom = NodePath("../Reroll_Button")
 icon_alignment = 1
 vertical_icon_alignment = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Upgrade_Menu/Second_Upgrade"]
+position = Vector2(200, 176)
+scale = Vector2(6.25, 5.5)
+texture = ExtResource("3_uwkv4")
 
 [node name="Rarity_Color" type="ColorRect" parent="Upgrade_Menu/Second_Upgrade"]
 layout_mode = 1
@@ -468,6 +528,39 @@ theme_override_font_sizes/font_size = 32
 text = "$"
 horizontal_alignment = 1
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Upgrade_Menu/Second_Upgrade"]
+position = Vector2(391, 176)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+speed_scale = 1.5
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Upgrade_Menu/Second_Upgrade"]
+position = Vector2(10, 176)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Upgrade_Menu/Second_Upgrade"]
+position = Vector2(200, 347)
+rotation = 1.5708
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Upgrade_Menu/Second_Upgrade"]
+position = Vector2(200, 9)
+rotation = 1.5708
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
 [node name="Third_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
 anchors_preset = 8
@@ -486,6 +579,11 @@ focus_neighbor_right = NodePath("../First_Upgrade")
 focus_neighbor_bottom = NodePath("../Reroll_Button")
 icon_alignment = 1
 vertical_icon_alignment = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Upgrade_Menu/Third_Upgrade"]
+position = Vector2(200, 176)
+scale = Vector2(6.25, 5.5)
+texture = ExtResource("3_uwkv4")
 
 [node name="Rarity_Color" type="ColorRect" parent="Upgrade_Menu/Third_Upgrade"]
 layout_mode = 1
@@ -540,6 +638,40 @@ theme_override_font_sizes/font_size = 32
 text = "$"
 horizontal_alignment = 1
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Upgrade_Menu/Third_Upgrade"]
+position = Vector2(391, 176)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Upgrade_Menu/Third_Upgrade"]
+position = Vector2(10, 176)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Upgrade_Menu/Third_Upgrade"]
+position = Vector2(200, 347)
+rotation = 1.5708
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Upgrade_Menu/Third_Upgrade"]
+position = Vector2(200, 9)
+rotation = 1.5708
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
 [node name="Fourth_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
 anchors_preset = 8
@@ -558,6 +690,11 @@ focus_neighbor_right = NodePath("../Second_Upgrade")
 focus_neighbor_bottom = NodePath("../Reroll_Button")
 icon_alignment = 1
 vertical_icon_alignment = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Upgrade_Menu/Fourth_Upgrade"]
+position = Vector2(200, 176)
+scale = Vector2(6.25, 5.5)
+texture = ExtResource("3_uwkv4")
 
 [node name="Rarity_Color" type="ColorRect" parent="Upgrade_Menu/Fourth_Upgrade"]
 layout_mode = 1
@@ -612,6 +749,40 @@ theme_override_font_sizes/font_size = 32
 text = "$"
 horizontal_alignment = 1
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Upgrade_Menu/Fourth_Upgrade"]
+position = Vector2(391, 176)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Upgrade_Menu/Fourth_Upgrade"]
+position = Vector2(10, 176)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Upgrade_Menu/Fourth_Upgrade"]
+position = Vector2(200, 347)
+rotation = 1.5708
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Upgrade_Menu/Fourth_Upgrade"]
+position = Vector2(200, 9)
+rotation = 1.5708
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
 [node name="Fifth_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
 anchors_preset = 8
@@ -630,6 +801,11 @@ focus_neighbor_right = NodePath("../Third_Upgrade")
 focus_neighbor_bottom = NodePath("../Reroll_Button")
 icon_alignment = 1
 vertical_icon_alignment = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Upgrade_Menu/Fifth_Upgrade"]
+position = Vector2(200, 176)
+scale = Vector2(6.25, 5.5)
+texture = ExtResource("3_uwkv4")
 
 [node name="Rarity_Color" type="ColorRect" parent="Upgrade_Menu/Fifth_Upgrade"]
 layout_mode = 1
@@ -684,6 +860,40 @@ theme_override_font_sizes/font_size = 32
 text = "$"
 horizontal_alignment = 1
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Upgrade_Menu/Fifth_Upgrade"]
+position = Vector2(391, 176)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Upgrade_Menu/Fifth_Upgrade"]
+position = Vector2(10, 176)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Upgrade_Menu/Fifth_Upgrade"]
+position = Vector2(200, 347)
+rotation = 1.5708
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Upgrade_Menu/Fifth_Upgrade"]
+position = Vector2(200, 9)
+rotation = 1.5708
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
 [node name="Sixth_Upgrade" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
 anchors_preset = 8
@@ -702,6 +912,11 @@ focus_neighbor_right = NodePath("../First_Upgrade")
 focus_neighbor_bottom = NodePath("../Reroll_Button")
 icon_alignment = 1
 vertical_icon_alignment = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Upgrade_Menu/Sixth_Upgrade"]
+position = Vector2(200, 176)
+scale = Vector2(6.25, 5.5)
+texture = ExtResource("3_uwkv4")
 
 [node name="Rarity_Color" type="ColorRect" parent="Upgrade_Menu/Sixth_Upgrade"]
 layout_mode = 1
@@ -755,6 +970,40 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 text = "$"
 horizontal_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Upgrade_Menu/Sixth_Upgrade"]
+position = Vector2(391, 176)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Upgrade_Menu/Sixth_Upgrade"]
+position = Vector2(10, 176)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Upgrade_Menu/Sixth_Upgrade"]
+position = Vector2(200, 347)
+rotation = 1.5708
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Upgrade_Menu/Sixth_Upgrade"]
+position = Vector2(200, 9)
+rotation = 1.5708
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+lifetime = 2.0
+speed_scale = 1.5
 
 [node name="Reroll_Button" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1

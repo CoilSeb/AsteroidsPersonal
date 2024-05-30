@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_jpwcl")
 upgrade_name = "smg"
-upgrade_text = "Turn your gun into a short range SMG. Shoot faster and gain spread. Bullets become smaller and deal less damage."
+upgrade_text = "Turn your gun into a short range SMG."
 upgrade_value = 0.0
 upgrade_cost = 100
 upgrade_rarity = "Legendary"

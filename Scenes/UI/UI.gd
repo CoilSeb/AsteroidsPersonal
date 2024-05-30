@@ -91,6 +91,61 @@ const SOLD_1_PNG = preload("res://Sprites/Upgrades/Sold-1.png.png")
 	$Upgrade_Menu/Sixth_Upgrade/Rarity_Color
 ]
 
+@onready var rarity_sprites = [
+	$Upgrade_Menu/First_Upgrade/Sprite2D,
+	$Upgrade_Menu/Second_Upgrade/Sprite2D,
+	$Upgrade_Menu/Third_Upgrade/Sprite2D,
+	$Upgrade_Menu/Fourth_Upgrade/Sprite2D,
+	$Upgrade_Menu/Fifth_Upgrade/Sprite2D,
+	$Upgrade_Menu/Sixth_Upgrade/Sprite2D
+]
+
+@onready var button1_particles = [
+	$Upgrade_Menu/First_Upgrade/GPUParticles2D,
+	$Upgrade_Menu/First_Upgrade/GPUParticles2D2,
+	$Upgrade_Menu/First_Upgrade/GPUParticles2D3,
+	$Upgrade_Menu/First_Upgrade/GPUParticles2D4,
+]
+@onready var button2_particles = [
+	$Upgrade_Menu/Second_Upgrade/GPUParticles2D,
+	$Upgrade_Menu/Second_Upgrade/GPUParticles2D2,
+	$Upgrade_Menu/Second_Upgrade/GPUParticles2D3,
+	$Upgrade_Menu/Second_Upgrade/GPUParticles2D4,
+]
+@onready var button3_particles = [
+	$Upgrade_Menu/Third_Upgrade/GPUParticles2D,
+	$Upgrade_Menu/Third_Upgrade/GPUParticles2D2,
+	$Upgrade_Menu/Third_Upgrade/GPUParticles2D3,
+	$Upgrade_Menu/Third_Upgrade/GPUParticles2D4,
+]
+@onready var button4_particles = [
+	$Upgrade_Menu/Fourth_Upgrade/GPUParticles2D,
+	$Upgrade_Menu/Fourth_Upgrade/GPUParticles2D2,
+	$Upgrade_Menu/Fourth_Upgrade/GPUParticles2D3,
+	$Upgrade_Menu/Fourth_Upgrade/GPUParticles2D4,
+]
+@onready var button5_particles = [
+	$Upgrade_Menu/Fifth_Upgrade/GPUParticles2D,
+	$Upgrade_Menu/Fifth_Upgrade/GPUParticles2D2,
+	$Upgrade_Menu/Fifth_Upgrade/GPUParticles2D3,
+	$Upgrade_Menu/Fifth_Upgrade/GPUParticles2D4,
+]
+@onready var button6_particles = [
+	$Upgrade_Menu/Sixth_Upgrade/GPUParticles2D,
+	$Upgrade_Menu/Sixth_Upgrade/GPUParticles2D2,
+	$Upgrade_Menu/Sixth_Upgrade/GPUParticles2D3,
+	$Upgrade_Menu/Sixth_Upgrade/GPUParticles2D4,
+]
+
+@onready var legendary_particles = [
+	button1_particles,
+	button2_particles,
+	button3_particles,
+	button4_particles,
+	button5_particles,
+	button6_particles,
+]
+
 var score = 0
 var reroll_cost = 25
 var first_upgrade: upgrade
@@ -450,8 +505,11 @@ func evo_level_up():
 
 
 func get_upgrades():
-	var evolution = randi_range(0, 19)
-	var rare = randi_range(0, 9)
+	for array in legendary_particles:
+		for particles in array:
+			particles.emitting = false
+	var evolution = randi_range(0, 0)
+	var rare = randi_range(0, 0)
 	var l_index = randi_range(0, 4)
 	var r_index = randi_range(0, 4)
 	var done = false
@@ -491,13 +549,16 @@ func get_upgrades():
 				cost_labels[i].text = "$" + str(upgrades_cost[i])
 				match my_upgrade.upgrade_rarity:
 					"Common":
-						rarity_color_rects[i].color = Color8(255, 255, 255, 10)
+						rarity_sprites[i].set("modulate", Color("ffffff"))
 					"Uncommon":
-						rarity_color_rects[i].color = Color8(0, 192, 52, 35)
+						rarity_sprites[i].set("modulate", Color("009343"))
 					"Rare":
-						rarity_color_rects[i].color = Color8(0, 72, 191, 35)
+						rarity_sprites[i].set("modulate", Color("0070b2"))
 					"Legendary":
-						rarity_color_rects[i].color = Color8(191, 96, 0, 35)
+						rarity_sprites[i].set("modulate", Color("be9900"))
+						for j in range(4):
+							legendary_particles[i][j].emitting = true
+							
 		else:
 			text_labels[i].text = "null"
 			textures[i].texture = null
@@ -542,8 +603,10 @@ func apply_my_upgrade(my_upgrade):
 	if my_upgrade == null:
 		return
 	Global.upgrades_test.erase(my_upgrade)
-	if Global.evolutions_test:
+	if Global.evolutions_test.has(my_upgrade):
 		Global.evolutions_test.erase(my_upgrade)
+	if Global.rare_upgrades.has(my_upgrade):
+		Global.rare_upgrades.erase(my_upgrade)
 	my_upgrade.upgrade_player()
 	if my_upgrade.next_upgrade:
 		Global.upgrades_test.append(my_upgrade.next_upgrade)
