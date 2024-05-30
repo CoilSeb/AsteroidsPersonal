@@ -177,6 +177,7 @@ func spawn_wave():
 
 
 func _on_wave_timer_timeout():
+	asteroid_timer.start()
 	var temp_vol = Global.sound_effects_volume
 	Global.sound_effects_volume = -400
 	for asteroid in get_tree().get_nodes_in_group("Big Asteroid"):
