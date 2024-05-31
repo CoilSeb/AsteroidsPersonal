@@ -126,6 +126,7 @@ visible = false
 my_scenes_button = NodePath("../Control/Settings")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_brg4k")
 anchors_preset = 15
 anchor_right = 1.0

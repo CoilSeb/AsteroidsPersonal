@@ -55,106 +55,6 @@ const SOLD_1_PNG = preload("res://Sprites/Upgrades/Sold-1.png.png")
 	$Upgrade_Menu/Sixth_Upgrade
 ]
 
-@onready var textures = [
-	$Upgrade_Menu/First_Upgrade/TextureRect1,
-	$Upgrade_Menu/Second_Upgrade/TextureRect2,
-	$Upgrade_Menu/Third_Upgrade/TextureRect3,
-	$Upgrade_Menu/Fourth_Upgrade/TextureRect1,
-	$Upgrade_Menu/Fifth_Upgrade/TextureRect2,
-	$Upgrade_Menu/Sixth_Upgrade/TextureRect3
-] 
-
-@onready var text_labels = [
-	$Upgrade_Menu/First_Upgrade/RichTextLabel1,
-	$Upgrade_Menu/Second_Upgrade/RichTextLabel1,
-	$Upgrade_Menu/Third_Upgrade/RichTextLabel1,
-	$Upgrade_Menu/Fourth_Upgrade/RichTextLabel1,
-	$Upgrade_Menu/Fifth_Upgrade/RichTextLabel1,
-	$Upgrade_Menu/Sixth_Upgrade/RichTextLabel1,
-]
-
-@onready var titles = [
-	$Upgrade_Menu/First_Upgrade/Title,
-	$Upgrade_Menu/Second_Upgrade/Title,
-	$Upgrade_Menu/Third_Upgrade/Title,
-	$Upgrade_Menu/Fourth_Upgrade/Title,
-	$Upgrade_Menu/Fifth_Upgrade/Title,
-	$Upgrade_Menu/Sixth_Upgrade/Title,
-]
-
-@onready var cost_labels = [
-	$Upgrade_Menu/First_Upgrade/Cost_Label,
-	$Upgrade_Menu/Second_Upgrade/Cost_Label,
-	$Upgrade_Menu/Third_Upgrade/Cost_Label,
-	$Upgrade_Menu/Fourth_Upgrade/Cost_Label,
-	$Upgrade_Menu/Fifth_Upgrade/Cost_Label,
-	$Upgrade_Menu/Sixth_Upgrade/Cost_Label
-]
-
-@onready var rarity_color_rects = [
-	$Upgrade_Menu/First_Upgrade/Rarity_Color,
-	$Upgrade_Menu/Second_Upgrade/Rarity_Color,
-	$Upgrade_Menu/Third_Upgrade/Rarity_Color,
-	$Upgrade_Menu/Fourth_Upgrade/Rarity_Color,
-	$Upgrade_Menu/Fifth_Upgrade/Rarity_Color,
-	$Upgrade_Menu/Sixth_Upgrade/Rarity_Color
-]
-
-@onready var rarity_sprites = [
-	$Upgrade_Menu/First_Upgrade/Sprite2D,
-	$Upgrade_Menu/Second_Upgrade/Sprite2D,
-	$Upgrade_Menu/Third_Upgrade/Sprite2D,
-	$Upgrade_Menu/Fourth_Upgrade/Sprite2D,
-	$Upgrade_Menu/Fifth_Upgrade/Sprite2D,
-	$Upgrade_Menu/Sixth_Upgrade/Sprite2D
-]
-
-@onready var button1_particles = [
-	$Upgrade_Menu/First_Upgrade/GPUParticles2D,
-	$Upgrade_Menu/First_Upgrade/GPUParticles2D2,
-	$Upgrade_Menu/First_Upgrade/GPUParticles2D3,
-	$Upgrade_Menu/First_Upgrade/GPUParticles2D4,
-]
-@onready var button2_particles = [
-	$Upgrade_Menu/Second_Upgrade/GPUParticles2D,
-	$Upgrade_Menu/Second_Upgrade/GPUParticles2D2,
-	$Upgrade_Menu/Second_Upgrade/GPUParticles2D3,
-	$Upgrade_Menu/Second_Upgrade/GPUParticles2D4,
-]
-@onready var button3_particles = [
-	$Upgrade_Menu/Third_Upgrade/GPUParticles2D,
-	$Upgrade_Menu/Third_Upgrade/GPUParticles2D2,
-	$Upgrade_Menu/Third_Upgrade/GPUParticles2D3,
-	$Upgrade_Menu/Third_Upgrade/GPUParticles2D4,
-]
-@onready var button4_particles = [
-	$Upgrade_Menu/Fourth_Upgrade/GPUParticles2D,
-	$Upgrade_Menu/Fourth_Upgrade/GPUParticles2D2,
-	$Upgrade_Menu/Fourth_Upgrade/GPUParticles2D3,
-	$Upgrade_Menu/Fourth_Upgrade/GPUParticles2D4,
-]
-@onready var button5_particles = [
-	$Upgrade_Menu/Fifth_Upgrade/GPUParticles2D,
-	$Upgrade_Menu/Fifth_Upgrade/GPUParticles2D2,
-	$Upgrade_Menu/Fifth_Upgrade/GPUParticles2D3,
-	$Upgrade_Menu/Fifth_Upgrade/GPUParticles2D4,
-]
-@onready var button6_particles = [
-	$Upgrade_Menu/Sixth_Upgrade/GPUParticles2D,
-	$Upgrade_Menu/Sixth_Upgrade/GPUParticles2D2,
-	$Upgrade_Menu/Sixth_Upgrade/GPUParticles2D3,
-	$Upgrade_Menu/Sixth_Upgrade/GPUParticles2D4,
-]
-
-@onready var legendary_particles = [
-	button1_particles,
-	button2_particles,
-	button3_particles,
-	button4_particles,
-	button5_particles,
-	button6_particles,
-]
-
 var score = 0
 var reroll_cost = 25
 var first_upgrade: upgrade
@@ -465,11 +365,12 @@ func _on_sixth_upgrade_pressed():
 
 
 func sold(index):
+	buttons[index].index = index
 	buttons[index].disabled = true
-	textures[index].texture = SOLD_1_PNG
-	cost_labels[index].text = ""
-	text_labels[index].text = ""
-	rarity_color_rects[index].color = Color("9d9d9d19")
+	buttons[index].texture_rect_1.texture = SOLD_1_PNG
+	buttons[index].cost_label.text = ""
+	buttons[index].rich_text_label_1.text = ""
+	buttons[index].title.text = ""
 
 
 func _on_reroll_button_pressed():
@@ -510,14 +411,10 @@ func evo_level_up():
 	evo_label.hide()
 	get_tree().paused = true
 	upgrade_menu.visible = true
-	get_evolutions()
 	level_up_timer.start()
 
 
 func get_upgrades():
-	for array in legendary_particles:
-		for particles in array:
-			particles.emitting = false
 	var evolution = randi_range(0, 0)
 	var rare = randi_range(0, 0)
 	var l_index = randi_range(0, 4)
@@ -546,31 +443,31 @@ func get_upgrades():
 	Global.reroll_cost = round(reroll_cost * Global.inflation)
 	reroll_cost += (5 * Global.inflation)
 	for i in range(6):
+		buttons[i].stop_particles()
 		if Global.upgrades_test.size() - 1 >= i:
 			var my_upgrade = Global.upgrades_test[i]
-			
 			if !buttons[i].disabled:
-				titles[i].text = "[center]" + my_upgrade.upgrade_title
-				text_labels[i].text = "[center]" + my_upgrade.upgrade_text
-				textures[i].texture = my_upgrade.upgrade_texture
+				buttons[i].index = i
+				buttons[i].title.text = "[center]" + my_upgrade.upgrade_title
+				buttons[i].rich_text_label_1.text = "[center]" + my_upgrade.upgrade_text
+				buttons[i].texture_rect_1.texture = my_upgrade.upgrade_texture
 				upgrades[i] = my_upgrade
-				upgrades_cost[i] = round(my_upgrade.upgrade_cost + randi_range(0,25) * Global.inflation)
-				cost_labels[i].text = "$" + str(upgrades_cost[i])
+				buttons[i].upgrade_cost = round(my_upgrade.upgrade_cost + randi_range(0,25) * Global.inflation)
+				buttons[i].cost_label.text = "$" + str(buttons[i].upgrade_cost)
 				match my_upgrade.upgrade_rarity:
 					"Common":
-						rarity_sprites[i].set("modulate", Color("ffffff"))
+						buttons[i].sprite2D.set("modulate", Color("ffffff"))
 					"Uncommon":
-						rarity_sprites[i].set("modulate", Color("009343"))
+						buttons[i].sprite2D.set("modulate", Color("009343"))
 					"Rare":
-						rarity_sprites[i].set("modulate", Color("0070b2"))
+						buttons[i].sprite2D.set("modulate", Color("0070b2"))
 					"Legendary":
-						rarity_sprites[i].set("modulate", Color("be9900"))
-						for j in range(4):
-							legendary_particles[i][j].emitting = true
+						buttons[i].sprite2D.set("modulate", Color("be9900"))
+						buttons[i].start_particles()
 							
 		else:
-			text_labels[i].text = "null"
-			textures[i].texture = null
+			buttons[i].rich_text_label_1.text.text = "null"
+			buttons[i].texture_rect_1.texture.texture = null
 			upgrades[i] = null
 		
 	first_upgrade = upgrades[0]
@@ -585,26 +482,6 @@ func get_upgrades():
 	fourth_upgrade_cost = upgrades_cost[3]
 	fifth_upgrade_cost = upgrades_cost[4]
 	sixth_upgrade_cost = upgrades_cost[5]
-
-
-func get_evolutions():
-	Global.evolutions_test.shuffle()
-	
-	for i in range(3):
-		if Global.evolutions_test.size() - 1 >= i:
-			var my_upgrade = Global.evolutions_test[i]
-			
-			text_labels[i].text = "[center]" + my_upgrade.upgrade_text
-			textures[i].texture = my_upgrade.upgrade_texture
-			upgrades[i] = my_upgrade
-		else:
-			text_labels[i].text = "null"
-			textures[i].texture = null
-			upgrades[i] = null
-		
-	first_upgrade = upgrades[0]
-	second_upgrade = upgrades[1]
-	third_upgrade = upgrades[2]
 
 
 func apply_my_upgrade(my_upgrade):

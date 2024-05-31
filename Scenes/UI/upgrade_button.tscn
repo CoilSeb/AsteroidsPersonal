@@ -1,0 +1,153 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj4yiy8yku15y"]
+
+[ext_resource type="Script" path="res://Scenes/UI/upgrade_button.gd" id="1_ni5aw"]
+[ext_resource type="Texture2D" uid="uid://5t1grs2nwgo0" path="res://Sprites/Border-1.png.png" id="2_wokj0"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wnhn1"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(0.5, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(30, 200, 0)
+angle_max = 90.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+scale_min = 5.0
+scale_max = 5.0
+color = Color(0.745098, 0.6, 0, 1)
+
+[node name="First_Upgrade" type="Button"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -770.0
+offset_top = -365.0
+offset_right = -370.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.95, 0.95)
+focus_neighbor_left = NodePath("../Third_Upgrade")
+focus_neighbor_right = NodePath("../Second_Upgrade")
+focus_neighbor_bottom = NodePath("../Reroll_Button")
+icon_alignment = 1
+vertical_icon_alignment = 0
+script = ExtResource("1_ni5aw")
+
+[node name="Rarity_Color" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.615686, 0.615686, 0.615686, 0.196078)
+
+[node name="TextureRect1" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -80.0
+offset_right = 160.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -102.0
+offset_right = -6.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.784314)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.745098, 0.6, 0, 1)
+position = Vector2(200, 176)
+scale = Vector2(6.25, 5.5)
+texture = ExtResource("2_wokj0")
+
+[node name="RichTextLabel1" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = 105.0
+offset_right = -24.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+fit_content = true
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -53.0
+offset_bottom = -8.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+fit_content = true
+
+[node name="Cost_Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -50.0
+offset_right = 20.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "$"
+horizontal_alignment = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(397, 176)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+speed_scale = 5.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+position = Vector2(3, 176)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+speed_scale = 5.0
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+position = Vector2(200, 349)
+rotation = 1.5708
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_wnhn1")
+speed_scale = 5.0
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

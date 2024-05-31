@@ -84,13 +84,12 @@ func upgrade_player():
 
 func bullet_count_double():
 	Global.bullet_count *= 2
-	Global.spread *= 1
 	Global.damage /= 1.5
 
 func bullet_count():
 	Global.bullet_count += upgrade_value
 	Global.spread += upgrade_value * 0.5
-	Global.damage /= upgrade_value
+	Global.damage /= 1.75
 
 func homing():
 	Global.homing_strength += upgrade_value

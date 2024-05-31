@@ -1,25 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0jlxjxdu4vma"]
+[gd_scene load_steps=9 format=3 uid="uid://c0jlxjxdu4vma"]
 
 [ext_resource type="Script" path="res://Scenes/UI/UI.gd" id="1_mphwc"]
 [ext_resource type="Texture2D" uid="uid://c81cyxo81c3w6" path="res://Sprites/UI/Bar-1.png.png" id="2_ky7pi"]
+[ext_resource type="PackedScene" uid="uid://cj4yiy8yku15y" path="res://Scenes/UI/upgrade_button.tscn" id="3_1ftdo"]
 [ext_resource type="Shader" path="res://Scenes/UI/UI.gdshader" id="3_2rjxw"]
-[ext_resource type="Texture2D" uid="uid://b7kfmiudhmkgw" path="res://Sprites/Common_Border-1.png.png" id="3_uwkv4"]
 [ext_resource type="Texture2D" uid="uid://c416wpu8cpp4g" path="res://Sprites/UI/Pause_Button-1.png.png" id="3_vwkcr"]
 [ext_resource type="PackedScene" uid="uid://dqx32ytchstvp" path="res://Scenes/Screens/Settings/settings_menu.tscn" id="4_aie5g"]
 [ext_resource type="AudioStream" uid="uid://dpnswdf45u1qi" path="res://Audio/Sounds/coin-upaif-14631.mp3" id="6_akabl"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wnhn1"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(30, 200, 0)
-angle_max = 90.0
-direction = Vector3(0, 0, 0)
-spread = 0.0
-initial_velocity_min = 50.0
-initial_velocity_max = 50.0
-scale_min = 5.0
-scale_max = 5.0
-color = Color(0.745098, 0.6, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dpj74"]
 shader = ExtResource("3_2rjxw")
@@ -37,8 +24,8 @@ shader_parameter/distort_intensity = 0.001
 shader_parameter/noise_opacity = 0.1
 shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.0
-shader_parameter/aberration = 0.003
-shader_parameter/brightness = 1.4
+shader_parameter/aberration = 0.00300005
+shader_parameter/brightness = 1.3
 shader_parameter/discolor = true
 shader_parameter/warp_amount = 0.0
 shader_parameter/clip_warp = false
@@ -309,7 +296,6 @@ texture_progress = ExtResource("2_ky7pi")
 tint_progress = Color(0.866667, 0, 0.0745098, 0.717647)
 
 [node name="Upgrade_Menu" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -342,848 +328,6 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 100
 text = "THE STORE"
 
-[node name="First_Upgrade" type="Button" parent="Upgrade_Menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -770.0
-offset_top = -365.0
-offset_right = -370.0
-offset_bottom = -15.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_neighbor_left = NodePath("../Third_Upgrade")
-focus_neighbor_right = NodePath("../Second_Upgrade")
-focus_neighbor_bottom = NodePath("../Reroll_Button")
-icon_alignment = 1
-vertical_icon_alignment = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="Upgrade_Menu/First_Upgrade"]
-modulate = Color(0.745098, 0.6, 0, 1)
-position = Vector2(200, 176)
-scale = Vector2(6.25, 5.5)
-texture = ExtResource("3_uwkv4")
-
-[node name="Rarity_Color" type="ColorRect" parent="Upgrade_Menu/First_Upgrade"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-color = Color(0.615686, 0.615686, 0.615686, 0.196078)
-
-[node name="TextureRect1" type="TextureRect" parent="Upgrade_Menu/First_Upgrade"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = -80.0
-offset_right = 160.0
-offset_bottom = 80.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="Upgrade_Menu/First_Upgrade"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 19.0
-offset_top = -102.0
-offset_right = -19.0
-offset_bottom = -9.0
-grow_horizontal = 2
-grow_vertical = 0
-color = Color(0, 0, 0, 0.784314)
-
-[node name="RichTextLabel1" type="RichTextLabel" parent="Upgrade_Menu/First_Upgrade"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 25.0
-offset_top = 105.0
-offset_right = -24.0
-offset_bottom = 112.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 18
-bbcode_enabled = true
-fit_content = true
-
-[node name="Title" type="RichTextLabel" parent="Upgrade_Menu/First_Upgrade"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = -53.0
-offset_bottom = -8.0
-grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-fit_content = true
-
-[node name="Cost_Label" type="Label" parent="Upgrade_Menu/First_Upgrade"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -50.0
-offset_right = 20.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-text = "$"
-horizontal_alignment = 1
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Upgrade_Menu/First_Upgrade"]
-position = Vector2(391, 176)
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-speed_scale = 5.0
-
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="Upgrade_Menu/First_Upgrade"]
-position = Vector2(10, 176)
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-speed_scale = 5.0
-
-[node name="GPUParticles2D3" type="GPUParticles2D" parent="Upgrade_Menu/First_Upgrade"]
-position = Vector2(200, 347)
-rotation = 1.5708
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-speed_scale = 5.0
-
-[node name="GPUParticles2D4" type="GPUParticles2D" parent="Upgrade_Menu/First_Upgrade"]
-position = Vector2(200, 9)
-rotation = 1.5708
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-speed_scale = 5.0
-
-[node name="Second_Upgrade" type="Button" parent="Upgrade_Menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -365.0
-offset_right = 200.0
-offset_bottom = -15.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_neighbor_left = NodePath("../First_Upgrade")
-focus_neighbor_right = NodePath("../Third_Upgrade")
-focus_neighbor_bottom = NodePath("../Reroll_Button")
-icon_alignment = 1
-vertical_icon_alignment = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="Upgrade_Menu/Second_Upgrade"]
-position = Vector2(200, 176)
-scale = Vector2(6.25, 5.5)
-texture = ExtResource("3_uwkv4")
-
-[node name="Rarity_Color" type="ColorRect" parent="Upgrade_Menu/Second_Upgrade"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-color = Color(0.615686, 0.615686, 0.615686, 0.196078)
-
-[node name="TextureRect2" type="TextureRect" parent="Upgrade_Menu/Second_Upgrade"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = -80.0
-offset_right = 160.0
-offset_bottom = 80.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="Upgrade_Menu/Second_Upgrade"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 19.0
-offset_top = -102.0
-offset_right = -19.0
-offset_bottom = -9.0
-grow_horizontal = 2
-grow_vertical = 0
-color = Color(0, 0, 0, 0.784314)
-
-[node name="RichTextLabel1" type="RichTextLabel" parent="Upgrade_Menu/Second_Upgrade"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 25.0
-offset_top = 105.0
-offset_right = -24.0
-offset_bottom = 112.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 18
-bbcode_enabled = true
-fit_content = true
-
-[node name="Title" type="RichTextLabel" parent="Upgrade_Menu/Second_Upgrade"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = -53.0
-offset_bottom = -8.0
-grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-fit_content = true
-
-[node name="Cost_Label" type="Label" parent="Upgrade_Menu/Second_Upgrade"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -50.0
-offset_right = 20.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-text = "$"
-horizontal_alignment = 1
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Upgrade_Menu/Second_Upgrade"]
-position = Vector2(391, 176)
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-speed_scale = 5.0
-
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="Upgrade_Menu/Second_Upgrade"]
-position = Vector2(10, 176)
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
-[node name="GPUParticles2D3" type="GPUParticles2D" parent="Upgrade_Menu/Second_Upgrade"]
-position = Vector2(200, 347)
-rotation = 1.5708
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
-[node name="GPUParticles2D4" type="GPUParticles2D" parent="Upgrade_Menu/Second_Upgrade"]
-position = Vector2(200, 9)
-rotation = 1.5708
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
-[node name="Third_Upgrade" type="Button" parent="Upgrade_Menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 370.0
-offset_top = -365.0
-offset_right = 770.0
-offset_bottom = -15.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_neighbor_left = NodePath("../Second_Upgrade")
-focus_neighbor_right = NodePath("../First_Upgrade")
-focus_neighbor_bottom = NodePath("../Reroll_Button")
-icon_alignment = 1
-vertical_icon_alignment = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="Upgrade_Menu/Third_Upgrade"]
-position = Vector2(200, 176)
-scale = Vector2(6.25, 5.5)
-texture = ExtResource("3_uwkv4")
-
-[node name="Rarity_Color" type="ColorRect" parent="Upgrade_Menu/Third_Upgrade"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-color = Color(0.615686, 0.615686, 0.615686, 0.196078)
-
-[node name="TextureRect3" type="TextureRect" parent="Upgrade_Menu/Third_Upgrade"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = -80.0
-offset_right = 160.0
-offset_bottom = 80.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="Upgrade_Menu/Third_Upgrade"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 19.0
-offset_top = -102.0
-offset_right = -19.0
-offset_bottom = -9.0
-grow_horizontal = 2
-grow_vertical = 0
-color = Color(0, 0, 0, 0.784314)
-
-[node name="RichTextLabel1" type="RichTextLabel" parent="Upgrade_Menu/Third_Upgrade"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 25.0
-offset_top = 105.0
-offset_right = -24.0
-offset_bottom = 112.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 18
-bbcode_enabled = true
-fit_content = true
-
-[node name="Title" type="RichTextLabel" parent="Upgrade_Menu/Third_Upgrade"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = -53.0
-offset_bottom = -8.0
-grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-fit_content = true
-
-[node name="Cost_Label" type="Label" parent="Upgrade_Menu/Third_Upgrade"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -50.0
-offset_right = 20.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-text = "$"
-horizontal_alignment = 1
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Upgrade_Menu/Third_Upgrade"]
-position = Vector2(391, 176)
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="Upgrade_Menu/Third_Upgrade"]
-position = Vector2(10, 176)
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
-[node name="GPUParticles2D3" type="GPUParticles2D" parent="Upgrade_Menu/Third_Upgrade"]
-position = Vector2(200, 347)
-rotation = 1.5708
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
-[node name="GPUParticles2D4" type="GPUParticles2D" parent="Upgrade_Menu/Third_Upgrade"]
-position = Vector2(200, 9)
-rotation = 1.5708
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
-[node name="Fourth_Upgrade" type="Button" parent="Upgrade_Menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -770.0
-offset_top = 60.0
-offset_right = -370.0
-offset_bottom = 410.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_neighbor_left = NodePath("../Third_Upgrade")
-focus_neighbor_right = NodePath("../Second_Upgrade")
-focus_neighbor_bottom = NodePath("../Reroll_Button")
-icon_alignment = 1
-vertical_icon_alignment = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="Upgrade_Menu/Fourth_Upgrade"]
-position = Vector2(200, 176)
-scale = Vector2(6.25, 5.5)
-texture = ExtResource("3_uwkv4")
-
-[node name="Rarity_Color" type="ColorRect" parent="Upgrade_Menu/Fourth_Upgrade"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-color = Color(0.615686, 0.615686, 0.615686, 0.196078)
-
-[node name="TextureRect1" type="TextureRect" parent="Upgrade_Menu/Fourth_Upgrade"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = -80.0
-offset_right = 160.0
-offset_bottom = 80.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="Upgrade_Menu/Fourth_Upgrade"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 19.0
-offset_top = -102.0
-offset_right = -19.0
-offset_bottom = -9.0
-grow_horizontal = 2
-grow_vertical = 0
-color = Color(0, 0, 0, 0.784314)
-
-[node name="RichTextLabel1" type="RichTextLabel" parent="Upgrade_Menu/Fourth_Upgrade"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 25.0
-offset_top = 105.0
-offset_right = -24.0
-offset_bottom = 112.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 18
-bbcode_enabled = true
-fit_content = true
-
-[node name="Title" type="RichTextLabel" parent="Upgrade_Menu/Fourth_Upgrade"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = -53.0
-offset_bottom = -8.0
-grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-fit_content = true
-
-[node name="Cost_Label" type="Label" parent="Upgrade_Menu/Fourth_Upgrade"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -50.0
-offset_right = 20.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-text = "$"
-horizontal_alignment = 1
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Upgrade_Menu/Fourth_Upgrade"]
-position = Vector2(391, 176)
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="Upgrade_Menu/Fourth_Upgrade"]
-position = Vector2(10, 176)
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
-[node name="GPUParticles2D3" type="GPUParticles2D" parent="Upgrade_Menu/Fourth_Upgrade"]
-position = Vector2(200, 347)
-rotation = 1.5708
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
-[node name="GPUParticles2D4" type="GPUParticles2D" parent="Upgrade_Menu/Fourth_Upgrade"]
-position = Vector2(200, 9)
-rotation = 1.5708
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
-[node name="Fifth_Upgrade" type="Button" parent="Upgrade_Menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = 60.0
-offset_right = 200.0
-offset_bottom = 410.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_neighbor_left = NodePath("../First_Upgrade")
-focus_neighbor_right = NodePath("../Third_Upgrade")
-focus_neighbor_bottom = NodePath("../Reroll_Button")
-icon_alignment = 1
-vertical_icon_alignment = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="Upgrade_Menu/Fifth_Upgrade"]
-position = Vector2(200, 176)
-scale = Vector2(6.25, 5.5)
-texture = ExtResource("3_uwkv4")
-
-[node name="Rarity_Color" type="ColorRect" parent="Upgrade_Menu/Fifth_Upgrade"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-color = Color(0.615686, 0.615686, 0.615686, 0.196078)
-
-[node name="TextureRect2" type="TextureRect" parent="Upgrade_Menu/Fifth_Upgrade"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = -80.0
-offset_right = 160.0
-offset_bottom = 80.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="Upgrade_Menu/Fifth_Upgrade"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 19.0
-offset_top = -102.0
-offset_right = -19.0
-offset_bottom = -9.0
-grow_horizontal = 2
-grow_vertical = 0
-color = Color(0, 0, 0, 0.784314)
-
-[node name="RichTextLabel1" type="RichTextLabel" parent="Upgrade_Menu/Fifth_Upgrade"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 25.0
-offset_top = 105.0
-offset_right = -24.0
-offset_bottom = 112.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 18
-bbcode_enabled = true
-fit_content = true
-
-[node name="Title" type="RichTextLabel" parent="Upgrade_Menu/Fifth_Upgrade"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = -53.0
-offset_bottom = -8.0
-grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-fit_content = true
-
-[node name="Cost_Label" type="Label" parent="Upgrade_Menu/Fifth_Upgrade"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -50.0
-offset_right = 20.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-text = "$"
-horizontal_alignment = 1
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Upgrade_Menu/Fifth_Upgrade"]
-position = Vector2(391, 176)
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="Upgrade_Menu/Fifth_Upgrade"]
-position = Vector2(10, 176)
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
-[node name="GPUParticles2D3" type="GPUParticles2D" parent="Upgrade_Menu/Fifth_Upgrade"]
-position = Vector2(200, 347)
-rotation = 1.5708
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
-[node name="GPUParticles2D4" type="GPUParticles2D" parent="Upgrade_Menu/Fifth_Upgrade"]
-position = Vector2(200, 9)
-rotation = 1.5708
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
-[node name="Sixth_Upgrade" type="Button" parent="Upgrade_Menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 370.0
-offset_top = 60.0
-offset_right = 770.0
-offset_bottom = 410.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_neighbor_left = NodePath("../Second_Upgrade")
-focus_neighbor_right = NodePath("../First_Upgrade")
-focus_neighbor_bottom = NodePath("../Reroll_Button")
-icon_alignment = 1
-vertical_icon_alignment = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="Upgrade_Menu/Sixth_Upgrade"]
-position = Vector2(200, 176)
-scale = Vector2(6.25, 5.5)
-texture = ExtResource("3_uwkv4")
-
-[node name="Rarity_Color" type="ColorRect" parent="Upgrade_Menu/Sixth_Upgrade"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-color = Color(0.615686, 0.615686, 0.615686, 0.196078)
-
-[node name="TextureRect3" type="TextureRect" parent="Upgrade_Menu/Sixth_Upgrade"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = -80.0
-offset_right = 160.0
-offset_bottom = 80.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="Upgrade_Menu/Sixth_Upgrade"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 19.0
-offset_top = -102.0
-offset_right = -19.0
-offset_bottom = -9.0
-grow_horizontal = 2
-grow_vertical = 0
-color = Color(0, 0, 0, 0.784314)
-
-[node name="RichTextLabel1" type="RichTextLabel" parent="Upgrade_Menu/Sixth_Upgrade"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 25.0
-offset_top = 105.0
-offset_right = -24.0
-offset_bottom = 112.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 18
-bbcode_enabled = true
-fit_content = true
-
-[node name="Title" type="RichTextLabel" parent="Upgrade_Menu/Sixth_Upgrade"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = -53.0
-offset_bottom = -8.0
-grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-fit_content = true
-
-[node name="Cost_Label" type="Label" parent="Upgrade_Menu/Sixth_Upgrade"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -50.0
-offset_right = 20.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-text = "$"
-horizontal_alignment = 1
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Upgrade_Menu/Sixth_Upgrade"]
-position = Vector2(391, 176)
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="Upgrade_Menu/Sixth_Upgrade"]
-position = Vector2(10, 176)
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
-[node name="GPUParticles2D3" type="GPUParticles2D" parent="Upgrade_Menu/Sixth_Upgrade"]
-position = Vector2(200, 347)
-rotation = 1.5708
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
-[node name="GPUParticles2D4" type="GPUParticles2D" parent="Upgrade_Menu/Sixth_Upgrade"]
-position = Vector2(200, 9)
-rotation = 1.5708
-emitting = false
-amount = 50
-process_material = SubResource("ParticleProcessMaterial_wnhn1")
-lifetime = 2.0
-speed_scale = 5.0
-
 [node name="Reroll_Button" type="Button" parent="Upgrade_Menu"]
 layout_mode = 1
 anchors_preset = 7
@@ -1197,9 +341,6 @@ offset_right = 77.5
 offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 0
-focus_neighbor_left = NodePath("../First_Upgrade")
-focus_neighbor_top = NodePath("../Second_Upgrade")
-focus_neighbor_right = NodePath("../Third_Upgrade")
 theme_override_font_sizes/font_size = 32
 text = "Reroll
 $25"
@@ -1217,12 +358,99 @@ offset_right = -26.0
 offset_bottom = -25.0
 grow_horizontal = 0
 grow_vertical = 0
-focus_neighbor_left = NodePath("../First_Upgrade")
-focus_neighbor_top = NodePath("../Second_Upgrade")
-focus_neighbor_right = NodePath("../Third_Upgrade")
 theme_override_font_sizes/font_size = 32
 text = "Next Wave
 (Interest = $128)"
+
+[node name="First_Upgrade" parent="Upgrade_Menu" instance=ExtResource("3_1ftdo")]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 250.0
+offset_top = 170.0
+offset_right = 650.0
+offset_bottom = 520.0
+grow_horizontal = 1
+grow_vertical = 1
+focus_neighbor_left = NodePath("")
+focus_neighbor_right = NodePath("")
+
+[node name="Second_Upgrade" parent="Upgrade_Menu" instance=ExtResource("3_1ftdo")]
+layout_mode = 1
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -200.0
+offset_top = 170.0
+offset_right = 200.0
+offset_bottom = 520.0
+grow_vertical = 1
+focus_neighbor_left = NodePath("")
+focus_neighbor_right = NodePath("")
+
+[node name="Third_Upgrade" parent="Upgrade_Menu" instance=ExtResource("3_1ftdo")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -650.0
+offset_top = 170.0
+offset_right = -250.0
+offset_bottom = 520.0
+grow_horizontal = 0
+grow_vertical = 1
+focus_neighbor_left = NodePath("")
+focus_neighbor_right = NodePath("")
+
+[node name="Fourth_Upgrade" parent="Upgrade_Menu" instance=ExtResource("3_1ftdo")]
+layout_mode = 1
+anchors_preset = 2
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_left = 250.0
+offset_top = -500.0
+offset_right = 650.0
+offset_bottom = -150.0
+grow_horizontal = 1
+grow_vertical = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_right = NodePath("")
+
+[node name="Fifth_Upgrade" parent="Upgrade_Menu" instance=ExtResource("3_1ftdo")]
+layout_mode = 1
+anchors_preset = 7
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -500.0
+offset_right = 200.0
+offset_bottom = -150.0
+grow_vertical = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_right = NodePath("")
+
+[node name="Sixth_Upgrade" parent="Upgrade_Menu" instance=ExtResource("3_1ftdo")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -650.0
+offset_top = -500.0
+offset_right = -250.0
+offset_bottom = -150.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_right = NodePath("")
 
 [node name="PauseMenu" type="Control" parent="."]
 visible = false
@@ -1476,12 +704,6 @@ stream = ExtResource("6_akabl")
 
 [connection signal="timeout" from="Wave_Counter_Timer" to="." method="_on_wave_counter_timer_timeout"]
 [connection signal="timeout" from="Wave_Blink_Timer" to="." method="_on_wave_blink_timer_timeout"]
-[connection signal="pressed" from="Upgrade_Menu/First_Upgrade" to="." method="_on_first_upgrade_pressed"]
-[connection signal="pressed" from="Upgrade_Menu/Second_Upgrade" to="." method="_on_second_upgrade_pressed"]
-[connection signal="pressed" from="Upgrade_Menu/Third_Upgrade" to="." method="_on_third_upgrade_pressed"]
-[connection signal="pressed" from="Upgrade_Menu/Fourth_Upgrade" to="." method="_on_fourth_upgrade_pressed"]
-[connection signal="pressed" from="Upgrade_Menu/Fifth_Upgrade" to="." method="_on_fifth_upgrade_pressed"]
-[connection signal="pressed" from="Upgrade_Menu/Sixth_Upgrade" to="." method="_on_sixth_upgrade_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Reroll_Button" to="." method="_on_reroll_button_pressed"]
 [connection signal="pressed" from="Upgrade_Menu/Next_Wave_Button" to="." method="_on_next_wave_button_pressed"]
 [connection signal="pressed" from="PauseMenu/Restart" to="." method="_on_restart_pressed"]
