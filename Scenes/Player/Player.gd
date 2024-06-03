@@ -140,8 +140,6 @@ func _physics_process(delta):
 		
 	# Shooting
 	if Global.can_shoot:
-		var angle = 0 - (Global.bullet_count * Global.spread)/2.0 + Global.spread/2.0
-		#print(angle)
 		if weapon == "Laser":
 			if Input.is_action_pressed("shoot") && !Input.is_action_pressed("move_forward"):
 				if laser_charge_timer.is_stopped() && !laser_done:
@@ -194,6 +192,7 @@ func _physics_process(delta):
 				destroy_laser()
 				return
 		if weapon == "Gun":
+			var angle = 0 - (Global.bullet_count * Global.spread)/2.0 + Global.spread/2.0
 			if (Input.is_action_pressed("shoot") || Input.is_action_pressed("M2")) && shootTimer.time_left == 0:
 				if Global.gatling_gun && Input.is_action_pressed("move_forward"):
 					return

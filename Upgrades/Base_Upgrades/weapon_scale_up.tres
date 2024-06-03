@@ -5,6 +5,7 @@
 [sub_resource type="Resource" id="Resource_2o0uw"]
 script = ExtResource("1_wnpcf")
 upgrade_name = "weapon_scale"
+upgrade_title = ""
 upgrade_text = "Increase beam width"
 upgrade_value = 0.1
 upgrade_cost = 0
@@ -14,6 +15,7 @@ key_upgrade = false
 [sub_resource type="Resource" id="Resource_mstfa"]
 script = ExtResource("1_wnpcf")
 upgrade_name = "weapon_scale"
+upgrade_title = ""
 upgrade_text = "Increase beam width"
 upgrade_value = 0.1
 upgrade_cost = 0
@@ -24,6 +26,7 @@ next_upgrade = SubResource("Resource_2o0uw")
 [resource]
 script = ExtResource("1_wnpcf")
 upgrade_name = "weapon_scale"
+upgrade_title = ""
 upgrade_text = "Increase beam width and damage"
 upgrade_value = 0.1
 upgrade_cost = 50

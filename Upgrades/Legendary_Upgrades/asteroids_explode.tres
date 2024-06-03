@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_rik6r")
 upgrade_name = "asteroids_explode"
+upgrade_title = "Explosive Energy"
 upgrade_text = "Asteroids explode on death"
 upgrade_value = 0.0
 upgrade_cost = 100

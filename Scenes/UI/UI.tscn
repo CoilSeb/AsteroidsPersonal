@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/UI/UI.gd" id="1_mphwc"]
 [ext_resource type="Texture2D" uid="uid://c81cyxo81c3w6" path="res://Sprites/UI/Bar-1.png.png" id="2_ky7pi"]
-[ext_resource type="PackedScene" uid="uid://cj4yiy8yku15y" path="res://Scenes/UI/upgrade_button.tscn" id="3_1ftdo"]
+[ext_resource type="PackedScene" uid="uid://ccoieyw6drudu" path="res://Scenes/UI/upgrade_button.tscn" id="3_1ftdo"]
 [ext_resource type="Shader" path="res://Scenes/UI/UI.gdshader" id="3_2rjxw"]
 [ext_resource type="Texture2D" uid="uid://c416wpu8cpp4g" path="res://Sprites/UI/Pause_Button-1.png.png" id="3_vwkcr"]
 [ext_resource type="PackedScene" uid="uid://dqx32ytchstvp" path="res://Scenes/Screens/Settings/settings_menu.tscn" id="4_aie5g"]

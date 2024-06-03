@@ -72,7 +72,7 @@ func _on_area_entered(area):
 func destroy(_area):
 	if Global.explosive_rounds:
 			var explosion = EXPLOSION_AREA.instantiate()
-			explosion.damage = Global.explosion_base_damage * (log(damage)/log(10))
+			explosion.damage = Global.explosion_base_damage * (log(damage)/log(10)) * 2
 			if damage > 10:
 				explosion.size = Global.explosion_base_radius * (log(damage)/log(10))
 			else:

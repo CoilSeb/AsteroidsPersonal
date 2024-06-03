@@ -125,7 +125,7 @@ func _process(_delta):
 			restart()
 	#if upgrade_menu.visible == true:
 	if Input.is_action_just_pressed("reroll"):
-		level_up()
+		_on_reroll_button_pressed()
 	#if Input.is_action_just_pressed("reroll") && (stored_levels > 0 || Global.god_mode):
 		#level_up()
 	#if Input.is_action_just_pressed("E") && (total_level >= 10 || Global.god_mode) && !evolved:
@@ -381,7 +381,7 @@ func _on_reroll_button_pressed():
 
 func _on_next_wave_button_pressed():
 	wave_number_label.text = "Wave " + str(Global.wave_num)
-	Global.update_money.emit(int(Global.money * .5))
+	Global.update_money.emit(int(Global.money * .25))
 	get_tree().paused = false
 	upgrade_menu.visible = false
 	for button in buttons:
@@ -415,8 +415,8 @@ func evo_level_up():
 
 
 func get_upgrades():
-	var evolution = randi_range(0, 0)
-	var rare = randi_range(0, 0)
+	var evolution = randi_range(0, 19)
+	var rare = randi_range(0, 4)
 	var l_index = randi_range(0, 4)
 	var r_index = randi_range(0, 4)
 	var done = false
@@ -466,8 +466,8 @@ func get_upgrades():
 						buttons[i].start_particles()
 							
 		else:
-			buttons[i].rich_text_label_1.text.text = "null"
-			buttons[i].texture_rect_1.texture.texture = null
+			buttons[i].rich_text_label_1.text = "null"
+			buttons[i].texture_rect_1.texture = null
 			upgrades[i] = null
 		
 	first_upgrade = upgrades[0]

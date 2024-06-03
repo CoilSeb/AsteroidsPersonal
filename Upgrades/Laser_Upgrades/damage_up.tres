@@ -6,30 +6,30 @@
 [sub_resource type="Resource" id="Resource_sqvx0"]
 script = ExtResource("1_knh1v")
 upgrade_name = "damage"
-upgrade_title = ""
+upgrade_title = "Firepower"
 upgrade_text = "Upgrades bullet damage by 30%"
 upgrade_value = 0.3
 upgrade_texture = ExtResource("2_5fmgn")
 upgrade_cost = 0
-upgrade_rarity = "Common"
+upgrade_rarity = "Uncommon"
 key_upgrade = true
 
 [sub_resource type="Resource" id="Resource_rw4ql"]
 script = ExtResource("1_knh1v")
 upgrade_name = "damage"
-upgrade_title = ""
+upgrade_title = "Firepower"
 upgrade_text = "Upgrades bullet damage by 22.5%"
 upgrade_value = 0.225
 upgrade_texture = ExtResource("2_5fmgn")
 upgrade_cost = 0
-upgrade_rarity = "Common"
+upgrade_rarity = "Uncommon"
 key_upgrade = false
 next_upgrade = SubResource("Resource_sqvx0")
 
 [resource]
 script = ExtResource("1_knh1v")
 upgrade_name = "damage"
-upgrade_title = ""
+upgrade_title = "Firepower"
 upgrade_text = "Upgrades bullet damage by 15%"
 upgrade_value = 0.15
 upgrade_texture = ExtResource("2_5fmgn")

@@ -198,7 +198,8 @@ func _on_wave_timer_timeout():
 	for asteroid in get_tree().get_nodes_in_group("Shard"):
 		asteroid.queue_free()
 	for weapon in get_tree().get_nodes_in_group("weapon"):
-		weapon.queue_free()
+		if Global.weapon == "Gun":
+			weapon.queue_free()
 	await get_tree().create_timer(0.02).timeout
 	Global.enemy_weight = 0
 	Global.sound_effects_volume = temp_vol

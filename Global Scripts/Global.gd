@@ -198,7 +198,7 @@ func refresh():
 			heavy_weaponry = false
 			ghost_bullets = false
 			explosive_rounds = false
-			explosion_base_damage = 5.0
+			explosion_base_damage = 1.0
 			explosion_scale_damage = 1.0
 			explosion_base_radius = 1.0
 			explosion_scale_radius = 1.0
