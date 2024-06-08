@@ -5,6 +5,7 @@ extends Node
 # Player Variables
 var player_pos: Vector2
 var high_score = 0
+var paused = false
 # Health Variables
 var health 
 var max_health
@@ -35,6 +36,8 @@ var no_gun_all_collision
 var homing_strength: float
 var bullet_count
 var spread
+var max_lasers = 11
+var bonus_lasers = 0
 # Explosive Variables
 var explosive_rounds: float
 var explosion_base_damage: float
@@ -94,7 +97,7 @@ var rare_upgrades = []
 
 var laser_upgrades = [
 	preload("res://Upgrades/Laser_Upgrades/damage_up.tres"),
-	#preload("res://Upgrades/Base_Upgrades/weapon_scale_up.tres"),
+	preload("res://Upgrades/Laser_upgrades/laser_scale.tres"),
 ]
 
 var upgrades_test
@@ -186,7 +189,7 @@ func refresh():
 	burn_out = false
 	match weapon:
 		"Gun":
-			damage = 10
+			damage = 10.0
 			attack_speed = 0.5
 			bullet_velocity = 700
 			homing_strength = 0.0
@@ -208,11 +211,14 @@ func refresh():
 			legendary_test = evolutions_test + legendary_upgrades
 			upgrades_test += gun_test
 		"Laser":
-			damage = 1
+			damage = 1.0
 			attack_speed = 0.1
 			bullet_velocity = 0
+			max_lasers = 11
+			bonus_lasers = 0
 			laser_made = false
 			var laser_test = laser_upgrades.duplicate()
+			legendary_test = legendary_upgrades
 			upgrades_test += laser_test
 	
 	explosive_asteroids = false

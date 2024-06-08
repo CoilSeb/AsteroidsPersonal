@@ -27,7 +27,6 @@ func _process(delta):
 
 
 func _on_pressed():
-	print("Pressed")
 	if level_up_timer.time_left == 0 && Global.money >= upgrade_cost:
 		Global.update_money.emit(-upgrade_cost)
 		UI.apply_my_upgrade(UI.upgrades[index])

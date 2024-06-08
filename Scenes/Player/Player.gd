@@ -14,17 +14,6 @@ const PLAYER_DEATH = preload("res://Particles/player_death.tscn")
 var bulletScene = preload("res://Scenes/Bullets/Bullet.tscn")
 var laserScene = preload("res://Scenes/Laser/laser.tscn")
 const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
-var laser1
-var laser2
-var laser3
-var laser4
-var laser5
-var laser6
-var laser7
-var laser8
-var laser9
-var laser10
-var laser11
 var screen_size
 var rotateSpeed = 5
 var thrust 
@@ -43,8 +32,7 @@ var laser_charge_bool = false
 var laser_done = false
 var thrusting = false
 var lasers = []
-var laser_scale_multiplied = 0.75
-var max_lasers = 11
+var laser_scale_multiplied = 2
 var current_lasers = 0
 
 
@@ -145,58 +133,31 @@ func _physics_process(delta):
 	# Shooting
 	if Global.can_shoot:
 		if weapon == "Laser":
+			if Global.paused:
+				destroy_laser()
+				Global.paused = false
 			if Input.is_action_pressed("shoot") && !Input.is_action_pressed("move_forward"):
 				if laser_charge_timer.is_stopped() && !laser_done:
 					laser_charge_timer.start()
 				if laser_charge_bool:
-					#Global.damage *= 3
-					#laser1.scale *= 2
-					#laser2.scale *= 2
-					#laser3.scale *= 2
-					#laser4.scale *= 2
-					#laser5.scale *= 2
-					#laser6.scale *= 2
-					#laser7.scale *= 2
-					#laser8.scale *= 2
-					#laser9.scale *= 2
-					#laser10.scale *= 2
-					#laser11.scale *= 2
+					Global.damage *= 2
+					Global.bonus_lasers += 11
+					destroy_laser()
+					Global.laser_made = false
 					laser_charge_bool = false
 					
 				if !Global.laser_made:
-					make_laser()
+					make_more_lasers()
 				for i in range(len(lasers)):
-					var this = max_lasers * laser_scale_multiplied / 2
-					var offset = this - ((max_lasers - ) * laser_scale_multiplied / 2)
+					var spread = (Global.max_lasers + Global.bonus_lasers) * laser_scale_multiplied / 4
+					var offset = spread - ((Global.max_lasers + Global.bonus_lasers - i) * laser_scale_multiplied / 2) + (spread / (Global.max_lasers + Global.bonus_lasers))
 					lasers[i].global_position = global_position + Vector2(offset, -15).rotated(rotation)
 					lasers[i].direction = Vector2.UP.rotated(rotation)
-				#var offset = laser1.scale.x * 10.0
-				#laser1.global_position = global_position + Vector2(-offset * 5, -15).rotated(rotation)
-				#laser1.direction = Vector2.UP.rotated(rotation) 
-				#laser2.global_position = global_position + Vector2(-offset * 4, -15).rotated(rotation)
-				#laser2.direction = Vector2.UP.rotated(rotation) 
-				#laser3.global_position = global_position + Vector2(-offset * 3, -15).rotated(rotation)
-				#laser3.direction = Vector2.UP.rotated(rotation) 
-				#laser4.global_position = global_position + Vector2(-offset * 2, -15).rotated(rotation)
-				#laser4.direction = Vector2.UP.rotated(rotation) 
-				#laser5.global_position = global_position + Vector2(-offset * 1, -15).rotated(rotation)
-				#laser5.direction = Vector2.UP.rotated(rotation)
-				#laser6.global_position = global_position + Vector2(0, -15).rotated(rotation)
-				#laser6.direction = Vector2.UP.rotated(rotation)
-				#laser7.global_position = global_position + Vector2(offset * 1, -15).rotated(rotation)
-				#laser7.direction = Vector2.UP.rotated(rotation)
-				#laser8.global_position = global_position + Vector2(offset * 2, -15).rotated(rotation)
-				#laser8.direction = Vector2.UP.rotated(rotation)
-				#laser9.global_position = global_position + Vector2(offset * 3, -15).rotated(rotation)
-				#laser9.direction = Vector2.UP.rotated(rotation)
-				#laser10.global_position = global_position + Vector2(offset * 4, -15).rotated(rotation)
-				#laser10.direction = Vector2.UP.rotated(rotation)
-				#laser11.global_position = global_position + Vector2(offset * 5, -15).rotated(rotation)
-				#laser11.direction = Vector2.UP.rotated(rotation)
 			if Input.is_action_just_released("shoot") || Input.is_action_pressed("move_forward") || Input.is_action_pressed("move_backward"):
 				laser_charge_bool = false
 				if laser_done:
-					Global.damage /= 3
+					Global.damage /= 2
+					Global.bonus_lasers -= 11
 				laser_done = false
 				destroy_laser()
 				return
@@ -235,78 +196,22 @@ func _on_laser_charge_timer_timeout():
 		laser_done = true
 
 
-func make_laser():
-	for i in range(max_lasers):
+func make_more_lasers():
+	for i in range(Global.max_lasers + Global.bonus_lasers):
 		var laser_instance = laserScene.instantiate()
-		var this = max_lasers * laser_scale_multiplied / 2
-		var offset = this - ((max_lasers - i) * laser_scale_multiplied / 2)
+		var spread = (Global.max_lasers + Global.bonus_lasers) * laser_scale_multiplied / 4
+		var offset = spread - ((Global.max_lasers + Global.bonus_lasers - i) * laser_scale_multiplied / 2) + (spread / (Global.max_lasers + Global.bonus_lasers))
 		laser_instance.global_position = global_position + Vector2(offset, -15).rotated(rotation)
 		laser_instance.direction = Vector2.UP.rotated(rotation)
 		lasers.append(laser_instance)
-		add_child(laser_instance)
+		get_parent().add_child(laser_instance)
 	Global.laser_made = true
-	#laser1 = laserScene.instantiate()
-	#get_parent().add_child(laser1)
-	#Global.laser_made = true
-	#laser1.scale += Global.weapon_scale
-	#laser2 = laserScene.instantiate()
-	#get_parent().add_child(laser2)
-	#Global.laser_made = true
-	#laser2.scale += Global.weapon_scale
-	#laser3 = laserScene.instantiate()
-	#get_parent().add_child(laser3)
-	#Global.laser_made = true
-	#laser3.scale += Global.weapon_scale
-	#laser4 = laserScene.instantiate()
-	#get_parent().add_child(laser4)
-	#Global.laser_made = true
-	#laser4.scale += Global.weapon_scale
-	#laser5 = laserScene.instantiate()
-	#get_parent().add_child(laser5)
-	#Global.laser_made = true
-	#laser5.scale += Global.weapon_scale
-	#laser6 = laserScene.instantiate()
-	#get_parent().add_child(laser6)
-	#Global.laser_made = true
-	#laser6.scale += Global.weapon_scale
-	#laser7 = laserScene.instantiate()
-	#get_parent().add_child(laser7)
-	#Global.laser_made = true
-	#laser7.scale += Global.weapon_scale
-	#laser8 = laserScene.instantiate()
-	#get_parent().add_child(laser8)
-	#Global.laser_made = true
-	#laser8.scale += Global.weapon_scale
-	#laser9 = laserScene.instantiate()
-	#get_parent().add_child(laser9)
-	#Global.laser_made = true
-	#laser9.scale += Global.weapon_scale
-	#laser10 = laserScene.instantiate()
-	#get_parent().add_child(laser10)
-	#Global.laser_made = true
-	#laser10.scale += Global.weapon_scale
-	#laser11 = laserScene.instantiate()
-	#get_parent().add_child(laser11)
-	#Global.laser_made = true
-	#laser11.scale += Global.weapon_scale
 
 
 func destroy_laser():
 	for laser in lasers:
 		laser.queue_free()
 	lasers.clear()
-	#if laser1 != null:
-		#laser1.queue_free()
-		#laser2.queue_free()
-		#laser3.queue_free()
-		#laser4.queue_free()
-		#laser5.queue_free()
-		#laser6.queue_free()
-		#laser7.queue_free()
-		#laser8.queue_free()
-		#laser9.queue_free()
-		#laser10.queue_free()
-		#laser11.queue_free()
 	Global.laser_made = false
 
 

@@ -14,7 +14,7 @@ func _ready():
 
 
 func _process(_delta):
-	var damage = Global.damage / 11.0
+	var damage = Global.damage / (Global.max_lasers + Global.bonus_lasers)
 	if Input.is_action_pressed("shoot") || Input.is_action_pressed("M2"):
 		laser.target_position = direction * MAX_LENGTH
 		if laser.is_colliding():
@@ -27,7 +27,3 @@ func _process(_delta):
 				shoot_timer.start(Global.attack_speed)
 		line.rotation = laser.target_position.angle()
 		line.points[1].x = end.position.length()
-		
-	if get_tree().paused:
-		Global.laser_made = false
-		queue_free()

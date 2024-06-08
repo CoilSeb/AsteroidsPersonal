@@ -197,6 +197,8 @@ func crt():
 
 
 func toggle_pause_menu():
+	Global.laser_made = false
+	Global.paused = true
 	ButtonClick.play()
 	get_tree().paused = !get_tree().paused
 	pause_menu.visible = !pause_menu.visible
@@ -383,6 +385,7 @@ func _on_next_wave_button_pressed():
 	wave_number_label.text = "Wave " + str(Global.wave_num)
 	Global.update_money.emit(int(Global.money * .25))
 	get_tree().paused = false
+	Global.paused = true
 	upgrade_menu.visible = false
 	for button in buttons:
 			button.disabled = false
