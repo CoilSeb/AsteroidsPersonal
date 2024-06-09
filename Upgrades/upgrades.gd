@@ -86,7 +86,7 @@ func upgrade_player():
 
 func laser_scale():
 	Global.max_lasers += upgrade_value
-	Global.damage *= 1.4
+	Global.damage *= 1.1
 
 func bullet_count_double():
 	Global.bullet_count *= 2

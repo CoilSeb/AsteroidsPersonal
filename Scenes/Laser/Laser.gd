@@ -15,6 +15,9 @@ func _ready():
 
 func _process(_delta):
 	var damage = Global.damage / (Global.max_lasers + Global.bonus_lasers)
+	#print(Global.max_lasers + Global.bonus_lasers)
+	#print(damage)
+	#print(damage * (Global.max_lasers + Global.bonus_lasers))
 	if Input.is_action_pressed("shoot") || Input.is_action_pressed("M2"):
 		laser.target_position = direction * MAX_LENGTH
 		if laser.is_colliding():
