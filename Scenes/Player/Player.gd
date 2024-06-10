@@ -1,5 +1,12 @@
 extends CharacterBody2D
 
+# Make a distance upgrade
+# Make chain lightning work plz
+# Elemental stuff: Slowing, decay, push back
+# Tesla legendary upgrade: Trigger faster, targets it can hit
+# Battery system: Charge-up speed, drain speed
+# Explosive Battery
+
 @onready var GameScene = get_parent()
 @onready var Ui = get_parent().get_node("UI")
 @onready var thrust_sprite_2d = $Thrust_Sprite2D
@@ -133,31 +140,21 @@ func _physics_process(delta):
 	# Shooting
 	if Global.can_shoot:
 		if weapon == "Laser":
+			Global.burn_out = true
 			if Global.paused:
 				destroy_laser()
 				Global.paused = false
-			if Input.is_action_pressed("shoot") && !Input.is_action_pressed("move_forward"):
-				if laser_charge_timer.is_stopped() && !laser_done:
-					laser_charge_timer.start()
-				if laser_charge_bool:
-					Global.damage *= 2
-					Global.bonus_lasers += 11
-					destroy_laser()
-					Global.laser_made = false
-					laser_charge_bool = false
-					
+			if Input.is_action_pressed("shoot"):
 				if !Global.laser_made:
 					make_more_lasers()
 				for i in range(len(lasers)):
-					var spread = (Global.max_lasers + Global.bonus_lasers) * laser_scale_multiplied / 4
+					var spread = ((Global.max_lasers + Global.bonus_lasers) * laser_scale_multiplied / 4)
 					var offset = spread - ((Global.max_lasers + Global.bonus_lasers - i) * laser_scale_multiplied / 2) + (spread / (Global.max_lasers + Global.bonus_lasers))
 					lasers[i].global_position = global_position + Vector2(offset, -15).rotated(rotation)
-					lasers[i].direction = Vector2.UP.rotated(rotation)
-			if Input.is_action_just_released("shoot") || Input.is_action_pressed("move_forward") || Input.is_action_pressed("move_backward"):
+					lasers[i].damage_modifier = 1 + ($Burn_Out_Bar.max_value - $Burn_Out_Bar.value)/$Burn_Out_Bar.max_value
+					
+			if Input.is_action_just_released("shoot"):
 				laser_charge_bool = false
-				if laser_done:
-					Global.damage /= 2
-					Global.bonus_lasers -= 11
 				laser_done = false
 				destroy_laser()
 				return
@@ -202,9 +199,9 @@ func make_more_lasers():
 		var spread = (Global.max_lasers + Global.bonus_lasers) * laser_scale_multiplied / 4
 		var offset = spread - ((Global.max_lasers + Global.bonus_lasers - i) * laser_scale_multiplied / 2) + (spread / (Global.max_lasers + Global.bonus_lasers))
 		laser_instance.global_position = global_position + Vector2(offset, -15).rotated(rotation)
-		laser_instance.direction = Vector2.UP.rotated(rotation)
 		lasers.append(laser_instance)
-		get_parent().add_child(laser_instance)
+		add_child(laser_instance)
+		
 	Global.laser_made = true
 
 

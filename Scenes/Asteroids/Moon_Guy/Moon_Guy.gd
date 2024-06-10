@@ -70,8 +70,8 @@ func destroy(money_bool):
 
 
 func damage_asteroid(damage_taken):
-	health -= damage_taken
-	Global.moon_guy_health.emit(damage_taken)
+	health -= float(damage_taken)
+	Global.moon_guy_health.emit(float(damage_taken))
 	#if health <= 200:
 		##crack_1.visible = true
 		#audio_stream_player_2d.play()

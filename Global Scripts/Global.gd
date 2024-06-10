@@ -38,6 +38,7 @@ var bullet_count
 var spread
 var max_lasers = 11
 var bonus_lasers = 0
+var multi_lasers = true
 # Explosive Variables
 var explosive_rounds: float
 var explosion_base_damage: float
@@ -97,7 +98,7 @@ var rare_upgrades = []
 
 var laser_upgrades = [
 	preload("res://Upgrades/Laser_Upgrades/damage_up.tres"),
-	preload("res://Upgrades/Laser_upgrades/laser_scale.tres"),
+	preload("res://Upgrades/Laser_Upgrades/laser_scale.tres"),
 ]
 
 var upgrades_test
@@ -211,7 +212,7 @@ func refresh():
 			legendary_test = evolutions_test + legendary_upgrades
 			upgrades_test += gun_test
 		"Laser":
-			damage = 1.0
+			damage = 3.0
 			attack_speed = 0.1
 			bullet_velocity = 0
 			max_lasers = 11

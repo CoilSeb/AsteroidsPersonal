@@ -58,11 +58,10 @@ wait_time = 3.0
 one_shot = true
 
 [node name="Burn_Out_Bar_BG" type="TextureProgressBar" parent="."]
-visible = false
-offset_left = 10.0
-offset_top = 4.0
-offset_right = 35.0
-offset_bottom = 16.0
+offset_left = 15.3333
+offset_top = 20.0
+offset_right = 40.3333
+offset_bottom = 32.0
 rotation = -1.91986
 value = 100.0
 nine_patch_stretch = true
@@ -70,11 +69,10 @@ texture_progress = ExtResource("4_dmj04")
 tint_progress = Color(0.447059, 0.447059, 0.447059, 1)
 
 [node name="Burn_Out_Bar" type="TextureProgressBar" parent="."]
-visible = false
-offset_left = 10.0
-offset_top = 4.0
-offset_right = 35.0
-offset_bottom = 16.0
+offset_left = 15.3333
+offset_top = 20.0
+offset_right = 40.3333
+offset_bottom = 32.0
 rotation = -1.91986
 value = 50.0
 nine_patch_stretch = true

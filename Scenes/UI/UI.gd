@@ -72,6 +72,8 @@ var sixth_upgrade_cost: int
 var stored_levels = 0
 var total_level = 0
 var evolved = false
+var first_moon_guy_hit = false
+var moon_guy_health_bar_value
 var upgrades = [
 	first_upgrade,
 	second_upgrade,
@@ -142,6 +144,7 @@ func _process(_delta):
 	$PauseMenu/VBoxContainer/Counter_Thrust_Label.text = "Counter Thrust: " + str(Global.counter_thrust)
 	reroll_button.text = "Reroll\n$" + str(Global.reroll_cost)
 	next_wave_button.text = "Next Wave\n(Interest = $" + str(round(Global.money * 0.5)) + ")"
+	#print(moon_guy_health_bar.value)
 
 
 func wave_num(wave_number):
@@ -182,7 +185,11 @@ func update_money(amount):
 
 func moon_guy_health(damage):
 	moon_guy_layover.show()
-	moon_guy_health_bar.value -= damage
+	if !first_moon_guy_hit:
+		moon_guy_health_bar_value = moon_guy_health_bar.value
+		first_moon_guy_hit = true
+	moon_guy_health_bar_value -= damage
+	moon_guy_health_bar.value = moon_guy_health_bar_value
 	if moon_guy_health_bar.value <= 0:
 		moon_guy_layover.hide()
 
