@@ -79,7 +79,6 @@ func destroy(_area):
 				explosion.size = Global.explosion_base_radius
 			explosion.position = position
 			get_parent().call_deferred("add_child", explosion)
-			print(explosion.damage, " ", explosion.size)
 	queue_free()
 
 

@@ -229,7 +229,7 @@ func refresh():
 	
 	reroll_cost = 25
 	inflation = 1
-	inflation_rate = 1.1
+	inflation_rate = 1.25
 	money = 0
 	experience = 0
 	exp_threshold = 50
