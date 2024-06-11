@@ -425,7 +425,7 @@ func evo_level_up():
 
 
 func get_upgrades():
-	var evolution = randi_range(0, 19)
+	var evolution = randi_range(0, 0)
 	var rare = randi_range(0, 4)
 	var l_index = randi_range(0, 4)
 	var r_index = randi_range(0, 4)
