@@ -45,6 +45,8 @@ const SOLD_1_PNG = preload("res://Sprites/Upgrades/Sold-1.png.png")
 @onready var wave_number_label = $Wave_Number_Label
 @onready var wave_timer_label = $Wave_Timer_Label
 @onready var next_wave_button = $Upgrade_Menu/Next_Wave_Button
+@onready var burn_out_bar_bg = $Burn_Out_Bar_BG
+@onready var burn_out_bar = $Burn_Out_Bar
 
 @onready var buttons = [
 	$Upgrade_Menu/First_Upgrade,
@@ -426,7 +428,7 @@ func evo_level_up():
 
 func get_upgrades():
 	var evolution = randi_range(0, 0)
-	var rare = randi_range(0, 4)
+	var rare = randi_range(0, 0)
 	var l_index = randi_range(0, 4)
 	var r_index = randi_range(0, 4)
 	var done = false

@@ -121,22 +121,26 @@ func _physics_process(delta):
 	move_and_collide(velocity * delta)
 		
 	if !Global.no_gun_all_collision:
+		if (Ui.burn_out_bar.max_value - Ui.burn_out_bar.value)/Ui.burn_out_bar.max_value >= 0.7:
+			Ui.burn_out_bar.tint_progress = Color8(221, 0, 19, 255)
+		else:
+			Ui.burn_out_bar.tint_progress = Color("ffffff")
 		if Global.burn_out:
-			$Burn_Out_Bar_BG.show()
-			$Burn_Out_Bar_BG.max_value = burn_out_var
-			$Burn_Out_Bar_BG.value = $Burn_Out_Bar_BG.max_value
-			$Burn_Out_Bar.show()
-			$Burn_Out_Bar.max_value = burn_out_var
-			$Burn_Out_Bar.value = burn_out_time
+			Ui.burn_out_bar_bg.show()
+			Ui.burn_out_bar_bg.max_value = burn_out_var
+			Ui.burn_out_bar_bg.value = Ui.burn_out_bar_bg.max_value
+			Ui.burn_out_bar.show()
+			Ui.burn_out_bar.max_value = burn_out_var
+			Ui.burn_out_bar.value = burn_out_time
 		if !Global.can_shoot && burn_out_time < burn_out_var && Global.burn_out:
-			$Burn_Out_Bar.tint_progress = Color(0.576, 0.576, 0.576)
+			Ui.burn_out_bar.tint_progress = Color(0.4, 0.4, 0.4)
 			burn_out_time += 0.75
 		if !Global.can_shoot && burn_out_time >= burn_out_var && Global.burn_out:
-			$Burn_Out_Bar.tint_progress = Color(255, 255, 255)
+			Ui.burn_out_bar.tint_progress = Color(255, 255, 255)
 			Global.can_shoot = true
 		if Global.can_shoot && Global.burn_out && burn_out_time < burn_out_var:
 			burn_out_time += 1.5
-		
+			
 	# Shooting
 	if Global.can_shoot:
 		if weapon == "Laser":
@@ -165,11 +169,11 @@ func _physics_process(delta):
 					return
 				for i in range(Global.bullet_count):
 					var bulletInstance = bulletScene.instantiate()
+					bulletInstance.scale += Global.weapon_scale
 					get_parent().add_child(bulletInstance)
 					bulletInstance.global_position = global_position
 					var deviation = randf_range(-Global.deviation, Global.deviation)
 					bulletInstance.direction = Vector2.UP.rotated(rotation + deviation + deg_to_rad(angle))
-					bulletInstance.scale += Global.weapon_scale
 					weapon_sound.play()
 					shootTimer.start(Global.attack_speed)
 					if Global.heavy_weaponry:

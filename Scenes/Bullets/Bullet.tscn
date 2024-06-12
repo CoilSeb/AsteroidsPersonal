@@ -19,7 +19,6 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.5
 scale_max = 0.8
 scale_curve = SubResource("CurveTexture_7i2kx")
-color = Color(1, 1, 1, 0.580392)
 
 [node name="Bullet" type="Area2D" groups=["weapon"]]
 scale = Vector2(0.75, 0.75)
@@ -46,6 +45,7 @@ scale = Vector2(100, 100)
 polygon = PackedVector2Array(0, 0, -9.33333, -9.33333, 9.33333, -9.33333)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.196078)
 show_behind_parent = true
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_ni70e")

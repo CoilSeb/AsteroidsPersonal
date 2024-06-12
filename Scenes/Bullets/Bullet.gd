@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var timer = $Timer
+@onready var gpu_particles_2d = $GPUParticles2D
 
 const AUDIO_CONTROL = preload("res://Audio/Audio_Control.tscn")
 const EXPLOSION_AREA = preload("res://Scenes/Bullets/Explosion/bullet_explosion_area.tscn")
@@ -14,6 +15,8 @@ var bullet_time_offset = randf_range(0, 0.075)
 
 func _ready():
 	screen_size = get_viewport_rect().size
+	gpu_particles_2d.process_material.scale_min = scale.x * 0.5
+	gpu_particles_2d.process_material.scale_max = scale.y * 0.8
 	if !Global.bulldozer:
 		timer.start(Global.bullet_time + bullet_time_offset)
 	elif Global.ghost_bullets:
