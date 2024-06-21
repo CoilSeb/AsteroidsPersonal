@@ -248,6 +248,12 @@ func _on_area_2d_area_entered(area):
 			Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
 			area.damage_asteroid(Global.collision_damage)
 			
+		if area.is_in_group("Basicx_Martian"):
+			hit_sound.play()
+			Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
+			area.damage_asteroid(Global.collision_damage)
+			velocity = (velocity * -0.5)
+			
 	if area.is_in_group("Destroy_Ring"):
 		Ui.update_exp(10)
 		var audio_player = AUDIO_CONTROL.instantiate()
