@@ -1,0 +1,1 @@
+An asteroids based rougelike game that I have been working on. I have made this repository public for the purposes of showing companies and anyone interested in me my progress over the years. With that said, I can't stop anyone from forking this repository, just know that this is still very much a work in progress and my first ever major project in Godot. 
