@@ -714,7 +714,6 @@ visible = false
 my_scenes_button = NodePath("../PauseMenu/SettingsButton")
 
 [node name="CRT_Shader" type="ColorRect" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_dpj74")
 anchors_preset = 15
 anchor_right = 1.0
