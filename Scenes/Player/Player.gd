@@ -88,7 +88,7 @@ func _physics_process(delta):
 	if rs_look.length() >= deadzone:
 		rotation = rs_look.angle() + (0.5 * PI)
 	
-	rotation -= (Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")) * rotateSpeed * delta
+	#rotation -= (Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")) * rotateSpeed * delta
 	
 	# Movement
 	if Input.is_action_pressed("ui_left"):
@@ -97,18 +97,31 @@ func _physics_process(delta):
 		using_mouse = false
 	if Input.is_action_pressed("M1") || Input.is_action_pressed("M2"):
 		using_mouse = true
-	if using_mouse == true:
-		rotate(get_angle_to(get_global_mouse_position()) + (0.5 * PI))
+	#if using_mouse == true:
+		#rotate(get_angle_to(get_global_mouse_position()) + (0.5 * PI))
+	#if Input.is_action_pressed("move_forward") && can_move:
+		#velocity += ((Vector2(0, -1) * thrust * delta).rotated(rotation))
+	#elif Input.is_action_just_pressed("move_backward"):
+		#velocity += ((Vector2(0, 10) * counter_thrust * delta).rotated(rotation))
+	rotate(get_angle_to(get_global_mouse_position()) + (0.5 * PI))
+	
 	if Input.is_action_pressed("move_forward") && can_move:
-		velocity += ((Vector2(0, -1) * thrust * delta).rotated(rotation))
-		
-	elif Input.is_action_just_pressed("move_backward"):
-		velocity += ((Vector2(0, 10) * counter_thrust * delta).rotated(rotation))
+		velocity += ((Vector2(0, -1) * thrust * delta))
+	if Input.is_action_pressed("move_backward") && can_move:
+		velocity += ((Vector2(0, 1) * thrust * delta))
+	if Input.is_action_pressed("rotate_left") && can_move:
+		velocity += ((Vector2(-1, 0) * thrust * delta))
+	if Input.is_action_pressed("rotate_right") && can_move:
+		velocity += ((Vector2(1, 0) * thrust * delta))
+	
+	if (Input.is_action_pressed("move_forward") or Input.is_action_pressed("move_backward") or Input.is_action_pressed("rotate_left") or Input.is_action_pressed("rotate_right") and can_move):
+		pass
 	else:
 		thrust_sprite_2d.hide()
 		velocity = lerp(velocity, Vector2.ZERO, slowDown * delta)
 		if velocity.length() >= -10 && velocity.length() <= 10:
 			velocity = Vector2.ZERO
+	print(velocity)
 		
 	if velocity.length() > 1000:
 		velocity = lerp(velocity, Vector2.ZERO, slowDown * delta)
@@ -159,7 +172,7 @@ func _physics_process(delta):
 				return
 		if weapon == "Gun":
 			var angle = 0 - (Global.bullet_count * Global.spread)/2.0 + Global.spread/2.0
-			if (Input.is_action_pressed("shoot") || Input.is_action_pressed("M2")) && shootTimer.time_left == 0:
+			if (Input.is_action_pressed("shoot") or Input.is_action_pressed("M2")) && shootTimer.time_left == 0:
 				if Global.gatling_gun && Input.is_action_pressed("move_forward"):
 					return
 				for i in range(Global.bullet_count):
