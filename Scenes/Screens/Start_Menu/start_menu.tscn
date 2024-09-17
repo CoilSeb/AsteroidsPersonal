@@ -185,7 +185,6 @@ theme_override_font_sizes/font_size = 32
 text = "Dev_Mode"
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_xnixt")
 anchors_preset = 15
 anchor_right = 1.0
