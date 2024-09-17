@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://wl4wch2uk018"]
+
+[ext_resource type="Texture2D" uid="uid://c81cyxo81c3w6" path="res://Sprites/UI/Bar-1.png.png" id="1_gc6jf"]
+[ext_resource type="Script" path="res://Scenes/Items/chest.gd" id="1_sih2l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hoh35"]
+radius = 83.0
+
+[node name="Chest" type="Node2D"]
+script = ExtResource("1_sih2l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 1)
+texture = ExtResource("1_gc6jf")
+
+[node name="Cost" type="Label" parent="." groups=["Chest"]]
+offset_left = -20.0
+offset_top = -65.0
+offset_right = 20.0
+offset_bottom = -42.0
+text = "$25"
+horizontal_alignment = 1
+
+[node name="Interact_Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact_Area2D"]
+shape = SubResource("CircleShape2D_hoh35")
+
+[node name="Instructions_Label" type="Label" parent="."]
+visible = false
+offset_left = -66.0
+offset_top = 26.0
+offset_right = 67.0
+offset_bottom = 49.0
+theme_override_font_sizes/font_size = 10
+text = "Press \"E\" to open"
+horizontal_alignment = 1
+
+[connection signal="area_entered" from="Interact_Area2D" to="." method="_on_interact_area_2d_area_entered"]
+[connection signal="area_exited" from="Interact_Area2D" to="." method="_on_interact_area_2d_area_exited"]

@@ -49,6 +49,7 @@ var explosion_scale_radius: float
 var explosive_asteroids: bool
 # Money Variables
 var money
+var base_chest_cost
 var inflation
 var inflation_rate
 var reroll_cost
@@ -233,6 +234,7 @@ func refresh():
 	inflation = 1
 	inflation_rate = 1.25
 	money = 0
+	base_chest_cost = 25
 	experience = 0
 	exp_threshold = 50
 	key_upgrades.clear()

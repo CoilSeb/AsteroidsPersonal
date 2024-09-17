@@ -28,7 +28,7 @@ var dead = false
 
 
 func _ready():
-	Global.asteroid_spawned.emit(self)
+	#Global.asteroid_spawned.emit(self)
 	screen_size = get_viewport_rect().size
 	if !boss:
 		set_random_direction_and_speed()

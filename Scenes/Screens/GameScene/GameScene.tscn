@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cl0s7o04ccses"]
+[gd_scene load_steps=6 format=3 uid="uid://cl0s7o04ccses"]
 
 [ext_resource type="Script" path="res://Scenes/Screens/GameScene/GameScene.gd" id="1_m8r6t"]
 [ext_resource type="PackedScene" uid="uid://c0jlxjxdu4vma" path="res://Scenes/UI/UI.tscn" id="2_u5fmq"]
 [ext_resource type="Texture2D" uid="uid://b8tyib20kwv8l" path="res://Sprites/Other/BG_BIG-1.png.png" id="3_3blxl"]
 [ext_resource type="Texture2D" uid="uid://caysh2ok52ufi" path="res://Sprites/Asteroids/Moon_Guy_Warning_64-1.png.png" id="4_to3f7"]
+[ext_resource type="PackedScene" uid="uid://wl4wch2uk018" path="res://Scenes/Items/chest.tscn" id="5_2qdth"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_m8r6t")
@@ -30,6 +31,9 @@ texture = ExtResource("4_to3f7")
 z_index = -100
 scale = Vector2(0.977, 0.977)
 texture = ExtResource("3_3blxl")
+
+[node name="Chest" parent="." instance=ExtResource("5_2qdth")]
+position = Vector2(617, -438)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]

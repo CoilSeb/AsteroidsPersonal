@@ -8,7 +8,7 @@ var asteroid
 func _ready():
 	if asteroid.is_in_group("Shard Asteroid"):
 		sprite_2d.texture = preload("res://Sprites/Asteroids/New Piskel-1.png (1).png")
-		self.scale = Vector2(0.5, 0.5)
+		self.scale = Vector2(0.75, 0.75)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

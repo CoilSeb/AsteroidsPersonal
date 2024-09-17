@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvpouu40s7xoo"]
+
+[ext_resource type="Script" path="res://Scenes/UI/Mini_Map_Chunk.gd" id="1_gikox"]
+[ext_resource type="Texture2D" uid="uid://dvo4y5vj5mvgc" path="res://Sprites/Other/Exp-1.png.png" id="2_we3ll"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oeht1"]
+size = Vector2(4, 4)
+
+[node name="Mini_Map_Chunk" type="Node2D"]
+z_index = 1
+scale = Vector2(2, 2)
+script = ExtResource("1_gikox")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.835294, 0.835294, 0.835294, 1)
+scale = Vector2(0.668, 0.668)
+texture = ExtResource("2_we3ll")
+
+[node name="Chunk_Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chunk_Area2D"]
+shape = SubResource("RectangleShape2D_oeht1")
+
+[connection signal="area_entered" from="Chunk_Area2D" to="." method="_on_chunk_area_2d_area_entered"]

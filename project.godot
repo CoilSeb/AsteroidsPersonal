@@ -175,6 +175,7 @@ O={
 2d_physics/layer_4="Exp"
 2d_physics/layer_5="Pickup Range"
 2d_physics/layer_6="Immune"
+2d_physics/layer_7="UI"
 
 [rendering]
 

@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bk7y3qpm81qyr"]
+[gd_scene load_steps=5 format=3 uid="uid://bk7y3qpm81qyr"]
 
 [ext_resource type="Script" path="res://Scenes/UI/mini_map.gd" id="1_7sttu"]
 [ext_resource type="Texture2D" uid="uid://cy2p3man040cg" path="res://Sprites/Other/Player-1.png.png" id="1_l2a3d"]
+[ext_resource type="Texture2D" uid="uid://bexsw2yj0jinr" path="res://Sprites/Other/Bullet-1.png.png" id="2_mij5h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dkv14"]
+radius = 13.0
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -26,6 +30,18 @@ color = Color(0.0509804, 0.0509804, 0.0509804, 1)
 position = Vector2(100, 100)
 script = ExtResource("1_7sttu")
 
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.27451)
+scale = Vector2(2, 2)
+texture = ExtResource("2_mij5h")
+
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
 scale = Vector2(0.05, 0.07)
 texture = ExtResource("1_l2a3d")
+
+[node name="Vision_Area2D" type="Area2D" parent="Node2D"]
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Vision_Area2D"]
+shape = SubResource("CircleShape2D_dkv14")

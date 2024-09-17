@@ -1,12 +1,5 @@
 extends CharacterBody2D
 
-# Make a distance upgrade
-# Make chain lightning work plz
-# Elemental stuff: Slowing, decay, push back
-# Tesla legendary upgrade: Trigger faster, targets it can hit
-# Battery system: Charge-up speed, drain speed
-# Explosive Battery
-
 @onready var GameScene = get_parent()
 @onready var Ui = get_parent().get_node("UI")
 @onready var thrust_sprite_2d = $Thrust_Sprite2D
@@ -41,6 +34,7 @@ var thrusting = false
 var lasers = []
 var laser_scale_multiplied = 2
 var current_lasers = 0
+var items = []
 
 
 func _ready():
@@ -91,12 +85,14 @@ func _physics_process(delta):
 	#rotation -= (Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")) * rotateSpeed * delta
 	
 	# Movement
-	if Input.is_action_pressed("ui_left"):
-		using_mouse = false
-	if Input.is_action_pressed("ui_right"):
-		using_mouse = false
-	if Input.is_action_pressed("M1") || Input.is_action_pressed("M2"):
-		using_mouse = true
+	
+	# Forward thrust movement
+	#if Input.is_action_pressed("ui_left"):
+		#using_mouse = false
+	#if Input.is_action_pressed("ui_right"):
+		#using_mouse = false
+	#if Input.is_action_pressed("M1") || Input.is_action_pressed("M2"):
+		#using_mouse = true
 	#if using_mouse == true:
 		#rotate(get_angle_to(get_global_mouse_position()) + (0.5 * PI))
 	#if Input.is_action_pressed("move_forward") && can_move:
@@ -105,6 +101,7 @@ func _physics_process(delta):
 		#velocity += ((Vector2(0, 10) * counter_thrust * delta).rotated(rotation))
 	rotate(get_angle_to(get_global_mouse_position()) + (0.5 * PI))
 	
+	# Omni-directional movement
 	if Input.is_action_pressed("move_forward") && can_move:
 		velocity += ((Vector2(0, -1) * thrust * delta))
 	if Input.is_action_pressed("move_backward") && can_move:
@@ -121,7 +118,7 @@ func _physics_process(delta):
 		velocity = lerp(velocity, Vector2.ZERO, slowDown * delta)
 		if velocity.length() >= -10 && velocity.length() <= 10:
 			velocity = Vector2.ZERO
-	print(velocity)
+	#print(velocity)
 		
 	if velocity.length() > 1000:
 		velocity = lerp(velocity, Vector2.ZERO, slowDown * delta)
@@ -256,7 +253,7 @@ func _on_area_2d_area_entered(area):
 			Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
 			area.damage_asteroid(Global.collision_damage)
 			
-		if area.is_in_group("Basicx_Martian"):
+		if area.is_in_group("Basic_Martian"):
 			hit_sound.play()
 			Ui.update_health(-area.damage + (area.damage * Global.damage_reduction))
 			area.damage_asteroid(Global.collision_damage)
