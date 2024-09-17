@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk6cctkrc4qfb"]
+
+[ext_resource type="Script" path="res://Scenes/UI/asteroid_blip.gd" id="1_regp8"]
+[ext_resource type="Texture2D" uid="uid://dvo4y5vj5mvgc" path="res://Sprites/Other/Exp-1.png.png" id="2_0xg6n"]
+
+[node name="Asteroid_Blip" type="Node2D"]
+script = ExtResource("1_regp8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_0xg6n")

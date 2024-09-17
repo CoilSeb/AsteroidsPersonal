@@ -22,14 +22,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if position.x < 0:
-		position.x = screen_size.x
-	if position.x > screen_size.x:
-		position.x = 0
-	if position.y < 0:
-		position.y = screen_size.y 
-	if position.y > screen_size.y:
-		position.y = 0
+	if position.x < -5000:
+		position.x = screen_size.x + 5000
+	if position.x > screen_size.x + 5000:
+		position.x = -5000
+	if position.y < -5000:
+		position.y = screen_size.y + 5000
+	if position.y > screen_size.y + 5000:
+		position.y = -5000
 		
 	position += direction * speed * delta
 	rotation += rotation_speed * delta

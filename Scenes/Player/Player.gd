@@ -69,18 +69,19 @@ func _ready():
 
 func _physics_process(delta):
 	Global.player_pos = position
+	Global.player_rot = rotation
 	thrust = Global.move_speed
 	counter_thrust = Global.counter_thrust
 	Ui.update_health(Global.health_regen * delta)
 	# Screen Wrap
-	if position.x < 0:
-		position.x = screen_size.x
-	if position.x > screen_size.x:
-		position.x = 0
-	if position.y < 0:
-		position.y = screen_size.y
-	if position.y > screen_size.y:
-		position.y = 0
+	if position.x < -5000:
+		position.x = 5000
+	if position.x > 5000:
+		position.x = -5000
+	if position.y < -5000:
+		position.y = 5000
+	if position.y > 5000:
+		position.y = -5000
 	
 	rs_look.y = Input.get_joy_axis(0, JOY_AXIS_LEFT_Y)
 	rs_look.x = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
@@ -100,15 +101,6 @@ func _physics_process(delta):
 		rotate(get_angle_to(get_global_mouse_position()) + (0.5 * PI))
 	if Input.is_action_pressed("move_forward") && can_move:
 		velocity += ((Vector2(0, -1) * thrust * delta).rotated(rotation))
-		thrust_sprite_2d.show()
-		if !thrusting:
-			var thrust_tween = get_tree().create_tween()
-			thrust_tween.bind_node(thrust_sprite_2d)
-			thrust_tween.tween_property(thrust_sprite_2d, "modulate", Color8(255, 255, 255, 100), 0.5)
-			thrust_tween.tween_property(thrust_sprite_2d, "modulate", Color8(255, 255, 255, 255), 0.5)
-			thrusting = true
-			await get_tree().create_timer(1, false).timeout
-			thrusting = false
 		
 	elif Input.is_action_just_pressed("move_backward"):
 		velocity += ((Vector2(0, 10) * counter_thrust * delta).rotated(rotation))
@@ -117,6 +109,9 @@ func _physics_process(delta):
 		velocity = lerp(velocity, Vector2.ZERO, slowDown * delta)
 		if velocity.length() >= -10 && velocity.length() <= 10:
 			velocity = Vector2.ZERO
+		
+	if velocity.length() > 1000:
+		velocity = lerp(velocity, Vector2.ZERO, slowDown * delta)
 		
 	move_and_collide(velocity * delta)
 		

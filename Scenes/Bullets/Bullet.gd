@@ -35,14 +35,15 @@ func _process(delta):
 			direction = lerp(direction, new_direction, delta * Global.homing_strength)
 	position += (direction * bullet_speed * delta)
 	rotation = direction.angle() + (0.5 * PI)
-	if position.x < 0:
-		position.x = screen_size.x
-	if position.x > screen_size.x:
-		position.x = 0
-	if position.y < 0:
-		position.y = screen_size.y
-	if position.y > screen_size.y:
-		position.y = 0
+	
+	if position.x < -10000:
+		position.x = screen_size.x + 10000
+	if position.x > screen_size.x + 10000:
+		position.x = -10000
+	if position.y < -10000:
+		position.y = screen_size.y + 10000
+	if position.y > screen_size.y + 10000:
+		position.y = -10000
 
 
 func _on_area_entered(area):

@@ -31,6 +31,7 @@ var dead = false
 
 
 func _ready():
+	Global.asteroid_spawned.emit(self)
 	screen_size = get_viewport_rect().size
 	set_random_direction_and_speed()
 	rotation_speed = randf_range(-1, 1)
@@ -40,15 +41,14 @@ func _ready():
 
 func _process(delta):
 	# Screen Wrap
-	if position.x < 0:
-		position.x = screen_size.x
-	elif position.x > screen_size.x:
-		position.x = 0
-
-	if position.y < 0:
-		position.y = screen_size.y
-	elif position.y > screen_size.y:
-		position.y = 0
+	if position.x < -5000:
+		position.x = screen_size.x + 5000
+	if position.x > screen_size.x + 5000:
+		position.x = -5000
+	if position.y < -5000:
+		position.y = screen_size.y + 5000
+	if position.y > screen_size.y + 5000:
+		position.y = -5000
 	
 	# Moving 
 	position += direction * speed * delta

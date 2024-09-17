@@ -4,6 +4,7 @@ extends Node
 
 # Player Variables
 var player_pos: Vector2
+var player_rot: float
 var high_score = 0
 var paused = false
 # Health Variables
@@ -125,6 +126,7 @@ signal upgrade_pull_range()
 signal evo_upgrade()
 signal update_money(amount)
 signal wave_num_update(wave_num)
+signal asteroid_spawned(asteroid)
 
 # Settings Variables
 var crt_value = 100.0

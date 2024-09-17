@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0jlxjxdu4vma"]
+[gd_scene load_steps=10 format=3 uid="uid://c0jlxjxdu4vma"]
 
 [ext_resource type="Script" path="res://Scenes/UI/UI.gd" id="1_mphwc"]
 [ext_resource type="Texture2D" uid="uid://c81cyxo81c3w6" path="res://Sprites/UI/Bar-1.png.png" id="2_ky7pi"]
+[ext_resource type="PackedScene" uid="uid://bk7y3qpm81qyr" path="res://Scenes/UI/mini_map.tscn" id="2_sf4g2"]
 [ext_resource type="PackedScene" uid="uid://ccoieyw6drudu" path="res://Scenes/UI/upgrade_button.tscn" id="3_1ftdo"]
 [ext_resource type="Shader" path="res://Scenes/UI/UI.gdshader" id="3_2rjxw"]
 [ext_resource type="Texture2D" uid="uid://c416wpu8cpp4g" path="res://Sprites/UI/Pause_Button-1.png.png" id="3_vwkcr"]
@@ -35,6 +36,16 @@ shader_parameter/vignette_opacity = 0.3
 [node name="UI" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_mphwc")
+
+[node name="Control" parent="." instance=ExtResource("2_sf4g2")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -200.0
+offset_right = 0.0
+offset_bottom = 200.0
+grow_horizontal = 0
+grow_vertical = 1
 
 [node name="Score_Label" type="Label" parent="."]
 anchors_preset = 5
@@ -112,6 +123,7 @@ text = "15
 horizontal_alignment = 1
 
 [node name="Wave_Number_Label" type="Label" parent="."]
+visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -190,6 +202,7 @@ texture_progress = ExtResource("2_ky7pi")
 tint_progress = Color(0.866667, 0, 0.0745098, 0.717647)
 
 [node name="Exp_Bar" type="TextureProgressBar" parent="."]
+visible = false
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 30.0
@@ -202,6 +215,7 @@ texture_progress = ExtResource("2_ky7pi")
 tint_progress = Color(1, 1, 1, 0.815686)
 
 [node name="Exp_Bar_BG" type="TextureProgressBar" parent="."]
+visible = false
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 30.0
@@ -640,6 +654,7 @@ theme_override_font_sizes/font_size = 24
 text = "Counter Thrust:  "
 
 [node name="PauseButton" type="Button" parent="."]
+visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0

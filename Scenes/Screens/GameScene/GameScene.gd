@@ -38,7 +38,7 @@ func _process(_delta):
 		#print(player)
 		var playerInstance = playerScene.instantiate()
 		add_child(playerInstance)
-		playerInstance.position = Vector2(screen_size.x/2, screen_size.y/2)
+		playerInstance.position = Vector2.ZERO
 		#print(playerInstance.position)
 		player = true
 	#print(Global.enemy_weight)
@@ -100,13 +100,13 @@ func random_vector(left, right, bottom, top):
 func generate_spawn_point():
 	var locations = [
 		# Upper Rectangle
-		random_vector(0, screen_size.x, screen_size.y, screen_size.y),
+		random_vector(0, Global.player_pos.x + 1280, screen_size.y + 770, screen_size.y + 770),
 		# Lower Rectangle
-		random_vector(0, screen_size.x, -screen_size.y, -screen_size.y),
+		random_vector(0, Global.player_pos.x + 1280, -screen_size.y - 770, -screen_size.y - 770),
 		# Right Rectangle
-		random_vector(screen_size.x, screen_size.x, 0, screen_size.y),
+		random_vector(Global.player_pos.x + 1280, Global.player_pos.x + 1280, 0, screen_size.y + 770),
 		# Left Rectangle
-		random_vector(-screen_size.x, -screen_size.x, 0, screen_size.y),
+		random_vector(-Global.player_pos.x - 1280, -Global.player_pos.x - 1280, 0, screen_size.y + 770),
 	]
 	return locations[randi_range(0,3)]
 
