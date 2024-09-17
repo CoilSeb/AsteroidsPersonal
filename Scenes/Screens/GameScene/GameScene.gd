@@ -7,6 +7,7 @@ extends Node
 @onready var moon_guy_warning = $Moon_Guy_Warning
 @onready var asteroid_timer = $AsteroidTimer
 
+const CHEST = preload("res://Scenes/Items/chest.tscn")
 var playerScene = preload("res://Scenes/Player/Player.tscn")
 var player = true
 var screen_size
@@ -29,6 +30,8 @@ func _ready():
 	if !find_child("Player"):
 		player = false
 		#print(player)
+	for i in range(7):
+		spawn_chest()
 
 
 func _process(_delta):
@@ -100,13 +103,13 @@ func random_vector(left, right, bottom, top):
 func generate_spawn_point():
 	var locations = [
 		# Upper Rectangle
-		random_vector(0, Global.player_pos.x + 1280, screen_size.y + 770, screen_size.y + 770),
+		random_vector(0, Global.player_pos.x + 2560, screen_size.y + 1440, screen_size.y + 1440),
 		# Lower Rectangle
-		random_vector(0, Global.player_pos.x + 1280, -screen_size.y - 770, -screen_size.y - 770),
+		random_vector(0, Global.player_pos.x + 2560, -screen_size.y - 1440, -screen_size.y - 1440),
 		# Right Rectangle
-		random_vector(Global.player_pos.x + 1280, Global.player_pos.x + 1280, 0, screen_size.y + 770),
+		random_vector(Global.player_pos.x + 2560, Global.player_pos.x + 2560, 0, screen_size.y + 1440),
 		# Left Rectangle
-		random_vector(-Global.player_pos.x - 1280, -Global.player_pos.x - 1280, 0, screen_size.y + 770),
+		random_vector(-Global.player_pos.x - 2560, -Global.player_pos.x - 2560, 0, screen_size.y + 1440),
 	]
 	return locations[randi_range(0,3)]
 
@@ -210,3 +213,10 @@ func _on_asteroid_timer_timeout():
 	if i == 0:
 		spawn_special_Asteroid_with_weight()
 	spawn_basic_Asteroid_with_weight()
+
+
+func spawn_chest():
+	var rand_vec = random_vector(-5000, 5000, -5000, 5000)
+	var new_chest = CHEST.instantiate()
+	new_chest.global_position = rand_vec
+	add_child(new_chest)

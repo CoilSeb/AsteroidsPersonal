@@ -27,6 +27,7 @@ func _on_interact_area_2d_area_entered(area):
 	instructions_label.show()
 	can_interact = true
 
+
 func _on_interact_area_2d_area_exited(area):
 	instructions_label.hide()
 	can_interact = false

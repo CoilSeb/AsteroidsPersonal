@@ -186,7 +186,7 @@ func refresh():
 	weapon_scale = Vector2(0,0)
 	exp_pull_range = Vector2(0,0)
 	
-	move_speed = 500
+	move_speed = 350
 	counter_thrust = 0
 	
 	can_shoot = true

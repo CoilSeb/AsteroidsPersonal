@@ -7,11 +7,6 @@ const MINI_MAP_CHUNK = preload("res://Scenes/UI/mini_map_chunk.tscn")
 
 func _ready():
 	Global.asteroid_spawned.connect(asteroid_blip)
-	for i in range(50):
-		for j in range(50):
-			var chunk = MINI_MAP_CHUNK.instantiate()
-			chunk.position = Vector2(i * 4, j * 4)
-			get_parent().add_child.call_deferred(chunk)
 
 
 func _process(delta):

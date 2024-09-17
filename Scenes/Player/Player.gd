@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var collection_range = $Collection_Range
 @onready var hit_timer = $Hit_Timer
 @onready var laser_charge_timer = $Laser_Charge_Timer
+@onready var camera_2d = $Camera2D
 
 const ASTEROID_DEATH_PARTICLES = preload("res://Particles/asteroid_death_particles.tscn")
 const PLAYER_DEATH = preload("res://Particles/player_death.tscn")
@@ -76,6 +77,11 @@ func _physics_process(delta):
 		position.y = 5000
 	if position.y > 5000:
 		position.y = -5000
+		
+	if Input.is_action_just_released('M3_Down') && camera_2d.get_zoom() > Vector2(0.25, 0.25):
+		camera_2d.set_zoom(camera_2d.get_zoom() - Vector2(0.1, 0.1))
+	if Input.is_action_just_released('M3_Up') && camera_2d.get_zoom() < Vector2.ONE:
+		camera_2d.set_zoom(camera_2d.get_zoom() + Vector2(0.1, 0.1))
 	
 	rs_look.y = Input.get_joy_axis(0, JOY_AXIS_LEFT_Y)
 	rs_look.x = Input.get_joy_axis(0, JOY_AXIS_LEFT_X)
@@ -120,7 +126,7 @@ func _physics_process(delta):
 			velocity = Vector2.ZERO
 	#print(velocity)
 		
-	if velocity.length() > 1000:
+	if velocity.length() > 500:
 		velocity = lerp(velocity, Vector2.ZERO, slowDown * delta)
 		
 	move_and_collide(velocity * delta)
