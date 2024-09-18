@@ -48,6 +48,7 @@ grow_horizontal = 0
 grow_vertical = 1
 
 [node name="Score_Label" type="Label" parent="."]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -740,6 +741,15 @@ mouse_filter = 2
 
 [node name="Level_Up_Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_akabl")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_right = 500.0
+offset_bottom = 50.0
+grow_horizontal = 2
 
 [connection signal="timeout" from="Wave_Counter_Timer" to="." method="_on_wave_counter_timer_timeout"]
 [connection signal="timeout" from="Wave_Blink_Timer" to="." method="_on_wave_blink_timer_timeout"]
